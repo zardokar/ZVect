@@ -98,6 +98,30 @@ not write the code (handzup rule 12 substitute; its verdict is not a named "revi
 
 ## §5b Update log (newest on top)
 
+**2026-10-11 (upckp #19): 🔎 WIP202610027: chapter 5 rebuilt simple → complex (brute force … HNSW … filtering) + 4.5 keyword vs meaning — FINISH (code)**
+- Owner (12:52–13:06): "แล้ว HNSW มันหายไปหรือเปล่า" (it was 5.2 "Vector search", name hid it) → "HNSW คือ Algorithm หรือหัวข้อใน Vector search" →
+  "Vector search วิธีแก้โจทย์นี้มีหลายแบบ <<< ก็รู้นี่ มันควรจะเอาตัวอย่างง่าย ไปจนเป็นอันที่ส่งให้ iw ไปแล้วหรือเปล่า"; picked the proposed outline,
+  asked "ข้อ 5.8 ทำไมไปอยู่ลำดับนั้น เราควรเรียงตามลำดับความซับซ้อนและปี ของ Theory หรือเปล่า" (→ ordered by complexity, year shown, 1-bit kept at 5.3 as
+  "cheaper compares" before the "fewer compares" ANN lessons; owner accepted), "ANN ต้องแยกกับ HNSW หรือเปล่า" (answered: ANN = family, Annoy tree and
+  HNSW are members), keyword search → 4.5 (owner's pick). "ทำไมไม่มี K-mean" / "แยกกลุ่ม Classification ไหม": k-means / IVF is in none of the 12 aimd files
+  (only the name IVFFlat in a pgvector bug note) → not added; new `WIP202610028`.
+- Chapter 5 now: 5.1 brute force (`27_brute_force`, N = 10/100/1000, measured = N) · 5.2 high dimensions · 5.3 1-bit XOR + popcount ·
+  5.4 ANN tree / Annoy (`28_ann_tree` + `web/js/anntree.js`, Serengil formulas, 1,000 points seed 42, tree seed 1: (50, 50) 8 steps hit, (30, 30) miss) ·
+  5.5 one-layer neighbour-graph walk (`29_nsw_graph` + new shared `web/js/graph.js`; starts a1 / f1 / t1: 5 / 13 measured / stuck at t8) ·
+  5.6 HNSW layered graph (`13_vector_search` rewritten on graph.js, title "HNSW: …", slug `vector-search` kept) · 5.7 beam / efSearch (`30_hnsw_beam`,
+  ef 1/2 miss, 4 finds a8 with 11, 8 with 14) · 5.8 layers by coin flip (`31_hnsw_build`, N 1,000,000, M 16: 62,214 / 3,904 / 230 / 11 vs expected) ·
+  5.9 filtering breaks the graph (`32_filter_graph`, random graph 2,000 points: k 8 → 25% kept 79% connected, 12.5% → 9%). 4.5 keyword vs meaning
+  (`33_keyword_search`, inverted index vs toy word vectors; "cancel my subscription", "ZV-1042"). Years marked general knowledge in each lesson.
+- Cross-refs: 4.1 notes HNSW → 5.6; 2.1 notes graph → 5.5–5.7. README table, llms.txt, REFERENCE.md (chapter-5 numbers remapped 5.1→5.2, 5.2→5.6, new usage
+  paragraphs for Satyajit Das, Serengil, Devsplainers, Qdrant) updated. Site: 7 chapters / 33 topics.
+- Independent review (subagent that did not write the lessons; not the owner's "reviewer" skill) re-ran every number in the try texts (all matched) and checked
+  claims against aimd: 3 must-fix (5.9 verdict contradicted its own numbers → verdict now by connected share; 5.7 said "red" for purple; 5.5 called the plain
+  kNN graph "NSW" → reworded) + 8 nice-to-have, all applied.
+- VERIFIED: npm test 15/0; npm run check PASS; Playwright 33 lessons × 3 sizes (no box scrollbars, no wide formulas, no spill, one-line table headers,
+  0 page errors, 0 HTTP ≥ 400); click-throughs of each new lesson; screenshots looked at.
+- Sync consequence: delivered per topic (8 batches md5-verified) + final docs/checkpoint batch; owner commits.
+- 💰 cost: not measured for this entry.
+
 **2026-10-11 (upckp #18): 🧹 Sidebar header tidied; no scrollbars inside boxes, smaller title and canvas, list box 40 % — FINISH (code)**
 - Owner (12:41, screenshot of the sidebar top): "design ตรงนี้ให้สวย เป็นระเบียบกว่านี้ได้ไหม" → logo mark (favicon arrow) + version pill on the logo line
   (`#version` now "v0.1.0"), tagline on two lines with a hairline under it, search (magnifier icon, "/" key hint that hides while typing,
@@ -512,6 +536,7 @@ not write the code (handzup rule 12 substitute; its verdict is not a named "revi
 | WIP202610010 | FINISH | 001 | Folded into WIP202610020 / WIP202610023 (next topics = Phase 2 list) | ckp:001#7 |
 | WIP202610018 | FINISH | 001 | Lesson "Embedding matrix" (one-hot × E = row; one-hot pairs equidistant) | file:web/lessons/12_embedding_matrix.js · ckp:001#10 |
 | WIP202610025 | FINISH | 001 | Owner: distances not in the sources are not added; the aimd re-check found XOR + popcount (added) | file:web/lessons/11_distance.js · ckp:001#14 |
+| WIP202610027 | FINISH | 001 | Chapter 5 simple → complex (5.1 brute force, 5.4 tree, 5.5 graph walk, 5.6 HNSW, 5.7 beam, 5.8 build, 5.9 filter) + 4.5 keyword vs meaning | file:web/js/graph.js · ckp:001#19 |
 | WIP202610026 | FINISH | 001 | 7 new topics from aimd (1.5, 3.1, 3.2, 3.3, 3.5, 7.1, 7.2), Embedding matrix trimmed to lookup, 7 chapters / 26 topics | file:web/js/app.js · ckp:001#17 |
 
 ## §6 WIP (open items) — ALWAYS LAST, READ FIRST
@@ -526,11 +551,13 @@ not write the code (handzup rule 12 substitute; its verdict is not a named "revi
 | WIP202610021 | [repo] Owner deletes the 8 pre-rename files (copies kept in `.dropzone/_to_delete/`) | 2026-10-10 | ckp:001#5 |
 | WIP202610022 | [skill] iw v5.1: meaning-fidelity rule, no lyrics, per-batch frame prefixes, C2PA-aware verify, crop presenter chrome, li/p wrap, own-words rule for standard licenses — card re-shown 23:4x (first one was not visible to the owner), owner to save | 2026-10-10 | ckp:001#7 |
 | WIP202610024 | [web] Owner turns on GitHub Pages once (Settings → Pages → Deploy from a branch → main, / (root)), pushes, and opens https://zardokar.github.io/ZVect/ | 2026-10-11 | ckp:001#8 |
-| WIP202610023 | [lessons] Remaining lesson ideas (word counts and positional encoding were built in #17 as 3.3 and 7.1): keyword vs vector (BM25 vs cosine, exact IDs), filtered-graph disconnection 1 − 1/k, Matryoshka truncation, outliers | 2026-10-10 | ckp:001#10 |
+| WIP202610028 | [lessons] Owner asked "ทำไมไม่มี K-mean" / "แยกกลุ่ม Classification ไหม": k-means / IVF (and maybe a "จัดกลุ่ม" chapter with 6.3) need a source first (none of the 12 aimd files covers it); owner to send a clip/article for iw | 2026-10-11 | ckp:001#19 |
+| WIP202610023 | [lessons] Remaining lesson ideas (word counts, positional encoding, keyword vs vector and filtered-graph disconnection were built in #17 / #19): Matryoshka truncation, outliers | 2026-10-10 | ckp:001#10 |
 
 ### Narrative
 
-- **Active thread (2026-10-11, #18):** layout pass after #17 (sidebar header, no scrollbars in boxes). Next unchanged: commit, Pages, stale files.
+- **Active thread (2026-10-11, #19):** chapter 5 rebuilt simple → complex (7 chapters / 33 topics). Next: commit; k-means / IVF waits for a source (`WIP202610028`).
+- Earlier (#18): layout pass after #17 (sidebar header, no scrollbars in boxes). Next unchanged: commit, Pages, stale files.
 - Earlier (#17): `WIP202610026` done: 7 chapters / 26 topics (1.5 Matrix; chapter 3 = Token ID, One-hot, Bag of words, Embedding matrix, Learning the table, Latent space; chapter 7 = LLM input, attention query · key). Next: owner reviews and commits, turns Pages on (`WIP202610024`), deletes the stale files (`WIP202610021`).
 - Earlier (#16): 6 chapters / 19 topics numbered 1.1 …; formulas line by line; three-box formula area.
 - Earlier (#14): beginner pass — Vector space is one idea (room + points), add/subtract/scale is its own lesson, Distance has Euclidean + XOR + popcount; 15 lessons. Owner may ask for the same beginner pass on other lessons.

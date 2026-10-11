@@ -31,6 +31,13 @@ import l23 from "../lessons/23_bag_of_words.js";
 import l24 from "../lessons/24_learn_table.js";
 import l25 from "../lessons/25_llm_input.js";
 import l26 from "../lessons/26_attention.js";
+import l27 from "../lessons/27_brute_force.js";
+import l28 from "../lessons/28_ann_tree.js";
+import l29 from "../lessons/29_nsw_graph.js";
+import l30 from "../lessons/30_hnsw_beam.js";
+import l31 from "../lessons/31_hnsw_build.js";
+import l32 from "../lessons/32_filter_graph.js";
+import l33 from "../lessons/33_keyword_search.js";
 
 // Chapters and lessons in teaching order, numbered 1, 1.1, 1.2, … (owner, 2026-10-11: one idea per lesson,
 // "มันควรจะ 1 แล้ว 1.1 1.2"). Each lesson only uses ideas from earlier ones. File prefixes are the order the
@@ -39,8 +46,8 @@ const GROUPS = [
   { title: "พื้นฐานเวกเตอร์", lessons: [l1, l16, l4, l15, l20] },
   { title: "วัดว่าสองเวกเตอร์ใกล้กันแค่ไหน", lessons: [l11, l2, l3] },
   { title: "เปลี่ยนข้อความเป็นเวกเตอร์", lessons: [l21, l22, l23, l12, l24, l5] },
-  { title: "ค้นหาของที่ใกล้ที่สุด", lessons: [l6, l18, l19, l7] },
-  { title: "ค้นให้เร็วเมื่อข้อมูลเยอะ", lessons: [l8, l13, l17] },
+  { title: "ค้นหาของที่ใกล้ที่สุด", lessons: [l6, l18, l19, l7, l33] },
+  { title: "ค้นให้เร็วเมื่อข้อมูลเยอะ", lessons: [l27, l8, l17, l28, l29, l13, l30, l31, l32] },
   { title: "ใช้งานจริง", lessons: [l9, l14, l10] },
   { title: "เวกเตอร์ใน LLM", lessons: [l25, l26] },
 ];
@@ -67,7 +74,7 @@ function localSet(k, v) { try { localStorage.setItem(k, v); } catch { /* private
 $("#nav").innerHTML = GROUPS.map((g, gi) => `<li class="group"><span class="group-title"><b>${gi + 1}</b> ${g.title}</span><ol>` +
   g.lessons.map((l) => `<li><a href="#/${l.slug}" data-slug="${l.slug}"><span class="num">${NUM.get(l)}</span><span>${l.en}</span></a></li>`).join("") +
   "</ol></li>").join("");
-$("#version").textContent = "lib v" + VERSION;
+$("#version").textContent = "v" + VERSION;
 
 // ---------- find a lesson: datalist suggestions + live filter of the list below ----------
 // Typing narrows the sidebar list (matches title, English name, group, number). Picking a suggestion or
@@ -147,6 +154,17 @@ function splitList() {
   $(".formula").classList.toggle("noval", !val);
 }
 
+// No scrollbars inside the boxes (owner, 2026-10-11 12:45: "ไม่ต้องการให้ Block มี Scroll เลย"). A formula wider than
+// its box is drawn smaller until it fits (never below half its normal size).
+function fitMath() {
+  document.querySelectorAll(".formula math").forEach((m) => {
+    m.style.fontSize = "";
+    const room = m.parentElement.clientWidth, w = m.scrollWidth;
+    if (room && w > room) m.style.fontSize = (Math.max(0.5, room / w) * parseFloat(getComputedStyle(m).fontSize)).toFixed(2) + "px";
+  });
+}
+new ResizeObserver(() => fitMath()).observe($(".formula"));
+
 // ---------- one lesson ----------
 function showLesson(L, i) {
   document.body.dataset.page = "lesson";
@@ -160,7 +178,7 @@ function showLesson(L, i) {
   // L.notes = what the sources add, written out here (no "read more" detour); L.refs = [[sourceId, what this lesson used], ...]
   // L.symbols = [[symbol, meaning, why], ...]: the formula read one symbol at a time
   $("#p-sym").innerHTML = (L.symbols || []).length
-    ? `<table class="rank symbols"><thead><tr><th>ในสูตร</th><th>คืออะไร</th><th>มีไว้ทำไม / ตัวอย่าง</th></tr></thead><tbody>` +
+    ? `<table class="rank symbols"><thead><tr><th>ในสูตร</th><th>คืออะไร</th><th>ทำไม / ตัวอย่าง</th></tr></thead><tbody>` +
       L.symbols.map(([s, m, w]) => `<tr><td class="sym">${s}</td><td>${m}</td><td class="dim">${w}</td></tr>`).join("") + "</tbody></table>"
     : "";
   $("#p-notes").innerHTML = L.notes || "";
@@ -175,7 +193,7 @@ function showLesson(L, i) {
   panel.innerHTML = "";
   const live = $("#live");
   let inst;
-  const refresh = () => { scene.render(); live.innerHTML = inst.live(); splitList(); };
+  const refresh = () => { scene.render(); live.innerHTML = inst.live(); splitList(); fitMath(); };
   inst = L.mount(makeUI(panel, refresh));
   scene.axisNames = L.axisNames || ["x", "y", "z"];
   scene.setView(L.view || {});

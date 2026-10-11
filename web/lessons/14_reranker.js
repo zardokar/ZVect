@@ -93,9 +93,9 @@ export default {
         if (!s1.length) return `<p class="verdict">ยังไม่มีคำที่ encoder รู้จัก</p>`;
         const rank2 = (id) => s2.findIndex((r) => r.id === id) + 1;
         const rows = s1.map((r, i) => `<tr class="${(st.stage === "1" ? i === 0 : rank2(r.id) === 1) ? "win" : ""}"><td>${r.tag}</td><td>${r.id}</td>
-          <td>${i + 1} <span class="dim">${r.score.toFixed(3)}</span></td><td>${matches(st.q, r.id)}</td><td>${rank2(r.id)} <span class="dim">${(matches(st.q, r.id) + r.score).toFixed(3)}</span></td></tr>`).join("");
+          <td class="nw">${i + 1} <span class="dim">${r.score.toFixed(3)}</span></td><td>${matches(st.q, r.id)}</td><td class="nw">${rank2(r.id)} <span class="dim">${(matches(st.q, r.id) + r.score).toFixed(3)}</span></td></tr>`).join("");
         const moved = s1[0].id !== s2[0].id;
-        return `<div class="scroll"><table class="rank"><thead><tr><th></th><th>เอกสาร</th><th>ขั้น 1 (cos)</th><th>คำที่ตรง</th><th>ขั้น 2 (score)</th></tr></thead><tbody>${rows}</tbody></table></div>
+        return `<p class="fintro">ขั้น 1 = อันดับตาม cos · ตรง = จำนวนคำของคำถามที่เจอ · ขั้น 2 = อันดับตาม score (ตรง + cos)</p><div class="scroll"><table class="rank"><thead><tr><th></th><th>เอกสาร</th><th>ขั้น 1</th><th>ตรง</th><th>ขั้น 2</th></tr></thead><tbody>${rows}</tbody></table></div>
           <p class="verdict">${moved ? `reranker เปลี่ยนอันดับ 1 จาก <b>${s1[0].id}</b> เป็น <b>${s2[0].id}</b>` : "สองขั้นได้อันดับ 1 ตรงกัน"}</p>`;
       },
     };

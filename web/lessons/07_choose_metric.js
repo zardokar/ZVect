@@ -105,7 +105,7 @@ export default {
           score[i].map((x, j) => `<td class="${win[j] === i ? "best" : ""}">${f3(x)}</td>`).join("") + "</tr>").join("");
         const picks = METRICS.map(([name], j) => `${name.split(" ")[0]} เลือก ${cand[win[j]][0]}`).join(" · ");
         const same = new Set(win).size === 1;
-        let out = `<div class="scroll"><table class="rank"><thead><tr><th>เทียบกับ A</th>${head}</tr></thead><tbody>${body}</tbody></table></div>` +
+        let out = `<p class="fintro">เทียบ B และ C กับ A (↑ มากดี · ↓ น้อยดี):</p><div class="scroll"><table class="rank"><thead><tr><th></th>${head}</tr></thead><tbody>${body}</tbody></table></div>` +
           `<p class="verdict">${picks}${same ? " (ตรงกันหมด)" : ""}</p>`;
         if (norm(C) === 0) out += `<p class="verdict">C เป็นเวกเตอร์ศูนย์ ไม่มีทิศ cosine จึงไม่นิยาม (lib คืน 0)</p>`;
         else if (st.mode === "unit") {

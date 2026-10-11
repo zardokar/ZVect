@@ -99,7 +99,9 @@ export default {
         const next = add(e, scale(sub(c, e), ETA));
         const pairs = [["cat", "dog"], ["car", "bus"], ["cat", "car"]];
         const rows = pairs.map(([a, b]) => `<tr><td>${a} กับ ${b}</td><td>${fmt(cosine(st.E[a], st.E[b]))}</td><td class="dim">${a === "cat" && b === "car" ? "คนละบริบท" : "บริบทเดียวกัน"}</td></tr>`).join("");
-        return M.math(M.sub(M.v("e"), M.t("cat")), M.o("←"), tup(e), M.o("+"), M.n(ETA), M.o("×"), M.row(M.o("("), tup(c), M.o("−"), tup(e), M.o(")")), M.o("="), M.row(`<mrow class="res">${tup(next)}</mrow>`)) +
+        const err = sub(c, e);
+        return M.math(M.t("error"), M.o("="), tup(c), M.o("−"), tup(e), M.o("="), tup(err)) +
+          M.math(M.sub(M.v("e"), M.t("cat")), M.o("←"), tup(e), M.o("+"), M.n(ETA), M.o("×"), tup(err), M.o("="), M.row(`<mrow class="res">${tup(next)}</mrow>`)) +
           `<p class="verdict">ฝึกไปแล้ว <b>${st.steps}</b> รอบ · หน้าต่าง "pet cat sleeps": c = ค่าเฉลี่ยของ pet กับ sleeps = ${f2(c)}</p>` +
           `<p class="fintro">cosine ระหว่างแถวตอนนี้:</p><div class="scroll"><table class="rank"><thead><tr><th>คู่</th><th>cosine</th><th></th></tr></thead><tbody>${rows}</tbody></table></div>` +
           `<p class="ctl-note">ประโยคฝึก: pet cat sleeps · pet dog sleeps · drive car fast · drive bus fast</p>`;

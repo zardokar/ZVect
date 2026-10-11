@@ -95,7 +95,7 @@ export default {
         const r = data();
         return M.math(M.t("spread"), M.o("="), M.frac(M.row(M.n(fmt(r.hi)), M.o("−"), M.n(fmt(r.lo))), M.n(fmt(r.lo))),
             M.o("="), M.n(fmt((r.hi - r.lo) / r.lo), "res")) +
-          `<div class="scroll"><table class="rank"><thead><tr><th>d</th><th>distance ใกล้สุด .. ไกลสุด</th><th>cosine ต่ำสุด .. สูงสุด</th></tr></thead>
+          `<p class="fintro">ช่วงค่าจาก query ถึง 200 จุด (ต่ำสุด .. สูงสุด):</p><div class="scroll"><table class="rank"><thead><tr><th>d</th><th>distance</th><th>cosine</th></tr></thead>
           <tbody><tr><td>${st.d}</td><td>${fmt(r.lo)} .. ${fmt(r.hi)}</td><td>${fmt(r.clo)} .. ${fmt(r.chi)}</td></tr></tbody></table></div>` +
           `<p class="verdict">ไกลสุดไกลกว่าใกล้สุด ${(r.hi / r.lo).toFixed(2)} เท่า (seed ${st.seed})</p>`;
       },
