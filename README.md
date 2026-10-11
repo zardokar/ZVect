@@ -42,12 +42,14 @@ Branch: **main**, folder **/ (root)** → Save หลังจากนั้น
 | 2 วัดว่าสองเวกเตอร์ใกล้กันแค่ไหน | 2.1 | Euclidean distance: ความยาวของ a − b | `11_distance` |
 | | 2.2 | Dot product: คูณแล้วบวก, เงาของเวกเตอร์ | `02_dot_product` |
 | | 2.3 | Cosine similarity: เทียบทิศโดยไม่สนความยาว, cosine distance = 1 − cos | `03_cosine` |
-| 3 เปลี่ยนข้อความเป็นเวกเตอร์ | 3.1 | Token ID: เลขประจำคำเป็นแค่ป้ายชื่อ (good 6, bad 22, great 21) | `21_token_id` |
-| | 3.2 | One-hot: เลข 1 ตัวเดียว ทุกคู่ห่างกันเท่ากัน | `22_one_hot` |
-| | 3.3 | Bag of words: นับคำแล้วได้เวกเตอร์ (StatQuest) | `23_bag_of_words` |
-| | 3.4 | Embedding matrix: one-hot × ตาราง = หยิบแถวของคำ | `12_embedding_matrix` |
-| | 3.5 | ตารางมาจากการฝึก: เริ่มสุ่ม แล้วปรับทีละนิด (CBOW แบบย่อ) | `24_learn_table` |
-| | 3.6 | Latent space: แกนที่มีความหมาย, king − man + woman | `05_latent_space` |
+| 3 เปลี่ยนข้อความเป็นเวกเตอร์ | 3.1 | Tokenization: ตัดข้อความเป็นตัวอักษรหรือคำ แล้วเปิดคลังหาเลข (4 ภาษา EN / TH / 中文 / 日本語) | `34_tokenize` |
+| | 3.2 | BPE: เริ่มจากตัวอักษร แล้วรวมคู่ที่เจอบ่อยทีละรอบ (นับสดทุกรอบ) | `35_bpe` |
+| | 3.3 | Token ID: เลขประจำคำเป็นแค่ป้ายชื่อ (good 6, bad 22, great 21) | `21_token_id` |
+| | 3.4 | One-hot: เลข 1 ตัวเดียว ทุกคู่ห่างกันเท่ากัน | `22_one_hot` |
+| | 3.5 | Bag of words: นับคำแล้วได้เวกเตอร์ (StatQuest) | `23_bag_of_words` |
+| | 3.6 | Embedding matrix: one-hot × ตาราง = หยิบแถวของคำ | `12_embedding_matrix` |
+| | 3.7 | ตารางมาจากการฝึก: เริ่มสุ่ม แล้วปรับทีละนิด (CBOW แบบย่อ) | `24_learn_table` |
+| | 3.8 | Latent space: แกนที่มีความหมาย, king − man + woman | `05_latent_space` |
 | 4 ค้นหาของที่ใกล้ที่สุด | 4.1 | ค้นด้วย cosine (top-3) | `06_similarity` |
 | | 4.2 | ค้นด้วย distance | `18_search_distance` |
 | | 4.3 | ค้นด้วย dot | `19_search_dot` |
@@ -62,13 +64,14 @@ Branch: **main**, folder **/ (root)** → Save หลังจากนั้น
 | | 5.7 | HNSW: beam (efSearch) | `30_hnsw_beam` |
 | | 5.8 | HNSW: สร้างชั้นด้วยการโยนเหรียญ (1/M) | `31_hnsw_build` |
 | | 5.9 | กรองระหว่างค้น: กรองเยอะเกินไป กราฟขาด (1/k) | `32_filter_graph` |
-| 6 ใช้งานจริง | 6.1 | Bi-Encoder: แปลงคำถามและเอกสารเป็นเวกเตอร์แยกกัน 4 ภาษา (EN / TH / 中文 / 日本語) ตัดคำด้วยช่องว่าง vs พจนานุกรม | `09_bi_encoder` |
-| | 6.2 | Reranker (Cross-Encoder): คัด top-k แล้วจัดอันดับใหม่ (จับคำปฏิเสธ 4 ภาษา: not · ไม่ · 不 หน้าคำ, ない หลังคำ) | `14_reranker` |
-| | 6.3 | Classification: nearest centroid | `10_classification` |
+| 6 การผสานทฤษฎี | 6.1 | Bi-Encoder: แปลงคำถามและเอกสารเป็นเวกเตอร์แยกกัน 4 ภาษา (EN / TH / 中文 / 日本語) ตัดคำด้วยช่องว่าง vs พจนานุกรม | `09_bi_encoder` |
+| | 6.2 | Late interaction (ColBERT): เวกเตอร์ทุก token, MaxSim แล้วรวม (Σ) เทียบกับ Bi-Encoder 4 ภาษา | `36_late_interaction` |
+| | 6.3 | Reranker (Cross-Encoder): คัด top-k แล้วจัดอันดับใหม่ (จับคำปฏิเสธ 4 ภาษา: not · ไม่ · 不 หน้าคำ, ない หลังคำ) | `14_reranker` |
+| | 6.4 | Classification: nearest centroid | `10_classification` |
 | 7 เวกเตอร์ใน LLM | 7.1 | LLM input: แถวละ token แล้วบวกเวกเตอร์ตำแหน่ง | `25_llm_input` |
 | | 7.2 | Attention: ให้คะแนนด้วย query · key | `26_attention` |
 
-เลขหน้าไฟล์ (`01_`…`33_`) คือลำดับที่เขียนไฟล์ ไม่ใช่ลำดับบท ลำดับบทกำหนดใน `GROUPS` ของ `web/js/app.js`
+เลขหน้าไฟล์ (`01_`…`36_`) คือลำดับที่เขียนไฟล์ ไม่ใช่ลำดับบท ลำดับบทกำหนดใน `GROUPS` ของ `web/js/app.js`
 
 ## โครงสร้าง
 
@@ -101,7 +104,8 @@ llms.txt      คู่มือสั้นสำหรับ AI ที่จ�
 ## สำหรับ AI session (read first)
 
 - **Authoritative checkpoint:** walk `checkpoints/checkpoint.zvect.ver*.md` by version number and read the
-  latest in full, **§6 (WIP) first**. Current: `checkpoints/checkpoint.zvect.ver001.md` (2026-10-10).
+  latest in full, **§6 (WIP) first**, then the previous one. Current: `checkpoints/checkpoint.zvect.ver002.md` (2026-10-11);
+  `ver001` = archive, its §5b holds upckp #1–#33. Closed rows in full: `checkpoints/archive/ARCHIVE.202610.md`.
 - Checkpoints are written in English. Shorthand: `upckp` = append an entry to §5b of the latest
   checkpoint and update the WIP tables · `newckp` = cut the next version · `hz` = write a handoff into
   `.dropzone/hzup_claude/` (git-ignored).
