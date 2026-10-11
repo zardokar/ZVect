@@ -1,7 +1,7 @@
 import { words, cosine, angle, dot, norm, fmt } from "../../lib/zvect.js";
 import { M } from "../js/kit.js";
 
-// 3.6 Bag of words (WIP202610026): one idea only — a sentence becomes a vector by counting each word.
+// Bag of words (WIP202610026): one idea only — a sentence becomes a vector by counting each word.
 // Presets are the StatQuest examples. Two different words fit on a flat graph; more words = more dimensions,
 // shown as a table only (StatQuest: a 5-word example needs a 5-D graph nobody can draw).
 const PRESETS = [
@@ -29,7 +29,7 @@ export default {
   canvasLabel: "กราฟนับคำ แกนนอนคือจำนวนคำแรก แกนตั้งคือจำนวนคำที่สอง มีเส้นจากจุดศูนย์ไปหาสองประโยคและมุมระหว่างเส้น",
   intro: `
     <p><b>Bag of words</b> เปลี่ยนประโยคเป็นเวกเตอร์ด้วยการ <b>นับคำ</b>: หนึ่งช่องต่อหนึ่งคำ ใส่จำนวนครั้งที่คำนั้นโผล่มา</p>
-    <p>"Hello, World!" = (hello 1, world 1) และ "Hello!" = (hello 1, world 0) แล้วเทียบสองประโยคด้วย cosine (บท 2.3)</p>`,
+    <p>"Hello, World!" = (hello 1, world 1) และ "Hello!" = (hello 1, world 0) แล้วเทียบสองประโยคด้วย cosine (บท {#cosine})</p>`,
   try: [
     "กดตัวอย่างที่ 1 แล้วตัวอย่างที่ 2: \"Hello Hello Hello\" ลูกศรยาวขึ้น แต่มุมยังเป็น 45° cosine จึงเท่าเดิม",
     "กดตัวอย่างที่ 4 (Hello! กับ World!): ไม่มีคำร่วมกันเลย มุม 90° cosine 0",
@@ -37,7 +37,7 @@ export default {
   ],
   steps: [
     ["นับคำ", "เปลี่ยนประโยคเป็นเวกเตอร์ด้วยการนับว่าแต่ละคำโผล่กี่ครั้ง"],
-    ["เทียบด้วย cosine", "ดูว่าสองประโยคใช้คำในสัดส่วนคล้ายกันแค่ไหน (บท 2.3)"],
+    ["เทียบด้วย cosine", "ดูว่าสองประโยคใช้คำในสัดส่วนคล้ายกันแค่ไหน (บท {#cosine})"],
   ],
   lines: [
     [M.math(M.v("A"), M.o("="), M.tuple([M.sub(M.t("count"), M.n(1)), M.o("…"), M.sub(M.t("count"), M.i("n"))])),
@@ -71,7 +71,7 @@ export default {
     </ul>
     <h2>นับคำไม่ใช่ความหมาย</h2>
     <p>"Troll 2 is bad." กับ "I love Troll 2!" ได้ 0.50 ทั้งที่ความเห็นตรงข้ามกัน เพราะสูตรแค่ดูว่ามีคำร่วมกันกี่คำ
-    (ตัวเลขนี้คำนวณเองในไฟล์สรุปของ StatQuest ไม่ได้อยู่ในคลิป) บท 3.7 จึงใช้ตารางที่ทำให้คำมีความหมายแทน</p>`,
+    (ตัวเลขนี้คำนวณเองในไฟล์สรุปของ StatQuest ไม่ได้อยู่ในคลิป) บท {#embedding-matrix} จึงใช้ตารางที่ทำให้คำมีความหมายแทน</p>`,
   refs: [["statquest", "ตารางนับคำ, กราฟ hello / world, 45° → 0.71, ความยาวไม่มีผล, สูตร ∑, ตัวอย่าง 5 คำ → 0.58"],
     ["wordemb", "bag of words, unigram / bigram / n-gram และข้อเสีย"]],
   mount(ui) {

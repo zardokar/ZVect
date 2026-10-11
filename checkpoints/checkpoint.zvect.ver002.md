@@ -5,13 +5,13 @@
   §5b only for history. Closed rows in full: `checkpoints/archive/ARCHIVE.<mint month>.md` (now `ARCHIVE.202610.md`), addressed by WIP ID —
   not part of the start-up read.
 - **Language rule:** checkpoints are ENGLISH. Thai only for a term with no English form (e.g. `เคาะ`), a literal UI string, or the owner's
-  words quoted verbatim. There is no lang checker in this repo yet (`WIP202610007`).
+  words quoted verbatim. There is no lang checker in this repo (owner 23:57, #43: manual ledger, no toolchain port).
 - **§6 is physically last but is read FIRST**, then §5c, then §1–§5.
 - **Edit flow:** the owner edits / commits on Windows in `D:\repository\ZVect`. Claude works in a cloud container and copies files back
   through the device bridge (new outputs dir, `expectedMtimeMs`, stage back, md5). No sync script. Claude never runs git write commands.
 - **DO-FIRST for the next session:** read `README.md` → walk `checkpoints/checkpoint.zvect.ver*.md` numerically → read the latest in full
-  (§6 first) and the previous one → read the newest `.dropzone/hzup_claude/*.md` → run `npm test` and `npm run check` → summarize the open
-  WIP count before any work. Expected after upckp #35: 11 open rows in §6, 33 closed rows in §5c, 33 IDs in the archive.
+  (§6 first) and the previous one → read the newest `.dropzone/hzup_claude/*.md` (now `20261011_2317.md`; its job, `WIP202610041`, is done in #42) → run `npm test` and `npm run check` → summarize the open
+  WIP count before any work. Expected after upckp #43: 10 open rows in §6, 37 closed rows in §5c, 37 IDs in the archive (§5c IDs = archive IDs, checked at #43).
 
 ---
 
@@ -45,7 +45,10 @@ Owner rules (เคาะ by the owner 2026-10-10 / 2026-10-11):
   near-plane clipping) plus a 2D zoom / pan mode (`scene.flat`, turned on by a lesson's `zoom2d`). `web/js/kit.js` = MathML + controls
   (`makeUI`: tagText, toggles, choice, buttons, text, number). Lessons `web/lessons/NN_*.js` export
   `{ slug, title, en, example, hint, canvasLabel, intro, try, steps, stepsWhy, lines, formulaFrom, symbols, symbolsNote, notes, refs,
-  mount(ui) → { draw, draw2d, live, zoom2d } }`. `web/js/app.js` holds `GROUPS`, the hash router, the lib page and the Dict page.
+  mount(ui) → { draw, draw2d, live, zoom2d } }`. Chapters and order live ONLY in `web/data/chapters.json`; `web/js/chapters.js` loads it, imports the lessons and exports `GROUPS`,
+  `NUM`, `CHAPTER`, `LESSONS` and `resolve()` (turns `{#slug}` into the current chapter.topic). `web/js/app.js` = hash router, lib page, Dict page.
+- `tools/reindex.js` (`npm run reindex`, #40) rebuilds the README table, the llms.txt lesson line and the REFERENCE.md chapter list, remaps every
+  chapter.topic number in REFERENCE.md old → new by slug through `web/data/chapters.lock.json`, then rewrites the lock. `--check` fails if stale (in `npm test`).
 - Shared lesson modules: `multilang.js` (toy 4-language encoder, samples, negation), `dict/` (dictionary: `index.js` facade `dict` + `createDict`, `facade.js`, `adapters.js` source / store, `model.js` pure rules, `page.js` Dict page), `tokdraw.js`
   (token → number picture), `graph.js` / `anntree.js` / `search.js` (chapter 5), `sources.js` (source ids for Ref tabs).
 - Data: `web/data/dict/{meanings,en,th,zh,jp,negation}.json` + `web/data/samples.json` + `web/data/samples_late.json`. `dict.js`
@@ -57,14 +60,18 @@ Owner rules (เคาะ by the owner 2026-10-10 / 2026-10-11):
 ## §3 Stack / layout / env
 
 - Node >= 18 (container v22.22.0), Python 3 (3.13.16), g++ C++17 (13.3.0). **Not yet run on the owner's Windows machine** (`WIP202610011`).
-- Chapters and lessons (`web/js/app.js` `GROUPS`, display number = chapter.position; file prefixes are creation order):
+- Chapters and lessons (`web/data/chapters.json`, display number = chapter.position; file prefixes are creation order; split at #40):
   - 1 พื้นฐานเวกเตอร์: 01 vector, 16 length, 04 vector space, 15 vector ops, 20 matrix
   - 2 วัดว่าสองเวกเตอร์ใกล้กันแค่ไหน: 11 distance, 02 dot product, 03 cosine
-  - 3 เปลี่ยนข้อความเป็นเวกเตอร์: 34 tokenize, 35 bpe, 37 gpt tokenizer, 21 token id, 22 one-hot, 23 bag of words, 12 embedding matrix, 24 learn table, 05 latent space
-  - 4 ค้นหาของที่ใกล้ที่สุด: 06 similarity, 18 search distance, 19 search dot, 07 choose metric, 33 keyword search
-  - 5 ค้นให้เร็วเมื่อข้อมูลเยอะ: 27 brute force, 08 high dimensions, 17 binary xor, 28 ann tree, 29 nsw graph, 13 vector search, 30 hnsw beam, 31 hnsw build, 32 filter graph
-  - 6 การผสานทฤษฎี: 09 bi-encoder, 36 late interaction, 14 reranker, 10 classification
-  - 7 เวกเตอร์ใน LLM: 25 llm input, 26 attention
+  - 3 Token: ตัดข้อความเป็นเลข: 34 tokenize, 35 bpe, 37 gpt tokenizer, 21 token id
+  - 4 Embedding: เลขกลายเป็นเวกเตอร์ที่มีความหมาย: 22 one-hot, 23 bag of words, 12 embedding matrix, 24 learn table, 05 latent space, 38 same model (#42)
+  - 5 ค้นหาของที่ใกล้ที่สุด: 06 similarity, 18 search distance, 19 search dot, 07 choose metric, 33 keyword search
+  - 6 ค้นให้เร็วเมื่อข้อมูลเยอะ: 27 brute force, 08 high dimensions, 17 binary xor, 28 ann tree, 29 nsw graph, 13 vector search, 30 hnsw beam, 31 hnsw build, 32 filter graph
+  - 7 การผสานทฤษฎี: 09 bi-encoder, 36 late interaction, 14 reranker, 10 classification
+  - 8 เวกเตอร์ใน LLM: 25 llm input, 26 attention
+- Re-run at #42: `npm test` 27 pass / 0 fail; `npm run check` 41 suites OK (40 examples + edge_cases), PASS; Playwright 38 lessons + Dict × 3 sizes, 0 problems
+  (sidebar nav scroll excluded), no unresolved `{#…}`. Re-run at #40: `npm test` 27 pass / 0 fail (15 lib + 5 dict + 7 chapters); `npm run check` 40 suites OK, PASS; Playwright 37 lessons + Dict × 3 sizes,
+  0 problems, no unresolved `{#…}`.
 - Counts re-run at upckp #35 (2026-10-11 18:2x, container copy staged from the device): 37 lessons in GROUPS (39 files in `web/lessons/`,
   incl. the 2 stale pre-rename files of `WIP202610021`); 39 examples per language; `npm test` 20 pass / 0 fail (15 lib + 5 dict, since #38); `npm run check` 40 suites OK
   (39 examples + edge_cases), PASS; source total 6114 lines at #38 (`wc -l lib/zvect.* web/js/*.js web/js/dict/*.js web/lessons/*.js server.js tools/*.js`);
@@ -80,10 +87,13 @@ Owner rules (เคาะ by the owner 2026-10-10 / 2026-10-11):
 | `lib/MANIFEST.json` | sha256 + version; regenerate with `npm run manifest` |
 | `llms.txt` | entry point for other AI sessions |
 | `web/js/scene3d.js` | 3D renderer + 2D zoom mode |
-| `web/js/app.js` | groups, router, formula steps, three boxes, code tabs, lib page, Dict page |
+| `web/data/chapters.json` | THE chapter list and lesson order (+ `short` / `readme` / `llms` texts); `chapters.lock.json` = numbering at the last reindex |
+| `web/js/chapters.js` | loads chapters.json, imports lessons, `GROUPS` / `NUM` / `resolve({#slug})` |
+| `tools/reindex.js` | `npm run reindex` (docs renumbering) · `--check` · `--dry` |
+| `web/js/app.js` | router, formula steps, three boxes, code tabs, lib page, Dict page |
 | `web/js/dict/` · `web/data/` | dictionary (facade `dict/index.js`; nothing outside the folder imports its other files) · default dictionary + samples (JSON) |
 | `web/js/multilang.js` · `web/js/tokdraw.js` | 4-language toy encoder · token → number picture |
-| `web/lessons/*.js` | 37 lessons (+ 2 stale files, `WIP202610021`) |
+| `web/lessons/*.js` | 38 lessons (+ 2 stale files, `WIP202610021`) |
 | `tools/check-examples.js` | 3-language parity gate |
 | `tools/zv.js` | terminal calculator that prints every step (`npm run zv -- dot 1,2,3 4,5,6`) |
 | `docs/APPROVALS.md` | dependency approval log (no approvals) |
@@ -93,7 +103,7 @@ Owner rules (เคาะ by the owner 2026-10-10 / 2026-10-11):
 | `checkpoints/archive/ARCHIVE.202610.md` | closed rows in full, filed by mint month |
 
 Skills the owner asked for: **checkpoint** (this file; ledger rules of the checkpoint-writer skill applied by hand, toolchain not ported —
-`WIP202610007`), **hz** (handzup; handoffs in `.dropzone/hzup_claude/`, git-ignored), **iw** (intelligence-writer v5.1, `WIP202610022`),
+owner 23:57 #43: stays manual, `WIP202610007` closed), **hz** (handzup; handoffs in `.dropzone/hzup_claude/`, git-ignored), **iw** (intelligence-writer v5.1, `WIP202610022`),
 **coder** and **reviewer** — **not found in this environment** (`WIP202610008`). Reviews are done by an independent subagent that did not
 write the work (handzup rule 12 substitute; its verdict is not a named "reviewer" skill's verdict).
 
@@ -101,11 +111,14 @@ write the work (handzup rule 12 substitute; its verdict is not a named "reviewer
 
 - After editing `lib/`: `npm run manifest` → `npm test` → `npm run check`. All must pass.
 - After editing a lesson: Playwright check of every lesson at 3 sizes (0 page errors, no overflow), look at screenshots, dark theme.
-- New lesson = `examples/{js,py,cpp}/NN_name.*` (identical output) + `web/lessons/NN_name.js` + add to `GROUPS` + README / llms.txt /
-  REFERENCE.md rows. A lesson carries `intro`, `try`, `lines` (+ `steps` [name, why] when ≥ 2 lines, optional `stepsWhy`), `formulaFrom`,
+- New lesson = `examples/{js,py,cpp}/NN_name.*` (identical output) + `web/lessons/NN_name.js` + an object in `web/data/chapters.json`
+  (`file, slug, short, readme, llms`) + `npm run reindex` (README / llms.txt / REFERENCE.md lists) + REFERENCE.md source lines. A lesson carries `intro`, `try`, `lines` (+ `steps` [name, why] when ≥ 2 lines, optional `stepsWhy`), `formulaFrom`,
   `symbols`, `notes`, `refs` ([sourceId, what was used], ids in `web/js/sources.js`). Optional: `extra`, `symbolsNote`, `hint`,
   `canvasLabel`, `div.keep` tables. Explanation block full width on top; canvas + controls left; formula / values / list boxes; tabs
   อ่านสูตร / สรุปจากแหล่ง / โค้ด / Ref. No "อ่านเพิ่ม" detours; no scrollbar inside any box (`fitMath()` shrinks wide formulas).
+- Chapter numbers (owner 22:56, #40): never hard-code "บท 3.7" in lesson or page text — write `{#slug}` (resolved at runtime). Move a lesson or
+  add a chapter (category) only in `web/data/chapters.json`, then `npm run reindex`; `npm test` fails while the docs are stale. Old numbers in
+  checkpoints, archive and iw reports are history and are NOT renumbered.
 - Multilingual words come from `web/data/dict/` via the facade `web/js/dict/index.js` (`dict.data`, `dict.rowOf`, `dict.addRow` …); never hard-code a word list in a lesson.
 - UI component rule (owner 21:39–21:40): every look is a class in `web/css/style.css` driven by `:root` tokens (no one-off inline looks);
   controls share `--ctl-h` / `--ctl-radius`; a form above a table uses the table's own column tokens so columns line up; formulas use `math.eq`.
@@ -128,6 +141,64 @@ write the work (handzup rule 12 substitute; its verdict is not a named "reviewer
 6. A closed row not filed in the archive is a defect (7 were found at the 002 cut, #33): check §5c IDs ⊆ archive IDs at every upckp.
 
 ## §5b Update log (newest on top)
+
+### #43 — 2026-10-11 23:57 — `WIP202610007` closed: checkpoint stays manual
+
+- Owner (23:57) asked what blocked `WIP202610007`; answer: nothing technical, it waited for a decision (the checkpoint-writer toolchain is tied to the
+  Zigma / LocalLLMAdvisor file names and would need rewriting). Owner: "ไม่เอา เขียนด้วยมือพอ". Closed (archive dual-write); ledger rules stay manual
+  (§5a law 6 check by hand at every upckp). No code changed.
+
+### #42 — 2026-10-11 23:27–23:4x — topic 4.6 "ต้องใช้ model เดียวกันทั้งคำถามและเอกสาร" (`WIP202610041` closed)
+
+- Owner (23:27): handoff path `.dropzone/hzup_claude/20261011_2317.md` → build `WIP202610041` as planned, no further questions.
+- New: `web/lessons/38_same_model.js` (slug `same-model`, 4.6) + `examples/{js,py,cpp}/38_same_model.*` (identical output). Two toy 3-D tables trained with
+  the 4.4 rule (context rows random then frozen, 5 passes, eta 0.3) from minstd seeds 16 / 18 (chosen so the mixed case is clearly wrong; stated in the
+  lesson). Inside A cos(cat,dog) 0.995, inside B 0.998; cos(cat_A, cat_B) = −0.968; question B vs documents A → bus first. Canvas: both tables (pink A,
+  yellow B), thick query arrow, purple ring on top-1; choices: word / question model / document model; "สุ่มจุดเริ่มของ B ใหม่" redraws until B groups its
+  words (~49% of seeds pass; with 5 passes ~16% of seeds would break the "B still groups" claim).
+- Refs: beginner, blackboard, sofar, choose (the handoff's four) + wordemb (dimension meaning depends on training data) + qdrant (re-embed on encoder change),
+  both from aimd. The core "different axes" reason and pool/normalise are labelled ผู้จัดทำ / ความรู้ทั่วไป; nomic labelled ความรู้ทั่วไป.
+- `web/data/chapters.json` + `npm run reindex` (README, llms.txt, REFERENCE list; 8 chapters / 38 topics; 0 numbers remapped). REFERENCE.md: 4.6 in the
+  "ใช้ในบท" line and table cell of the 6 sources + a 4.6 bullet under Colin Talks Tech.
+- Independent review (subagent, did not write the lesson): 2 must / 4 should / 3 nits — all applied.
+- Tests: `npm test` 27/0, `npm run check` PASS (41 suites), Playwright 38 lessons + Dict × 1400×900 / 820×1000 / 390×844: 0 errors, 0 overflow, 0 inner
+  scrollbars, 0 unresolved `{#…}`; random-B pressed 30 times: 0 errors.
+- `WIP202610041` closed (archive dual-write). Not known to be committed: #34–#42. Owner still to `git rm web/js/dict.js` and delete stale files (`WIP202610021`).
+
+### #41 — 2026-10-11 23:17 — session close: upckp + hz; next session builds `WIP202610041`
+
+- Owner (23:17): "upckp + hz และ next session ทำ WIP202610041 ไปเลย" — yes to the proposed topic 4.6 (same embedding model for query and
+  documents); build it in the next session without asking again.
+- Handoff written: `.dropzone/hzup_claude/20261011_2317.md` (plan for 4.6, rules, delivery, test harness). No code changed in #41.
+- Not known to be committed: #34–#40. Owner still to `git rm web/js/dict.js` and delete the stale files (`WIP202610021`).
+
+### #40 — 2026-10-11 22:56–23:xx — chapter 3 split into Token / Embedding; chapters in JSON; `npm run reindex`
+
+- Owner (22:56): "แยกบท เหอะ อย่าลืมทำ Indexing ใหม่ และทำ script + code และปรับเป็น json ให้ง่ายในการ Reindex และทำ Category ใหม่เสมอ".
+- `web/data/chapters.json` (new): 8 chapters / 37 topics. 3 Token (3.1 tokenize, 3.2 bpe, 3.3 gpt-tokenizer, 3.4 token-id); 4 Embedding (4.1 one-hot,
+  4.2 bag-of-words, 4.3 embedding-matrix, 4.4 learn-table, 4.5 latent-space); old 4–7 → 5–8. `web/js/chapters.js` (new) replaces the static
+  imports + `GROUPS` in app.js. 107 hard-coded "บท N.N" in lessons + Dict page → `{#slug}` (mapped through the old numbering); lesson header
+  comments lost their numbers; 4 code comments now name the lesson instead of a number.
+- `tools/reindex.js` + `npm run reindex` (new): README table between `<!-- chapters:start/end -->` (+ `readme_intro` with `{#ch:<id>}`), llms.txt
+  "- Lessons" line, REFERENCE.md chapter list (history sentence dropped; history is here), 265 REFERENCE numbers remapped (ranges split, e.g. old
+  3.4–3.9 → 3.4, 4.1–4.5; source-table remap limited to the "ใช้ในบท" column so "Opus 5.5" stays; values like 0.95, 7.25, ~1.5 ms untouched), lock rewritten.
+  Second run = no change. `tests/chapters.test.js` (7 tests) incl. `reindex --check`.
+- Owner (22:59) asked, after this work: why a model is always needed to turn Q&A text into vectors (nomic / gemma embedding), its steps, and why
+  another model cannot read those vectors. Answered in chat from aimd sources + labelled general knowledge; lesson idea filed as `WIP202610041`.
+- `WIP202610040` closed.
+
+### #39 — 2026-10-11 22:42–23:xx — iw "Tokens vs Embeddings"; proposal to split chapter 3
+
+- Owner (22:42): iw yt:izbifbq3-eI, and "ทำไมไม่มีหัวข้อ Embedding มีแต่ Tokens". Answer (sent first): embedding is there (3.7 Embedding matrix,
+  3.8 learning the table, 3.9 latent space) but chapter 3 is named "เปลี่ยนข้อความเป็นเวกเตอร์" and starts with 4 token topics. Proposal: split into
+  "3 Token" (3.1–3.4) and "4 Embedding" (one-hot → bag of words → embedding matrix → learning the table → latent space); chapters 4–7 become 5–8.
+  Waiting for the owner (`WIP202610040`); nothing renumbered yet.
+- `WIP202610039` (minted + closed): iw v5.1, Annie Sexton "Tokens vs Embeddings – what are they + how are they different?" (6:52, 2025-05-29), standard
+  license → own-words rewrite, 7 sections, 7 slide frames + 2 own SVGs, ASR 171 lines (sha256 prefix 0f38d979eae42dea, matched in-page), no web
+  fact-check (2025, inside the author's knowledge). Independent fidelity review: 0 must / 5 should / nits, applied. The clip's second "train" example
+  alludes to a song lyric — not quoted. Temp `.dropzone/iw_temp/20261011_2242/`.
+- REFERENCE.md: row + section (proposed for 3.4, 3.7, 3.9, 7.1, 7.2 and the chapter split), Tokenization + Embeddings groups, 4 new tags (115 tag rows).
+- Lessons were NOT changed.
 
 ### #38 — 2026-10-11 22:13–22:4x — dictionary code in its own folder behind a facade
 
@@ -216,6 +287,7 @@ write the work (handzup rule 12 substitute; its verdict is not a named "reviewer
 
 | ref | date | title | HTML | MD |
 |---|---|---|---|---|
+| yt:izbifbq3-eI | 2025-05-29 (published) / 2026-10-11 (read) | Tokens vs Embeddings – what are they + how are they different? (Annie Sexton; own-words rewrite, slides checked, no web fact-check) | docs/outhtm/20250529_Tokens-Vs-Embeddings.html | docs/aimd/20250529_Tokens-Vs-Embeddings_claude.md |
 | yt:zduSFxRajkE | 2024-02-20 (published) / 2026-10-11 (read) | Let's build the GPT Tokenizer (Andrej Karpathy; own-words rewrite in 16 steps, frames checked, no web fact-check) | docs/outhtm/20240220_Lets-Build-The-GPT-Tokenizer.html | docs/aimd/20240220_Lets-Build-The-GPT-Tokenizer_claude.md |
 | yt:S7tFyREI19I | 2026-10-08 (published) / 2026-10-11 (read) | Training Your Own Embedding Model Is Not As Hard As You Think (Prompt Engineering; own-words rewrite, 8-claim fact-check) | docs/outhtm/20261008_Training-Your-Own-Embedding-Model-Is-Not-As-Hard-As-You-Think.html | docs/aimd/20261008_Training-Your-Own-Embedding-Model-Is-Not-As-Hard-As-You-Think_claude.md |
 | yt:6iCmnd0k3fs | 2026-09-30 (published) / 2026-10-11 (read) | multivector-rag-demo (coded by Opus 5.5 Extra) (Vishal Bakshi; own-words rewrite, on-screen tables transcribed, 7-claim fact-check) | docs/outhtm/20260930_Multivector-RAG-Demo-Coded-By-Opus-5-5-Extra.html | docs/aimd/20260930_Multivector-RAG-Demo-Coded-By-Opus-5-5-Extra_claude.md |
@@ -273,14 +345,17 @@ write the work (handzup rule 12 substitute; its verdict is not a named "reviewer
 | WIP202610034 | FINISH | 001 | 6.2 Late interaction (ColBERT) lesson + examples; chapter 6 renumbered to 6.4 | file:web/lessons/36_late_interaction.js · ckp:001#31 |
 | WIP202610035 | FINISH | 001 | Dictionaries in web/data/*.json → localStorage; Dict page add / delete / export; colour by language | file:web/js/dict.js · ckp:001#32 |
 | WIP202610024 | FINISH | 002 | Owner turned GitHub Pages on (16:53 "เปิด https://zardokar.github.io/ZVect เสร็จไปแล้ว") | file:llms.txt · ckp:002#34 |
+| WIP202610039 | FINISH | 002 | iw yt:izbifbq3-eI (Annie Sexton, Tokens vs Embeddings), own-words rewrite, 5 fidelity fixes; REFERENCE row + section | file:docs/outhtm/20250529_Tokens-Vs-Embeddings.html · ckp:002#39 |
+| WIP202610040 | FINISH | 002 | Chapter 3 split into 3 Token + 4 Embedding (8 chapters / 37 topics); chapters in web/data/chapters.json; {#slug} in lessons; npm run reindex | file:web/data/chapters.json · file:tools/reindex.js · ckp:002#40 |
 | WIP202610038 | FINISH | 002 | iw yt:zduSFxRajkE (Karpathy GPT tokenizer) + lesson 3.3 Tokenizer ของ GPT (byte-level BPE playground); chapter 3 now 3.1–3.9 | file:web/lessons/37_gpt_tokenizer.js · ckp:002#35 |
+| WIP202610007 | FINISH | 002 | Owner decided: checkpoint stays a manual ledger; no toolchain port (wipchecker / lint / lang check) | ckp:002#43 |
+| WIP202610041 | FINISH | 002 | Topic 4.6 same embedding model for question + documents (two toy tables from seeds 16 / 18, cos(cat_A, cat_B) −0.968), 6 aimd refs, review applied | file:web/lessons/38_same_model.js · ckp:002#42 |
 | WIP202610037 | FINISH | 002 | 6 iw reports (RAG multivector, ColBERT precision, Qdrant Edge, Google word2vec, NitMonk Hindi, EmbeddingGemma 2 fine-tune) + tagged REFERENCE.md | file:REFERENCE.md · ckp:002#34 |
 
 ## §6 WIP (open items) — ALWAYS LAST, READ FIRST
 
 | WIP ID | title | since | ref |
 |---|---|---|---|
-| WIP202610007 | [ckp] Port the checkpoint toolchain (wipchecker / lint / lang check) to ZVect, or decide the manual ledger is enough | 2026-10-10 | ckp:001#1 |
 | WIP202610008 | [process] Skills "coder" and "reviewer" not found in this environment; owner to supply them or confirm the subagent substitute | 2026-10-10 | ckp:001#1 |
 | WIP202610011 | [verify] Run `npm start`, `npm test`, `npm run check` on the owner's Windows machine (python/g++ discovery, `.\name.exe` run line) | 2026-10-10 | ckp:001#1 |
 | WIP202610012 | [web] Arrows and points vanish when an endpoint is behind the camera at close zoom (lines are clipped, arrows are not; min zoom raised to 5 as mitigation) | 2026-10-10 | ckp:001#1 |
@@ -294,10 +369,17 @@ write the work (handzup rule 12 substitute; its verdict is not a named "reviewer
 
 ### Narrative
 
-- **Active thread (#38, 2026-10-11 22:4x):** dictionary code moved to `web/js/dict/` behind a facade; owner deletes `web/js/dict.js`.
+- **Latest (#43, 23:57):** `WIP202610007` closed, checkpoint stays manual.
+- Before that (#42, 23:4x): 4.6 "ต้องใช้ model เดียวกันทั้งคำถามและเอกสาร" built and reviewed (`WIP202610041` closed). Next: owner opens #/same-model, commits #34–#42,
+  `git rm web/js/dict.js`, deletes stale files (`WIP202610021`), picks the next topic (`WIP202610036` RAG 8.3 / `WIP202610023`).
+- Before that (#41, 23:17): handoff `.dropzone/hzup_claude/20261011_2317.md`; next session builds 4.6 (`WIP202610041`, approved).
+- **Previous thread (#40, 2026-10-11 23:xx):** chapter 3 split into Token / Embedding, chapters in `web/data/chapters.json`, `npm run reindex` (`WIP202610040` closed).
+  Next: owner commits #34–#40, `git rm web/js/dict.js`, answers the embedding-model topic (`WIP202610041`).
+  Before that #39: iw "Tokens vs Embeddings" done (`WIP202610039`); chapter-3 split proposed.
+  Before that #38: dictionary code moved to `web/js/dict/` behind a facade; owner deletes `web/js/dict.js`.
   Before that #37 (22:xx): start view fits the canvas, 3.1 shows 4 languages, equation box class, Dict page grid + one-row add form.
   Before that #36: lone buttons removed (3.2, 4.4, 7.1). #35: Karpathy GPT-tokenizer iw + lesson 3.3
-  (`WIP202610038`). Next: owner tries #/gpt-tokenizer and #/bpe, commits #34–#38, picks lesson work from `WIP202610036` / `WIP202610023`, deletes stale files (`WIP202610021`).
+  (`WIP202610038`). Next: owner tries #/gpt-tokenizer and #/bpe, commits #34–#39, picks lesson work from `WIP202610036` / `WIP202610023`, deletes stale files (`WIP202610021`).
 - Earlier (#34): 6 iw reports + tagged REFERENCE.md (`WIP202610037`); Pages on (`WIP202610024`).
 - **Earlier thread (ver002 cut at #33):** handoff `.dropzone/hzup_claude/20261011_1642.md`; archive dual-write gap fixed.
   Before that #32: Dict page + JSON dictionaries in localStorage (`WIP202610035`, #32); before that #31: ColBERT iw
@@ -328,4 +410,4 @@ write the work (handzup rule 12 substitute; its verdict is not a named "reviewer
   (`WIP202610010`) and verifies on Windows (`WIP202610011`).
 - `WIP202610008`: the owner named four skills (checkpoint, hz, coder, reviewer). Only checkpoint-writer and handzup exist
   here. The checkpoint-writer skill is written for another repo (Zigma / LocalLLMAdvisor) and bundles Python tools tied
-  to that repo's file names, so this repo uses its ledger rules by hand for now (`WIP202610007`).
+  to that repo's file names, so this repo uses its ledger rules by hand (owner 23:57, #43: "เขียนด้วยมือพอ"; `WIP202610007` closed).

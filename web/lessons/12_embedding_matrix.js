@@ -1,7 +1,7 @@
 import { add, scale } from "../../lib/zvect.js";
 import { M } from "../js/kit.js";
 
-// 3.7 Embedding matrix — one idea only (WIP202610026): one-hot × E = the word's row, so a lookup is enough.
+// Embedding matrix — one idea only (WIP202610026): one-hot × E = the word's row, so a lookup is enough.
 // The one-hot comparison moved to 3.5 One-hot; how the table is learned is 3.8; meaning of the axes is 3.9.
 // one row per word. axes of a row: animal, pet, vehicle
 const VOCAB = ["cat", "dog", "lion", "car", "bus"];
@@ -21,19 +21,19 @@ export default {
   axisNames: ["animal", "pet", "vehicle"],
   view: { dist: 13, yaw: 0.8 },
   intro: `
-    <p><b>Embedding matrix</b> คือตาราง (matrix, บท 1.5) ที่มี <b>หนึ่งแถวต่อหนึ่งคำ</b> แต่ละแถวเป็นเวกเตอร์สั้น ๆ ของคำนั้น</p>
-    <p>เอา one-hot ของคำ (บท 3.5) คูณตาราง ผลคือ <b>แถวของคำนั้นพอดี</b> ระบบจริงจึงแค่ "เปิดดูแถว" ไม่ต้องคูณจริง</p>`,
+    <p><b>Embedding matrix</b> คือตาราง (matrix, บท {#matrix}) ที่มี <b>หนึ่งแถวต่อหนึ่งคำ</b> แต่ละแถวเป็นเวกเตอร์สั้น ๆ ของคำนั้น</p>
+    <p>เอา one-hot ของคำ (บท {#one-hot}) คูณตาราง ผลคือ <b>แถวของคำนั้นพอดี</b> ระบบจริงจึงแค่ "เปิดดูแถว" ไม่ต้องคูณจริง</p>`,
   try: [
     "เลือก dog: แถวที่ได้ × 1 คือแถวของ dog แถวอื่น × 0 หายไป",
     "เลือก car: เลข 1 ใน one-hot ย้ายไปช่องที่ 4 ผลคูณจึงเป็นแถวที่ 4",
   ],
   steps: [
-    ["เขียนเป็นการคูณ", "เขียนการเปลี่ยนคำเป็นเวกเตอร์เป็น one-hot (บท 3.5) คูณตาราง"],
+    ["เขียนเป็นการคูณ", "เขียนการเปลี่ยนคำเป็นเวกเตอร์เป็น one-hot (บท {#one-hot}) คูณตาราง"],
     ["ผลคูณ = หยิบแถว", "แถวที่คูณ 0 หายไปหมด ระบบจริงจึงแค่หยิบแถว ไม่ต้องคูณ"],
   ],
   lines: [
     [M.math(M.sub(M.v("e"), M.i("w")), M.o("="), M.sub(M.v("h"), M.i("w")), M.o("×"), M.v("E")),
-      "เปลี่ยนคำเป็นเวกเตอร์ · w = คำที่เลือก · h<sub>w</sub> = one-hot ของ w (บท 3.5) · E = ตาราง embedding (แถวละคำ) · e<sub>w</sub> = ผลลัพธ์"],
+      "เปลี่ยนคำเป็นเวกเตอร์ · w = คำที่เลือก · h<sub>w</sub> = one-hot ของ w (บท {#one-hot}) · E = ตาราง embedding (แถวละคำ) · e<sub>w</sub> = ผลลัพธ์"],
     [M.math(M.sub(M.v("h"), M.i("w")), M.o("×"), M.v("E"), M.o("="), M.t("row\u00a0"), M.i("w"), M.t("\u00a0of\u00a0"), M.v("E")),
       "ผลคูณคือแถวของคำนั้นพอดี เพราะแถวที่คูณ 0 หายไป เหลือแถวที่คูณ 1 · ระบบจริงจึงแค่หยิบแถว ไม่ต้องคูณ"],
   ],
@@ -54,8 +54,8 @@ export default {
     <h2>หยิบแถวด้วย ID</h2>
     <ul>
       <li>ขั้นตอนตามคลิป BlackBoard AI: มี vocabulary และ ID → มีตาราง → หาแถวด้วย ID (lookup) → ปรับค่าระหว่างฝึก</li>
-      <li>เลขประจำคำ (บท 3.4) ใช้วัดความใกล้ไม่ได้ แต่ใช้เป็น <b>ที่อยู่ของแถว</b> ได้พอดี</li>
-      <li>ตัวเลขในตารางเริ่มจากค่าสุ่ม แล้วปรับระหว่างฝึก (บท 3.8) ส่วนแกนมีความหมายอย่างไรดูบท 3.9</li>
+      <li>เลขประจำคำ (บท {#token-id}) ใช้วัดความใกล้ไม่ได้ แต่ใช้เป็น <b>ที่อยู่ของแถว</b> ได้พอดี</li>
+      <li>ตัวเลขในตารางเริ่มจากค่าสุ่ม แล้วปรับระหว่างฝึก (บท {#learn-table}) ส่วนแกนมีความหมายอย่างไรดูบท {#latent-space}</li>
     </ul>`,
   refs: [["wordemb", "embedding matrix = ตาราง lookup 8 × 3, one-hot × ตาราง = แถวของคำ"],
     ["blackboard", "ขนาด 50,000 × 300, หยิบแถวด้วย ID, สี่ขั้นตอน"]],

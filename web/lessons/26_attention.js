@@ -1,9 +1,9 @@
 import { dot, fmt } from "../../lib/zvect.js";
 import { M, AX } from "../js/kit.js";
 
-// 7.2 Attention starts with query · key (WIP202610026): one idea only — the attention score of a key is a dot
+// Attention starts with query · key (WIP202610026): one idea only — the attention score of a key is a dot
 // product with the query; the key with the bigger score gets more attention. Vectors from the SH AI Academy slide
-// (~3:44). The slide's printed results 0.69 / 0.15 are wrong; recomputed 0.70 / 0.23 (same as lesson 2.2).
+// (~3:44). The slide's printed results 0.69 / 0.15 are wrong; recomputed 0.70 / 0.23 (same as the dot-product lesson).
 const KEYS = [{ id: "k₁", v: [0.2, 0.7, 0.4] }, { id: "k₂", v: [0.9, 0.1, 0.2] }];
 const S = 4;
 const up = (v) => v.map((x) => x * S);
@@ -17,7 +17,7 @@ export default {
   axisNames: ["dim 1", "dim 2", "dim 3"],
   view: { dist: 12.5, yaw: 0.6 },
   intro: `
-    <p>ใน Transformer (โมเดลแบบ GPT) ชั้น <b>attention</b> ทำให้คำรู้บริบทของประโยค ส่วนหนึ่งของมันคือการให้คะแนนด้วย <b>dot product</b> (บท 2.2)</p>
+    <p>ใน Transformer (โมเดลแบบ GPT) ชั้น <b>attention</b> ทำให้คำรู้บริบทของประโยค ส่วนหนึ่งของมันคือการให้คะแนนด้วย <b>dot product</b> (บท {#dot-product})</p>
     <p>เอา <b>query</b> หนึ่งตัวไป dot กับ <b>key</b> ทุกตัว key ที่ได้คะแนนมากกว่า ได้รับความสนใจมากกว่า</p>`,
   try: [
     "เริ่มต้น (ตามสไลด์): q · k₁ = 0.70 มากกว่า q · k₂ = 0.23 → k₁ ได้ความสนใจมากกว่า",
@@ -31,11 +31,11 @@ export default {
   lines: [
     [M.math(M.sub(M.t("score"), M.i("j")), M.o("="), M.v("q"), M.o("·"), M.sub(M.v("k"), M.i("j")), M.o("="),
       M.sum(M.row(M.i("i"), M.o("="), M.n(1)), M.i("d")), M.sub(M.i("q"), M.i("i")), M.sub(M.i("k"), M.row(M.i("j"), M.o(","), M.i("i")))),
-      "ให้คะแนน key ตัวที่ j · <b>q</b> = query · <b>k</b><sub>j</sub> = key ตัวที่ j · i = เลขช่อง (1 ถึง d) · คูณช่องที่ตรงกันแล้วบวก = dot (บท 2.2) · ไม่หารด้วยความยาว ต่างจาก cosine"],
+      "ให้คะแนน key ตัวที่ j · <b>q</b> = query · <b>k</b><sub>j</sub> = key ตัวที่ j · i = เลขช่อง (1 ถึง d) · คูณช่องที่ตรงกันแล้วบวก = dot (บท {#dot-product}) · ไม่หารด้วยความยาว ต่างจาก cosine"],
     [M.math(M.t("most attention"), M.o("="), M.t("highest\u00a0"), M.sub(M.t("score"), M.i("j"))),
       "ทำขั้นตอน 1 กับทุก key แล้วเทียบ · คะแนนมาก = ได้รับความสนใจมาก · บทนี้มี key สองตัว (k₁, k₂)"],
   ],
-  formulaFrom: "เวกเตอร์ query (0.1, 0.8, 0.3), key₁ (0.2, 0.7, 0.4), key₂ (0.9, 0.1, 0.2) และคำว่า attention ใช้ query · key มาจากสไลด์ของคลิป SH AI Academy (~3:44) · <b>สไลด์พิมพ์ผลไว้ 0.69 และ 0.15 ซึ่งผิด</b> คำนวณใหม่ได้ 0.70 และ 0.23 (ลำดับเหมือนเดิม) ตรงกับเรื่องเสริมในบท 2.2",
+  formulaFrom: "เวกเตอร์ query (0.1, 0.8, 0.3), key₁ (0.2, 0.7, 0.4), key₂ (0.9, 0.1, 0.2) และคำว่า attention ใช้ query · key มาจากสไลด์ของคลิป SH AI Academy (~3:44) · <b>สไลด์พิมพ์ผลไว้ 0.69 และ 0.15 ซึ่งผิด</b> คำนวณใหม่ได้ 0.70 และ 0.23 (ลำดับเหมือนเดิม) ตรงกับเรื่องเสริมในบท {#dot-product}",
   symbols: [
     ["q", "query: เวกเตอร์ที่เอาไปถาม", "ลากด้วยแถบเลื่อน"],
     ["k<sub>j</sub>", "key ตัวที่ j", "k₁ = (0.2, 0.7, 0.4), k₂ = (0.9, 0.1, 0.2)"],
@@ -53,7 +53,7 @@ export default {
       <li>SOFAR: ลำดับใน GPT คือ embedding → positional embedding → contextual embedding → self-attention</li>
     </ul>
     <h2>ที่แหล่งยังไม่ได้อธิบาย</h2>
-    <p>คลิปที่อ่านไม่ได้บอกว่า query กับ key คำนวณมาจากแถว x ของบท 7.1 อย่างไร และหลังได้คะแนนแล้วทำอะไรต่อ
+    <p>คลิปที่อ่านไม่ได้บอกว่า query กับ key คำนวณมาจากแถว x ของบท {#llm-input} อย่างไร และหลังได้คะแนนแล้วทำอะไรต่อ
     บทนี้จึงดูแค่ส่วนนี้: ให้คะแนนด้วย dot แล้วดูว่า key ไหนได้มากสุด (Under The Hood บอกว่าเรื่อง attention อยู่ในคลิปถัดไปของเขา ซึ่งยังไม่ได้อ่าน)</p>`,
   refs: [["metrics", "attention = query · key, เวกเตอร์บนสไลด์ (~3:44), ผลบนสไลด์ผิด (0.69/0.15 → 0.70/0.23), dot คำนวณเร็วสุด"],
     ["wordemb", "attention คือชั้นแรกของ decoder block, ให้บริบท"], ["sofar", "ลำดับขั้นใน GPT ถึง self-attention"]],

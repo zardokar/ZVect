@@ -2,7 +2,7 @@ import { cosine, dot, normalize, fmt } from "../../lib/zvect.js";
 import { M, esc } from "../js/kit.js";
 import { LANGS, LANG, split, encodeTokens, chips, vecOf } from "../js/multilang.js";
 
-// 6.2 Late interaction (ColBERT) (owner, 2026-10-11 16:06–16:08: put the ColBERT clip between Bi-Encoder and Cross-Encoder).
+// Late interaction (ColBERT) (owner, 2026-10-11 16:06–16:08: put the ColBERT clip between Bi-Encoder and Cross-Encoder).
 // One idea: keep one vector per token instead of one per sentence; each query token takes its best match in the document
 // (MaxSim) and the matches are added up (Σ). Source: the Prompt Engineering ColBERT clip (tokenize, embed every token,
 // compare every query token with every document token, combine; MaxSim + Σ from the paper figure on screen; a long chunk
@@ -45,18 +45,18 @@ export default {
   hint: "ภาพ 2 มิติ ตารางจับคู่ token ใช้ล้อเมาส์ (หรือสองนิ้ว) ซูม ลากเพื่อเลื่อน ดับเบิลคลิกเพื่อดูทั้งหมด",
   canvasLabel: "ตาราง แถวคือ token ของคำถาม คอลัมน์คือ token ของเอกสาร ช่องคือค่าความคล้าย ค่าที่สูงที่สุดในแต่ละแถวมีกรอบ และผลรวมอยู่ด้านล่าง",
   intro: `
-    <p>bi-encoder (บท 6.1) อัด <b>ทั้งประโยคเป็นเวกเตอร์เดียว</b> ถ้าเอกสารยาวและมีหลายเรื่อง รายละเอียดจะถูกเฉลี่ยจนหาย
+    <p>bi-encoder (บท {#bi-encoder}) อัด <b>ทั้งประโยคเป็นเวกเตอร์เดียว</b> ถ้าเอกสารยาวและมีหลายเรื่อง รายละเอียดจะถูกเฉลี่ยจนหาย
     <b>late interaction</b> (ColBERT) เก็บ <b>เวกเตอร์ทุก token</b> ไว้แทน</p>
     <p>ตอนค้น token แต่ละตัวของคำถามหา token ในเอกสารที่ใกล้ที่สุด (<b>MaxSim</b>) แล้วบวกทุกตัวเข้าด้วยกัน (<b>Σ</b>) เป็นคะแนนของเอกสาร
-    (ผู้จัดทำวางบทนี้ไว้ตรงกลางระหว่าง bi-encoder ที่เร็วแต่หยาบ กับ cross-encoder บท 6.3 ที่ละเอียดแต่ช้า)</p>`,
+    (ผู้จัดทำวางบทนี้ไว้ตรงกลางระหว่าง bi-encoder ที่เร็วแต่หยาบ กับ cross-encoder บท {#reranker} ที่ละเอียดแต่ช้า)</p>`,
   try: [
     "กดตัวอย่าง \"กินข้าวแล้วแก้บั๊ก\": bi-encoder เลือก d2 (เรื่องอาหารล้วน) แต่ late interaction เลือก d7 ซึ่งมีทั้ง rice และ bug",
     "กด \"แมวกับแอป\": bi-encoder เลือก d6 (หุ่นยนต์สัตว์เลี้ยง) ส่วน late interaction เลือก d7 ที่มีทั้ง cat และ app",
     "กด \"หมากินปลา\" ภาษา EN: ทั้งสองวิธีได้ d5 (คำว่า eats ไม่อยู่ในพจนานุกรม และ d7 ได้คะแนนเท่ากันแต่มาทีหลัง) สลับเป็น TH: มีคำว่า กิน เพิ่ม late interaction จึงเลือก d7 เพราะเอกสารยาวมี rice ให้จับคู่ด้วย",
-    "สลับภาษาในช่องข้อความเป็น TH แล้วเลือก \"ตัดคำ\" เป็นช่องว่าง: token ที่รู้จักหายหมด ตารางว่าง (ต้องตัดคำก่อนเสมอ บท 3.1)",
+    "สลับภาษาในช่องข้อความเป็น TH แล้วเลือก \"ตัดคำ\" เป็นช่องว่าง: token ที่รู้จักหายหมด ตารางว่าง (ต้องตัดคำก่อนเสมอ บท {#tokenize})",
   ],
   steps: [
-    ["ตัดเป็น token", "ทั้งคำถามและเอกสาร (บท 3.1) เก็บเฉพาะ token ที่มีเวกเตอร์"],
+    ["ตัดเป็น token", "ทั้งคำถามและเอกสาร (บท {#tokenize}) เก็บเฉพาะ token ที่มีเวกเตอร์"],
     ["เวกเตอร์ทุก token", "ไม่เฉลี่ยรวมเป็นตัวเดียว เอกสารยาวจึงมีหลายเวกเตอร์"],
     ["MaxSim", "token แต่ละตัวของคำถามเลือกค่าความคล้ายที่สูงที่สุดในเอกสาร"],
     ["Σ รวมคะแนน", "บวกค่าที่เลือกได้ของทุก token เป็นคะแนนของเอกสาร แล้วเรียงจากมากไปน้อย"],
@@ -68,21 +68,21 @@ export default {
     [M.math(M.sub(M.v("e"), M.i("t")), M.o("="), M.fn("normalize"), M.row(M.o("("), M.t("vector of\u00a0"), M.i("t"), M.o(")"))),
       "เวกเตอร์ของแต่ละ token ยาว 1 · ในของเล่นนี้เอามาจากพจนานุกรมตรง ๆ (ไม่ขึ้นกับคำรอบข้าง) ส่วน ColBERT จริงคำนวณจากประโยคทั้งประโยค (contextualized)"],
     [M.math(M.sub(M.t("best"), M.i("i")), M.o("="), M.sub(M.fn("max"), M.i("j")), M.sub(M.v("e"), M.sub(M.i("q"), M.i("i"))), M.o("·"), M.sub(M.v("e"), M.sub(M.i("d"), M.i("j")))),
-      "MaxSim · token ที่ i ของคำถามเทียบกับ token ทุกตัว j ของเอกสาร แล้วเก็บค่าที่สูงที่สุด · ยาว 1 ทั้งคู่ dot จึงเท่ากับ cosine (บท 2.3)"],
+      "MaxSim · token ที่ i ของคำถามเทียบกับ token ทุกตัว j ของเอกสาร แล้วเก็บค่าที่สูงที่สุด · ยาว 1 ทั้งคู่ dot จึงเท่ากับ cosine (บท {#cosine})"],
     [M.math(M.fn("score"), M.row(M.o("("), M.v("q"), M.o(","), M.v("d"), M.o(")")), M.o("="), M.sum(M.row(M.i("i"), M.o("="), M.n(1)), M.i("n")), M.sub(M.t("best"), M.i("i"))),
       "Σ รวมคะแนน · บวก best ของทุก token ในคำถาม · ค่าสูงสุดเป็นไปได้ = n (ทุก token เจอคู่ที่เหมือนกันพอดี) · เอกสารที่คะแนนสูงกว่าขึ้นก่อน"],
   ],
-  formulaFrom: "การตัดเป็น token, เวกเตอร์ทุก token, การเทียบทุก token ของคำถามกับทุก token ของเอกสารแล้วรวมเป็นคะแนน และปัญหาที่ chunk ยาวถูกบีบเป็นเวกเตอร์เดียว มาจากคลิป ColBERT ของ Prompt Engineering · MaxSim และ Σ อ่านจากรูปในเปเปอร์ที่ผู้สอนเปิดบนจอ · เวกเตอร์คำของเล่น เอกสาร d1–d6 (ชุดเดียวกับบท 6.1) และ d7 (chunk ยาวหลายเรื่อง) เป็นสิ่งที่ผู้จัดทำเลือก",
+  formulaFrom: "การตัดเป็น token, เวกเตอร์ทุก token, การเทียบทุก token ของคำถามกับทุก token ของเอกสารแล้วรวมเป็นคะแนน และปัญหาที่ chunk ยาวถูกบีบเป็นเวกเตอร์เดียว มาจากคลิป ColBERT ของ Prompt Engineering · MaxSim และ Σ อ่านจากรูปในเปเปอร์ที่ผู้สอนเปิดบนจอ · เวกเตอร์คำของเล่น เอกสาร d1–d6 (ชุดเดียวกับบท {#bi-encoder}) และ d7 (chunk ยาวหลายเรื่อง) เป็นสิ่งที่ผู้จัดทำเลือก",
   symbols: [
     ["q, d", "คำถาม และเอกสาร (หลังตัดเป็น token)", "ช่องข้อความ และ d1–d7"],
     ["n, m", "จำนวน token ที่รู้จักในคำถาม และในเอกสาร", "เป็นจำนวนแถว และจำนวนคอลัมน์ของตาราง"],
     ["e<sub>t</sub>", "เวกเตอร์ยาว 1 ของ token t", "มาจากพจนานุกรม (หน้า <a href=\"#/dict\">พจนานุกรม</a>)"],
-    ["·", "dot product (บท 2.2)", "ยาว 1 ทั้งคู่ = cosine"],
+    ["·", "dot product (บท {#dot-product})", "ยาว 1 ทั้งคู่ = cosine"],
     ["best<sub>i</sub>", "ค่าที่ดีที่สุดของ token ที่ i (MaxSim)", "ช่องที่มีกรอบในตาราง"],
     ["Σ", "บวกทุกแถว", "คะแนนของเอกสาร"],
   ],
   symbolsNote: `<h2>เอกสาร (ภาษาอังกฤษ)</h2><p class="vocab">${DOC.map((d) => `${d.tag} ${esc(d.text)}`).join(" · ")}</p>
-    <p class="fine">d1–d6 ชุดเดียวกับบท 6.1 · d7 เป็น chunk ยาวที่มีหลายเรื่อง (ผู้จัดทำเพิ่มเพื่อให้เห็นเรื่องที่คลิปพูด: เวกเตอร์เดียวเฉลี่ยรายละเอียดหาย)</p>`,
+    <p class="fine">d1–d6 ชุดเดียวกับบท {#bi-encoder} · d7 เป็น chunk ยาวที่มีหลายเรื่อง (ผู้จัดทำเพิ่มเพื่อให้เห็นเรื่องที่คลิปพูด: เวกเตอร์เดียวเฉลี่ยรายละเอียดหาย)</p>`,
   notes: `
     <h2>จากคลิป ColBERT (Prompt Engineering)</h2>
     <ul>
@@ -155,7 +155,7 @@ export default {
           ...d.li.best.flatMap((b, i) => (i ? [M.o("+"), M.n(fmt(b), "res")] : [M.n(fmt(b), "res")])), M.o("="), M.n(fmt(d.li.sum), "cy"));
         const same = r.biTop.tag === r.liTop.tag;
         const say = same ? `ทั้งสองวิธีได้อันดับ 1 เดียวกัน: <b>${r.liTop.tag}</b>`
-          : `bi-encoder (บท 6.1) เลือก <b>${r.biTop.tag}</b> · late interaction เลือก <b>${r.liTop.tag}</b>`;
+          : `bi-encoder (บท {#bi-encoder}) เลือก <b>${r.biTop.tag}</b> · late interaction เลือก <b>${r.liTop.tag}</b>`;
         const rows = [...r.res].sort((a, b) => b.li.sum - a.li.sum || b.bi - a.bi).map((x) =>
           `<tr class="${x.tag === d.tag ? "win" : ""}"><td>${x.tag}</td><td>${fmt(x.li.sum)}${x.tag === r.liTop.tag ? " ★" : ""}</td><td>${fmt(x.bi)}${x.tag === r.biTop.tag ? " ★" : ""}</td></tr>`).join("");
         return toks + head + `<p class="verdict">${say}</p>` +

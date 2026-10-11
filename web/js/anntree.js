@@ -1,4 +1,4 @@
-// anntree.js — the random-hyperplane tree of lesson 5.4 (Annoy-style, as in the Serengil clip).
+// anntree.js — the random-hyperplane tree of the ann-tree lesson (Annoy-style, as in the Serengil clip).
 // Same steps as examples/*/28_ann_tree.*: pick two random points, split by the line halfway between them,
 // repeat on each side until a group has at most LEAF points.
 import { dot, sub, add, scale, distance } from "../../lib/zvect.js";

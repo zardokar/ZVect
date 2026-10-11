@@ -2,7 +2,7 @@
 import { vec, distance, fmt } from "../../lib/zvect.js";
 
 const id = { good: 6, bad: 22, great: 21 };      // IDs from the clip ("This movie was good / bad / great")
-// one number = a 1-number vector, so the gap is the Euclidean distance of lesson 2.1
+// one number = a 1-number vector, so the gap is the Euclidean distance of the distance lesson
 const gap = (ids, a, b) => distance(vec(ids[a]), vec(ids[b]));
 const pairs = [["good", "great"], ["bad", "great"], ["good", "bad"]];
 

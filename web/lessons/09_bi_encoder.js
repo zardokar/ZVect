@@ -3,7 +3,7 @@ import { M } from "../js/kit.js";
 import { LANGS, LANG, AXIS_NAMES, SAMPLES, split, encodeTokens, chips, vocab, mountPanel, sampleOf } from "../js/multilang.js";
 const escV = (s) => String(s).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c]);
 
-// 6.1 Bi-Encoder in four languages (WIP202610029, owner 2026-10-11 13:42): the same sentence in EN / TH / 中文 / 日本語,
+// Bi-Encoder in four languages (WIP202610029, owner 2026-10-11 13:42): the same sentence in EN / TH / 中文 / 日本語,
 // one shared toy vocabulary, documents stay in English. Shows (1) same meaning -> same place, whatever the language,
 // (2) it only works when the text is cut into words first: Thai, Chinese and Japanese have no spaces between words.
 const DOCS = [
@@ -83,13 +83,13 @@ export default {
       <li>มีตาราง embedding ขนาด (จำนวนคำ × จำนวนมิติ) เช่น 50,000 × 300 แปลงคำ = หาแถวของคำนั้นในตาราง</li>
       <li>ตอนแรกค่าในตารางสุ่ม แล้วถูกปรับทีละนิดทุกครั้งที่โมเดลเดาผิด คำที่ใช้ในบริบทคล้ายกันจึงถูกดันไปทางเดียวกัน</li>
     </ul>
-    <p class="fine">ความรู้ทั่วไป (ไม่ได้มาจากคลิปนี้): ตารางนี้คือชั้นแรกของ encoder สมัยใหม่ ชั้น transformer ถัดไปผสมบริบทของคำรอบข้างเข้าไป (บท 7.1–7.2) ก่อนรวมเป็นเวกเตอร์ของทั้งประโยค</p>
+    <p class="fine">ความรู้ทั่วไป (ไม่ได้มาจากคลิปนี้): ตารางนี้คือชั้นแรกของ encoder สมัยใหม่ ชั้น transformer ถัดไปผสมบริบทของคำรอบข้างเข้าไป (บท {#llm-input}–{#attention}) ก่อนรวมเป็นเวกเตอร์ของทั้งประโยค</p>
     <h2>bi-encoder กับ cross-encoder</h2>
     <ul>
       <li><b>bi-encoder</b> (บทนี้) แปลงคำถามกับเอกสารแยกกัน เอกสารแปลงเก็บไว้ล่วงหน้าได้ จึงเร็วพอค้นเอกสารนับล้าน</li>
       <li>ข้อเสีย: อัดทั้งเอกสารเป็นเวกเตอร์เดียวก่อนเห็นคำถาม รายละเอียดบางอย่างหายไป</li>
       <li><b>cross-encoder</b> อ่านคำถามกับเอกสารพร้อมกัน แม่นกว่าแต่ต้องรันโมเดลทุกคู่ จึงใช้ได้กับผลไม่กี่ชิ้น</li>
-      <li>ระบบจริงใช้สองขั้น: bi-encoder คัดผู้สมัครจำนวนมาก แล้ว cross-encoder จัดอันดับ 10–100 ชิ้นบนสุด (บท 6.3)</li>
+      <li>ระบบจริงใช้สองขั้น: bi-encoder คัดผู้สมัครจำนวนมาก แล้ว cross-encoder จัดอันดับ 10–100 ชิ้นบนสุด (บท {#reranker})</li>
     </ul>
     <h2>โมเดลหลายภาษาที่คลิปพูดถึง</h2>
     <ul>
@@ -102,7 +102,7 @@ export default {
     <h2>ข้อจำกัดที่ควรรู้</h2>
     <ul>
       <li>embedding อ่านตัวเลขไม่เก่ง ในงานวิจัยหนึ่ง 13 โมเดลแม่นเฉลี่ยราว 54% กับคำถามการเงินที่ต้องเทียบตัวเลข ส่วนหนึ่งเพราะ tokenizer ตัดตัวเลขเป็นชิ้น ๆ จึงควรกรองตัวเลขด้วย filter</li>
-      <li>คำปฏิเสธ เช่น "ไม่มีเบาหวาน" ยังถูกดึงมาเมื่อค้นคำว่าเบาหวาน ต้องมีขั้นกรองอีกชั้น (บท 6.3)</li>
+      <li>คำปฏิเสธ เช่น "ไม่มีเบาหวาน" ยังถูกดึงมาเมื่อค้นคำว่าเบาหวาน ต้องมีขั้นกรองอีกชั้น (บท {#reranker})</li>
     </ul>
     <p class="fine">ความรู้ทั่วไป (ไม่ได้มาจากคลิป): โมเดลหลายภาษาจริงใช้คลังคำ (vocabulary) ชุดเดียวกันทุกภาษา และตัดคำเป็นชิ้นย่อย (subword) แทนการเปิดพจนานุกรมแบบบทนี้ ภาษาที่มีข้อมูลฝึกน้อยมักได้เวกเตอร์ที่แม่นน้อยกว่า</p>`,
   refs: [["blackboard", "ตาราง embedding, การแปลงคำ = ค้นหาแถว, การปรับค่าระหว่างฝึก"],

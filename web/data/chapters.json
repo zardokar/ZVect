@@ -1,0 +1,335 @@
+{
+  "_how": [
+    "The ONE place for chapters and lesson order (owner 2026-10-11 22:56: \"ทำ script + code และปรับเป็น json ให้ง่ายในการ Reindex และทำ Category ใหม่เสมอ\").",
+    "Move a lesson = move its object; new chapter (category) = add an object with a new id; new lesson = add {file, slug, short, readme, llms}.",
+    "Then run: npm run reindex  (rewrites the README table, the llms.txt list, the REFERENCE.md chapter list and every chapter.topic number in REFERENCE.md, old -> new via chapters.lock.json).",
+    "Lesson text never hard-codes a number: write {#slug} and the app shows the current chapter.topic.",
+    "fields: file = web/lessons/<file>.js and examples/*/<file>.*; short = Thai short name (REFERENCE list); readme = README row text; llms = English text for llms.txt",
+    "readme_intro: the line above the README table; {#ch:<id>} = that chapter number."
+  ],
+  "readme_intro": "เลขแบบ บท.หัวข้อ (1, 1.1, 1.2 …) หนึ่งหัวข้อมีเรื่องเดียว ในบท {#ch:fast-search} เรียงจากง่ายไปยากและตามปีของแนวคิด",
+  "chapters": [
+    {
+      "id": "basics",
+      "title": "พื้นฐานเวกเตอร์",
+      "en": "basics",
+      "lessons": [
+        {
+          "file": "01_vector",
+          "slug": "vector",
+          "short": "Vector",
+          "readme": "Vector: ลิสต์ของตัวเลข = ลูกศร",
+          "llms": "vector"
+        },
+        {
+          "file": "16_length",
+          "slug": "length",
+          "short": "ความยาว",
+          "readme": "ความยาวของเวกเตอร์ (norm)",
+          "llms": "length"
+        },
+        {
+          "file": "04_vector_space",
+          "slug": "vector-space",
+          "short": "Vector space",
+          "readme": "Vector space: ห้อง 3 มิติ, ข้อมูล = จุดในห้อง, ปุ่มสุ่มจุด",
+          "llms": "vector space"
+        },
+        {
+          "file": "15_vector_ops",
+          "slug": "vector-ops",
+          "short": "บวก ลบ คูณ",
+          "readme": "บวก ลบ คูณ: สร้างเวกเตอร์ใหม่ทีละช่อง",
+          "llms": "add/subtract/scale"
+        },
+        {
+          "file": "20_matrix",
+          "slug": "matrix",
+          "short": "Matrix",
+          "readme": "Matrix: เวกเตอร์หลายตัวเรียงเป็นแถว, ขนาด แถว × คอลัมน์",
+          "llms": "matrix = vectors as rows"
+        }
+      ]
+    },
+    {
+      "id": "closeness",
+      "title": "วัดว่าสองเวกเตอร์ใกล้กันแค่ไหน",
+      "en": "closeness",
+      "lessons": [
+        {
+          "file": "11_distance",
+          "slug": "distance",
+          "short": "Euclidean distance",
+          "readme": "Euclidean distance: ความยาวของ a − b",
+          "llms": "Euclidean distance"
+        },
+        {
+          "file": "02_dot_product",
+          "slug": "dot-product",
+          "short": "Dot product",
+          "readme": "Dot product: คูณแล้วบวก, เงาของเวกเตอร์",
+          "llms": "dot product"
+        },
+        {
+          "file": "03_cosine",
+          "slug": "cosine",
+          "short": "Cosine",
+          "readme": "Cosine similarity: เทียบทิศโดยไม่สนความยาว, cosine distance = 1 − cos",
+          "llms": "cosine"
+        }
+      ]
+    },
+    {
+      "id": "token",
+      "title": "Token: ตัดข้อความเป็นเลข",
+      "en": "tokens (text to ids)",
+      "lessons": [
+        {
+          "file": "34_tokenize",
+          "slug": "tokenize",
+          "short": "Tokenization",
+          "readme": "Tokenization: ตัดข้อความเป็นตัวอักษรหรือคำ แล้วเปิดคลังหาเลข (4 ภาษา EN / TH / 中文 / 日本語)",
+          "llms": "tokenization: characters or words to vocabulary IDs, in EN / TH / ZH / JP"
+        },
+        {
+          "file": "35_bpe",
+          "slug": "bpe",
+          "short": "BPE",
+          "readme": "BPE: เริ่มจากตัวอักษร แล้วรวมคู่ที่เจอบ่อยทีละรอบ (นับสดทุกรอบ)",
+          "llms": "BPE: merge the most frequent adjacent pair k times"
+        },
+        {
+          "file": "37_gpt_tokenizer",
+          "slug": "gpt-tokenizer",
+          "short": "Tokenizer ของ GPT (byte-level BPE)",
+          "readme": "Tokenizer ของ GPT: BPE ที่เริ่มจากไบต์ UTF-8 (ไทย 3 ไบต์ต่อตัว, เลขใหม่ 256 + i, encode / decode, regex ของ GPT-2)",
+          "llms": "GPT tokenizer: byte-level BPE on UTF-8 bytes (Thai = 3 bytes per character, new ids 256 + i, encode oldest rule first, decode with errors=\"replace\", optional GPT-2 split regex)"
+        },
+        {
+          "file": "21_token_id",
+          "slug": "token-id",
+          "short": "Token ID",
+          "readme": "Token ID: เลขประจำคำเป็นแค่ป้ายชื่อ (good 6, bad 22, great 21)",
+          "llms": "token ID"
+        }
+      ]
+    },
+    {
+      "id": "embedding",
+      "title": "Embedding: เลขกลายเป็นเวกเตอร์ที่มีความหมาย",
+      "en": "embeddings (ids to meaningful vectors)",
+      "lessons": [
+        {
+          "file": "22_one_hot",
+          "slug": "one-hot",
+          "short": "One-hot",
+          "readme": "One-hot: เลข 1 ตัวเดียว ทุกคู่ห่างกันเท่ากัน",
+          "llms": "one-hot"
+        },
+        {
+          "file": "23_bag_of_words",
+          "slug": "bag-of-words",
+          "short": "Bag of words",
+          "readme": "Bag of words: นับคำแล้วได้เวกเตอร์ (StatQuest)",
+          "llms": "bag of words"
+        },
+        {
+          "file": "12_embedding_matrix",
+          "slug": "embedding-matrix",
+          "short": "Embedding matrix",
+          "readme": "Embedding matrix: one-hot × ตาราง = หยิบแถวของคำ",
+          "llms": "embedding matrix"
+        },
+        {
+          "file": "24_learn_table",
+          "slug": "learn-table",
+          "short": "ตารางมาจากการฝึก",
+          "readme": "ตารางมาจากการฝึก: เริ่มสุ่ม แล้วปรับทีละนิด (CBOW แบบย่อ)",
+          "llms": "learning the table"
+        },
+        {
+          "file": "05_latent_space",
+          "slug": "latent-space",
+          "short": "Latent space",
+          "readme": "Latent space: แกนที่มีความหมาย, king − man + woman",
+          "llms": "latent space"
+        },
+        {
+          "file": "38_same_model",
+          "slug": "same-model",
+          "short": "ใช้ model เดียวกัน",
+          "readme": "ใช้ model เดียวกันทั้งคำถามและเอกสาร: สองตารางฝึกจากเลขสุ่มต่างกัน คำเดียวกันได้เวกเตอร์ที่ไม่เกี่ยวกัน",
+          "llms": "same embedding model for query and documents (vectors from different models are not comparable)"
+        }
+      ]
+    },
+    {
+      "id": "nearest",
+      "title": "ค้นหาของที่ใกล้ที่สุด",
+      "en": "nearest-item search",
+      "lessons": [
+        {
+          "file": "06_similarity",
+          "slug": "search-cosine",
+          "short": "ค้นด้วย cosine",
+          "readme": "ค้นด้วย cosine (top-3)",
+          "llms": "by cosine"
+        },
+        {
+          "file": "18_search_distance",
+          "slug": "search-distance",
+          "short": "ค้นด้วย distance",
+          "readme": "ค้นด้วย distance",
+          "llms": "by distance"
+        },
+        {
+          "file": "19_search_dot",
+          "slug": "search-dot",
+          "short": "ค้นด้วย dot",
+          "readme": "ค้นด้วย dot",
+          "llms": "by dot"
+        },
+        {
+          "file": "07_choose_metric",
+          "slug": "choose-metric",
+          "short": "เลือกวิธีวัด",
+          "readme": "เลือกวิธีวัด: เมื่อไหร่สามแบบตอบต่างกัน, normalize แล้วเหมือนกัน",
+          "llms": "choosing a metric"
+        },
+        {
+          "file": "33_keyword_search",
+          "slug": "keyword-vs-meaning",
+          "short": "ค้นด้วยคำ vs ความหมาย",
+          "readme": "ค้นด้วยคำ (inverted index) vs ค้นด้วยความหมาย",
+          "llms": "keyword (inverted index) vs meaning"
+        }
+      ]
+    },
+    {
+      "id": "fast-search",
+      "title": "ค้นให้เร็วเมื่อข้อมูลเยอะ",
+      "en": "fast search at scale, simple to complex",
+      "lessons": [
+        {
+          "file": "27_brute_force",
+          "slug": "brute-force",
+          "short": "ค้นทุกชิ้น (brute force)",
+          "readme": "ค้นทุกชิ้น (brute force): ถูกเสมอ แต่วัด N ครั้ง",
+          "llms": "brute force"
+        },
+        {
+          "file": "08_high_dimensions",
+          "slug": "high-dimensions",
+          "short": "มิติสูง",
+          "readme": "มิติสูง: ระยะและ cosine บีบเข้าหากัน",
+          "llms": "high dimensions"
+        },
+        {
+          "file": "17_binary_xor",
+          "slug": "binary-xor",
+          "short": "เวกเตอร์ 1 บิต (XOR + popcount)",
+          "readme": "เวกเตอร์ 1 บิต: เทียบด้วย XOR + popcount",
+          "llms": "1-bit vectors with XOR + popcount"
+        },
+        {
+          "file": "28_ann_tree",
+          "slug": "ann-tree",
+          "short": "ANN แบบต้นไม้",
+          "readme": "ANN แบบต้นไม้ (Annoy): แบ่งครึ่งซ้ำ ๆ แล้วเดินลงไปหากลุ่มเล็ก",
+          "llms": "ANN random-split tree (Annoy)"
+        },
+        {
+          "file": "29_nsw_graph",
+          "slug": "graph-walk",
+          "short": "ANN แบบกราฟชั้นเดียว",
+          "readme": "ANN แบบกราฟชั้นเดียว: เดินไปหาเพื่อนบ้านที่ใกล้กว่า",
+          "llms": "one-layer neighbour-graph walk"
+        },
+        {
+          "file": "13_vector_search",
+          "slug": "vector-search",
+          "short": "HNSW กราฟหลายชั้น",
+          "readme": "HNSW: กราฟหลายชั้น ขึ้นทางด่วนก่อน แล้วค่อยลงซอย",
+          "llms": "HNSW layered graph"
+        },
+        {
+          "file": "30_hnsw_beam",
+          "slug": "hnsw-beam",
+          "short": "HNSW beam (efSearch)",
+          "readme": "HNSW: beam (efSearch)",
+          "llms": "HNSW beam / efSearch"
+        },
+        {
+          "file": "31_hnsw_build",
+          "slug": "hnsw-build",
+          "short": "HNSW สร้างชั้นด้วยการโยนเหรียญ",
+          "readme": "HNSW: สร้างชั้นด้วยการโยนเหรียญ (1/M)",
+          "llms": "HNSW layers by coin flip"
+        },
+        {
+          "file": "32_filter_graph",
+          "slug": "filter-graph",
+          "short": "กรองระหว่างค้น",
+          "readme": "กรองระหว่างค้น: กรองเยอะเกินไป กราฟขาด (1/k)",
+          "llms": "filtering breaks the graph below about 1/k"
+        }
+      ]
+    },
+    {
+      "id": "combine",
+      "title": "การผสานทฤษฎี",
+      "en": "combining the theory",
+      "lessons": [
+        {
+          "file": "09_bi_encoder",
+          "slug": "bi-encoder",
+          "short": "Bi-Encoder",
+          "readme": "Bi-Encoder: แปลงคำถามและเอกสารเป็นเวกเตอร์แยกกัน 4 ภาษา (EN / TH / 中文 / 日本語) ตัดคำด้วยช่องว่าง vs พจนานุกรม",
+          "llms": "bi-encoder in EN / TH / ZH / JP: split at spaces vs dictionary longest match"
+        },
+        {
+          "file": "36_late_interaction",
+          "slug": "late-interaction",
+          "short": "Late interaction (ColBERT)",
+          "readme": "Late interaction (ColBERT): เวกเตอร์ทุก token, MaxSim แล้วรวม (Σ) เทียบกับ Bi-Encoder 4 ภาษา",
+          "llms": "late interaction (ColBERT: one vector per token, MaxSim then sum, vs the bi-encoder)"
+        },
+        {
+          "file": "14_reranker",
+          "slug": "reranker",
+          "short": "Reranker (Cross-Encoder)",
+          "readme": "Reranker (Cross-Encoder): คัด top-k แล้วจัดอันดับใหม่ (จับคำปฏิเสธ 4 ภาษา: not · ไม่ · 不 หน้าคำ, ない หลังคำ)",
+          "llms": "reranker (cross-encoder) in four languages with per-language negation (not / ไม่ / 不 before the word, ない after)"
+        },
+        {
+          "file": "10_classification",
+          "slug": "classification",
+          "short": "Classification",
+          "readme": "Classification: nearest centroid",
+          "llms": "classification"
+        }
+      ]
+    },
+    {
+      "id": "llm",
+      "title": "เวกเตอร์ใน LLM",
+      "en": "vectors in an LLM",
+      "lessons": [
+        {
+          "file": "25_llm_input",
+          "slug": "llm-input",
+          "short": "LLM input (embedding + ตำแหน่ง)",
+          "readme": "LLM input: แถวละ token แล้วบวกเวกเตอร์ตำแหน่ง",
+          "llms": "embedding layer + positional encoding"
+        },
+        {
+          "file": "26_attention",
+          "slug": "attention",
+          "short": "Attention: query · key",
+          "readme": "Attention: ให้คะแนนด้วย query · key",
+          "llms": "attention scores with query · key"
+        }
+      ]
+    }
+  ]
+}

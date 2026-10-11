@@ -2,7 +2,7 @@ import { cosine, fmt } from "../../lib/zvect.js";
 import { M, esc } from "../js/kit.js";
 import { LANGS, LANG, AXIS_NAMES, NEG, split, encodeTokens, matches, chips, mountPanel, sampleOf } from "../js/multilang.js";
 
-// 6.3 Reranker in four languages (WIP202610029): stage 1 = bi-encoder top 3 by cosine, stage 2 = a toy reranker that
+// Reranker in four languages (WIP202610029): stage 1 = bi-encoder top 3 by cosine, stage 2 = a toy reranker that
 // reads query and document text together and does not count a word that a negation word denies.
 // The five documents are written in all four languages; each language searches its own translation.
 // Negation sits before the word in English (not), Thai (ไม่), Chinese (不 / 没) and after it in Japanese (ない).
@@ -52,7 +52,7 @@ export default {
   axisNames: AXIS_NAMES,
   view: { dist: 10, yaw: 0.7 },
   intro: `
-    <p>bi-encoder (บท 6.1) อัดทั้งเอกสารเป็นเวกเตอร์เดียวก่อนเห็นคำถาม จึงพลาดรายละเอียด เช่นคำปฏิเสธ:
+    <p>bi-encoder (บท {#bi-encoder}) อัดทั้งเอกสารเป็นเวกเตอร์เดียวก่อนเห็นคำถาม จึงพลาดรายละเอียด เช่นคำปฏิเสธ:
     "the dog is not hungry" ได้เวกเตอร์เดียวกับ "hungry dog" พอดี (ใน encoder ของเล่น)</p>
     <p>ระบบจริงจึงค้นสองขั้น: <b>ขั้น 1</b> bi-encoder คัดผู้สมัครอย่างเร็ว (บทนี้ 3 ชิ้น)
     <b>ขั้น 2</b> reranker อ่านคำถามกับเอกสาร <b>พร้อมกันทีละคู่</b> แล้วจัดอันดับใหม่ ช้ากว่าแต่แม่นกว่า
@@ -64,7 +64,7 @@ export default {
     "กด \"ทั้งหมด\": ทุกภาษาพลาดที่ขั้น 1 และ reranker แก้ได้ทุกภาษา ภาษาญี่ปุ่นได้ด้วยเพราะดูคำปฏิเสธที่อยู่หลังคำ",
     "สลับ \"ตัดคำ\" เป็นช่องว่าง: TH / 中文 / 日本語 ไม่ได้ผลทั้งสองขั้น เพราะขั้น 1 หาไม่เจอตั้งแต่แรก",
   ],
-  stepsWhy: "คำถามถูกตัดคำแบบบท 6.1 ก่อนเข้าสองขั้นตอนนี้",
+  stepsWhy: "คำถามถูกตัดคำแบบบท {#bi-encoder} ก่อนเข้าสองขั้นตอนนี้",
   steps: [
     ["คัดเร็วด้วยเวกเตอร์", "cos เร็ว ใช้คัดจากเอกสารจำนวนมากให้เหลือ 3 ชิ้น"],
     ["จัดอันดับใหม่ด้วยข้อความ", "อ่านคำถามกับเอกสารพร้อมกัน จึงจับคำปฏิเสธที่เวกเตอร์มองไม่เห็น แต่ช้ากว่า จึงใช้กับแค่ 3 ชิ้น"],
@@ -86,7 +86,7 @@ export default {
   symbolsNote: `<h2>คำปฏิเสธที่ reranker ของเล่นรู้จัก</h2><p class="vocab">อยู่หน้าคำ: not · no · ไม่ · 不 · 没 &nbsp;|&nbsp; อยู่หลังคำ: ない</p>` +
     `<h2>เอกสาร 5 ชิ้น (แปลครบ 4 ภาษา แต่ละภาษาค้นในฉบับของตัวเอง)</h2>` +
     LANGS.map((l) => `<p class="vocab"><b style="color: var(${l.css})">${l.label}</b> ${DOCS[l.id].map((d, i) => `d${i + 1} ${d}`).join(" · ")}</p>`).join("") +
-    `<p class="vocab dim">คำที่ตารางรู้จักเหมือนบท 6.1</p>`,
+    `<p class="vocab dim">คำที่ตารางรู้จักเหมือนบท {#bi-encoder}</p>`,
   notes: `
     <h2>bi-encoder กับ cross-encoder</h2>
     <ul>

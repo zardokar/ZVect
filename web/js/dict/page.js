@@ -3,6 +3,7 @@
 import { dict } from "./index.js";
 import { LANG } from "../multilang.js";
 import { esc } from "../kit.js";
+import { resolve } from "../chapters.js";
 
 const L4 = dict.langs.map((id) => LANG[id]);
 // which language a negation word is (for its colour): Thai letters, Japanese kana, Chinese 不 / 没, else English
@@ -20,10 +21,10 @@ export function mountDictPage(root, msg = "") {
   const rows = rowsIds.map((m) => `<tr><td><code>${esc(m)}</code><br><span class="dim vec">(${d.meanings[m].join(", ")})</span></td>` +
     L4.map((l) => `<td>${dict.wordsOf(l.id, m).map((w) => cell(l, w)).join(" ")}</td>`).join("") + "<td></td></tr>").join("");
   const nMine = L4.reduce((n, l) => n + Object.keys(d.mine.words[l.id]).length, 0);
-  root.innerHTML = `
+  root.innerHTML = resolve(`
     <p class="step">พจนานุกรม</p>
     <h1>พจนานุกรมของเล่น 4 ภาษา</h1>
-    <p class="lede">คำที่บท 3.1 Tokenization, 6.1 Bi-Encoder, 6.2 Late interaction และ 6.3 Reranker รู้จัก แต่ละคำชี้ไปที่ <b>ความหมาย</b> หนึ่งตัว
+    <p class="lede">คำที่บท {#tokenize} Tokenization, {#bi-encoder} Bi-Encoder, {#late-interaction} Late interaction และ {#reranker} Reranker รู้จัก แต่ละคำชี้ไปที่ <b>ความหมาย</b> หนึ่งตัว
       และความหมายมีเวกเตอร์ 3 ค่า (${d.axes.join(", ")}) คำที่เพิ่มเองเก็บไว้ในเบราว์เซอร์นี้ (localStorage) ใช้ได้ทันทีในทุกบทข้างบน</p>
     <p class="fintro">เพิ่มคำ: พิมพ์คำ EN (ใช้เป็นชื่อแถว) แล้วใส่คำแปลภาษาอื่นเท่าที่มี กด "+ เพิ่ม" · คำ EN ที่มีอยู่แล้วจะเพิ่มลงแถวเดิม คำ EN ใหม่จะสร้างแถวใหม่</p>
     <!-- one row in the same columns as the table (owner 21:41 / 21:48 / 22:10): where the words go, one box per language, the add button
@@ -40,10 +41,10 @@ export function mountDictPage(root, msg = "") {
       <button type="button" class="btn ghost span2 dreset"${nMine ? "" : " disabled"}>ลบคำที่เพิ่มเองทั้งหมด (${nMine})</button></div>
     <div class="scroll"><table class="rank dict"><colgroup><col class="c-mean">${L4.map(() => '<col class="c-lang">').join("")}<col class="c-act"></colgroup><thead><tr><th>ความหมาย<br><span class="dim vec">(เวกเตอร์)</span></th>${L4.map((l) => `<th style="color: var(${l.css})">${l.label}</th>`).join("")}<th aria-hidden="true"></th></tr></thead>
       <tbody>${rows}</tbody></table></div>
-    <h2>คำปฏิเสธ (บท 6.3)</h2>
+    <h2>คำปฏิเสธ (บท {#reranker})</h2>
     <p class="vocab">${Object.entries(d.neg).map(([w, side]) => `<span style="color: var(${negLang(w).css})">${esc(w)}</span> (${side === "before" ? "หน้าคำ" : "หลังคำ"})`).join(" · ")}</p>
     <p class="fine">ค่าเริ่มต้นอยู่ในไฟล์ <code>web/data/dict/</code> (meanings.json, en.json, th.json, zh.json, jp.json, negation.json) ·
-      Export ให้ไฟล์เดียวที่มีทั้งค่าเริ่มต้นและคำที่เพิ่มเอง (ส่วน <code>mine</code>) · เป็นพจนานุกรมของเล่นที่ผู้จัดทำทำขึ้น ไม่ได้มาจากคลิป</p>`;
+      Export ให้ไฟล์เดียวที่มีทั้งค่าเริ่มต้นและคำที่เพิ่มเอง (ส่วน <code>mine</code>) · เป็นพจนานุกรมของเล่นที่ผู้จัดทำทำขึ้น ไม่ได้มาจากคลิป</p>`);
 
   const form = $(".dictform"), vecBox = $(".dvec"), stat = $(".dstat"), note = $(".dmsg");
   const enIn = form.querySelector('.dword[data-lang="en"]');

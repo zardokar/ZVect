@@ -1,7 +1,7 @@
 import { add } from "../../lib/zvect.js";
 import { M } from "../js/kit.js";
 
-// 7.1 Vectors in an LLM (WIP202610026): one idea only — the model's input is one row per token (n × d),
+// Vectors in an LLM (WIP202610026): one idea only — the model's input is one row per token (n × d),
 // and a position vector is added to each row so word order shows. Sentence and IDs from the Under The Hood clip;
 // the 3-number rows and position vectors are made up (my choice) so they can be drawn.
 const IDS = { The: 791, cat: 8415, sat: 7731, on: 389, a: 264, mat: 5634 };
@@ -22,8 +22,8 @@ export default {
   axisNames: ["dim 1", "dim 2", "dim 3"],
   view: { dist: 13, yaw: 0.75 },
   intro: `
-    <p>ก่อนเข้า LLM ประโยคถูกตัดเป็น token แล้วหยิบแถวจากตาราง embedding (บท 3.7) มาเรียง <b>แถวละ token</b>:
-    6 token ได้ตาราง 6 × d (บท 1.5)</p>
+    <p>ก่อนเข้า LLM ประโยคถูกตัดเป็น token แล้วหยิบแถวจากตาราง embedding (บท {#embedding-matrix}) มาเรียง <b>แถวละ token</b>:
+    6 token ได้ตาราง 6 × d (บท {#matrix})</p>
     <p>LLM อ่านทุก token พร้อมกัน จึงต้อง <b>บวกเวกเตอร์ตำแหน่ง</b> (positional encoding) เข้าไปในแต่ละแถว ไม่งั้นจะไม่รู้ว่าคำไหนมาก่อน</p>`,
   try: [
     "กด \"แถวถัดไป\": ลูกศรสั้น ๆ คือเวกเตอร์ตำแหน่งที่บวกเข้าไป จุดจึงขยับจากแถวเดิมนิดหน่อย",
@@ -38,16 +38,16 @@ export default {
     [M.math(M.v("X"), M.o("="), M.mat([[M.sub(M.v("e"), M.sub(M.i("t"), M.n(1)))], [M.o("⋮")], [M.sub(M.v("e"), M.sub(M.i("t"), M.i("n")))]]), M.t("\u2003("), M.i("n"), M.o("×"), M.i("d"), M.t(")")),
       "เรียงแถวของทุก token · t<sub>1</sub> … t<sub>n</sub> = token ในประโยคตามลำดับ · <b>e</b><sub>t</sub> = แถวของ token t ในตาราง embedding · n = จำนวน token (6) · d = จำนวนมิติ (บทนี้ 3)"],
     [M.math(M.sub(M.v("x"), M.i("i")), M.o("="), M.sub(M.v("e"), M.sub(M.i("t"), M.i("i"))), M.o("+"), M.sub(M.v("p"), M.i("i"))),
-      "บวกตำแหน่งให้แถวที่ i · i = ตำแหน่งในประโยค (1 = คำแรก) · <b>p</b><sub>i</sub> = เวกเตอร์ของตำแหน่ง i (ขนาด d เท่ากัน) · <b>x</b><sub>i</sub> = แถวที่ส่งต่อเข้า attention (บท 7.2) · ขนาดตารางยังเป็น n × d เท่าเดิม แค่ค่าขยับนิดหน่อย"],
+      "บวกตำแหน่งให้แถวที่ i · i = ตำแหน่งในประโยค (1 = คำแรก) · <b>p</b><sub>i</sub> = เวกเตอร์ของตำแหน่ง i (ขนาด d เท่ากัน) · <b>x</b><sub>i</sub> = แถวที่ส่งต่อเข้า attention (บท {#attention}) · ขนาดตารางยังเป็น n × d เท่าเดิม แค่ค่าขยับนิดหน่อย"],
   ],
   formulaFrom: "ประโยค \"The cat sat on a mat\", ID 791, 8415, 7731, 389, 264, 5634, ตาราง 6 × d และการบวกเวกเตอร์ตำแหน่ง (ขนาดไม่เปลี่ยน) มาจากคลิป Under The Hood · ตัวเลข 3 ตัวของแต่ละแถวและของแต่ละตำแหน่งผู้จัดทำแต่งเอง (ของจริงมีหลายร้อยมิติ และค่าตำแหน่งได้จากการฝึกหรือจากสูตรคงที่)",
   symbols: [
     ["t<sub>i</sub>", "token ตำแหน่งที่ i", "t₂ = cat (ID 8415)"],
-    ["e<sub>t</sub>", "แถวของ token t ในตาราง embedding", "หยิบด้วย ID (บท 3.7)"],
+    ["e<sub>t</sub>", "แถวของ token t ในตาราง embedding", "หยิบด้วย ID (บท {#embedding-matrix})"],
     ["X", "ตารางของทั้งประโยค: แถวละ token", "6 × d"],
     ["p<sub>i</sub>", "เวกเตอร์ของตำแหน่ง i", "ลูกศรสั้นในภาพ"],
     ["x<sub>i</sub>", "แถวหลังบวกตำแหน่ง", "จุดสีในภาพ"],
-    ["n × d", "แถว × คอลัมน์ (บท 1.5)", "บวกตำแหน่งแล้วขนาดไม่เปลี่ยน"],
+    ["n × d", "แถว × คอลัมน์ (บท {#matrix})", "บวกตำแหน่งแล้วขนาดไม่เปลี่ยน"],
   ],
   notes: `
     <h2>Embedding layer ใน LLM</h2>
@@ -65,7 +65,7 @@ export default {
     <h2>ยังไม่รู้บริบท</h2>
     <ul>
       <li>แถวที่ได้ตอนนี้ยังเป็นแบบ "หนึ่งคำ หนึ่งแถว" (static) Byte Goose AI ยกตัวอย่าง: ใน Word2Vec คำว่า bank มีพิกัดเดียว ไม่ว่าประโยครอบข้างจะเป็นอะไร</li>
-      <li>Under The Hood: embedding ให้ความหมายของคำ แต่ attention เป็นตัวให้บริบท บท 7.2 ดูส่วนหนึ่งของ attention: การให้คะแนนด้วย query · key</li>
+      <li>Under The Hood: embedding ให้ความหมายของคำ แต่ attention เป็นตัวให้บริบท บท {#attention} ดูส่วนหนึ่งของ attention: การให้คะแนนด้วย query · key</li>
     </ul>`,
   refs: [["wordemb", "The cat sat on a mat → 6 × d, ID บนจอ, ชั้น embedding ฝึกพร้อมโมเดล, positional encoding (ฝึกได้หรือคงที่, ขนาดไม่เปลี่ยน)"],
     ["sofar", "ลำดับขั้นใน GPT, ขนาดคำศัพท์และมิติของ GPT-1/2/3"], ["choose", "static (Word2Vec: bank มีพิกัดเดียว) กับ contextual"]],

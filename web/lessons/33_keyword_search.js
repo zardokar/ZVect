@@ -1,7 +1,7 @@
 import { words, encode, cosine, fmt } from "../../lib/zvect.js";
 import { M, esc } from "../js/kit.js";
 
-// 4.5 Keyword search vs meaning (WIP202610027): one idea only — a keyword index finds documents that contain the SAME
+// Keyword search vs meaning (WIP202610027): one idea only — a keyword index finds documents that contain the SAME
 // words (fast, exact, blind to synonyms); a vector search finds documents with a SIMILAR meaning (may miss exact codes).
 // Documents follow the Satyajit Das clip's help-center example plus one ticket code; the word vectors are my own toy table.
 const DOCS = ["Cancel anytime", "Cancellation policy", "Order cancellation timeline", "End your membership today",
@@ -37,7 +37,7 @@ export default {
   view: { dist: 13, yaw: 0.35 },
   intro: `
     <p><b>ค้นด้วยคำ</b> เก็บไว้ล่วงหน้าว่า <b>คำไหนอยู่ในเอกสารไหน</b> (inverted index) เร็วและตรงเป๊ะ แต่ไม่รู้ว่า "cancel" กับ "end your membership" หมายถึงเรื่องเดียวกัน</p>
-    <p><b>ค้นด้วยความหมาย</b> (บท 4.1) เทียบเวกเตอร์ จึงเจอคำพ้องความหมาย แต่ไม่ถนัดของที่ต้องตรงเป๊ะ เช่น เลข ticket</p>`,
+    <p><b>ค้นด้วยความหมาย</b> (บท {#search-cosine}) เทียบเวกเตอร์ จึงเจอคำพ้องความหมาย แต่ไม่ถนัดของที่ต้องตรงเป๊ะ เช่น เลข ticket</p>`,
   try: [
     "query \"cancel my subscription\": ค้นด้วยคำเจอแค่ \"Cancel anytime\" แต่ค้นด้วยความหมายเจอ \"End your membership today\" ด้วย ทั้งที่ไม่มีคำตรงกันเลย",
     "กด \"ZV-1042\": ค้นด้วยคำเจอ ticket ทันที แต่ตารางคำของเวกเตอร์ไม่รู้จักรหัสนี้ จึงหาไม่เจอ",
@@ -46,7 +46,7 @@ export default {
   steps: [
     ["สร้างดัชนีคำ", "ทำครั้งเดียวตอนเก็บเอกสาร ตอนค้นจึงเร็ว"],
     ["ค้นด้วยคำ", "หาเอกสารที่มีคำเดียวกับ query"],
-    ["ค้นด้วยความหมาย", "ทำแบบบท 4.1 ไว้เทียบว่าเจออะไรต่างกัน"],
+    ["ค้นด้วยความหมาย", "ทำแบบบท {#search-cosine} ไว้เทียบว่าเจออะไรต่างกัน"],
   ],
   lines: [
     [M.math(M.t("index"), M.row(M.o("["), M.i("w"), M.o("]")), M.o("="), M.t("documents that contain word\u00a0"), M.i("w")),
@@ -54,7 +54,7 @@ export default {
     [M.math(M.t("keyword hits"), M.o("="), M.t("documents in index[w] for the words\u00a0"), M.i("w"), M.t("\u00a0of\u00a0"), M.v("q")),
       "ค้นด้วยคำ · <b>q</b> = query · เอกสารที่มีคำเดียวกันเท่านั้นที่ถูกพบ (บทนี้เรียงตามจำนวนคำที่ตรง) · คำพ้องความหมายไม่ช่วย"],
     [M.math(M.t("meaning hits"), M.o("="), M.t("top-3 by\u00a0"), M.fn("cos"), M.row(M.o("("), M.t("vec(q)"), M.o(","), M.t("vec(d)"), M.o(")"))),
-      "ค้นด้วยความหมายแบบบท 4.1 · vec() = แปลงข้อความเป็นเวกเตอร์: เอาเวกเตอร์ของทุกคำที่ตารางรู้จักมาเฉลี่ยกัน (คำที่ไม่รู้จักถูกข้าม) แล้วย่อให้ยาว 1 · d = เอกสาร"],
+      "ค้นด้วยความหมายแบบบท {#search-cosine} · vec() = แปลงข้อความเป็นเวกเตอร์: เอาเวกเตอร์ของทุกคำที่ตารางรู้จักมาเฉลี่ยกัน (คำที่ไม่รู้จักถูกข้าม) แล้วย่อให้ยาว 1 · d = เอกสาร"],
   ],
   formulaFrom: "inverted index (คำ → เอกสาร), ตัวอย่าง \"cancel\" ได้ #15 Cancel anytime / #103 Cancellation policy / #588 Order cancellation timeline แต่พลาด \"End your membership today\" มาจากคลิป Satyajit Das · BM25 ชนะเวกเตอร์บนเอกสารบริษัทเพราะรหัส ตัวย่อ เลข ticket มาจากคลิป Devsplainers · เอกสาร 8 ชิ้น (รวม ticket ZV-1042) และตารางเวกเตอร์คำ 3 แกนผู้จัดทำแต่งเอง · ดัชนีบทนี้จับคู่คำตรงตัว ระบบจริงมักตัดคำให้เหลือรากศัพท์ด้วย (ความรู้ทั่วไป) คลิปจึงน่าจะเจอ Cancellation ด้วยเหตุนี้ (ผู้จัดทำเดา คลิปไม่ได้อธิบาย)",
   symbols: [
@@ -62,7 +62,7 @@ export default {
     ["index[w]", "รายการเอกสารที่มีคำ w", "ตารางทางขวา"],
     ["q", "query", "พิมพ์หรือกดตัวอย่าง"],
     ["vec(q), vec(d)", "เวกเตอร์ของ query / เอกสาร", "ค่าเฉลี่ยของเวกเตอร์คำที่รู้จัก แล้วย่อให้ยาว 1"],
-    ["cos", "cosine (บท 2.3)", "ยิ่งมากยิ่งความหมายใกล้"],
+    ["cos", "cosine (บท {#cosine})", "ยิ่งมากยิ่งความหมายใกล้"],
   ],
   notes: `
     <h2>จากคลิป Satyajit Das</h2>

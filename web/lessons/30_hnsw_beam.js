@@ -2,7 +2,7 @@ import { distance, fmt } from "../../lib/zvect.js";
 import { M } from "../js/kit.js";
 import { P, name, COLOR, HUBS, AXIS_NAMES, up, GRAPHS, beam, brute } from "../js/graph.js";
 
-// 5.7 HNSW beam / efSearch (WIP202610027): one idea only — on the bottom layer keep ef candidates at once instead of one;
+// HNSW beam / efSearch (WIP202610027): one idea only — on the bottom layer keep ef candidates at once instead of one;
 // a wider beam measures more points but misses less. Same graph as 5.5 / 5.6 (M = 2), top layer = the 3 hubs.
 const NB = GRAPHS[2];
 function run(q, ef) {
@@ -20,7 +20,7 @@ export default {
   axisNames: AXIS_NAMES,
   view: { dist: 12.5, yaw: 0.75 },
   intro: `
-    <p>บท 5.6 ชั้นล่างเดินแบบ "ถือผู้สมัครตัวเดียว" จึงหยุดผิดที่ได้ HNSW ของจริงเก็บ <b>ผู้สมัครไว้ ef ตัวพร้อมกัน</b> (เรียกว่า beam)
+    <p>บท {#vector-search} ชั้นล่างเดินแบบ "ถือผู้สมัครตัวเดียว" จึงหยุดผิดที่ได้ HNSW ของจริงเก็บ <b>ผู้สมัครไว้ ef ตัวพร้อมกัน</b> (เรียกว่า beam)
     แล้วขยายดูเพื่อนบ้านของตัวที่ดีที่สุดที่ยังไม่ได้ดูไปเรื่อย ๆ</p>
     <p>ef คือ <b>efSearch</b> ปรับได้ตอนค้น: กว้าง = วัดมากขึ้นแต่พลาดน้อยลง, แคบ = เร็วกว่าแต่อาจพลาด</p>`,
   try: [
@@ -35,13 +35,13 @@ export default {
   ],
   lines: [
     [M.math(M.t("keep"), M.o("="), M.i("ef"), M.t("\u00a0closest found so far")),
-      "beam · ef = จำนวนผู้สมัครที่เก็บได้พร้อมกัน (efSearch) · ef = 1 ก็คือการเดินตัวเดียวแบบบท 5.6"],
+      "beam · ef = จำนวนผู้สมัครที่เก็บได้พร้อมกัน (efSearch) · ef = 1 ก็คือการเดินตัวเดียวแบบบท {#vector-search}"],
     [M.math(M.t("expand\u00a0"), M.v("c"), M.o("="), M.t("closest not yet expanded")),
       "ขยายหนึ่งครั้ง · <b>c</b> = ผู้สมัครที่ใกล้ q ที่สุดที่ยังไม่ได้ดูเพื่อนบ้าน · ขยาย = ดูเพื่อนบ้านทุกตัวของ c · เพื่อนบ้านตัวไหนใกล้กว่าตัวที่แย่ที่สุดใน keep ก็เข้าไปแทน (keep มีได้ไม่เกิน ef ตัว)"],
     [M.math(M.t("stop if\u00a0"), M.fn("dist"), M.row(M.o("("), M.v("q"), M.o(","), M.v("c"), M.o(")")), M.o(">"), M.t("worst kept")),
       "หยุดเมื่อผู้สมัครที่ดีที่สุดที่ยังไม่ได้ขยาย ยังไกลกว่าตัวที่แย่ที่สุดที่เก็บไว้ (ขยายต่อก็ไม่ช่วยแล้ว) แล้วตอบตัวที่ดีที่สุดใน keep"],
   ],
-  formulaFrom: "การเก็บผู้สมัครหลายตัวที่ชั้นล่าง (beam), ความกว้าง = efSearch ปรับได้ตอนค้น, กว้าง = แม่นขึ้น แคบ = เร็วแต่อาจพลาด มาจากคลิป Satyajit Das และทอล์ก Qdrant · กติกาขยายและหยุดในขั้นตอน 2–3 เป็นความรู้ทั่วไป (ตามอัลกอริทึม HNSW) คลิปไม่ได้ลงรายละเอียด · จุดและกราฟเหมือนบท 5.5–5.6",
+  formulaFrom: "การเก็บผู้สมัครหลายตัวที่ชั้นล่าง (beam), ความกว้าง = efSearch ปรับได้ตอนค้น, กว้าง = แม่นขึ้น แคบ = เร็วแต่อาจพลาด มาจากคลิป Satyajit Das และทอล์ก Qdrant · กติกาขยายและหยุดในขั้นตอน 2–3 เป็นความรู้ทั่วไป (ตามอัลกอริทึม HNSW) คลิปไม่ได้ลงรายละเอียด · จุดและกราฟเหมือนบท {#graph-walk}–{#vector-search}",
   symbols: [
     ["ef", "efSearch: จำนวนผู้สมัครที่เก็บพร้อมกันที่ชั้นล่าง", "เลือก 1, 2, 4, 8"],
     ["keep", "ผู้สมัคร ef ตัวที่ดีที่สุดที่เจอมา", "วงแหวนในภาพ"],

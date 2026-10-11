@@ -1,7 +1,7 @@
 import { cosine, distance, dot, fmt } from "../../lib/zvect.js";
 import { M } from "../js/kit.js";
 
-// 3.5 One-hot (WIP202610026): one idea only — one 1 at the word's position, the rest 0; every pair of words
+// One-hot (WIP202610026): one idea only — one 1 at the word's position, the rest 0; every pair of words
 // ends up equally far apart. A 3-word vocabulary so each one-hot vector is one axis of the 3D room.
 const VOCAB = ["good", "bad", "great"];
 const oneHot = (w) => VOCAB.map((x) => (x === w ? 1 : 0));
@@ -17,13 +17,13 @@ export default {
   view: { dist: 13, yaw: 0.8 },
   intro: `
     <p><b>One-hot</b> แทนคำด้วยเวกเตอร์ที่ยาวเท่าจำนวนคำทั้งหมด มีเลข <b>1 ตัวเดียว</b> ตรงตำแหน่งของคำนั้น ช่องอื่นเป็น 0</p>
-    <p>ทุกคู่คำจึง <b>ห่างกันเท่ากันหมด</b> ลำดับปลอมของเลขประจำคำ (บท 3.4) หายไป แต่ก็บอกไม่ได้ว่าคู่ไหนความหมายใกล้กัน</p>`,
+    <p>ทุกคู่คำจึง <b>ห่างกันเท่ากันหมด</b> ลำดับปลอมของเลขประจำคำ (บท {#token-id}) หายไป แต่ก็บอกไม่ได้ว่าคู่ไหนความหมายใกล้กัน</p>`,
   try: [
     "เลือก good กับ great แล้วเปลี่ยนเป็น bad กับ great: cosine และ distance เท่าเดิมทุกคู่",
     "เลือกคำเดียวกันทั้งสองช่อง: cosine 1, distance 0",
     "หมุนภาพ: ลูกศรทั้งสามตั้งฉากกัน เส้นประระหว่างปลายยาวเท่ากันทุกเส้น",
   ],
-  stepsWhy: "ขั้นตอน 2 และ 3 วัดสองคำด้วย cosine (บท 2.3) และ distance (บท 2.1) แล้วดูว่าได้ค่าเดิมทุกคู่",
+  stepsWhy: "ขั้นตอน 2 และ 3 วัดสองคำด้วย cosine (บท {#cosine}) และ distance (บท {#distance}) แล้วดูว่าได้ค่าเดิมทุกคู่",
   steps: [
     ["สร้าง one-hot", "ให้แต่ละคำมีช่องของตัวเอง ไม่ต้องเรียงเลข"],
     ["วัดด้วย cosine", "ทุกคู่ได้ 0 คือไม่มีคู่ไหนใกล้กว่ากัน"],
@@ -43,7 +43,7 @@ export default {
     ["V", "จำนวนคำใน vocabulary = ความยาวของ one-hot", "บทนี้ 3 · คลิปยกตัวอย่าง 50,000"],
     ["h<sub>w</sub>", "one-hot ของ w", "great = (0, 0, 1)"],
     ["a, b", "สองคำที่เทียบ", "เลือกจากเมนูด้านล่าง"],
-    ["h<sub>a</sub> · h<sub>b</sub>", "dot (บท 2.2)", "0 ถ้าคนละคำ, 1 ถ้าคำเดียวกัน"],
+    ["h<sub>a</sub> · h<sub>b</sub>", "dot (บท {#dot-product})", "0 ถ้าคนละคำ, 1 ถ้าคำเดียวกัน"],
     ["√2 ≈ 1.414", "ระยะของทุกคู่ที่ต่างคำกัน", "ด้านของสามเหลี่ยมเส้นประในภาพ"],
   ],
   notes: `
@@ -59,7 +59,7 @@ export default {
       <li>คลิป BlackBoard AI ให้ตัวอย่าง 'cat' → [1, 0, 0, 0] และ 'dog' → [0, 0, 0, 1]</li>
     </ul>
     <h2>บทถัดไป</h2>
-    <p>บท 3.6 นับคำทั้งประโยค (bag of words) ส่วนบท 3.7 ใช้ one-hot เป็นตัวชี้ว่าจะหยิบแถวไหนจากตาราง embedding</p>`,
+    <p>บท {#bag-of-words} นับคำทั้งประโยค (bag of words) ส่วนบท {#embedding-matrix} ใช้ one-hot เป็นตัวชี้ว่าจะหยิบแถวไหนจากตาราง embedding</p>`,
   refs: [["wordemb", "one-hot ยาวเท่าจำนวนคำ, ไม่มีลำดับปลอม, sparse 50,000 มิติ, ไม่มีความหมาย"],
     ["blackboard", "one-hot ยาว 50,000+ ทุกคำต่างกันเท่ากัน, ตัวอย่าง cat / dog"]],
   mount(ui) {

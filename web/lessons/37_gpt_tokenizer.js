@@ -1,7 +1,7 @@
 import { M, esc } from "../js/kit.js";
 import { tokenRows, show } from "../js/tokdraw.js";
 
-// 3.3 Tokenizer ของ GPT (WIP202610038, owner 2026-10-11 17:12: "ขั้นตอนให้ชัดแบบมี Build ตัวอย่าง GPT ใน html ให้เล่นได้",
+// Tokenizer ของ GPT (WIP202610038, owner 2026-10-11 17:12: "ขั้นตอนให้ชัดแบบมี Build ตัวอย่าง GPT ใน html ให้เล่นได้",
 // 17:17 "ทำตามตาราง": a new topic after 3.2 BPE, a GPT tokenizer playground). One idea: the same BPE as 3.2, but it starts
 // from the 256 values of a UTF-8 byte instead of from characters, so new tokens get ids 256, 257, … and nothing is ever
 // unknown. Source: Karpathy, "Let's build the GPT Tokenizer" (get_stats / merge / train / encode lowest-rank-first /
@@ -95,7 +95,7 @@ export default {
   hint: "ภาพ 2 มิติ ใช้ล้อเมาส์ (หรือสองนิ้ว) ซูม ลากเพื่อเลื่อน ดับเบิลคลิกเพื่อดูทั้งหมด",
   canvasLabel: "สองแถวของกล่อง: ข้อความทดสอบเป็นไบต์ UTF-8 ทีละไบต์ และหลังใช้กฎรวม k ข้อ แต่ละกล่องมีลูกศรลงไปหาเลข token",
   intro: `
-    <p>บท 3.2 เริ่ม BPE จาก<b>ตัวอักษร</b> ตัวที่ไม่เคยเห็นจึงเป็น ? แต่ tokenizer ของ GPT เริ่มจาก<b>ไบต์</b>: แปลงข้อความเป็น <b>UTF-8</b> ก่อน
+    <p>บท {#bpe} เริ่ม BPE จาก<b>ตัวอักษร</b> ตัวที่ไม่เคยเห็นจึงเป็น ? แต่ tokenizer ของ GPT เริ่มจาก<b>ไบต์</b>: แปลงข้อความเป็น <b>UTF-8</b> ก่อน
     ทุกไบต์มีค่า 0–255 คลังแรกจึงมี 256 ตัวเสมอ แล้วรวมคู่ที่ติดกันบ่อยที่สุดเหมือนเดิม token ใหม่ได้เลข <b>256, 257, …</b> ข้อความใด ๆ แตกเป็นไบต์ได้ จึงไม่มี ?</p>
     <p>ตัวอักษรอังกฤษใช้ 1 ไบต์ แต่<b>ตัวอักษรไทยใช้ 3 ไบต์</b> ข้อความไทยจึงเริ่มยาวกว่าราว 3 เท่า และต้องรวมหลายรอบกว่าจะสั้นลง</p>`,
   try: [
@@ -156,7 +156,7 @@ export default {
     <p class="fine">ผู้จัดทำ (ไม่ได้มาจากคลิป): สระบน สระล่าง และวรรณยุกต์ของไทย (เช่น ิ ี ่ ้) ไม่ใช่ \\p{L} แต่เป็นเครื่องหมาย (\\p{M}) regex ของ GPT-2 จึงตัดออกเป็นชิ้นของตัวเอง
       เช่น "กิน" แบ่งเป็น "ก", "ิ", "น" ดูได้จากรายการชิ้นเมื่อเลือก "แบ่งด้วย regex ของ GPT-2"</p>`,
   refs: [["karpathy", "BPE บนไบต์ UTF-8 (คลัง 256, เลขใหม่ 256 + i), get_stats / merge / encode กฎเก่าก่อน / decode errors=\"replace\", ตัวเลข 616 → 596 และ 1.27 เท่า, regex ของ GPT-2, ภาษาอื่นใช้ token มากกว่า"],
-    ["bpe", "ขั้นตอน BPE บนตัวอักษรของบท 3.2 ที่บทนี้ต่อยอด"]],
+    ["bpe", "ขั้นตอน BPE บนตัวอักษรของบท {#bpe} ที่บทนี้ต่อยอด"]],
   mount(ui) {
     const st = { corpus: SAMPLES[0][1], text: SAMPLES[0][2], k: 1, split: "none" };
     ui.panel.classList.add("stack");

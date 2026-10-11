@@ -2,7 +2,7 @@ import { distance, fmt } from "../../lib/zvect.js";
 import { M } from "../js/kit.js";
 import { LEAF, minstd, makePoints, build, search, exact } from "../js/anntree.js";
 
-// 5.4 ANN with a tree (WIP202610027): one idea only — split the points again and again by a line halfway between two
+// ANN with a tree (WIP202610027): one idea only — split the points again and again by a line halfway between two
 // random points; a query walks down the splits to a small group and is compared only with that group.
 // Follows the Serengil clip (1,000 2-D points, target (50, 50), groups of at most 5). Points and splits are my own random.
 const N = 1000;
@@ -42,9 +42,9 @@ export default {
     [M.math(M.v("n"), M.o("="), M.sub(M.v("v"), M.n(1)), M.o("−"), M.sub(M.v("v"), M.n(2)), M.t(",\u2003"), M.i("c"), M.o("="), M.v("n"), M.o("·"), M.frac(M.row(M.sub(M.v("v"), M.n(1)), M.o("+"), M.sub(M.v("v"), M.n(2))), M.n(2))),
       "สร้างเส้นแบ่ง · <b>v</b><sub>1</sub>, <b>v</b><sub>2</sub> = สองจุดที่สุ่มมา · <b>n</b> = ทิศจาก v₂ ไป v₁ (เส้นแบ่งตั้งฉากกับทิศนี้) · (v₁ + v₂) / 2 = จุดกึ่งกลาง · c = ค่าคงที่ที่ทำให้เส้นผ่านจุดกึ่งกลาง · ทุกจุดบนเส้นห่าง v₁ และ v₂ เท่ากัน"],
     [M.math(M.t("side"), M.row(M.o("("), M.v("v"), M.o(")")), M.o("="), M.t("right if\u00a0"), M.v("n"), M.o("·"), M.v("v"), M.o(">"), M.i("c"), M.t(", else left")),
-      "จุด <b>v</b> อยู่ฝั่งไหนของเส้น · n · v คือ dot (บท 2.2) · มากกว่า c = ขวา, ไม่มากกว่า = ซ้าย (เท่ากันพอดีไปซ้ายตามคลิป) · ตอนสร้างใช้แบ่งทุกจุด ตอนค้นใช้กับ query ทีละเส้นจนถึงกลุ่มสุดท้าย"],
+      "จุด <b>v</b> อยู่ฝั่งไหนของเส้น · n · v คือ dot (บท {#dot-product}) · มากกว่า c = ขวา, ไม่มากกว่า = ซ้าย (เท่ากันพอดีไปซ้ายตามคลิป) · ตอนสร้างใช้แบ่งทุกจุด ตอนค้นใช้กับ query ทีละเส้นจนถึงกลุ่มสุดท้าย"],
     [M.math(M.t("answer"), M.o("="), M.t("nearest in the last group")),
-      "เทียบ query เฉพาะจุดในกลุ่มสุดท้าย ซึ่งมีไม่เกิน 5 จุด (วัดแบบบท 5.1 แต่กับไม่กี่จุด) · เร็วมาก แต่ถ้าจุดที่ใกล้ที่สุดจริงถูกแบ่งไปอยู่อีกฝั่ง ก็จะพลาด = \"approximate\""],
+      "เทียบ query เฉพาะจุดในกลุ่มสุดท้าย ซึ่งมีไม่เกิน 5 จุด (วัดแบบบท {#brute-force} แต่กับไม่กี่จุด) · เร็วมาก แต่ถ้าจุดที่ใกล้ที่สุดจริงถูกแบ่งไปอยู่อีกฝั่ง ก็จะพลาด = \"approximate\""],
   ],
   formulaFrom: "สูตรเส้นแบ่ง (normal = ผลต่าง, จุดกึ่งกลาง, constant = normal · กึ่งกลาง), กติกา \"> c = ขวา, เท่ากันไปซ้าย\", กลุ่มละไม่เกิน 5 จุด, 1,000 จุดใน [0, 100] และ query (50, 50) มาจากคลิป Serengil · ตำแหน่งจุดและการสุ่มเส้นในบทนี้ผู้จัดทำสุ่มเอง จำนวนขั้นจึงไม่ตรงกับ 9 ขั้นในคลิปเป๊ะ · การนับ \"วัด\" = จำนวนเส้นที่ดูฝั่ง + จำนวนจุดในกลุ่มสุดท้าย เป็นวิธีนับของผู้จัดทำ (คลิปเทียบ 9 ขั้นกับ 1,000 ครั้ง)",
   symbols: [

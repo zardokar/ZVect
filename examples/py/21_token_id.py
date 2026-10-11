@@ -3,7 +3,7 @@ import sys, os; sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..",
 from zvect import vec, distance, fmt
 
 id_ = {"good": 6, "bad": 22, "great": 21}        # IDs from the clip ("This movie was good / bad / great")
-# one number = a 1-number vector, so the gap is the Euclidean distance of lesson 2.1
+# one number = a 1-number vector, so the gap is the Euclidean distance of the distance lesson
 def gap(ids, a, b): return distance(vec(ids[a]), vec(ids[b]))
 pairs = [("good", "great"), ("bad", "great"), ("good", "bad")]
 

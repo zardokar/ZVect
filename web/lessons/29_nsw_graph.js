@@ -2,7 +2,7 @@ import { distance, fmt } from "../../lib/zvect.js";
 import { M } from "../js/kit.js";
 import { P, name, COLOR, AXIS_NAMES, up, GRAPHS, greedy, brute } from "../js/graph.js";
 
-// 5.5 ANN with a one-layer graph (WIP202610027): one idea only — link every point to its nearest neighbours once,
+// ANN with a one-layer graph (WIP202610027): one idea only — link every point to its nearest neighbours once,
 // then search by walking: always step to the neighbour that is closer to the query, stop when none is closer.
 // Same 24 points as 5.6 HNSW (web/js/graph.js); M = 2 links per point.
 const NB = GRAPHS[2];
@@ -30,7 +30,7 @@ export default {
   ],
   lines: [
     [M.math(M.t("move\u00a0"), M.v("p"), M.o("→"), M.v("p′"), M.t("\u00a0if\u00a0"), M.fn("dist"), M.row(M.o("("), M.v("q"), M.o(","), M.v("p′"), M.o(")")), M.o("<"), M.fn("dist"), M.row(M.o("("), M.v("q"), M.o(","), M.v("p"), M.o(")"))),
-      "ก้าวหนึ่งครั้ง · <b>q</b> = query · <b>p</b> = จุดที่ยืนอยู่ · <b>p′</b> = เพื่อนบ้านของ p (จุดที่มีเส้นต่อกัน) ตัวที่ใกล้ q ที่สุด · ถ้าใกล้ q กว่าจุดที่ยืนอยู่ ก็ย้ายไป · dist = ระยะ (บท 2.1)"],
+      "ก้าวหนึ่งครั้ง · <b>q</b> = query · <b>p</b> = จุดที่ยืนอยู่ · <b>p′</b> = เพื่อนบ้านของ p (จุดที่มีเส้นต่อกัน) ตัวที่ใกล้ q ที่สุด · ถ้าใกล้ q กว่าจุดที่ยืนอยู่ ก็ย้ายไป · dist = ระยะ (บท {#distance})"],
     [M.math(M.t("stop when no neighbour is closer;\u00a0answer"), M.o("="), M.v("p")),
       "หยุดเมื่อเพื่อนบ้านทุกคนไกลกว่าจุดที่ยืนอยู่ แล้วตอบจุดนั้น · ไม่รับประกันว่าเป็นจุดที่ใกล้ที่สุดจริง (อาจติดอยู่ในกลุ่มที่ผิด)"],
   ],
@@ -47,7 +47,7 @@ export default {
       <li>ต่อแต่ละเวกเตอร์กับเพื่อนบ้านที่ใกล้ที่สุดไว้ เส้นเหล่านี้บอกว่าอะไรอยู่ใกล้อะไร โดยไม่ต้องวัดระยะทุกคู่ตอนค้น</li>
       <li>ตัวอย่างในคลิปเริ่มจากบทความสูตรขนมปัง sourdough (ไม่เกี่ยวเลย) แล้วก้าวไปหาเพื่อนบ้านที่ใกล้คำถามกว่าเรื่อย ๆ ระยะลดจาก 1.43 → 0.95 → 0.52
         จนถึง "End your membership" โดยไม่ได้แตะข้อมูลส่วนใหญ่เลย</li>
-      <li>ข้อเสีย: กราฟชั้นเดียวอาจ "วนอยู่ในซอย" นานกว่าจะถึงย่านที่ถูก บท 5.6 HNSW แก้ด้วยการเพิ่มชั้นที่เหมือนทางด่วน</li>
+      <li>ข้อเสีย: กราฟชั้นเดียวอาจ "วนอยู่ในซอย" นานกว่าจะถึงย่านที่ถูก บท {#vector-search} HNSW แก้ด้วยการเพิ่มชั้นที่เหมือนทางด่วน</li>
     </ul>
     <h2>จากทอล์ก Qdrant</h2>
     <p>HNSW เป็นกราฟแบบนี้ ค้นแบบ greedy จนไม่มีอะไรดีขึ้น จึง <b>ไม่รับประกัน</b> ว่าได้ตัวที่ใกล้ที่สุดจริง</p>

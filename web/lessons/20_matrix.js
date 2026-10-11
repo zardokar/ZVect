@@ -1,6 +1,6 @@
 import { M, keep } from "../js/kit.js";
 
-// 1.5 Matrix (WIP202610026): one idea only — many vectors stacked as rows; shape = rows × columns.
+// Matrix (WIP202610026): one idea only — many vectors stacked as rows; shape = rows × columns.
 // Starts with 4 example rows. New rows appear only from the "Random" button (owner's rule), kept in this browser.
 const BASE = [[2, 3, 1], [-1, 2, 3], [3, -2, 2], [1, 1, -3]];
 const MAX_EXTRA = 4;
@@ -52,12 +52,12 @@ export default {
       <li>ตารางของคำ (embedding table): แถวละหนึ่งคำ คอลัมน์ = จำนวนมิติ คลิป BlackBoard AI ใช้ขนาด 50,000 × 300
         คือ 50,000 คำ คำละ 300 ตัวเลข รวม 15,000,000 ตัวเลข (ผลคูณคำนวณเอง)</li>
       <li>คลิป Under The Hood ใช้ตัวอย่างเล็ก 8 × 3: 8 คำ คำละ 3 ตัวเลข จำนวนแถวเท่ากับจำนวนคำ จำนวนคอลัมน์คือจำนวนมิติที่เลือกเอง</li>
-      <li>อยากได้เวกเตอร์ของคำไหน ก็หยิบแถวของคำนั้น (บท 3.7 Embedding matrix ใช้เรื่องนี้)</li>
+      <li>อยากได้เวกเตอร์ของคำไหน ก็หยิบแถวของคำนั้น (บท {#embedding-matrix} Embedding matrix ใช้เรื่องนี้)</li>
     </ul>
     <h2>เก็บเป็นตารางแล้วได้อะไร</h2>
     <ul>
       <li>คำนวณหลายแถวพร้อมกันได้ คลิปเทียบวิธีวัดมีโค้ด batch_cosine ที่รับสองตาราง (แถวละเวกเตอร์)
-        แล้วหา cosine (บท 2.3) ของแถวที่ตรงกันทีละคู่ สไลด์เขียนกำกับว่าให้ทำแบบนี้ (vectorize) เพื่อความเร็ว</li>
+        แล้วหา cosine (บท {#cosine}) ของแถวที่ตรงกันทีละคู่ สไลด์เขียนกำกับว่าให้ทำแบบนี้ (vectorize) เพื่อความเร็ว</li>
     </ul>`,
   refs: [["wordemb", "ตาราง 8 × 3: แถว = จำนวนคำ คอลัมน์ = จำนวนมิติ"], ["blackboard", "ตารางขนาด 50,000 × 300 แถวละคำ"],
     ["metrics", "batch_cosine: ตารางที่แต่ละแถวเป็นเวกเตอร์ คำนวณทีละแถว"]],

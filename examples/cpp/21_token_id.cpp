@@ -7,7 +7,7 @@
 using namespace zv;
 
 using Ids = std::map<std::string, double>;
-// one number = a 1-number vector, so the gap is the Euclidean distance of lesson 2.1
+// one number = a 1-number vector, so the gap is the Euclidean distance of the distance lesson
 double gap(const Ids& ids, const std::string& a, const std::string& b) { return distance(Vec{ids.at(a)}, Vec{ids.at(b)}); }
 
 int main() {

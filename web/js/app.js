@@ -7,59 +7,9 @@ import { SOURCES } from "./sources.js";
 import { dict } from "./dict/index.js";
 import { mountDictPage } from "./dict/page.js";
 
-import l1 from "../lessons/01_vector.js";
-import l2 from "../lessons/02_dot_product.js";
-import l3 from "../lessons/03_cosine.js";
-import l4 from "../lessons/04_vector_space.js";
-import l5 from "../lessons/05_latent_space.js";
-import l6 from "../lessons/06_similarity.js";
-import l7 from "../lessons/07_choose_metric.js";
-import l8 from "../lessons/08_high_dimensions.js";
-import l9 from "../lessons/09_bi_encoder.js";
-import l10 from "../lessons/10_classification.js";
-import l11 from "../lessons/11_distance.js";
-import l12 from "../lessons/12_embedding_matrix.js";
-import l13 from "../lessons/13_vector_search.js";
-import l14 from "../lessons/14_reranker.js";
-import l15 from "../lessons/15_vector_ops.js";
-import l16 from "../lessons/16_length.js";
-import l17 from "../lessons/17_binary_xor.js";
-import l18 from "../lessons/18_search_distance.js";
-import l19 from "../lessons/19_search_dot.js";
-import l20 from "../lessons/20_matrix.js";
-import l21 from "../lessons/21_token_id.js";
-import l22 from "../lessons/22_one_hot.js";
-import l23 from "../lessons/23_bag_of_words.js";
-import l24 from "../lessons/24_learn_table.js";
-import l25 from "../lessons/25_llm_input.js";
-import l26 from "../lessons/26_attention.js";
-import l27 from "../lessons/27_brute_force.js";
-import l28 from "../lessons/28_ann_tree.js";
-import l29 from "../lessons/29_nsw_graph.js";
-import l30 from "../lessons/30_hnsw_beam.js";
-import l31 from "../lessons/31_hnsw_build.js";
-import l32 from "../lessons/32_filter_graph.js";
-import l33 from "../lessons/33_keyword_search.js";
-import l34 from "../lessons/34_tokenize.js";
-import l35 from "../lessons/35_bpe.js";
-import l36 from "../lessons/36_late_interaction.js";
-import l37 from "../lessons/37_gpt_tokenizer.js";
-
-// Chapters and lessons in teaching order, numbered 1, 1.1, 1.2, … (owner, 2026-10-11: one idea per lesson,
-// "มันควรจะ 1 แล้ว 1.1 1.2"). Each lesson only uses ideas from earlier ones. File prefixes are the order the
-// files were written; the displayed number comes from this list.
-const GROUPS = [
-  { title: "พื้นฐานเวกเตอร์", lessons: [l1, l16, l4, l15, l20] },
-  { title: "วัดว่าสองเวกเตอร์ใกล้กันแค่ไหน", lessons: [l11, l2, l3] },
-  { title: "เปลี่ยนข้อความเป็นเวกเตอร์", lessons: [l34, l35, l37, l21, l22, l23, l12, l24, l5] },
-  { title: "ค้นหาของที่ใกล้ที่สุด", lessons: [l6, l18, l19, l7, l33] },
-  { title: "ค้นให้เร็วเมื่อข้อมูลเยอะ", lessons: [l27, l8, l17, l28, l29, l13, l30, l31, l32] },
-  { title: "การผสานทฤษฎี", lessons: [l9, l36, l14, l10] },   // was "ใช้งานจริง" (owner 15:55: still theory; 16:04 picked this name)
-  { title: "เวกเตอร์ใน LLM", lessons: [l25, l26] },
-];
-const NUM = new Map(GROUPS.flatMap((g, gi) => g.lessons.map((l, li) => [l, `${gi + 1}.${li + 1}`])));
-const CHAPTER = new Map(GROUPS.flatMap((g, gi) => g.lessons.map((l) => [l, `${gi + 1} ${g.title}`])));
-const LESSONS = GROUPS.flatMap((g) => g.lessons);
+// Chapters, lesson order and numbers: web/data/chapters.json via chapters.js (owner, 2026-10-11: one idea per lesson,
+// "มันควรจะ 1 แล้ว 1.1 1.2"; 22:56: reindex / new categories by JSON). Each lesson only uses ideas from earlier ones.
+import { GROUPS, NUM, CHAPTER, LESSONS, resolve } from "./chapters.js";
 const LANGS = [
   { key: "js", label: "JavaScript", ext: "js", run: (n) => `node examples/js/${n}.js` },
   { key: "cpp", label: "C++", ext: "cpp", run: (n) => `g++ -std=c++17 examples/cpp/${n}.cpp -o ${n}\n.\\${n}.exe   (Linux / macOS: ./${n})` },
@@ -221,7 +171,7 @@ function showLesson(L, i) {
   $("#ctools").replaceChildren();          // on/off buttons a lesson puts in the canvas corner (ui.corner)
   const live = $("#live");
   let inst;
-  const refresh = () => { scene.render(); live.innerHTML = inst.live(); splitList(); fitMath(); };
+  const refresh = () => { scene.render(); live.innerHTML = resolve(inst.live()); splitList(); fitMath(); };
   inst = L.mount(makeUI(panel, refresh));
   scene.axisNames = L.axisNames || ["x", "y", "z"];
   scene.setView(L.view || {});

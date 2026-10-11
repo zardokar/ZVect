@@ -1,7 +1,7 @@
 import { M } from "../js/kit.js";
 import { minstd } from "../js/anntree.js";
 
-// 5.9 Filtering during the search (WIP202610027): one idea only — a filter keeps only some points; the graph walk may use
+// Filtering during the search (WIP202610027): one idea only — a filter keeps only some points; the graph walk may use
 // only those, and when too few are kept the graph falls apart (Qdrant talk: threshold about 1/k links). A random-link
 // graph of 2,000 points, k links each (same as examples/*/32_filter_graph.*).
 const N = 2000;
@@ -33,7 +33,7 @@ export default {
   hint: "ภาพนี้เป็นกราฟเส้น 2 มิติ ไม่ต้องหมุน เปลี่ยนจำนวนเส้นต่อจุดและสัดส่วนที่ผ่านตัวกรองจากด้านล่าง",
   canvasLabel: "กราฟเส้น แกนนอนคือสัดส่วนจุดที่ผ่านตัวกรอง แกนตั้งคือสัดส่วนที่ยังเดินถึงกันได้ เส้นประแนวตั้งคือขีด 1/k",
   intro: `
-    <p>การค้นจริงมักมีเงื่อนไข เช่น "ราคาไม่เกิน 100" หรือ "ใกล้ฉัน" ถ้ากรองระหว่างเดินกราฟ (บท 5.5–5.7) ก็เดินได้แค่ <b>จุดที่ผ่านตัวกรอง</b></p>
+    <p>การค้นจริงมักมีเงื่อนไข เช่น "ราคาไม่เกิน 100" หรือ "ใกล้ฉัน" ถ้ากรองระหว่างเดินกราฟ (บท {#graph-walk}–{#hnsw-beam}) ก็เดินได้แค่ <b>จุดที่ผ่านตัวกรอง</b></p>
     <p>ถ้าผ่านน้อยเกินไป จุดเหล่านั้นจะ <b>ไม่มีเส้นต่อถึงกัน</b> กราฟแตกเป็นเกาะเล็ก ๆ เดินไปหาคำตอบไม่ได้
     ทอล์ก Qdrant บอกว่าขีดอยู่ราว <b>1/k</b> เมื่อแต่ละจุดมี k เส้น</p>`,
   try: [
