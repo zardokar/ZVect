@@ -86,7 +86,8 @@ not write the code (handzup rule 12 substitute; its verdict is not a named "revi
 - New lesson = new `examples/{js,py,cpp}/NN_name.*` (identical output) + `web/lessons/NN_name.js` + add to `GROUPS`.
   A lesson carries `intro`, `try`, `formula`, `symbols` ([symbol, meaning, why] rows for the "อ่านสูตร" tab), `notes`
   (own-words summary of what the sources add, "สรุปจากแหล่ง" tab) and `refs` ([sourceId, what was used], ids in `web/js/sources.js`).
-  No "อ่านเพิ่ม" detours (owner, 2026-10-11). Desktop lesson page must fit in 1070 px height.
+  No "อ่านเพิ่ม" detours (owner, 2026-10-11). No scrollbar inside any box (owner, 2026-10-11 12:45; replaces the old
+  "desktop page ≤ 1070 px" rule): the page scrolls, wide formulas are shrunk by `fitMath()` in app.js, code wraps.
 
 §5a laws:
 1. Never quote a number you did not just run.
@@ -96,6 +97,27 @@ not write the code (handzup rule 12 substitute; its verdict is not a named "revi
 5. Never run git write commands for the owner.
 
 ## §5b Update log (newest on top)
+
+**2026-10-11 (upckp #18): 🧹 Sidebar header tidied; no scrollbars inside boxes, smaller title and canvas, list box 40 % — FINISH (code)**
+- Owner (12:41, screenshot of the sidebar top): "design ตรงนี้ให้สวย เป็นระเบียบกว่านี้ได้ไหม" → logo mark (favicon arrow) + version pill on the logo line
+  (`#version` now "v0.1.0"), tagline on two lines with a hairline under it, search (magnifier icon, "/" key hint that hides while typing,
+  Chrome's datalist arrow hidden) and "เอา lib ไปใช้" (code icon, → on the right) as two 38 px controls of the same width. `web/index.html`, `style.css`.
+- Owner (12:45, screenshot of 7.1 with scrollbars): "ไม่ต้องการให้ Block มี Scroll เลย มันทำให้ดูยาก อ่านยาก UX ไม่ดี · ลดขนาด Title ลงได้ ·
+  ลด Canvas ลงอีกนิดก็ได้ · ให้ Block List ด้านขวา width เหลือ 40 %" → removed the fixed one-screen desktop layout (the ≤ 1070 px rule) so the page
+  scrolls and the canvas column stays sticky; bench columns 0.8fr / 1.2fr, canvas max-height 58vh; formula/list grid 3fr / 2fr (list 40 %);
+  h1 clamp(19px, 1.6vw, 24px); `math` has no overflow scroll — new `fitMath()` in app.js shrinks a too-wide formula to its box (floor 50 %),
+  run after every redraw and on resize; code and the run line wrap (`pre-wrap`); list tables 100 % wide, 13.5 px.
+  3.5 values split into two lines (error, then the update) because one line needed < 50 %.
+- VERIFIED: Playwright all 26 lessons × 1920×1080 / 1440×900 / 390×844 with new checks — no element with a scrollbar inside the lesson
+  (formula/values/list boxes, panel, code box), no formula wider than its box, nothing spilling out of a box, no page-wide horizontal scroll;
+  0 page errors, 0 HTTP ≥ 400. Screenshots looked at (sidebar desktop/phone/typing, 7.1 at 1440, 6.2 at 1920, code tab at 390).
+  The sidebar's own lesson list still scrolls (it is navigation, not a lesson box).
+- Owner (12:53, screenshot of the อ่านสูตร tab): "อย่าให้ Head col เกิด 2 lines" → `.rank th` nowrap everywhere; long headers shortened with
+  a `fintro` line above the table instead (5.1 "distance / cosine" + "ต่ำสุด .. สูงสุด"; 6.2 "ขั้น 1 / ตรง / ขั้น 2" + legend; 4.4 blank first
+  header + "เทียบ B และ C กับ A"); symbols header "ทำไม / ตัวอย่าง"; symbol cells may wrap on phones; 6.2 rank + score cells nowrap.
+  VERIFIED: every table header of every lesson × 4 panes × 3 sizes is one line, no table spills out of its box, no page-wide scroll.
+- Sync consequence: `web/index.html`, `web/css/style.css`, `web/js/app.js`, `web/lessons/24_learn_table.js`, `07_choose_metric.js`, `08_high_dimensions.js`, `14_reranker.js`, this checkpoint → device, md5-verified.
+- 💰 cost: not measured for this entry.
 
 **2026-10-11 (upckp #17): 🧱 WIP202610026 built: 1.5 Matrix, chapter 3 rebuilt (Token ID → One-hot → Bag of words → Embedding matrix → Learning the table → Latent space), new chapter 7 (LLM input, attention query · key) — FINISH (code)**
 - Owner (11:03): "hz ด้วยการทำ WIP202610026 ในทันทีที่ next session" (handoff `.dropzone/hzup_claude/20261011_1101.md`); built in the handoff's order without asking.
@@ -508,7 +530,8 @@ not write the code (handzup rule 12 substitute; its verdict is not a named "revi
 
 ### Narrative
 
-- **Active thread (2026-10-11, #17):** `WIP202610026` done: 7 chapters / 26 topics (1.5 Matrix; chapter 3 = Token ID, One-hot, Bag of words, Embedding matrix, Learning the table, Latent space; chapter 7 = LLM input, attention query · key). Next: owner reviews and commits, turns Pages on (`WIP202610024`), deletes the stale files (`WIP202610021`).
+- **Active thread (2026-10-11, #18):** layout pass after #17 (sidebar header, no scrollbars in boxes). Next unchanged: commit, Pages, stale files.
+- Earlier (#17): `WIP202610026` done: 7 chapters / 26 topics (1.5 Matrix; chapter 3 = Token ID, One-hot, Bag of words, Embedding matrix, Learning the table, Latent space; chapter 7 = LLM input, attention query · key). Next: owner reviews and commits, turns Pages on (`WIP202610024`), deletes the stale files (`WIP202610021`).
 - Earlier (#16): 6 chapters / 19 topics numbered 1.1 …; formulas line by line; three-box formula area.
 - Earlier (#14): beginner pass — Vector space is one idea (room + points), add/subtract/scale is its own lesson, Distance has Euclidean + XOR + popcount; 15 lessons. Owner may ask for the same beginner pass on other lessons.
 - Earlier (#13): Distance source shown under the formula; `WIP202610025` closed in #14.

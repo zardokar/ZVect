@@ -51,11 +51,19 @@ a { color: var(--z); }
   position: sticky; top: 0; height: 100vh; overflow-y: auto;
   display: flex; flex-direction: column;
 }
-.brand { display: flex; align-items: center; justify-content: space-between; }
-.logo { font-size: 30px; font-weight: 800; letter-spacing: -0.02em; color: var(--cover-ink); text-decoration: none; }
-.logo span { font-weight: 300; }
+/* header block (owner, 2026-10-11: "design ตรงนี้ให้สวย เป็นระเบียบกว่านี้"): logo + version on one line,
+   tagline, then search and the lib link as two controls of the same width and height */
+.brand { display: flex; align-items: center; gap: 10px; padding: 0 2px; }
+.logo { display: inline-flex; align-items: center; gap: 9px; color: var(--cover-ink); text-decoration: none; }
+.logo .mark { width: 26px; height: 26px; flex: none; fill: none; stroke: var(--z); stroke-width: 4; stroke-linecap: round; stroke-linejoin: round; }
+.logo .word { font-size: 27px; font-weight: 800; letter-spacing: -0.02em; line-height: 1; }
+.logo .word span { font-weight: 300; }
+.version {
+  margin-left: auto; padding: 2px 8px; border: 1px solid rgb(255 255 255 / 0.14); border-radius: 999px;
+  color: var(--cover-muted); font: 12px/1.5 var(--mono); white-space: nowrap;
+}
 .menu { display: none; }
-.tag { color: var(--cover-muted); font-size: 13.5px; line-height: 1.5; margin: 6px 0 22px; }
+.tag { color: var(--cover-muted); font-size: 13.5px; line-height: 1.55; margin: 10px 2px 18px; padding-bottom: 18px; border-bottom: 1px solid rgb(255 255 255 / 0.08); }
 #nav, #nav ol { list-style: none; margin: 0; padding: 0; }
 #nav .group + .group { margin-top: 14px; }
 .group-title b { color: var(--cover-ink); margin-right: 4px; }
@@ -70,42 +78,59 @@ a { color: var(--z); }
 #nav .num { width: 26px; flex: none; text-align: right; color: var(--cover-muted); font-variant-numeric: tabular-nums; }
 #nav a[aria-current] .num { color: var(--cover-ink); }
 /* search + lib link live at the TOP (owner, 2026-10-11): a growing lesson list must not push them down */
-.tools { margin: 0 0 16px; display: flex; flex-direction: column; gap: 8px; }
+.tools { margin: 0 0 20px; display: flex; flex-direction: column; gap: 8px; }
+.tools .ico { width: 16px; height: 16px; flex: none; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
 .sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.find { position: relative; display: block; color: var(--cover-muted); }
+.find .ico { position: absolute; left: 11px; top: 50%; transform: translateY(-50%); pointer-events: none; }
 .find input {
-  width: 100%; box-sizing: border-box; padding: 8px 10px; font: inherit; font-size: 14.5px;
-  color: var(--cover-ink); background: rgb(255 255 255 / 0.06);
-  border: 1px solid rgb(255 255 255 / 0.22); border-radius: 6px;
+  width: 100%; box-sizing: border-box; height: 38px; padding: 0 34px 0 34px; font: inherit; font-size: 14.5px;
+  color: var(--cover-ink); background: rgb(255 255 255 / 0.05);
+  border: 1px solid rgb(255 255 255 / 0.14); border-radius: 8px;
 }
 .find input::placeholder { color: var(--cover-muted); }
-.find input:focus { outline: 2px solid var(--z); outline-offset: 1px; background: rgb(255 255 255 / 0.09); }
-.findnone { margin: 0; color: var(--cover-muted); font-size: 13px; }
-.librow { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
-.libnav {
-  padding: 6px 10px; border: 1px solid rgb(255 255 255 / 0.22); border-radius: 6px;
-  color: var(--cover-ink); text-decoration: none; font-size: 14px;
+.find input:hover { border-color: rgb(255 255 255 / 0.24); }
+.find input:focus { outline: 2px solid var(--z); outline-offset: 1px; border-color: transparent; background: rgb(255 255 255 / 0.08); }
+.find input::-webkit-search-cancel-button, .find input::-webkit-calendar-picker-indicator { display: none !important; }
+.find .key {
+  position: absolute; right: 9px; top: 50%; transform: translateY(-50%); pointer-events: none;
+  min-width: 18px; padding: 0 5px; box-sizing: border-box; text-align: center;
+  font: 12px/18px var(--mono); color: var(--cover-muted);
+  border: 1px solid rgb(255 255 255 / 0.16); border-radius: 4px;
 }
-.libnav:hover { background: rgb(255 255 255 / 0.07); }
-.libnav[aria-current] { background: rgb(255 255 255 / 0.12); }
-.version { color: var(--cover-muted); font-size: 12.5px; }
+.find input:focus ~ .key, .find input:not(:placeholder-shown) ~ .key { display: none; }
+.findnone { margin: 0; color: var(--cover-muted); font-size: 13px; }
+.libnav {
+  display: flex; align-items: center; gap: 10px; height: 38px; box-sizing: border-box; padding: 0 12px 0 11px;
+  border: 1px solid rgb(255 255 255 / 0.14); border-radius: 8px;
+  color: var(--cover-ink); text-decoration: none; font-size: 14.5px;
+}
+.libnav .ico { color: var(--z); }
+.libnav .go { margin-left: auto; color: var(--cover-muted); transition: transform 0.15s; }
+.libnav:hover { background: rgb(255 255 255 / 0.06); border-color: rgb(255 255 255 / 0.24); }
+.libnav:hover .go { transform: translateX(2px); color: var(--cover-ink); }
+.libnav:focus-visible { outline: 2px solid var(--z); outline-offset: 1px; }
+.libnav[aria-current] { background: rgb(255 255 255 / 0.1); border-color: rgb(255 255 255 / 0.24); }
 
 /* ---------- main ---------- */
 main { padding: 34px clamp(16px, 3.4vw, 48px) 56px; min-width: 0; }
 body[data-page="lesson"] .libpage, body[data-page="lib"] .lesson { display: none; }
 .head { display: flex; justify-content: space-between; align-items: end; gap: 12px 24px; flex-wrap: wrap; }
 .step { margin: 0; color: var(--muted); font-size: 14px; }
-h1 { font-size: clamp(24px, 2.4vw, 32px); line-height: 1.2; margin: 2px 0 0; letter-spacing: -0.01em; }
+h1 { font-size: clamp(19px, 1.6vw, 24px); line-height: 1.25; margin: 2px 0 0; letter-spacing: -0.005em; }
 .lede p { margin: 0 0 10px; }
 .try { margin: 4px 0 0; padding-left: 22px; color: var(--muted); font-size: 15px; }
 .try li { margin: 3px 0; }
 
 /* the bench: canvas + controls on the left, formula + code on the right */
+/* owner, 2026-10-11 12:45: no scrollbars inside any box; smaller canvas; list box 40 %. The page itself scrolls,
+   the canvas column stays in view (sticky) while the formula and text are read. */
 .bench {
-  display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
-  gap: 22px; margin-top: 24px; align-items: start;
+  display: grid; grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+  gap: 20px; margin-top: 16px; align-items: start;
 }
-.stage { position: sticky; top: 16px; }
-.canvas-wrap { position: relative; width: 100%; aspect-ratio: 4 / 3; max-height: 70vh; }
+.stage { position: sticky; top: 12px; }
+.canvas-wrap { position: relative; width: 100%; aspect-ratio: 4 / 3; max-height: 58vh; }
 #scene {
   position: absolute; inset: 0; display: block; width: 100%; height: 100%;
   background: var(--canvas);
@@ -150,7 +175,7 @@ select, .txt {
 .fcol { min-width: 0; background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 4px 16px 12px; }
 .fcol[hidden] { display: none; }
 @container (min-width: 600px) {
-  .formula.haslist { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+  .formula.haslist { grid-template-columns: minmax(0, 3fr) minmax(0, 2fr); }   /* list box 40 % */
   .formula.haslist .fbox-f { grid-column: 1; grid-row: 1; }
   .formula.haslist .fbox-v { grid-column: 1; grid-row: 2; }
   .formula.haslist .fbox-l { grid-column: 2; grid-row: 1 / span 2; }
@@ -165,7 +190,8 @@ select, .txt {
 .fsay { margin: 0; font-size: 13.5px; line-height: 1.55; }
 .formula .from { margin: 6px 0 0; color: var(--muted); font-size: 13px; line-height: 1.5; }
 .formula h2, .libpage h2 { font-size: 14.5px; margin: 14px 0 2px; color: var(--muted); font-weight: 700; }
-math { font-family: var(--math); font-size: 1.22em; margin: 8px 0; overflow-x: auto; overflow-y: hidden; padding: 2px 0; }
+/* no scrollbar on a wide formula: app.js fitMath() shrinks it to the width of its box */
+math { font-family: var(--math); font-size: 1.22em; margin: 8px 0; padding: 2px 0; max-width: 100%; }
 math .vecname { font-weight: 700; font-style: normal; text-transform: none; }
 math .cx, .ctl .cx { color: var(--x); }
 math .cy, .ctl .cy { color: var(--y); }
@@ -185,13 +211,17 @@ math mtd { padding: 3px 8px; }
 .meter-l { left: 0; } .meter-c { left: 50%; transform: translateX(-50%); } .meter-r { right: 0; }
 .rank { border-collapse: collapse; margin: 8px 0 0; font-size: 14.5px; font-variant-numeric: tabular-nums; }
 .rank th, .rank td { text-align: left; padding: 3px 14px 3px 0; border-bottom: 1px solid var(--line); }
-.rank th { color: var(--muted); font-weight: 600; }
+.rank th { color: var(--muted); font-weight: 600; white-space: nowrap; }   /* owner, 2026-10-11: a header never wraps to 2 lines */
 .rank tr.win td { font-weight: 700; }
 .rank th.on { color: var(--vr); }
 .rank td.on { color: var(--ink); }
 .rank td.best { font-weight: 700; color: var(--vr); }
 .rank .dim { color: var(--muted); }
-.scroll { overflow-x: auto; }
+.rank td.nw { white-space: nowrap; }
+.scroll { max-width: 100%; }
+.fbox-l .rank { width: 100%; font-size: 13.5px; }
+.fbox-l .rank th, .fbox-l .rank td { padding-right: 8px; }
+.fbox-l .rank td:last-child, .fbox-l .rank th:last-child { padding-right: 0; }
 .extra { margin-top: 14px; border-top: 1px solid var(--line); padding-top: 2px; }
 .extra h2 { font-size: 14.5px; margin: 14px 0 4px; color: var(--muted); font-weight: 700; }
 .extra ol, .extra ul { margin: 4px 0; padding-left: 22px; }
@@ -235,7 +265,7 @@ math mtd { padding: 3px 8px; }
 .code {
   margin: 0; background: var(--code-bg); color: var(--code-ink);
   font: 13.5px/1.6 var(--mono); padding: 14px 16px; border-radius: 0 8px 8px 8px;
-  overflow-x: auto; tab-size: 2; white-space: pre; border: 1px solid var(--line);
+  tab-size: 2; white-space: pre-wrap; overflow-wrap: anywhere; border: 1px solid var(--line);
 }
 .libpage .code { border-radius: 8px; }
 .tok-com { color: #8fa0bb; font-style: italic; }
@@ -243,7 +273,7 @@ math mtd { padding: 3px 8px; }
 .tok-num { color: #7fd4a4; }
 .tok-kw { color: #8fb6ff; font-weight: 600; }
 .runline { margin: 6px 2px 0; font-size: 13px; color: var(--muted); }
-.runline code { font-family: var(--mono); color: var(--ink); white-space: pre; display: inline-block; vertical-align: top; }
+.runline code { font-family: var(--mono); color: var(--ink); white-space: pre-wrap; overflow-wrap: anywhere; }
 
 /* pager (in the header, next to the title) */
 .pager { display: flex; gap: 8px; }
@@ -258,27 +288,6 @@ math mtd { padding: 3px 8px; }
 .hash { font-family: var(--mono); font-size: 13px; }
 .fine { color: var(--muted); font-size: 14px; margin-top: 28px; }
 
-/* ---------- desktop: the whole lesson fits one screen, at most 1070 px tall (owner, 2026-10-11) ----------
-   The canvas takes the height that is left; long text scrolls inside its own box instead of growing the page. */
-@media (min-width: 1081px) and (min-height: 620px) {
-  body[data-page="lesson"] { height: min(100vh, 1070px); min-height: 0; overflow: hidden; }
-  body[data-page="lesson"] #sidebar { height: min(100vh, 1070px); }
-  body[data-page="lesson"] main { height: min(100vh, 1070px); padding: 16px clamp(16px, 2vw, 32px); display: flex; flex-direction: column; overflow: hidden; }
-  body[data-page="lesson"] .lesson { flex: 1; min-height: 0; display: flex; flex-direction: column; }
-  .bench { flex: 1; min-height: 0; margin-top: 12px; align-items: stretch; gap: 18px; }
-  .stage { position: static; display: flex; flex-direction: column; min-height: 0; }
-  .canvas-wrap { flex: 1 1 0; min-height: 180px; aspect-ratio: auto; max-height: none; }
-  .controls { flex: 0 0 auto; max-height: 38%; overflow-y: auto; }
-  .desk { display: flex; flex-direction: column; gap: 12px; min-height: 0; }
-  .formula { flex: 0 1 auto; max-height: 56%; overflow-y: auto; }   /* stacked (narrow): the area scrolls as one */
-  @container (min-width: 600px) {                                     /* side by side: each box scrolls on its own */
-    .formula, .formula.haslist { overflow: hidden; grid-template-rows: minmax(0, auto) minmax(96px, 1fr); }
-    .fcol { overflow-y: auto; min-height: 0; }
-  }
-  .panel { flex: 1 1 0; min-height: 160px; margin-top: 0; }
-  .pbody { flex: 1; min-height: 0; overflow-y: auto; }
-}
-
 /* ---------- small screens ---------- */
 @media (max-width: 1080px) {
   .bench { grid-template-columns: minmax(0, 1fr); }
@@ -292,8 +301,11 @@ math mtd { padding: 3px 8px; }
   #sidebar.open .tools { display: flex; margin-top: 10px; }
   #sidebar.open { max-height: 100vh; }
   .menu { display: block; font-size: 22px; background: none; border: 0; color: var(--cover-ink); cursor: pointer; }
-  .logo { font-size: 24px; }
+  .logo .word { font-size: 23px; }
+  .logo .mark { width: 22px; height: 22px; }
+  .find .key { display: none; }
+  .symbols td.sym { white-space: normal; }
   main { padding-top: 20px; }
   #scene { aspect-ratio: 1 / 1; }
 }
-@media (prefers-reduced-motion: reduce) { .meter-dot { transition: none; } }
+@media (prefers-reduced-motion: reduce) { .meter-dot, .libnav .go { transition: none; } }

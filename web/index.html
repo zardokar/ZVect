@@ -15,21 +15,28 @@
 
   <aside id="sidebar">
     <div class="brand">
-      <a href="#/vector" class="logo">Z<span>Vect</span></a>
+      <a href="#/vector" class="logo" aria-label="ZVect หน้าแรก">
+        <svg class="mark" viewBox="0 0 32 32" aria-hidden="true"><path d="M6 26 L24 8"/><path d="M15 7 H25 V17"/></svg>
+        <span class="word">Z<span>Vect</span></span>
+      </a>
+      <span id="version" class="version" title="เวอร์ชันของ lib"></span>
       <button id="menu" class="menu" aria-label="เปิดรายการบทเรียน" aria-controls="sidebar">☰</button>
     </div>
-    <p class="tag">เวกเตอร์ ตั้งแต่ลูกศรแรก ถึงการค้นหาด้วยความหมาย</p>
+    <p class="tag">เวกเตอร์ ตั้งแต่ลูกศรแรก<br>ถึงการค้นหาด้วยความหมาย</p>
     <div class="tools">
       <label class="find">
         <span class="sr">ค้นหาบทเรียน</span>
+        <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="M16 16 L20.5 20.5"/></svg>
         <input id="find" type="search" list="lessonlist" placeholder="ค้นหาบทเรียน…" autocomplete="off" spellcheck="false">
+        <kbd class="key" aria-hidden="true">/</kbd>
       </label>
       <datalist id="lessonlist"></datalist>
       <p id="findnone" class="findnone" hidden>ไม่พบบทที่ตรงกับคำนี้</p>
-      <div class="librow">
-        <a id="libnav" href="#/lib" data-slug="lib" class="libnav">เอา lib ไปใช้</a>
-        <span id="version" class="version"></span>
-      </div>
+      <a id="libnav" href="#/lib" data-slug="lib" class="libnav">
+        <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 7 L3 12 L8 17"/><path d="M16 7 L21 12 L16 17"/></svg>
+        <span>เอา lib ไปใช้</span>
+        <span class="go" aria-hidden="true">→</span>
+      </a>
     </div>
     <nav aria-label="บทเรียน">
       <ol id="nav"></ol>
