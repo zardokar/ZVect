@@ -43,7 +43,11 @@ export default {
     "กด \"ZV-1042\": ค้นด้วยคำเจอ ticket ทันที แต่ตารางคำของเวกเตอร์ไม่รู้จักรหัสนี้ จึงหาไม่เจอ",
     "พิมพ์ query เองได้ (คำที่ตารางเวกเตอร์รู้จัก: cancel, end, quit, stop, membership, subscription, pause, plan, billing, bread …)",
   ],
-  linesIntro: "มี 3 บรรทัด: บรรทัด 1 สร้างดัชนีคำ · บรรทัด 2 ค้นด้วยคำ · บรรทัด 3 ค้นด้วยความหมายเพื่อเทียบ",
+  steps: [
+    ["สร้างดัชนีคำ", "ทำครั้งเดียวตอนเก็บเอกสาร ตอนค้นจึงเร็ว"],
+    ["ค้นด้วยคำ", "หาเอกสารที่มีคำเดียวกับ query"],
+    ["ค้นด้วยความหมาย", "ทำแบบบท 4.1 ไว้เทียบว่าเจออะไรต่างกัน"],
+  ],
   lines: [
     [M.math(M.t("index"), M.row(M.o("["), M.i("w"), M.o("]")), M.o("="), M.t("documents that contain word\u00a0"), M.i("w")),
       "inverted index · w = คำหนึ่งคำ · ทำครั้งเดียวตอนเก็บเอกสาร · ค้นแล้วแค่เปิดดูรายการของคำนั้น จึงเร็วมาก"],
@@ -101,7 +105,7 @@ export default {
         const kwText = kw.length ? kw.map((r) => esc(DOCS[r.i])).join(" · ") : "ไม่เจออะไรเลย";
         const vText = top.length ? top.map((r) => `${esc(DOCS[r.i])} (${fmt(r.s)})`).join(" · ") : "ไม่เจอ (ไม่มีคำที่ตารางเวกเตอร์รู้จัก)";
         return `<p class="verdict"><b>ค้นด้วยคำ:</b> ${kwText}</p><p class="verdict"><b>ค้นด้วยความหมาย:</b> ${vText}</p>` +
-          `<p class="fintro">บรรทัด 1: index ของคำใน query</p><div class="scroll"><table class="rank"><thead><tr><th>คำ</th><th>เอกสารที่มีคำนี้</th></tr></thead><tbody>${idx || '<tr><td colspan="2" class="dim">ยังไม่มีคำ</td></tr>'}</tbody></table></div>`;
+          `<p class="fintro">ขั้นตอน 1: index ของคำใน query</p><div class="scroll"><table class="rank"><thead><tr><th>คำ</th><th>เอกสารที่มีคำนี้</th></tr></thead><tbody>${idx || '<tr><td colspan="2" class="dim">ยังไม่มีคำ</td></tr>'}</tbody></table></div>`;
       },
     };
   },

@@ -30,7 +30,10 @@ export default {
     "เลือก N = 10 แล้ว 1000: จุดที่ใกล้สุดยังหาเจอทุกครั้ง แต่จำนวนครั้งที่วัดเพิ่มตาม N",
     "เลื่อน query ไปที่ไหนก็ได้: จำนวนครั้งที่วัดไม่เปลี่ยน เพราะต้องดูครบทุกจุดเสมอ",
   ],
-  linesIntro: "มี 2 บรรทัด: บรรทัด 1 หาจุดที่ใกล้ที่สุด · บรรทัด 2 นับว่าต้องวัดกี่ครั้ง",
+  steps: [
+    ["หาจุดที่ใกล้ที่สุด", "วัดระยะไปทุกจุด จำตัวที่ใกล้ที่สุดไว้ จึงถูกเสมอ"],
+    ["นับงาน", "ต้องวัดครบ N ครั้ง ข้อมูลยิ่งเยอะยิ่งช้า บทถัดไปจึงหาวิธีที่วัดน้อยลง"],
+  ],
   lines: [
     [M.math(M.t("nearest"), M.o("="), M.sub(M.t("argmin"), M.i("i")), M.fn("dist"), M.row(M.o("("), M.v("q"), M.o(","), M.sub(M.v("p"), M.i("i")), M.o(")"))),
       "หาจุดที่ใกล้ query ที่สุด · argmin<sub>i</sub> = \"จุด i ที่ทำให้ค่าข้างหลังน้อยที่สุด\" โดยลองทุก i ตั้งแต่ 1 ถึง N · <b>q</b> = query · <b>p</b><sub>i</sub> = จุดที่ i ในคลัง · N = จำนวนจุดทั้งหมด · dist = Euclidean distance (บท 2.1) · วัดทีละจุด จำตัวที่ใกล้ที่สุดไว้"],
@@ -79,7 +82,7 @@ export default {
         return M.math(M.fn("dist"), M.row(M.o("("), M.v("q"), M.o(","), M.t("nearest"), M.o(")")), M.o("="),
             M.sqrt(...q.flatMap((x, i) => [i ? M.o("+") : "", M.sup(M.row(M.o("("), M.n(r2(x - p[i]), AX[i]), M.o(")")), M.n(2))])), M.o("="), M.n(fmt(r.d), "res")) +
           `<p class="verdict">วัดไป <b>${r.count.toLocaleString()}</b> ครั้ง (= N) จุดที่ใกล้สุดคือจุดที่ ${r.best + 1}</p>` +
-          `<p class="fintro">บรรทัด 2: จำนวนครั้งที่วัด เทียบตาม N</p><div class="scroll"><table class="rank"><thead><tr><th>N</th><th>วัดกี่ครั้ง</th></tr></thead><tbody>${rows}</tbody></table></div>`;
+          `<p class="fintro">ขั้นตอน 2: จำนวนครั้งที่วัด เทียบตาม N</p><div class="scroll"><table class="rank"><thead><tr><th>N</th><th>วัดกี่ครั้ง</th></tr></thead><tbody>${rows}</tbody></table></div>`;
       },
     };
   },

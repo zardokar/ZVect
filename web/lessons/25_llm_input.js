@@ -30,7 +30,10 @@ export default {
     "เลือก \"ไม่บวกตำแหน่ง\" แล้วกด \"สลับ cat กับ mat\": ตารางมีแถวชุดเดิมทุกแถว แค่สลับที่ ลำดับคำจึงหายไป",
     "เลือก \"บวกตำแหน่ง\" แล้วสลับอีกครั้ง: แถวของ cat เปลี่ยนตามตำแหน่งที่มันอยู่",
   ],
-  linesIntro: "มี 2 บรรทัด: บรรทัด 1 เปลี่ยนประโยคเป็นตาราง · บรรทัด 2 บวกตำแหน่งเข้าไปทีละแถว",
+  steps: [
+    ["เปลี่ยนประโยคเป็นตาราง", "หยิบแถวของทุก token มาเรียงกัน"],
+    ["บวกตำแหน่ง", "บวกเวกเตอร์ของตำแหน่งเข้าไปทีละแถว ให้คำเดียวกันที่อยู่คนละตำแหน่งได้ค่าต่างกัน"],
+  ],
   lines: [
     [M.math(M.v("X"), M.o("="), M.mat([[M.sub(M.v("e"), M.sub(M.i("t"), M.n(1)))], [M.o("⋮")], [M.sub(M.v("e"), M.sub(M.i("t"), M.i("n")))]]), M.t("\u2003("), M.i("n"), M.o("×"), M.i("d"), M.t(")")),
       "เรียงแถวของทุก token · t<sub>1</sub> … t<sub>n</sub> = token ในประโยคตามลำดับ · <b>e</b><sub>t</sub> = แถวของ token t ในตาราง embedding · n = จำนวน token (6) · d = จำนวนมิติ (บทนี้ 3)"],
@@ -94,7 +97,7 @@ export default {
           : "ไม่บวกตำแหน่ง: สลับคำแล้วได้แถวชุดเดิมทุกแถว ตารางไม่รู้ว่าคำไหนมาก่อน";
         const say = st.pos === "on" ? `x<sub>${k + 1}</sub> = e<sub>${t}</sub> + p<sub>${k + 1}</sub>` : `x<sub>${k + 1}</sub> = e<sub>${t}</sub> (ไม่บวกตำแหน่ง)`;
         return math + `<p class="verdict">${say} · ประโยค: ${st.order.join(" ")}</p>` +
-          `<p class="fintro">บรรทัด 1: ตาราง X (แถวละ token)</p><div class="scroll"><table class="rank"><thead><tr><th>i</th><th>token</th><th>ID</th><th>แถว x<sub>i</sub></th></tr></thead><tbody>${rows}</tbody></table></div>` +
+          `<p class="fintro">ขั้นตอน 1: ตาราง X (แถวละ token)</p><div class="scroll"><table class="rank"><thead><tr><th>i</th><th>token</th><th>ID</th><th>แถว x<sub>i</sub></th></tr></thead><tbody>${rows}</tbody></table></div>` +
           `<p class="ctl-note">${note}</p>`;
       },
     };

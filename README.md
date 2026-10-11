@@ -62,8 +62,8 @@ Branch: **main**, folder **/ (root)** → Save หลังจากนั้น
 | | 5.7 | HNSW: beam (efSearch) | `30_hnsw_beam` |
 | | 5.8 | HNSW: สร้างชั้นด้วยการโยนเหรียญ (1/M) | `31_hnsw_build` |
 | | 5.9 | กรองระหว่างค้น: กรองเยอะเกินไป กราฟขาด (1/k) | `32_filter_graph` |
-| 6 ใช้งานจริง | 6.1 | Bi-Encoder: แปลงคำถามและเอกสารเป็นเวกเตอร์แยกกัน | `09_bi_encoder` |
-| | 6.2 | Reranker: คัด top-k แล้วจัดอันดับใหม่ (จับคำปฏิเสธ) | `14_reranker` |
+| 6 ใช้งานจริง | 6.1 | Bi-Encoder: แปลงคำถามและเอกสารเป็นเวกเตอร์แยกกัน 4 ภาษา (EN / TH / 中文 / 日本語) ตัดคำด้วยช่องว่าง vs พจนานุกรม | `09_bi_encoder` |
+| | 6.2 | Reranker (Cross-Encoder): คัด top-k แล้วจัดอันดับใหม่ (จับคำปฏิเสธ 4 ภาษา: not · ไม่ · 不 หน้าคำ, ない หลังคำ) | `14_reranker` |
 | | 6.3 | Classification: nearest centroid | `10_classification` |
 | 7 เวกเตอร์ใน LLM | 7.1 | LLM input: แถวละ token แล้วบวกเวกเตอร์ตำแหน่ง | `25_llm_input` |
 | | 7.2 | Attention: ให้คะแนนด้วย query · key | `26_attention` |

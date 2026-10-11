@@ -6,7 +6,7 @@
 
 - ตัวเลขทุกตัวในบทเรียนคำนวณใหม่ในเครื่องด้วย `lib/` ไม่ได้ลอกจากคลิป ถ้าตัวเลขในคลิปผิด จะบอกไว้ในหัวข้อ "แก้จากต้นฉบับ"
 - ทุกแหล่งที่อ่านด้วย iw มีไฟล์สองชุด: รายงานภาษาไทย `docs/outhtm/` (เปิดจากปุ่ม "อ่านเพิ่ม" ในบทเรียนได้) และไฟล์บริบทภาษาอังกฤษ `docs/aimd/` สำหรับ AI session ถัดไป
-- เลขบทในไฟล์นี้ใช้เลขแบบบท.หัวข้อ (ตั้งแต่ 2026-10-11, 7 บท 33 หัวข้อ): 1.1 Vector · 1.2 ความยาว · 1.3 Vector space · 1.4 บวก ลบ คูณ · 1.5 Matrix · 2.1 Euclidean distance · 2.2 Dot product · 2.3 Cosine · 3.1 Token ID · 3.2 One-hot · 3.3 Bag of words · 3.4 Embedding matrix · 3.5 ตารางมาจากการฝึก · 3.6 Latent space · 4.1 ค้นด้วย cosine · 4.2 ค้นด้วย distance · 4.3 ค้นด้วย dot · 4.4 เลือกวิธีวัด · 4.5 ค้นด้วยคำ vs ความหมาย · 5.1 ค้นทุกชิ้น (brute force) · 5.2 มิติสูง · 5.3 เวกเตอร์ 1 บิต (XOR + popcount) · 5.4 ANN แบบต้นไม้ · 5.5 ANN แบบกราฟชั้นเดียว · 5.6 HNSW กราฟหลายชั้น · 5.7 HNSW beam (efSearch) · 5.8 HNSW สร้างชั้นด้วยการโยนเหรียญ · 5.9 กรองระหว่างค้น · 6.1 Bi-Encoder · 6.2 Reranker · 6.3 Classification · 7.1 LLM input (embedding + ตำแหน่ง) · 7.2 Attention: query · key
+- เลขบทในไฟล์นี้ใช้เลขแบบบท.หัวข้อ (ตั้งแต่ 2026-10-11, 7 บท 33 หัวข้อ): 1.1 Vector · 1.2 ความยาว · 1.3 Vector space · 1.4 บวก ลบ คูณ · 1.5 Matrix · 2.1 Euclidean distance · 2.2 Dot product · 2.3 Cosine · 3.1 Token ID · 3.2 One-hot · 3.3 Bag of words · 3.4 Embedding matrix · 3.5 ตารางมาจากการฝึก · 3.6 Latent space · 4.1 ค้นด้วย cosine · 4.2 ค้นด้วย distance · 4.3 ค้นด้วย dot · 4.4 เลือกวิธีวัด · 4.5 ค้นด้วยคำ vs ความหมาย · 5.1 ค้นทุกชิ้น (brute force) · 5.2 มิติสูง · 5.3 เวกเตอร์ 1 บิต (XOR + popcount) · 5.4 ANN แบบต้นไม้ · 5.5 ANN แบบกราฟชั้นเดียว · 5.6 HNSW กราฟหลายชั้น · 5.7 HNSW beam (efSearch) · 5.8 HNSW สร้างชั้นด้วยการโยนเหรียญ · 5.9 กรองระหว่างค้น · 6.1 Bi-Encoder · 6.2 Reranker (Cross-Encoder) · 6.3 Classification · 7.1 LLM input (embedding + ตำแหน่ง) · 7.2 Attention: query · key
 - อ่านแหล่งใหม่เมื่อไหร่ ให้เพิ่มแถวในตารางด้านล่าง เพิ่มหัวข้อของแหล่งนั้น และเพิ่มแถวใน READING REGISTRY ของ checkpoint ล่าสุด
 
 ## ตาราง
@@ -268,6 +268,11 @@ cat–dog 0.141 / 0.997, cat–lion 0.415 / 0.965, dog–lion 0.539 / 0.950, cat
 - บท 5.2 High dimensions: ต้นทุน RAM ตามจำนวนมิติ และ Matryoshka (MRL) ที่ตัดมิติท้ายทิ้ง
 - บท 6.1 Bi-Encoder: bi-encoder อัดเอกสารเป็นเวกเตอร์เดียวก่อนเห็นคำถาม ต่างจาก cross-encoder · affirmative bias กับคำปฏิเสธ
 - บท 6.3 Classification: linear separability
+
+**ใช้ในบทชุดหลายภาษา (WIP202610029, 2026-10-11)**
+
+- บท 6.1 Bi-Encoder (4 ภาษา): ชื่อโมเดลหลายภาษาที่ผู้ดำเนินรายการเลือก (Qwen3-Embedding-8B, text-multilingual-embedding-002) · BGE-M3 (ค้นแบบผสม) และ EmbeddingGemma (อุปกรณ์เล็ก) ระบุว่าคลิปยกไว้ใช้งานอื่น ส่วน "กว่า 100 ภาษา" มาจากการตรวจทาน · tokenizer ตัดตัวเลขเป็นชิ้น (โยงกับเรื่องตัดคำ) · คลิปไม่มีตัวเลขความแม่นแยกภาษา ตัวเลขในบทมาจากตารางของเล่นและเขียนกำกับไว้
+- บท 6.2 Reranker (4 ภาษา): faithfulness เขียนตามคลิป 0.347 → 0.797 พร้อมค่าตรวจทาน 0.621 = RAG พื้นฐาน (RAG ขั้นสูงมีทั้งการตัดเอกสารที่ดีขึ้นและ cross-encoder) · negation verifier · ตำแหน่งคำปฏิเสธแต่ละภาษาเป็นความรู้ทั่วไป
 - บท 7.1 LLM input: static (Word2Vec ให้ bank พิกัดเดียว) ยังไม่รู้บริบท
 - ไอเดียบทใหม่ "ตัด vector แบบ Matryoshka" (เวกเตอร์ของเล่นไม่ได้ฝึกแบบ MRL ใช้สาธิตเท่านั้น)
 

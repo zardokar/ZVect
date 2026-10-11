@@ -51,19 +51,18 @@ a { color: var(--z); }
   position: sticky; top: 0; height: 100vh; overflow-y: auto;
   display: flex; flex-direction: column;
 }
-/* header block (owner, 2026-10-11: "design ตรงนี้ให้สวย เป็นระเบียบกว่านี้"): logo + version on one line,
-   tagline, then search and the lib link as two controls of the same width and height */
-.brand { display: flex; align-items: center; gap: 10px; padding: 0 2px; }
+/* header block (owner, 2026-10-11: "design ตรงนี้ให้สวย เป็นระเบียบกว่านี้"): logo + version + book icon (lib link,
+   owner 13:54) on one line, then search; the tagline was removed (owner, 14:23) */
+.brand { display: flex; align-items: center; gap: 8px; padding: 0 2px 18px; margin-bottom: 18px; border-bottom: 1px solid rgb(255 255 255 / 0.08); }
 .logo { display: inline-flex; align-items: center; gap: 9px; color: var(--cover-ink); text-decoration: none; }
-.logo .mark { width: 26px; height: 26px; flex: none; fill: none; stroke: var(--z); stroke-width: 4; stroke-linecap: round; stroke-linejoin: round; }
-.logo .word { font-size: 27px; font-weight: 800; letter-spacing: -0.02em; line-height: 1; }
+.logo .mark { width: 24px; height: 24px; flex: none; fill: none; stroke: var(--z); stroke-width: 4; stroke-linecap: round; stroke-linejoin: round; }
+.logo .word { font-size: 25px; font-weight: 800; letter-spacing: -0.02em; line-height: 1; }
 .logo .word span { font-weight: 300; }
 .version {
-  margin-left: auto; padding: 2px 8px; border: 1px solid rgb(255 255 255 / 0.14); border-radius: 999px;
-  color: var(--cover-muted); font: 12px/1.5 var(--mono); white-space: nowrap;
+  margin-left: auto; padding: 1px 7px; border: 1px solid rgb(255 255 255 / 0.14); border-radius: 999px;
+  color: var(--cover-muted); font: 11px/1.5 var(--mono); white-space: nowrap;
 }
 .menu { display: none; }
-.tag { color: var(--cover-muted); font-size: 13.5px; line-height: 1.55; margin: 10px 2px 18px; padding-bottom: 18px; border-bottom: 1px solid rgb(255 255 255 / 0.08); }
 #nav, #nav ol { list-style: none; margin: 0; padding: 0; }
 #nav .group + .group { margin-top: 14px; }
 .group-title b { color: var(--cover-ink); margin-right: 4px; }
@@ -101,14 +100,12 @@ a { color: var(--z); }
 .find input:focus ~ .key, .find input:not(:placeholder-shown) ~ .key { display: none; }
 .findnone { margin: 0; color: var(--cover-muted); font-size: 13px; }
 .libnav {
-  display: flex; align-items: center; gap: 10px; height: 38px; box-sizing: border-box; padding: 0 12px 0 11px;
-  border: 1px solid rgb(255 255 255 / 0.14); border-radius: 8px;
-  color: var(--cover-ink); text-decoration: none; font-size: 14.5px;
+  flex: none; display: grid; place-items: center; width: 32px; height: 32px; box-sizing: border-box;
+  border: 1px solid rgb(255 255 255 / 0.14); border-radius: 8px; background: rgb(255 255 255 / 0.05);
+  color: var(--cover-ink); text-decoration: none;
 }
-.libnav .ico { color: var(--z); }
-.libnav .go { margin-left: auto; color: var(--cover-muted); transition: transform 0.15s; }
-.libnav:hover { background: rgb(255 255 255 / 0.06); border-color: rgb(255 255 255 / 0.24); }
-.libnav:hover .go { transform: translateX(2px); color: var(--cover-ink); }
+.libnav .ico { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
+.libnav:hover { background: rgb(255 255 255 / 0.1); border-color: rgb(255 255 255 / 0.28); color: var(--z); }
 .libnav:focus-visible { outline: 2px solid var(--z); outline-offset: 1px; }
 .libnav[aria-current] { background: rgb(255 255 255 / 0.1); border-color: rgb(255 255 255 / 0.24); }
 
@@ -118,9 +115,24 @@ body[data-page="lesson"] .libpage, body[data-page="lib"] .lesson { display: none
 .head { display: flex; justify-content: space-between; align-items: end; gap: 12px 24px; flex-wrap: wrap; }
 .step { margin: 0; color: var(--muted); font-size: 14px; }
 h1 { font-size: clamp(19px, 1.6vw, 24px); line-height: 1.25; margin: 2px 0 0; letter-spacing: -0.005em; }
-.lede p { margin: 0 0 10px; }
-.try { margin: 4px 0 0; padding-left: 22px; color: var(--muted); font-size: 15px; }
-.try li { margin: 3px 0; }
+/* explanation on top, full width (owner, 2026-10-11 13:54): intro on the left, ลองทำ on the right; stacked when narrow */
+.learn {
+  display: grid; grid-template-columns: minmax(0, 1fr); gap: 4px 28px; margin-top: 14px;
+  background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 12px 18px 10px;
+}
+.lede { font-size: 15px; line-height: 1.65; }
+.lede p { margin: 0 0 8px; }
+.steps h2 { font-size: 14.5px; margin: 4px 0 2px; color: var(--muted); font-weight: 700; }
+.steps .stepswhy { margin: 0 0 2px; font-size: 14.5px; }
+.steplist { margin: 0 0 6px; padding-left: 22px; font-size: 14.5px; }
+.steplist li { margin: 2px 0; }
+.trybox h2 { font-size: 14.5px; margin: 0 0 2px; color: var(--muted); font-weight: 700; }
+.try { margin: 0 0 6px; padding-left: 20px; color: var(--ink); font-size: 14.5px; }
+.try li { margin: 2px 0; }
+@media (min-width: 1081px) {
+  .learn { grid-template-columns: minmax(0, 3fr) minmax(0, 2fr); }
+  .trybox { border-left: 1px solid var(--line); padding-left: 24px; }
+}
 
 /* the bench: canvas + controls on the left, formula + code on the right */
 /* owner, 2026-10-11 12:45: no scrollbars inside any box; smaller canvas; list box 40 %. The page itself scrolls,
@@ -138,11 +150,20 @@ h1 { font-size: clamp(19px, 1.6vw, 24px); line-height: 1.25; margin: 2px 0 0; le
   cursor: grab; touch-action: none;
 }
 #scene:active { cursor: grabbing; }
+/* on/off buttons in the canvas corner (ui.corner) */
+.ctools { position: absolute; top: 8px; right: 8px; z-index: 1; display: flex; gap: 6px; }
+.ctool {
+  font: inherit; font-size: 13px; color: var(--ink); cursor: pointer; padding: 2px 10px; border-radius: 999px;
+  border: 1px solid var(--line); background: color-mix(in srgb, var(--canvas) 85%, transparent);
+}
+.ctool:hover { border-color: var(--muted); }
+.ctool[aria-pressed="false"] { color: var(--muted); }
 .hint { margin: 6px 2px 0; font-size: 13px; color: var(--muted); }
 
 /* controls */
 .controls { display: flex; flex-wrap: wrap; gap: 10px 14px; margin-top: 10px; }
 .ctl-group { border: 1px solid var(--line); border-radius: 8px; padding: 6px 12px 8px; margin: 0; min-width: 180px; flex: 1 1 180px; background: var(--panel); }
+.controls.stack .ctl-group { flex-basis: 100%; }
 .ctl-group legend { font-size: 13.5px; font-weight: 700; padding: 0 4px; }
 .ctl { display: grid; grid-template-columns: 22px 1fr 42px; align-items: center; gap: 8px; }
 .ctl label { font-weight: 700; font-family: var(--math); font-style: italic; font-size: 17px; }
@@ -156,7 +177,36 @@ input[type="range"] { width: 100%; accent-color: var(--ink); }
   font: inherit; font-size: 14px; color: var(--ink); background: transparent;
   border: 1px solid var(--line); border-radius: 6px; padding: 3px 10px; cursor: pointer;
 }
-.seg button[aria-checked="true"] { background: var(--ink); color: var(--panel); border-color: var(--ink); }
+.seg button[aria-checked="true"], .seg.pick button[aria-pressed="true"] { background: var(--ink); color: var(--panel); border-color: var(--ink); }
+/* language chips (WIP202610029): several can be on; each carries its colour in --c */
+.tog button { display: inline-flex; align-items: center; gap: 6px; }
+.tog button .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--c); opacity: 0.35; }
+.tog button[aria-pressed="true"]:not(.all) { border-color: var(--c); background: color-mix(in srgb, var(--c) 20%, transparent); font-weight: 700; }
+.tog button[aria-pressed="true"] .dot { opacity: 1; }
+.tog button.all[aria-pressed="true"] { background: var(--ink); color: var(--panel); border-color: var(--ink); font-weight: 700; }
+.tagtext { display: flex; gap: 6px; align-items: center; }
+.tagtext select { flex: none; font-weight: 700; border-color: var(--c, var(--line)); background: color-mix(in srgb, var(--c, transparent) 18%, var(--canvas)); }
+.tagtext .txt { flex: 1 1 auto; min-width: 0; }
+/* word chips in the values box: known word = language colour, negation = red outline, unknown = grey */
+.tok { display: inline-block; margin: 2px 4px 2px 0; padding: 0 7px; border-radius: 5px; border: 1px solid var(--line); color: var(--muted); font-size: 14.5px; line-height: 1.7; }
+.tok.k { border-color: var(--c); background: color-mix(in srgb, var(--c) 18%, transparent); color: var(--ink); }
+.tok.neg { border-color: var(--x); color: var(--x); }
+.toks { margin: 2px 0 6px; }
+.toks .lab { display: block; font-size: 13px; color: var(--muted); }
+.toks.off { opacity: 0.55; }
+.rank .ok { color: var(--y); font-weight: 700; }
+.rank .bad { color: var(--x); font-weight: 700; }
+.rank tr.dimrow td { opacity: 0.5; }
+.rank .sw { margin-right: 6px; }
+.rank .negw { color: var(--x); font-weight: 700; }
+.rank s { color: var(--muted); }
+.rank.cands { width: 100%; }
+.rank.cands td:nth-child(2) { width: 55%; }
+.symnote { margin-top: 10px; }
+.vocab { margin: 2px 0 6px; font-size: 14.5px; line-height: 1.6; }
+.vocab b { display: inline-block; min-width: 4em; }
+.bar { display: inline-block; height: 10px; border-radius: 3px; vertical-align: middle; background: var(--c); margin-right: 6px; }
+.bar.zero { width: 2px !important; }
 .selects { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; padding: 4px 0; }
 .selects .op { font-family: var(--math); font-size: 20px; }
 select, .txt {
@@ -182,10 +232,10 @@ select, .txt {
   .formula.haslist.noval .fbox-f { grid-row: 1 / span 2; }
 }
 .fintro { margin: 4px 0 6px; font-size: 13.5px; line-height: 1.55; color: var(--muted); }
-.flines { list-style: none; margin: 0; padding: 0; counter-reset: fl; }
-.flines li { counter-increment: fl; padding: 6px 0 8px; border-top: 1px solid var(--line); }
+.flines { list-style: none; margin: 0; padding: 0; }
+.flines li { padding: 6px 0 8px; border-top: 1px solid var(--line); }
 .flines li:first-child { border-top: 0; }
-.flines li::before { content: "บรรทัด " counter(fl); display: block; font-size: 12px; color: var(--muted); }
+.fstep { display: block; font-size: 12.5px; color: var(--muted); font-weight: 600; }
 .fmath math { font-size: 1.1em; margin: 2px 0; }
 .fsay { margin: 0; font-size: 13.5px; line-height: 1.55; }
 .formula .from { margin: 6px 0 0; color: var(--muted); font-size: 13px; line-height: 1.5; }
@@ -222,7 +272,7 @@ math mtd { padding: 3px 8px; }
 .fbox-l .rank { width: 100%; font-size: 13.5px; }
 .fbox-l .rank th, .fbox-l .rank td { padding-right: 8px; }
 .fbox-l .rank td:last-child, .fbox-l .rank th:last-child { padding-right: 0; }
-.extra { margin-top: 14px; border-top: 1px solid var(--line); padding-top: 2px; }
+.extra { margin-bottom: 14px; border-bottom: 1px solid var(--line); padding-bottom: 8px; }
 .extra h2 { font-size: 14.5px; margin: 14px 0 4px; color: var(--muted); font-weight: 700; }
 .extra ol, .extra ul { margin: 4px 0; padding-left: 22px; }
 .extra li { margin: 3px 0; }
@@ -233,7 +283,7 @@ math mtd { padding: 3px 8px; }
 .flow li { display: grid; grid-template-columns: 120px 1fr; gap: 8px; padding: 3px 0; border-bottom: 1px solid var(--line); }
 .flow span { color: var(--muted); }
 
-/* right panel: อธิบาย / สรุปจากแหล่ง / โค้ด / Ref */
+/* bottom tabs: อ่านสูตร / สรุปจากแหล่ง / โค้ด / Ref */
 .panel { margin-top: 16px; background: var(--panel); border: 1px solid var(--line); border-radius: 10px; display: flex; flex-direction: column; }
 .ptabs { display: flex; gap: 2px; padding: 6px 8px 0; border-bottom: 1px solid var(--line); flex-wrap: wrap; }
 .ptabs button {
@@ -296,7 +346,8 @@ math mtd { padding: 3px 8px; }
 @media (max-width: 760px) {
   body { grid-template-columns: minmax(0, 1fr); }
   #sidebar { position: sticky; height: auto; z-index: 5; padding: 10px 16px; }
-  .tag, #sidebar nav, .tools { display: none; }
+  #sidebar nav, .tools { display: none; }
+  .brand { padding-bottom: 0; margin-bottom: 0; border-bottom: 0; }
   #sidebar.open nav { display: block; }
   #sidebar.open .tools { display: flex; margin-top: 10px; }
   #sidebar.open { max-height: 100vh; }
@@ -308,4 +359,4 @@ math mtd { padding: 3px 8px; }
   main { padding-top: 20px; }
   #scene { aspect-ratio: 1 / 1; }
 }
-@media (prefers-reduced-motion: reduce) { .meter-dot, .libnav .go { transition: none; } }
+@media (prefers-reduced-motion: reduce) { .meter-dot { transition: none; } }

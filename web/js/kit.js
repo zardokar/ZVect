@@ -41,8 +41,10 @@ export const AX = ["cx", "cy", "cz"]; // CSS classes that color x / y / z parts
 
 // ---------- controls ----------
 // Each lesson gets a `ui` built on its control panel; any change calls onChange().
-export function makeUI(panel, onChange) {
+export function makeUI(panel, notify) {
   const handles = new WeakMap(); // vector array -> its three sliders (for setVec)
+  const syncers = [];            // widgets whose look depends on state another control may change (buttons with `pressed`)
+  const onChange = () => { for (const f of syncers) f(); notify(); };
   const group = (title) => {
     const box = document.createElement("fieldset");
     box.className = "ctl-group";
@@ -65,6 +67,7 @@ export function makeUI(panel, onChange) {
   }
 
   return {
+    panel, // the <form>; a lesson may add a layout class to it (app.js resets the class on every lesson)
     // three sliders x, y, z that edit the array `v` in place
     vec3(title, v, { min = -5, max = 5, step = 0.5 } = {}) {
       const box = group(title);
@@ -76,16 +79,24 @@ export function makeUI(panel, onChange) {
     setVec(v, values) {
       (handles.get(v) || []).forEach((s, i) => s.set(values[i]));
     },
-    // a row of buttons: list = [[text, fn], ...]; fn runs, then the lesson redraws
-    buttons(title, list) {
+    // a row of buttons: list = [[text, fn], ...]; fn runs, then the lesson redraws.
+    // pressed (optional) = () => index of the button whose result is on screen now (-1 = none): that button is shown
+    // pressed, and it updates after any change, e.g. typing over a sample (owner, 2026-10-11 14:55: "กดแล้วไม่เหมือนกด").
+    buttons(title, list, { pressed = null } = {}) {
       const box = group(title);
       const wrap = document.createElement("div");
-      wrap.className = "seg";
-      for (const [text, fn] of list) {
+      wrap.className = pressed ? "seg pick" : "seg";
+      const btns = list.map(([text, fn]) => {
         const b = document.createElement("button");
         b.type = "button"; b.textContent = text;
         b.addEventListener("click", () => { fn(); onChange(); });
         wrap.append(b);
+        return b;
+      });
+      if (pressed) {
+        const sync = () => { const k = pressed(); btns.forEach((b, i) => b.setAttribute("aria-pressed", String(i === k))); };
+        syncers.push(sync);
+        queueMicrotask(sync);
       }
       box.append(wrap);
     },
@@ -132,6 +143,73 @@ export function makeUI(panel, onChange) {
       inp.addEventListener("input", () => { state[key] = inp.value; onChange(); });
       box.append(inp);
       return inp;
+    },
+    // chips that can be on together (WIP202610029 languages): options = [[value, text, cssColourVar], ...],
+    // state[key] = array of values that are on; at least one stays on. opts.all = text of an "all" chip:
+    // all on -> back to opts.allOff(), otherwise -> everything on.
+    toggles(title, options, state, key, { all = "", allOff = () => [options[0][0]], after = () => {} } = {}) {
+      const box = group(title);
+      const wrap = document.createElement("div");
+      wrap.className = "seg tog";
+      const every = () => options.every(([v]) => state[key].includes(v));
+      const sync = () => {
+        wrap.querySelectorAll("button[data-v]").forEach((b) => b.setAttribute("aria-pressed", String(state[key].includes(b.dataset.v))));
+        allBtn?.setAttribute("aria-pressed", String(every()));
+      };
+      let allBtn = null;
+      if (all) {
+        allBtn = document.createElement("button");
+        allBtn.type = "button"; allBtn.className = "all"; allBtn.textContent = all;
+        allBtn.addEventListener("click", () => { state[key] = every() ? allOff() : options.map(([v]) => v); sync(); after(); onChange(); });
+        wrap.append(allBtn);
+      }
+      for (const [value, text, css] of options) {
+        const b = document.createElement("button");
+        b.type = "button"; b.dataset.v = value; b.style.setProperty("--c", `var(${css})`);
+        b.innerHTML = `<span class="dot" aria-hidden="true"></span>${text}`;
+        b.addEventListener("click", () => {
+          const on = state[key].includes(value);
+          if (on && state[key].length === 1) return;                       // keep at least one
+          state[key] = on ? state[key].filter((x) => x !== value) : options.map(([v]) => v).filter((v) => v === value || state[key].includes(v));
+          sync(); after(); onChange();
+        });
+        wrap.append(b);
+      }
+      queueMicrotask(sync);
+      box.append(wrap);
+      return { sync };
+    },
+    // a text box with a small tag picker in front; each tag keeps its own text (state[textKey][tag]).
+    // tags = [[value, text, cssColourVar], ...]; onTag runs when the tag changes. sync() re-reads the state.
+    tagText(title, tags, state, tagKey, textKey, placeholder = "", onTag = () => {}) {
+      const box = group(title);
+      const row = document.createElement("div");
+      row.className = "tagtext";
+      const sel = document.createElement("select");
+      sel.setAttribute("aria-label", "ภาษาที่พิมพ์");
+      sel.innerHTML = tags.map(([v, t]) => `<option value="${v}">${t}</option>`).join("");
+      const inp = document.createElement("input");
+      inp.type = "text"; inp.placeholder = placeholder; inp.className = "txt";
+      const sync = () => {
+        sel.value = state[tagKey]; inp.value = state[textKey][state[tagKey]] ?? "";
+        sel.style.setProperty("--c", `var(${tags.find(([v]) => v === state[tagKey])[2]})`);
+      };
+      sel.addEventListener("change", () => { state[tagKey] = sel.value; onTag(); sync(); onChange(); });
+      inp.addEventListener("input", () => { state[textKey] = { ...state[textKey], [state[tagKey]]: inp.value }; onChange(); });
+      row.append(sel, inp);
+      box.append(row);
+      sync();
+      return { sync, input: inp };
+    },
+    // an on/off button in the top-right corner of the canvas (owner, 2026-10-11 14:46: "เพิ่มปุ่ม ปิดเงา")
+    corner(text, state, key) {
+      const b = document.createElement("button");
+      b.type = "button"; b.className = "ctool";
+      const sync = () => { b.setAttribute("aria-pressed", String(!!state[key])); b.textContent = (state[key] ? "ซ่อน" : "แสดง") + text; };
+      b.addEventListener("click", () => { state[key] = !state[key]; sync(); onChange(); });
+      sync();
+      document.querySelector("#ctools")?.append(b);
+      return { sync };
     },
     note(html) {
       const p = document.createElement("p");

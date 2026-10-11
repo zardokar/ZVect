@@ -86,6 +86,11 @@ not write the code (handzup rule 12 substitute; its verdict is not a named "revi
 - New lesson = new `examples/{js,py,cpp}/NN_name.*` (identical output) + `web/lessons/NN_name.js` + add to `GROUPS`.
   A lesson carries `intro`, `try`, `formula`, `symbols` ([symbol, meaning, why] rows for the "อ่านสูตร" tab), `notes`
   (own-words summary of what the sources add, "สรุปจากแหล่ง" tab) and `refs` ([sourceId, what was used], ids in `web/js/sources.js`).
+  `intro` + `try` render in a full-width block on top of the lesson (owner, 2026-10-11 13:54); the bottom tabs are อ่านสูตร / สรุปจากแหล่ง /
+  โค้ด / Ref (no "อธิบาย" tab). Optional: `extra` (top of สรุปจากแหล่ง), `symbolsNote` (under the symbols table), a table wrapped in
+  `div.keep` stays in the values box instead of moving to the list box. A lesson with ≥ 2 formula lines carries `steps`
+  ([name, why] per line) and optional `stepsWhy`: listed as "สูตรของบทนี้มี N ขั้นตอน" in the top block and used as the
+  "ขั้นตอน i · name" label of each line (owner, 14:30: "บรรทัด -> ขั้นตอน"); `linesIntro` is gone.
   No "อ่านเพิ่ม" detours (owner, 2026-10-11). No scrollbar inside any box (owner, 2026-10-11 12:45; replaces the old
   "desktop page ≤ 1070 px" rule): the page scrolls, wide formulas are shrunk by `fitMath()` in app.js, code wraps.
 
@@ -97,6 +102,94 @@ not write the code (handzup rule 12 substitute; its verdict is not a named "revi
 5. Never run git write commands for the owner.
 
 ## §5b Update log (newest on top)
+
+**2026-10-11 (upckp #25): 🧳 Session close + handoff; next session starts the iw job yt:BcxJk4WQVIw — PLAN**
+- Owner (14:58): "upckp + hz และ เริ่ม iw https://www.youtube.com/watch?v=BcxJk4WQVIw on next session" → new `WIP202610030` (iw of that clip;
+  not opened in this session, title / channel / license unknown); handoff `.dropzone/hzup_claude/20261011_1458.md` written.
+- This session (11:03–14:58, upckp #17–#24): WIP202610026 and WIP202610027 built (7 chapters / 33 topics), WIP202610029 (6.1 / 6.2 in four
+  languages, explanation block on top, book-icon lib link, tagline removed), formula "ขั้นตอน" with what / why per step, 2.2 shadow on/off,
+  6.2 renamed Reranker (Cross-Encoder), sample buttons show the active sample. Every batch delivered md5-verified; NOT known to be committed
+  (owner commits; commit lines were given after each batch).
+- Owner (14:58, screenshot of a "Character tokenization" slide: a:1 … z:26, !:27 … $:30, "hello there you are amazing" → 8,5,12,12,15, …):
+  "อยากได้ภาพอธิบายแบบง่ายๆ แบบนี้ ทำเป็น svg ใน ZVect ก็จะดี แต่ทำใน session หน้า" → new `WIP202610031`; the screenshot is kept as a style
+  reference at `.dropzone/hzup_claude/20261011_1458_ref/character_tokenization_example.png` (source of the slide unknown; build our own SVGs,
+  content still only from aimd).
+- Open questions left with the owner: a dedicated toy Cross-Encoder topic after 7.2 (offered, not chosen); "reranker แบบอื่น" notes in 6.2
+  (cross-encoder, LLM verifier, late interaction = general knowledge, agentic search; offered, no answer yet).
+- 💰 cost: not measured.
+
+**2026-10-11 (upckp #24): 👆 Sample buttons in 6.1 / 6.2 show which sample is in the query box — FINISH (code)**
+- Owner (14:55, screenshot of 6.2 "ตัวอย่าง" with only a focus ring on แมวกับหมา): "กดแล้วไม่เหมือนกด มันทำงานหรือเปล่า" → it worked (filled all
+  4 languages) but plain action buttons had no pressed look. kit.js `buttons(title, list, { pressed })`: optional function returning the index of
+  the active button; drawn like a selected choice (filled) and re-synced after every change (new `syncers` list inside makeUI). multilang.js passes
+  "the sample whose text in the typed language equals the query box", so it stays pressed when switching language and clears when the learner types.
+- VERIFIED: click-through 6.1 / 6.2 (start = first sample pressed, click moves it, TH switch keeps it, typing clears it); pwcheck 33 × 3 ALL OK;
+  6.1 / 6.2 click-through unchanged; screenshot looked at.
+- Sync consequence: delivered md5-verified; owner commits.
+
+**2026-10-11 (upckp #23): 🏷️ 6.2 renamed "Reranker (Cross-Encoder)" so the cross-encoder topic can be found — FINISH (code)**
+- Owner (14:51): "Cross-Encode หายไปหรือเปล่า หรือมันไม่มี ?" → answered: never a separate topic; it lives in 6.2 (a real reranker is a
+  cross-encoder) and in the 6.1 / 6.2 source notes; the 6.2 toy counts words instead of attention. Offered (1) rename 6.2, (2) a new toy
+  Cross-Encoder topic after 7.2 Attention; owner (14:52): "แบบ 1". Title "Reranker (Cross-Encoder): คัดเร็วก่อน แล้วจัดอันดับใหม่ให้แม่น",
+  sidebar name "Reranker (Cross-Encoder)", intro adds "reranker ในระบบจริงคือ cross-encoder"; README / llms.txt / REFERENCE.md numbering updated.
+  Option 2 not built (left for the owner to ask).
+- VERIFIED: pwcheck 33 × 3 sizes ALL OK; sidebar search "cross" finds 6.2; screenshot of the sidebar row looked at.
+- Sync consequence: delivered md5-verified; owner commits.
+
+**2026-10-11 (upckp #22): 🔦 2.2 Dot product: show / hide the shadow of b from a button in the canvas corner — FINISH (code)**
+- Owner (14:46, screenshot of 2.2 with the canvas top-right corner marked): "เพิ่มปุ่ม ปิดเงาให้ที ไม่รู้ว่าจะเอามาทำไมในหัวข้อนี้" + "ปิดเปิดเงา"
+  → new `ui.corner(text, state, key)` in kit.js: an on/off pill in a `#ctools` overlay at the canvas top-right (app.js clears it per lesson;
+  only 2.2 uses it). 2.2: button "ซ่อน / แสดงเงาของ b" (default shown); why the shadow is there is now said in three places: step 2's
+  explanation (|b| cos θ = length of b's shadow on the a-line), a new try item, and a values line "|a| × เงา = 4.58 × 1.96 ≈ 9" shown
+  while the shadow is on.
+- VERIFIED: pwcheck 33 × 3 sizes ALL OK; toggle hides the shadow line, drop line, label and the values line; other lessons have no corner
+  button; screenshots of both states looked at.
+- Sync consequence: delivered md5-verified; owner commits.
+
+**2026-10-11 (upckp #21): 🪜 Formula "บรรทัด" → "ขั้นตอน"; every multi-step formula says what each step is and why — FINISH (code)**
+- Owner (14:30): "ตรงสูตร ควรจะเขียน บรรทัด -> ขั้นตอน และควรอธิบายด้วยว่าทำไมมี 3 ขั้นตอน หรือไม่ก็บอกตั้งแต่ตรงคำอธิบายว่าขั้นตอนแต่ละขั้น คือ อะไร มีไว้ทำไม"
+  → both: new lesson field `steps` ([short name, why]) on all 29 lessons with ≥ 2 formula lines (+ `stepsWhy` on 7 of them, carrying what
+  `linesIntro` said beyond the step names; `linesIntro` removed). app.js shows "สูตรของบทนี้มี N ขั้นตอน" + the numbered what / why list under
+  the intro in the top block, and labels each formula line "ขั้นตอน i · name" (CSS counter "บรรทัด" removed); heading "สูตร (อ่านทีละขั้นตอน)";
+  every "บรรทัด N" in lesson text, list intros and `web/js/search.js` now reads "ขั้นตอน N". Why-texts restate what each line's own
+  explanation already says (no new claims).
+- VERIFIED: node check — every lesson with ≥ 2 lines has one step per line, no `linesIntro` left; Playwright 33 lessons: step labels and top
+  list present on every multi-step lesson, no "บรรทัด" in visible lesson text; pwcheck 33 × 3 sizes ALL OK; th.py ALL OK; 6.1 / 6.2
+  click-through unchanged; screenshot of 6.1 looked at. Examples untouched (npm test / check not affected).
+- Sync consequence: delivered md5-verified; owner commits.
+
+**2026-10-11 (upckp #20): 🌏 WIP202610029: 6.1 Bi-Encoder + 6.2 Reranker in EN / TH / 中文 / 日本語; explanation on top; lib link = book icon — FINISH (code)**
+- Owner (13:42, screenshot of 6.1): add Thai (and EN / TH / ZH / JP, same sentence) to 6.1 and 6.2 and show the accuracy difference per example,
+  minimal, explainable with a vector picture and the formula, easy sample inputs, rework the controls under the canvas. Design went through three SVG
+  drafts in `docs/arch/WIP202610029_multilang/` (v1 layout; v2 after 13:54 "อยากอ่านคำอธิบายก่อน … ด้านบนชิดซ้าย Width 100% … ไม่มี tab อธิบาย"
+  + "ปุ่ม เอา Lib ไปใช้ เปลี่ยนเป็น icon หนังสือ อยู่ขวาของ Logo"; language picker states after 14:01 "จะเปลี่ยนภาษา หรือ เลือกทั้งหมด หรือ 2-3 ภาษา ยังไง"),
+  14:03 "ต้องเปิดไว้อย่างน้อย 1 ภาษา < default EN ไว้ก่อน", 14:04 "ร่าง plan แล้วทำเลย", 14:23 remove the sidebar tagline.
+- Shell (all 33 lessons): intro + ลองทำ in a full-width `.learn` block under the title (two columns ≥ 1081 px); "อธิบาย" tab removed, tabs open on อ่านสูตร;
+  4.4's `extra` moved to the top of สรุปจากแหล่ง; book-icon `#libnav` (title / aria-label "เอา lib ไปใช้") right of the logo + version pill, long button
+  and tagline removed. `web/index.html`, `web/js/app.js` (`symbolsNote`, panel class reset), `web/css/style.css`.
+- New `web/js/multilang.js`: one shared toy vocabulary for 4 languages (meanings → the old 3-axis vectors food / animal / tech), `split(text, mode)`:
+  "space" = lib `words()`, "dict" = longest match inside each non-ASCII chunk (ASCII chunks stay whole words), unknown letters kept as one grey chunk;
+  `encodeTokens` (mean + normalize), `matches` (reranker: nearest known word after not / no / ไม่ / 不 / 没 or before ない is denied), `mountPanel`.
+  `web/js/kit.js`: `toggles` (multi-select chips, "ทั้งหมด", ≥ 1 on, `after` hook), `tagText` (language tag + text per language), `ui.panel`.
+- 6.1 (`09_bi_encoder`): languages to show (several), split mode, 6 samples × 4 languages, documents stay English (cross-language search);
+  3 formula lines (tokens = split(text) new); arrows coloured per language; values: word chips (used mode vs the other); list: rank 1 per shown
+  language + accuracy of the 6 samples. Results (toy): space EN 6/6, TH / 中文 / 日本語 0/6; dictionary EN 6/6, TH 6/6, 中文 5/6 (机器狗 compound
+  not in the table → d1), 日本語 6/6. 6.2 (`14_reranker`): 5 documents translated into 4 languages, 3 samples; หมาหิว: every language wrong at stage 1
+  (d1 "not hungry", cos 1.000), right at stage 2; accuracy stage 1 2/3 → stage 2 3/3 per language (dictionary), TH / 中文 / 日本語 0/3 with spaces.
+  Every accuracy table says "ตัวเลขจากตารางคำของเล่น ไม่ใช่ความแม่นของโมเดลจริง" (aimd has no per-language numbers).
+- Examples `09_bi_encoder`, `14_reranker` (JS / Python / C++): add a Thai part (space split = one unknown word, dictionary split finds the words;
+  Thai reranker with ไม่). Python reconfigures stdout to UTF-8; C++ comment says "chcp 65001" on Windows. Known gap: the examples show EN + TH only
+  (no 中文 / 日本語, no after-word ない rule) → added to `WIP202610023`.
+- Independent review (subagent that did not write the code; not the owner's "reviewer" skill): numbers in every try text re-run (all matched),
+  no logic / XSS / shell bugs; 3 must-fix (6.2 faithfulness 0.621 → 0.797 overclaimed → clip's 0.347 → 0.797 + fact-check values; 6.1 notes said
+  BGE-M3 / EmbeddingGemma 100+ languages came from the clip → marked as fact-check, clip used them for hybrid / edge; 6.1 intro said real
+  encoders give "the same vector" → "ใกล้กัน", identical only in the toy) + 10 nice-to-have, 9 applied (examples gap logged instead).
+- VERIFIED: npm test 15/0; npm run check PASS; Playwright 33 lessons × 1920 / 1440 / 390 ALL OK (no box scrollbars, no wide math, no spill
+  incl. the new top block and the sidebar brand row, one-line table headers, 0 page errors, 0 HTTP ≥ 400); click-through of 6.1 / 6.2 (all on / back
+  to typed language, last chip stays on, typed language off → typing moves, space vs dictionary, Thai typed with spaces, escaping of typed HTML);
+  screenshots looked at.
+- Sync consequence: delivered in one batch md5-verified; owner commits.
+- 💰 cost: not measured for this entry.
 
 **2026-10-11 (upckp #19): 🔎 WIP202610027: chapter 5 rebuilt simple → complex (brute force … HNSW … filtering) + 4.5 keyword vs meaning — FINISH (code)**
 - Owner (12:52–13:06): "แล้ว HNSW มันหายไปหรือเปล่า" (it was 5.2 "Vector search", name hid it) → "HNSW คือ Algorithm หรือหัวข้อใน Vector search" →
@@ -538,6 +631,7 @@ not write the code (handzup rule 12 substitute; its verdict is not a named "revi
 | WIP202610025 | FINISH | 001 | Owner: distances not in the sources are not added; the aimd re-check found XOR + popcount (added) | file:web/lessons/11_distance.js · ckp:001#14 |
 | WIP202610027 | FINISH | 001 | Chapter 5 simple → complex (5.1 brute force, 5.4 tree, 5.5 graph walk, 5.6 HNSW, 5.7 beam, 5.8 build, 5.9 filter) + 4.5 keyword vs meaning | file:web/js/graph.js · ckp:001#19 |
 | WIP202610026 | FINISH | 001 | 7 new topics from aimd (1.5, 3.1, 3.2, 3.3, 3.5, 7.1, 7.2), Embedding matrix trimmed to lookup, 7 chapters / 26 topics | file:web/js/app.js · ckp:001#17 |
+| WIP202610029 | FINISH | 001 | 6.1 / 6.2 in EN / TH / 中文 / 日本語 (space vs dictionary split, per-language negation), explanation block on top, book-icon lib link | file:web/js/multilang.js · ckp:001#20 |
 
 ## §6 WIP (open items) — ALWAYS LAST, READ FIRST
 
@@ -552,11 +646,20 @@ not write the code (handzup rule 12 substitute; its verdict is not a named "revi
 | WIP202610022 | [skill] iw v5.1: meaning-fidelity rule, no lyrics, per-batch frame prefixes, C2PA-aware verify, crop presenter chrome, li/p wrap, own-words rule for standard licenses — card re-shown 23:4x (first one was not visible to the owner), owner to save | 2026-10-10 | ckp:001#7 |
 | WIP202610024 | [web] Owner turns on GitHub Pages once (Settings → Pages → Deploy from a branch → main, / (root)), pushes, and opens https://zardokar.github.io/ZVect/ | 2026-10-11 | ckp:001#8 |
 | WIP202610028 | [lessons] Owner asked "ทำไมไม่มี K-mean" / "แยกกลุ่ม Classification ไหม": k-means / IVF (and maybe a "จัดกลุ่ม" chapter with 6.3) need a source first (none of the 12 aimd files covers it); owner to send a clip/article for iw | 2026-10-11 | ckp:001#19 |
-| WIP202610023 | [lessons] Remaining lesson ideas (word counts, positional encoding, keyword vs vector and filtered-graph disconnection were built in #17 / #19): Matryoshka truncation, outliers | 2026-10-10 | ckp:001#10 |
+| WIP202610030 | [iw] Owner (14:58): "เริ่ม iw https://www.youtube.com/watch?v=BcxJk4WQVIw on next session" — run the iw skill on that clip (HTML in docs/outhtm, MD in docs/aimd, registry row, REFERENCE.md section), then propose lesson use | 2026-10-11 | ckp:001#25 |
+| WIP202610031 | [web] Owner (14:58): simple explanatory SVG pictures inside ZVect lessons, in the style of his "Character tokenization" screenshot (labelled table + arrows from each item to its number); next session, after WIP202610030 | 2026-10-11 | ckp:001#25 |
+| WIP202610023 | [lessons] Remaining lesson ideas (word counts, positional encoding, keyword vs vector and filtered-graph disconnection were built in #17 / #19): Matryoshka truncation, outliers; examples 09 / 14 could add 中文 / 日本語 and the after-word ない rule (#20 review) | 2026-10-10 | ckp:001#10 |
 
 ### Narrative
 
-- **Active thread (2026-10-11, #19):** chapter 5 rebuilt simple → complex (7 chapters / 33 topics). Next: commit; k-means / IVF waits for a source (`WIP202610028`).
+- **Active thread (2026-10-11, #25):** session closed with handoff `.dropzone/hzup_claude/20261011_1458.md`. Next session: start `WIP202610030`
+  (iw yt:BcxJk4WQVIw) right away, then `WIP202610031` (simple SVG pictures). Owner still to commit #17–#25 changes, turn Pages on (`WIP202610024`), delete stale files (`WIP202610021`).
+- Earlier (#24): sample buttons show the active sample.
+- Earlier (#23): 6.2 renamed Reranker (Cross-Encoder). Next: owner looks and commits.
+- Earlier (#22): 2.2 shadow on/off button. Next: owner looks and commits.
+- Earlier (#21): formula steps renamed and explained (what / why per step on top). Next: owner looks and commits.
+- Earlier (#20): `WIP202610029` done: 6.1 / 6.2 in four languages, explanation on top of every lesson, book-icon lib link, no tagline. Next: owner looks at 6.1 / 6.2 and commits; k-means / IVF waits for a source (`WIP202610028`).
+- Earlier (#19): chapter 5 rebuilt simple → complex (7 chapters / 33 topics).
 - Earlier (#18): layout pass after #17 (sidebar header, no scrollbars in boxes). Next unchanged: commit, Pages, stale files.
 - Earlier (#17): `WIP202610026` done: 7 chapters / 26 topics (1.5 Matrix; chapter 3 = Token ID, One-hot, Bag of words, Embedding matrix, Learning the table, Latent space; chapter 7 = LLM input, attention query · key). Next: owner reviews and commits, turns Pages on (`WIP202610024`), deletes the stale files (`WIP202610021`).
 - Earlier (#16): 6 chapters / 19 topics numbered 1.1 …; formulas line by line; three-box formula area.

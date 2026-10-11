@@ -61,8 +61,8 @@ export function searchMount(ui, key) {
     live() {
       const top = m.rank(q);
       const rows = top.map((r, i) => `<tr><td>${i + 1}</td><td${i ? "" : ' class="best"'}>${r.id}</td><td>${fmt(r.score)}</td></tr>`).join("");
-      return `<p class="fintro">บรรทัด 1 กับอันดับ 1 (${top[0].id}):</p>` + m.show(q, top[0]) +
-        `<p class="fintro">บรรทัด 2: ทำกับของทุกชิ้น แล้วเก็บ 3 อันดับ (${m.order})</p>` +
+      return `<p class="fintro">ขั้นตอน 1 กับอันดับ 1 (${top[0].id}):</p>` + m.show(q, top[0]) +
+        `<p class="fintro">ขั้นตอน 2: ทำกับของทุกชิ้น แล้วเก็บ 3 อันดับ (${m.order})</p>` +
         `<div class="scroll"><table class="rank"><thead><tr><th>#</th><th>ของ</th><th>คะแนน</th></tr></thead><tbody>${rows}</tbody></table></div>`;
     },
   };

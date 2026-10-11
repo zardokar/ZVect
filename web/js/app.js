@@ -122,20 +122,33 @@ function route() {
   showLesson(LESSONS[i], i);
 }
 
-// ---------- formula, one line at a time ----------
+// ---------- formula, one step at a time ----------
 // L.lines = [[MathML, Thai explanation], ...] (owner, 2026-10-11: "ทำไมถึงไม่อธิบายทีละ line ให้เข้าใจ").
-// Each line says what it does, what every letter means and why it is there. L.linesIntro (optional) says why
-// the lesson has more than one line.
+// Each line says what it does, what every letter means and why it is there. A lesson with more than one line also has
+// L.steps = [[short name, why this step is there], ...] (one per line) and optional L.stepsWhy (owner, 14:30: "บรรทัด ->
+// ขั้นตอน และควรอธิบายด้วยว่าทำไมมี 3 ขั้นตอน ... ขั้นตอนแต่ละขั้นคืออะไร มีไว้ทำไม"): the list is shown in the explanation
+// block on top, and each formula line is labelled "ขั้นตอน i · name".
 function formulaHTML(L) {
   if (!L.lines) return L.formula || "";
-  return (L.linesIntro ? `<p class="fintro">${L.linesIntro}</p>` : "") + '<ol class="flines">' +
-    L.lines.map(([math, say]) => `<li><div class="fmath">${math}</div><p class="fsay">${say}</p></li>`).join("") + "</ol>";
+  const many = L.lines.length > 1;
+  return '<ol class="flines">' + L.lines.map(([math, say], i) => {
+    const name = L.steps?.[i]?.[0];
+    const label = many ? `ขั้นตอน ${i + 1}${name ? " · " + name : ""}` : "";
+    return `<li>${label ? `<span class="fstep">${label}</span>` : ""}<div class="fmath">${math}</div><p class="fsay">${say}</p></li>`;
+  }).join("") + "</ol>";
+}
+function stepsHTML(L) {
+  const st = L.steps || [];
+  if (st.length < 2) return "";
+  return `<h2>สูตรของบทนี้มี ${st.length} ขั้นตอน</h2>` + (L.stepsWhy ? `<p class="stepswhy">${L.stepsWhy}</p>` : "") +
+    '<ol class="steplist">' + st.map(([name, why]) => `<li><b>${name}</b>: ${why}</li>`).join("") + "</ol>";
 }
 
 // ---------- three boxes: formula (top left), values put in (bottom left), list (right) ----------
 // Owner, 2026-10-11: "Formula อยู่กล่องซ้ายบน กับ แทนค่าเข้าไป อยู่กล่องซ้ายล่าง แบ่งออกมาแยกกับ List เป็นกล่องขวา".
 // Lessons keep returning one HTML string from live(); tables (with the line that introduces them and the
 // small notes after them) are moved to the right-hand list box here, so no lesson code has to change.
+// A table wrapped in div.keep (not .scroll) stays in the values box.
 function splitList() {
   const live = $("#live"), list = $("#list");
   list.replaceChildren();
@@ -172,6 +185,7 @@ function showLesson(L, i) {
   $("#step").textContent = `บท ${NUM.get(L)} · ${CHAPTER.get(L)}`;
   $("#title").textContent = L.title;
   $("#intro").innerHTML = L.intro;
+  $("#steps").innerHTML = stepsHTML(L);
   $("#try").innerHTML = L.try.map((t) => `<li>${t}</li>`).join("");
   // formulaFrom: where the formula comes from (owner, 2026-10-11: "ใช้สมการใคร ทำไมไม่บอก")
   $("#formula").innerHTML = formulaHTML(L) + (L.formulaFrom ? `<p class="from">ที่มาของสูตร: ${L.formulaFrom}</p>` : "");
@@ -181,16 +195,19 @@ function showLesson(L, i) {
     ? `<table class="rank symbols"><thead><tr><th>ในสูตร</th><th>คืออะไร</th><th>ทำไม / ตัวอย่าง</th></tr></thead><tbody>` +
       L.symbols.map(([s, m, w]) => `<tr><td class="sym">${s}</td><td>${m}</td><td class="dim">${w}</td></tr>`).join("") + "</tbody></table>"
     : "";
-  $("#p-notes").innerHTML = L.notes || "";
+  // L.symbolsNote: reference lists that would crowd the controls (known words, documents), shown under the symbols
+  if (L.symbolsNote) $("#p-sym").innerHTML += `<div class="symnote">${L.symbolsNote}</div>`;
+  // L.extra (a summary the owner wanted kept, e.g. 4.4) opens the "สรุปจากแหล่ง" tab; the old "อธิบาย" tab is gone
+  $("#p-notes").innerHTML = (L.extra ? `<div class="extra">${L.extra}</div>` : "") + (L.notes || "");
   $("#p-refs").innerHTML = refsHTML(L.refs || []);
   showPanel(panelTab);
-  $("#extra").hidden = !L.extra;
-  $("#extra").innerHTML = L.extra || "";
   $("#hint").textContent = L.hint || HINT;
   $("#scene").setAttribute("aria-label", L.canvasLabel || CANVAS_LABEL);
 
   const panel = $("#controls");
   panel.innerHTML = "";
+  panel.className = "controls";
+  $("#ctools").replaceChildren();          // on/off buttons a lesson puts in the canvas corner (ui.corner)
   const live = $("#live");
   let inst;
   const refresh = () => { scene.render(); live.innerHTML = inst.live(); splitList(); fitMath(); };
@@ -211,9 +228,10 @@ function showLesson(L, i) {
   window.scrollTo(0, 0);
 }
 
-// ---------- right panel tabs: อธิบาย / อ่านสูตร / สรุปจากแหล่ง / โค้ด / Ref ----------
-const PANES = [["learn", "อธิบาย"], ["sym", "อ่านสูตร"], ["notes", "สรุปจากแหล่ง"], ["code", "โค้ด"], ["refs", "Ref"]];
-let panelTab = "learn";
+// ---------- bottom tabs: อ่านสูตร / สรุปจากแหล่ง / โค้ด / Ref ----------
+// The explanation (intro + ลองทำ) is no longer a tab: it sits on top, full width (owner, 2026-10-11 13:54).
+const PANES = [["sym", "อ่านสูตร"], ["notes", "สรุปจากแหล่ง"], ["code", "โค้ด"], ["refs", "Ref"]];
+let panelTab = "sym";
 $("#ptabs").innerHTML = PANES.map(([k, t]) =>
   `<button role="tab" id="pt-${k}" aria-controls="p-${k}" data-pane="${k}">${t}</button>`).join("");
 $("#ptabs").onclick = (e) => { const b = e.target.closest("button"); if (b) showPanel(b.dataset.pane); };

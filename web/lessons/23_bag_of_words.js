@@ -35,7 +35,10 @@ export default {
     "กดตัวอย่างที่ 4 (Hello! กับ World!): ไม่มีคำร่วมกันเลย มุม 90° cosine 0",
     "กดตัวอย่างที่ 5 (I love Troll 2! กับ I love Gymkata!): มี 5 คำ = 5 มิติ วาดไม่ได้ แต่สูตรยังคำนวณได้ (0.577 ≈ 0.58)",
   ],
-  linesIntro: "มี 2 บรรทัด: บรรทัด 1 เปลี่ยนประโยคเป็นเวกเตอร์ด้วยการนับ · บรรทัด 2 เทียบสองเวกเตอร์ด้วย cosine (บท 2.3)",
+  steps: [
+    ["นับคำ", "เปลี่ยนประโยคเป็นเวกเตอร์ด้วยการนับว่าแต่ละคำโผล่กี่ครั้ง"],
+    ["เทียบด้วย cosine", "ดูว่าสองประโยคใช้คำในสัดส่วนคล้ายกันแค่ไหน (บท 2.3)"],
+  ],
   lines: [
     [M.math(M.v("A"), M.o("="), M.tuple([M.sub(M.t("count"), M.n(1)), M.o("…"), M.sub(M.t("count"), M.i("n"))])),
       "นับคำ · <b>A</b> = ประโยคหนึ่ง (ทำแบบเดียวกันกับ <b>B</b>) · n = จำนวนคำต่างกันทั้งหมดที่เจอในสองประโยค · count<sub>i</sub> = คำที่ i โผล่ใน A กี่ครั้ง · ได้เวกเตอร์ยาว n"],
@@ -121,7 +124,7 @@ export default {
         const c = cosine(A, B);
         return M.math(M.fn("cos"), M.o("="), M.frac(M.n(dot(A, B)), M.row(M.sqrt(M.n(dot(A, A))), M.o("×"), M.sqrt(M.n(dot(B, B))))), M.o("="), M.n(fmt(c), "res")) +
           `<p class="verdict">มุม ${fmt(deg(angle(A, B)))}° · A = (${A.join(", ")}) · B = (${B.join(", ")})</p>` +
-          `<p class="fintro">บรรทัด 1: ตารางนับคำ (n = ${vocab.length})</p><div class="scroll"><table class="rank"><thead><tr><th>i</th><th>คำ</th><th>A</th><th>B</th></tr></thead><tbody>${rows}</tbody></table></div>`;
+          `<p class="fintro">ขั้นตอน 1: ตารางนับคำ (n = ${vocab.length})</p><div class="scroll"><table class="rank"><thead><tr><th>i</th><th>คำ</th><th>A</th><th>B</th></tr></thead><tbody>${rows}</tbody></table></div>`;
       },
     };
   },

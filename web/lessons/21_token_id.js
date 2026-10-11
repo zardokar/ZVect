@@ -29,7 +29,10 @@ export default {
     "เลือก good กับ great แล้วเลือก bad กับ great: คู่ไหนเลขใกล้กันกว่า",
     "กด \"แจกเลขใหม่ (Random)\": ความหมายของคำไม่เปลี่ยน แต่คู่ที่ \"ใกล้\" เปลี่ยนไปตามเลข",
   ],
-  linesIntro: "มี 2 บรรทัด: บรรทัด 1 แจกเลขให้คำ · บรรทัด 2 ลองวัดความใกล้จากเลขนั้น แล้วดูว่าผิดตรงไหน",
+  steps: [
+    ["แจกเลขให้คำ", "คอมพิวเตอร์ต้องการตัวเลข จึงเริ่มจากเลขประจำคำ"],
+    ["วัดความใกล้จากเลข", "ลองใช้เลขเป็นตำแหน่ง แล้วดูว่าความใกล้ผิดตรงไหน"],
+  ],
   lines: [
     [M.math(M.i("id"), M.row(M.o("("), M.i("w"), M.o(")")), M.o("="), M.t("the number given to word\u00a0"), M.i("w")),
       "แจกเลขให้แต่ละคำ · w = คำ (word) · id(w) = เลขประจำคำ เช่น id(good) = 6 · เลขไม่ได้มาจากความหมาย (ใครได้เลขอะไรมักขึ้นกับลำดับที่ใส่ลง vocabulary: ความรู้ทั่วไป)"],
@@ -101,7 +104,7 @@ export default {
         return M.math(M.t("gap"), M.row(M.o("("), M.t(a), M.o(","), M.t(b), M.o(")")), M.o("="),
             M.abs(M.n(ids[a], "ca"), M.o("−"), M.n(ids[b], "cb")), M.o("="), M.n(gap(ids, a, b), "res")) +
           `<p class="verdict">ตามเลข: ${say}</p>` +
-          `<p class="fintro">ทุกคู่ (บรรทัด 2):</p><div class="scroll"><table class="rank"><thead><tr><th>คู่</th><th>gap</th><th>ความหมายจริง</th></tr></thead><tbody>${rows}</tbody></table></div>`;
+          `<p class="fintro">ทุกคู่ (ขั้นตอน 2):</p><div class="scroll"><table class="rank"><thead><tr><th>คู่</th><th>gap</th><th>ความหมายจริง</th></tr></thead><tbody>${rows}</tbody></table></div>`;
       },
     };
   },

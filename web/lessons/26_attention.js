@@ -24,13 +24,16 @@ export default {
     "เลื่อน query ไปทางแกน dim 1: คะแนนของ k₂ แซงขึ้นมา",
     "ลดทุกช่องของ query ลงครึ่งหนึ่ง: คะแนนลดลงครึ่งหนึ่งทั้งคู่ แต่ลำดับเท่าเดิม",
   ],
-  linesIntro: "มี 2 บรรทัด: บรรทัด 1 ให้คะแนน key หนึ่งตัว · บรรทัด 2 ทำกับทุก key แล้วดูว่าใครได้มากสุด",
+  steps: [
+    ["ให้คะแนน key หนึ่งตัว", "dot ของ query กับ key"],
+    ["เทียบทุก key", "ทำขั้นตอน 1 กับทุก key แล้วดูว่าใครได้คะแนนมากสุด = ได้รับความสนใจมากสุด"],
+  ],
   lines: [
     [M.math(M.sub(M.t("score"), M.i("j")), M.o("="), M.v("q"), M.o("·"), M.sub(M.v("k"), M.i("j")), M.o("="),
       M.sum(M.row(M.i("i"), M.o("="), M.n(1)), M.i("d")), M.sub(M.i("q"), M.i("i")), M.sub(M.i("k"), M.row(M.i("j"), M.o(","), M.i("i")))),
       "ให้คะแนน key ตัวที่ j · <b>q</b> = query · <b>k</b><sub>j</sub> = key ตัวที่ j · i = เลขช่อง (1 ถึง d) · คูณช่องที่ตรงกันแล้วบวก = dot (บท 2.2) · ไม่หารด้วยความยาว ต่างจาก cosine"],
     [M.math(M.t("most attention"), M.o("="), M.t("highest\u00a0"), M.sub(M.t("score"), M.i("j"))),
-      "ทำบรรทัด 1 กับทุก key แล้วเทียบ · คะแนนมาก = ได้รับความสนใจมาก · บทนี้มี key สองตัว (k₁, k₂)"],
+      "ทำขั้นตอน 1 กับทุก key แล้วเทียบ · คะแนนมาก = ได้รับความสนใจมาก · บทนี้มี key สองตัว (k₁, k₂)"],
   ],
   formulaFrom: "เวกเตอร์ query (0.1, 0.8, 0.3), key₁ (0.2, 0.7, 0.4), key₂ (0.9, 0.1, 0.2) และคำว่า attention ใช้ query · key มาจากสไลด์ของคลิป SH AI Academy (~3:44) · <b>สไลด์พิมพ์ผลไว้ 0.69 และ 0.15 ซึ่งผิด</b> คำนวณใหม่ได้ 0.70 และ 0.23 (ลำดับเหมือนเดิม) ตรงกับเรื่องเสริมในบท 2.2",
   symbols: [
@@ -75,7 +78,7 @@ export default {
           ...q.flatMap((x, i) => [i ? M.o("+") : "", M.row(M.n(r2(x), AX[i]), M.o("×"), M.n(k.v[i]))]), M.o("="), M.n(fmt(k.s), "res"));
         const rows = sc.map((k, j) => `<tr class="${j === best ? "win" : ""}"><td>${k.id}</td><td>(${k.v.join(", ")})</td><td>${fmt(k.s)}</td><td class="dim">${j === best ? "สนใจมากกว่า" : ""}</td></tr>`).join("");
         return line(sc[best < 0 ? 0 : best]) +
-          `<p class="fintro">บรรทัด 2: เทียบทุก key</p><div class="scroll"><table class="rank"><thead><tr><th>key</th><th>เวกเตอร์</th><th>score</th><th></th></tr></thead><tbody>${rows}</tbody></table></div>` +
+          `<p class="fintro">ขั้นตอน 2: เทียบทุก key</p><div class="scroll"><table class="rank"><thead><tr><th>key</th><th>เวกเตอร์</th><th>score</th><th></th></tr></thead><tbody>${rows}</tbody></table></div>` +
           `<p class="ctl-note">${best < 0 ? "คะแนนเท่ากัน" : `${sc[best].id} ได้ความสนใจมากกว่า`}</p>`;
       },
     };

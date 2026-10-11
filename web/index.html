@@ -20,9 +20,12 @@
         <span class="word">Z<span>Vect</span></span>
       </a>
       <span id="version" class="version" title="เวอร์ชันของ lib"></span>
+      <!-- lib link = book icon right of the logo (owner, 2026-10-11 13:54: "เปลี่ยนเป็น icon หนังสือ อยู่ขวาของ Logo") -->
+      <a id="libnav" href="#/lib" data-slug="lib" class="libnav" title="เอา lib ไปใช้" aria-label="เอา lib ไปใช้">
+        <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 6.5 C9.5 4.8 6.5 4.6 3.5 5.4 V19 C6.5 18.2 9.5 18.4 12 20 C14.5 18.4 17.5 18.2 20.5 19 V5.4 C17.5 4.6 14.5 4.8 12 6.5 Z"/><path d="M12 6.5 V20"/></svg>
+      </a>
       <button id="menu" class="menu" aria-label="เปิดรายการบทเรียน" aria-controls="sidebar">☰</button>
     </div>
-    <p class="tag">เวกเตอร์ ตั้งแต่ลูกศรแรก<br>ถึงการค้นหาด้วยความหมาย</p>
     <div class="tools">
       <label class="find">
         <span class="sr">ค้นหาบทเรียน</span>
@@ -32,11 +35,6 @@
       </label>
       <datalist id="lessonlist"></datalist>
       <p id="findnone" class="findnone" hidden>ไม่พบบทที่ตรงกับคำนี้</p>
-      <a id="libnav" href="#/lib" data-slug="lib" class="libnav">
-        <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 7 L3 12 L8 17"/><path d="M16 7 L21 12 L16 17"/></svg>
-        <span>เอา lib ไปใช้</span>
-        <span class="go" aria-hidden="true">→</span>
-      </a>
     </div>
     <nav aria-label="บทเรียน">
       <ol id="nav"></ol>
@@ -53,9 +51,22 @@
         <nav id="pager" class="pager" aria-label="บทก่อนหน้าและบทถัดไป"></nav>
       </header>
 
+      <!-- explanation first, full width (owner, 2026-10-11 13:54: "อยากอ่านคำอธิบายก่อน อยากให้อยู่ด้านบนชิดซ้าย Width 100%") -->
+      <section class="learn" aria-label="คำอธิบาย">
+        <div class="learnmain">
+          <div id="intro" class="lede"></div>
+          <div id="steps" class="steps"></div>
+        </div>
+        <div class="trybox">
+          <h2>ลองทำ</h2>
+          <ul id="try" class="try"></ul>
+        </div>
+      </section>
+
       <div class="bench">
         <div class="stage">
           <div class="canvas-wrap">
+            <div id="ctools" class="ctools"></div>
             <canvas id="scene" tabindex="0" aria-label="ภาพ 3 มิติ ลากเพื่อหมุน ล้อเมาส์เพื่อซูม ดับเบิลคลิกเพื่อรีเซ็ต"></canvas>
           </div>
           <p id="hint" class="hint">ลากเพื่อหมุน ใช้ล้อเมาส์ซูม ดับเบิลคลิกเพื่อรีเซ็ต</p>
@@ -65,7 +76,7 @@
         <div class="desk">
           <section class="formula" aria-label="สูตร">
             <div class="fcol fbox-f">
-              <h2>สูตร (อ่านทีละบรรทัด)</h2>
+              <h2>สูตร (อ่านทีละขั้นตอน)</h2>
               <div id="formula"></div>
             </div>
             <div class="fcol fbox-v">
@@ -78,15 +89,9 @@
             </div>
           </section>
 
-          <section class="panel" aria-label="เนื้อหา โค้ด และแหล่งอ้างอิง">
+          <section class="panel" aria-label="อ่านสูตร สรุปจากแหล่ง โค้ด และแหล่งอ้างอิง">
             <div id="ptabs" class="ptabs" role="tablist" aria-label="เนื้อหาของบท"></div>
             <div class="pbody">
-              <div id="p-learn" class="ppane" role="tabpanel" aria-labelledby="pt-learn">
-                <div id="intro" class="lede"></div>
-                <h2>ลองทำ</h2>
-                <ul id="try" class="try"></ul>
-                <div id="extra" class="extra" hidden></div>
-              </div>
               <div id="p-sym" class="ppane" role="tabpanel" aria-labelledby="pt-sym" hidden></div>
               <div id="p-notes" class="ppane notes" role="tabpanel" aria-labelledby="pt-notes" hidden></div>
               <div id="p-code" class="ppane" role="tabpanel" aria-labelledby="pt-code" hidden>
