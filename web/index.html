@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="th">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="dark">
+  <meta name="theme-color" content="#11161f">
+  <title>ZVect</title>
+  <meta name="description" content="เรียน vector ทีละขั้น ตั้งแต่ vector ถึงการเลือก metric, bi-encoder และ classification พร้อมภาพ 3D สูตร และโค้ด JS / C++ / Python">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpath d='M6 26 L24 8' stroke='%232F6BD6' stroke-width='4' stroke-linecap='round'/%3E%3Cpath d='M15 7 H25 V17' fill='none' stroke='%232F6BD6' stroke-width='4' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-page="lesson">
+  <a class="skip" href="#main">ข้ามไปเนื้อหา</a>
+
+  <aside id="sidebar">
+    <div class="brand">
+      <a href="#/vector" class="logo">Z<span>Vect</span></a>
+      <button id="menu" class="menu" aria-label="เปิดรายการบทเรียน" aria-controls="sidebar">☰</button>
+    </div>
+    <p class="tag">เวกเตอร์ ตั้งแต่ลูกศรแรก ถึงการค้นหาด้วยความหมาย</p>
+    <div class="tools">
+      <label class="find">
+        <span class="sr">ค้นหาบทเรียน</span>
+        <input id="find" type="search" list="lessonlist" placeholder="ค้นหาบทเรียน…" autocomplete="off" spellcheck="false">
+      </label>
+      <datalist id="lessonlist"></datalist>
+      <p id="findnone" class="findnone" hidden>ไม่พบบทที่ตรงกับคำนี้</p>
+      <div class="librow">
+        <a id="libnav" href="#/lib" data-slug="lib" class="libnav">เอา lib ไปใช้</a>
+        <span id="version" class="version"></span>
+      </div>
+    </div>
+    <nav aria-label="บทเรียน">
+      <ol id="nav"></ol>
+    </nav>
+  </aside>
+
+  <main id="main">
+    <section class="lesson" aria-labelledby="title">
+      <header class="head">
+        <div class="headtext">
+          <p id="step" class="step"></p>
+          <h1 id="title"></h1>
+        </div>
+        <nav id="pager" class="pager" aria-label="บทก่อนหน้าและบทถัดไป"></nav>
+      </header>
+
+      <div class="bench">
+        <div class="stage">
+          <div class="canvas-wrap">
+            <canvas id="scene" tabindex="0" aria-label="ภาพ 3 มิติ ลากเพื่อหมุน ล้อเมาส์เพื่อซูม ดับเบิลคลิกเพื่อรีเซ็ต"></canvas>
+          </div>
+          <p id="hint" class="hint">ลากเพื่อหมุน ใช้ล้อเมาส์ซูม ดับเบิลคลิกเพื่อรีเซ็ต</p>
+          <form id="controls" class="controls" onsubmit="return false"></form>
+        </div>
+
+        <div class="desk">
+          <section class="formula" aria-label="สูตร">
+            <div class="fcol fbox-f">
+              <h2>สูตร (อ่านทีละบรรทัด)</h2>
+              <div id="formula"></div>
+            </div>
+            <div class="fcol fbox-v">
+              <h2>แทนค่าจากภาพตอนนี้</h2>
+              <div id="live" aria-live="polite"></div>
+            </div>
+            <div class="fcol fbox-l" id="listbox" hidden>
+              <h2>รายการ</h2>
+              <div id="list"></div>
+            </div>
+          </section>
+
+          <section class="panel" aria-label="เนื้อหา โค้ด และแหล่งอ้างอิง">
+            <div id="ptabs" class="ptabs" role="tablist" aria-label="เนื้อหาของบท"></div>
+            <div class="pbody">
+              <div id="p-learn" class="ppane" role="tabpanel" aria-labelledby="pt-learn">
+                <div id="intro" class="lede"></div>
+                <h2>ลองทำ</h2>
+                <ul id="try" class="try"></ul>
+                <div id="extra" class="extra" hidden></div>
+              </div>
+              <div id="p-sym" class="ppane" role="tabpanel" aria-labelledby="pt-sym" hidden></div>
+              <div id="p-notes" class="ppane notes" role="tabpanel" aria-labelledby="pt-notes" hidden></div>
+              <div id="p-code" class="ppane" role="tabpanel" aria-labelledby="pt-code" hidden>
+                <div class="codebar">
+                  <div id="tabs" role="tablist" aria-label="ภาษา"></div>
+                  <button id="copy" type="button" class="ghost">คัดลอก</button>
+                </div>
+                <pre class="code" id="codebox"><code id="code"></code></pre>
+                <p class="runline"><span id="codepath"></span><br>รัน: <code id="run"></code></p>
+              </div>
+              <div id="p-refs" class="ppane refs" role="tabpanel" aria-labelledby="pt-refs" hidden></div>
+            </div>
+          </section>
+        </div>
+      </div>
+    </section>
+
+    <section id="libpage" class="libpage"></section>
+  </main>
+
+  <script>
+    document.getElementById("menu").onclick = () => document.getElementById("sidebar").classList.toggle("open");
+  </script>
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>

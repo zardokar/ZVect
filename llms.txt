@@ -1,0 +1,59 @@
+# ZVect
+
+> A tiny vector library for learning, in three languages with the same API:
+> JavaScript (ES module), Python (standard library only) and C++17 (header-only).
+> Zero dependencies. A vector is a plain list of numbers.
+> License: ZVect Non-Commercial Study License — study and experiments only,
+> no commercial use without written permission (see LICENSE).
+
+## Files (copy one file, nothing else is needed)
+
+- [zvect.js](https://raw.githubusercontent.com/zardokar/ZVect/main/lib/zvect.js): JavaScript, Node >= 18 or browser, `import { cosine } from "./zvect.js"`
+- [zvect.py](https://raw.githubusercontent.com/zardokar/ZVect/main/lib/zvect.py): Python 3, `from zvect import cosine`
+- [zvect.hpp](https://raw.githubusercontent.com/zardokar/ZVect/main/lib/zvect.hpp): C++17, `#include "zvect.hpp"`, namespace `zv`, vector type `zv::Vec` (std::vector<double>)
+- [MANIFEST.json](https://raw.githubusercontent.com/zardokar/ZVect/main/lib/MANIFEST.json): version + sha256 of each file. Verify the file you fetched against it.
+
+## API (same names in all three; Python uses top_k instead of topK)
+
+- vec(...xs) -> vector
+- add(a, b), sub(a, b), scale(a, k) -> vector
+- dot(a, b) -> number            sum of a[i] * b[i]
+- norm(a) -> number              length |a|
+- normalize(a) -> vector         a / |a|, zero vector stays zero
+- distance(a, b) -> number       |a - b|
+- cosine(a, b) -> number         (a . b) / (|a| |b|), in [-1, 1], 0 if either is zero
+- angle(a, b) -> radians         clamped, never NaN
+- project(b, a) -> vector        projection of b onto a
+- mean(list) -> vector           centroid
+- topK(query, items, k=3, metric=cosine)
+    JS:     items [{ id, v }]  -> [{ id, v, score }] best first
+    Python: items [(id, v)]    -> [(id, score)] best first
+    C++:    vector<pair<string, Vec>> -> vector<pair<string, double>>; metric is std::function
+- classify(x, centroids, metric=cosine)   nearest centroid
+    JS: { label: vector } -> { label, score }
+    Python: dict -> (label, score)
+    C++: vector<pair<string, Vec>> (ordered) -> pair<string, double>
+- words(text) -> list            split on ASCII non-alphanumerics, lower-case A-Z only; non-ASCII (e.g. Thai) stays in words
+- encode(text, table) -> unit vector      toy bi-encoder: mean of known word vectors, zero vector if none known
+
+## Shared rules (enforced by tests/parity, identical in all three)
+
+- size mismatch -> throws "size mismatch: n vs m" (JS Error, Python ValueError, C++ std::invalid_argument)
+- mean([]) -> "empty list"; classify with no centroids -> "no centroids"; encode with empty table -> "empty table"
+- cosine with a zero vector returns 0 (mathematically undefined; 0 by convention)
+- a vector whose squared length underflows to 0 (e.g. [1e-300, 0, 0]) counts as a zero vector (cosine 0, normalize -> zero)
+- ties: topK keeps input order, classify picks the first label
+- fmt(x) -> string               3 decimals, "[1.000, 2.000]" (identical output in all three)
+- VERSION
+
+## Rules for AI agents using this repo
+
+- Do not add dependencies or frameworks. Any exception needs a dated owner approval row in docs/APPROVALS.md.
+- After editing lib/, run `npm run manifest`, `npm test` and `npm run check` (JS / Python / C++ outputs must match).
+- The web lessons use dark theme only.
+
+## Learn
+
+- Lessons (online: https://zardokar.github.io/ZVect/ once GitHub Pages is on; locally: `npm start`, open http://localhost:5173), numbered chapter.topic: 1 basics (1.1 vector, 1.2 length, 1.3 vector space, 1.4 add/subtract/scale, 1.5 matrix = vectors as rows) | 2 closeness (2.1 Euclidean distance, 2.2 dot product, 2.3 cosine) | 3 text to vectors (3.1 token ID, 3.2 one-hot, 3.3 bag of words, 3.4 embedding matrix, 3.5 learning the table, 3.6 latent space) | 4 nearest-item search (4.1 by cosine, 4.2 by distance, 4.3 by dot, 4.4 choosing a metric) | 5 fast search at scale (5.1 high dimensions, 5.2 vector search graph walk, 5.3 1-bit vectors with XOR + popcount) | 6 in practice (6.1 bi-encoder, 6.2 reranker, 6.3 classification) | 7 vectors in an LLM (7.1 embedding layer + positional encoding, 7.2 attention scores with query · key). File prefixes (01_…26_) are creation order; the order lives in GROUPS in web/js/app.js.
+- Sources the lessons draw on: REFERENCE.md.
+- Runnable examples: examples/js, examples/py, examples/cpp (same output in every language).

@@ -1,0 +1,29 @@
+{
+  "name": "zvect",
+  "version": "0.1.0",
+  "description": "Learn vectors step by step: vector, distance, dot product, cosine, embedding matrix, latent space, vector search, bi-encoder, reranker, classification. 3D canvas lessons + a tiny zero-dependency vector lib (JS / Python / C++).",
+  "type": "module",
+  "main": "./lib/zvect.js",
+  "exports": {
+    ".": "./lib/zvect.js"
+  },
+  "files": [
+    "lib/"
+  ],
+  "scripts": {
+    "start": "node server.js",
+    "test": "node --test tests/zvect.test.js",
+    "check": "node tools/check-examples.js",
+    "manifest": "node tools/make-manifest.js",
+    "zv": "node tools/zv.js"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/zardokar/ZVect.git"
+  },
+  "license": "SEE LICENSE IN LICENSE",
+  "private": true
+}

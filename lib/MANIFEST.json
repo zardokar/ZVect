@@ -1,0 +1,25 @@
+{
+  "name": "zvect",
+  "version": "0.1.0",
+  "license": "ZVect Non-Commercial Study License (see LICENSE)",
+  "files": [
+    {
+      "file": "zvect.js",
+      "bytes": 4078,
+      "sha256": "81bdc879ae6e7ed7cf77df8d423e095645060803953881f24aa61b5e1e2e7f78",
+      "raw": "https://raw.githubusercontent.com/zardokar/ZVect/main/lib/zvect.js"
+    },
+    {
+      "file": "zvect.py",
+      "bytes": 3549,
+      "sha256": "0821a5cbcb5b3fe358b979d64a3561051e0da62bfb6f7240a90c687d178c9207",
+      "raw": "https://raw.githubusercontent.com/zardokar/ZVect/main/lib/zvect.py"
+    },
+    {
+      "file": "zvect.hpp",
+      "bytes": 4854,
+      "sha256": "acacad513b112a75354a823a06a7592c64b455f995b236edf95cdcc8b8855c33",
+      "raw": "https://raw.githubusercontent.com/zardokar/ZVect/main/lib/zvect.hpp"
+    }
+  ]
+}

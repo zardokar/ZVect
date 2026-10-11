@@ -147,3 +147,7 @@ vite.config.ts.timestamp-*
 
 # Turbo Repo
 .turbo
+
+# AI handoffs (ephemeral)
+.dropzone/
+__pycache__/
