@@ -74,7 +74,8 @@ export default {
     const C = ui.vec3("เวกเตอร์ C", [3, 2, 0], { min: -5, max: 5, step: 0.5 });
     const mode = ui.choice("ใช้เวกเตอร์แบบ", [["raw", "ค่าดิบ"], ["unit", "normalize ก่อน"]], st, "mode");
     const kk = ui.number("ยืด B = k·A", "k", st, "k", { min: 0.25, max: 3, step: 0.25 });
-    ui.buttons("ตั้งค่า", [["ชุด A, B, C เริ่มต้น (ค่าดิบ)", () => { mode.set("raw"); kk.set(2); ui.setVec(C, [3, 2, 0]); }]]);
+    ui.buttons("", [["คืนค่าเริ่มต้น (A, B, C ค่าดิบ)", () => { mode.set("raw"); kk.set(2); ui.setVec(C, [3, 2, 0]); }]],
+      { visible: () => st.mode !== "raw" || st.k !== 2 || C.join() !== "3,2,0" });   // only after something was changed
     const B = () => scale(A, st.k);
     const use = (v) => (st.mode === "unit" ? normalize(v) : v);
     return {

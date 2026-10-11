@@ -1,4 +1,4 @@
-// multilang.js — the toy multilingual encoder shared by 6.1 Bi-Encoder and 6.2 Reranker (WIP202610029).
+// multilang.js — the toy multilingual encoder shared by 6.1 Bi-Encoder, 6.2 Late interaction and 6.3 Reranker (WIP202610029).
 // One idea: a multilingual encoder puts sentences with the same meaning in the same place, whatever the
 // language — but only if the text is first cut into words correctly. Thai, Chinese and Japanese do not put
 // spaces between words, so "split at spaces" gives one big unknown chunk; a dictionary (longest match) works.
@@ -16,30 +16,23 @@ export const LANGS = [
 export const LANG = Object.fromEntries(LANGS.map((l) => [l.id, l]));
 export const AXIS_NAMES = ["food", "animal", "tech"];
 
-// meaning of each word = one vector (axes: food, animal, tech) — same numbers as the old English-only lesson
-const CV = {
-  eat: [1, 0, 0], rice: [1, 0, 0], noodle: [1, 0, 0], pizza: [1, 0, 0], hungry: [0.9, 0.1, 0], feed: [0.8, 0.2, 0],
-  cat: [0, 1, 0], dog: [0, 1, 0], pet: [0, 1, 0], bark: [0.1, 0.9, 0], fish: [0.5, 0.5, 0],
-  code: [0, 0, 1], computer: [0, 0, 1], phone: [0, 0, 1], app: [0, 0, 1], robot: [0, 0.2, 0.8], bug: [0, 0.5, 0.5],
-};
-// the vocabulary: written word -> meaning. English keeps base forms only (dog, not dogs), like the old table — "pets" is
-// the one exception, kept because the documents use it.
-const WORDS = {
-  en: { eat: "eat", rice: "rice", noodle: "noodle", pizza: "pizza", hungry: "hungry", feed: "feed", cat: "cat", dog: "dog",
-    pet: "pet", pets: "pet", bark: "bark", fish: "fish", code: "code", computer: "computer", phone: "phone", app: "app",
-    robot: "robot", bug: "bug" },
-  th: { "กิน": "eat", "ข้าว": "rice", "ก๋วยเตี๋ยว": "noodle", "พิซซ่า": "pizza", "หิว": "hungry", "ให้อาหาร": "feed",
-    "แมว": "cat", "หมา": "dog", "สุนัข": "dog", "สัตว์เลี้ยง": "pet", "เห่า": "bark", "ปลา": "fish", "โค้ด": "code",
-    "คอมพิวเตอร์": "computer", "โทรศัพท์": "phone", "แอป": "app", "หุ่นยนต์": "robot", "บั๊ก": "bug" },
-  zh: { "吃": "eat", "米饭": "rice", "面条": "noodle", "披萨": "pizza", "饿": "hungry", "喂": "feed", "猫": "cat", "狗": "dog",
-    "宠物": "pet", "叫": "bark", "鱼": "fish", "代码": "code", "电脑": "computer", "手机": "phone", "应用": "app",
-    "机器人": "robot", "错误": "bug" },
-  jp: { "食べ": "eat", "ご飯": "rice", "麺": "noodle", "ピザ": "pizza", "空腹": "hungry", "餌": "feed", "猫": "cat", "犬": "dog",
-    "ペット": "pet", "吠え": "bark", "魚": "fish", "コード": "code", "パソコン": "computer", "スマホ": "phone",
-    "アプリ": "app", "ロボット": "robot", "バグ": "bug" },
-};
-// negation words (6.2): which side the denied word sits on. English, Thai, Chinese: before; Japanese ない: after.
-export const NEG = { not: "before", no: "before", "ไม่": "before", "不": "before", "没": "before", "ない": "after" };
+// The dictionary itself (meaning -> vector on the axes food, animal, tech; written word -> meaning, per language; negation
+// words) lives in web/data/dict/*.json and is read through the dict facade (web/js/dict/index.js), which keeps a copy in localStorage with the words the
+// learner added on the Dict page (#/dict). Same numbers as before the move (2026-10-11 16:12).
+import { dict } from "./dict/index.js";
+const DICT = dict.data;
+const CV = DICT.meanings;
+const WORDS = DICT.words;
+// negation words (6.3): which side the denied word sits on. English, Thai, Chinese: before; Japanese ない: after.
+export const NEG = DICT.neg;
+// the six four-language samples shared by 3.1 and 6.1 (web/data/samples.json)
+export const SAMPLES = await fetch(new URL("../data/samples.json", import.meta.url)).then((r) => r.json());
+// which language a word or character belongs to, for colouring vocabulary lists (first language that has it)
+export function langOf(t) {
+  for (const l of LANGS) if (Object.hasOwn(WORDS[l.id], t)) return l;
+  return null;
+}
+export const vecOf = (meaning) => CV[meaning];
 
 const isWord = (c) => typeof c === "string" && Object.hasOwn(CV, c);   // a meaning with a vector (not "NOT", not unknown)
 const LEX = Object.assign({}, ...Object.values(WORDS));          // one shared vocabulary
@@ -75,7 +68,7 @@ export function encodeTokens(tokens) {
   const vs = tokens.filter((x) => isWord(x.c)).map((x) => CV[x.c]);
   return vs.length ? normalize(mean(vs)) : [0, 0, 0];
 }
-// 6.2 toy reranker: meanings of the query found in the doc, not counting a doc word that a negation word denies
+// 6.3 toy reranker: meanings of the query found in the doc, not counting a doc word that a negation word denies
 // (the nearest known word before "not / ไม่ / 不" or after "ない")
 export function matches(qTokens, dTokens) {
   const want = new Set(qTokens.filter((x) => isWord(x.c)).map((x) => x.c));

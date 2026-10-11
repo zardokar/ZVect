@@ -21,6 +21,15 @@
   --cover-muted: #8494ad;
   --code-bg: #0e131c;
   --code-ink: #e6ebf3;
+  /* controls share one height and corner (owner, 2026-10-11 21:40: "UI ไม่เท่ากัน … ไม่ Respect Grid System") */
+  --ctl-h: 34px;
+  --ctl-radius: 6px;
+  --cell-gap: 14px;   /* space after every table cell and every grid column, so forms line up with the tables under them */
+  /* equation box (.eq): every formula made by M.math in kit.js wears it; change the look here (owner, 2026-10-11 21:39) */
+  --eq-bg: #0c1018;
+  --eq-border: #2f3a50;
+  --eq-radius: 8px;
+  --eq-pad: 6px 12px;
 
   --font: "Leelawadee UI", "Segoe UI", "Noto Sans Thai", "Sarabun", system-ui, sans-serif;
   --mono: "Cascadia Mono", "Cascadia Code", Consolas, "SFMono-Regular", ui-monospace, monospace;
@@ -214,6 +223,7 @@ select, .txt {
   border: 1px solid var(--line); border-radius: 6px; padding: 4px 8px;
 }
 .txt { width: 100%; margin: 4px 0; }
+select, .txt, .btn { box-sizing: border-box; height: var(--ctl-h); border-radius: var(--ctl-radius); }
 .ctl-note { flex-basis: 100%; margin: 0; font-size: 14px; color: var(--muted); }
 .ctl-note code { font-family: var(--mono); font-size: 12.5px; background: var(--panel); border: 1px solid var(--line); border-radius: 4px; padding: 0 4px; color: var(--ink); }
 
@@ -250,6 +260,10 @@ math .res { color: var(--vr); font-weight: 700; }
 math .ca { color: var(--va); font-weight: 700; }
 math .cb { color: var(--vb); font-weight: 700; }
 math mtd { padding: 3px 8px; }
+/* component: equation box — a darker panel so a formula stands out from the text around it */
+math.eq { box-sizing: border-box;   /* keep MathML's own block layout: display: block would break it */
+  background: var(--eq-bg); border: 1px solid var(--eq-border);
+  border-radius: var(--eq-radius); padding: var(--eq-pad); }
 #live { min-height: 40px; }
 .verdict { margin: 4px 0 0; font-size: 15px; }
 .meter { position: relative; height: 34px; margin: 10px 4px 4px; }
@@ -260,7 +274,7 @@ math mtd { padding: 3px 8px; }
 .meter-l, .meter-c, .meter-r { position: absolute; top: 18px; font-size: 12px; color: var(--muted); }
 .meter-l { left: 0; } .meter-c { left: 50%; transform: translateX(-50%); } .meter-r { right: 0; }
 .rank { border-collapse: collapse; margin: 8px 0 0; font-size: 14.5px; font-variant-numeric: tabular-nums; }
-.rank th, .rank td { text-align: left; padding: 3px 14px 3px 0; border-bottom: 1px solid var(--line); }
+.rank th, .rank td { text-align: left; padding: 3px var(--cell-gap) 3px 0; border-bottom: 1px solid var(--line); }
 .rank th { color: var(--muted); font-weight: 600; white-space: nowrap; }   /* owner, 2026-10-11: a header never wraps to 2 lines */
 .rank tr.win td { font-weight: 700; }
 .rank th.on { color: var(--vr); }
@@ -360,3 +374,53 @@ math mtd { padding: 3px 8px; }
   #scene { aspect-ratio: 1 / 1; }
 }
 @media (prefers-reduced-motion: reduce) { .meter-dot { transition: none; } }
+
+/* brand row now holds two icons (lib, dict): a little tighter so everything fits the 236 px sidebar */
+.brand { gap: 6px; position: relative; padding-bottom: 26px; }
+.brand .version { position: absolute; left: 35px; top: 30px; margin: 0; font-size: 10.5px; padding: 0 6px; }
+.brand #libnav { margin-left: auto; }
+
+/* Dict page (owner, 2026-10-11 16:12–16:15): words keep their language colour everywhere */
+/* Dict page grid: the same 6 columns as the table below (meaning, EN, TH, 中文, 日本語, action) — one token set for both;
+   the add button sits in the action column, right of every text box (owner 21:48) */
+.libpage { --dcol-mean: 24%; --dcol-lang: 17%; --dcol-act: 8%; }
+.dgrid { display: grid; grid-template-columns: var(--dcol-mean) repeat(4, var(--dcol-lang)) var(--dcol-act); row-gap: 10px; align-items: end; }
+table.dict col.c-act { width: var(--dcol-act); }
+.dgrid .btn.dadd { width: 100%; padding: 0 6px; }
+.dstat { margin: 0; height: var(--ctl-h); display: flex; align-items: center; gap: 4px; font-size: 13.5px; color: var(--muted); }
+table.dict col.c-mean { width: var(--dcol-mean); }
+table.dict col.c-lang { width: var(--dcol-lang); }
+.dgrid > * { margin-right: var(--cell-gap); min-width: 0; }
+.dgrid .span2 { grid-column: span 2; }
+.dgrid .full { grid-column: 1 / -1; }
+.dgrid > .full, .dgrid > .end { margin-right: 0; }   /* the last column ends where the table ends */
+table.dict th:last-child, table.dict td:last-child { padding-right: 0; }
+.dgrid .btn { width: calc(100% - var(--cell-gap)); }
+.dictform { margin: 14px 0 4px; }
+.dictform label { display: grid; gap: 4px; font-size: 13.5px; color: var(--muted); }
+.dictform .txt, .dictform select { width: 100%; margin: 0; }
+.dictform select, .dictform input[type=number] { font: inherit; color: var(--ink); background: var(--panel); border: 1px solid var(--line); border-radius: var(--ctl-radius); padding: 0 6px; }
+.dictform input[type=number] { box-sizing: border-box; height: var(--ctl-h); }
+.dictform input[type=number] { width: 5.5em; }
+.dvec { display: flex; gap: 10px; border: 1px solid var(--line); border-radius: 8px; padding: 4px 10px 8px; }
+.dvec[hidden] { display: none; }
+table.dict { width: 100%; table-layout: fixed; }
+table.dict th, table.dict td { overflow-wrap: anywhere; }
+table.dict .vec { font-size: 12px; white-space: nowrap; }
+@media (max-width: 520px) { table.dict { font-size: 13px; } table.dict th, table.dict td { padding: 4px 3px; } table.dict .dw { word-break: break-word; }
+  .dgrid { grid-template-columns: repeat(2, minmax(0, 1fr)); } .dgrid .span2, .dgrid .dmean, .dgrid .dadd, .dtools .btn { grid-column: 1 / -1; }
+  table.dict col.c-act { width: 0; } table.dict th:last-child, table.dict td:last-child { display: none; } .dgrid > * { margin-right: 0; } .dgrid { column-gap: 10px; } .dgrid .btn { width: 100%; } }
+.dvec legend { font-size: 12.5px; color: var(--muted); }
+.btn { font: inherit; font-size: 14px; color: var(--ink); background: var(--panel); border: 1px solid var(--line); padding: 0 14px; cursor: pointer;
+  display: inline-flex; align-items: center; justify-content: center; white-space: nowrap; }
+.btn:hover { border-color: var(--muted); }
+.btn.ghost { color: var(--muted); }
+.btn:disabled { opacity: 0.5; cursor: default; }
+.dmsg { min-height: 1.4em; font-size: 14px; color: var(--y); margin: 4px 0; }
+.dmsg.err { color: var(--x); }
+.dtools { margin: 0 0 6px; }
+table.dict td { vertical-align: top; }
+.dw { display: inline-flex; align-items: center; gap: 2px; color: var(--c); margin: 1px 6px 1px 0; }
+.dw.mine { border: 1px dashed var(--c); border-radius: 5px; padding: 0 2px 0 6px; }
+.dw .del { font: inherit; font-size: 13px; line-height: 1; color: var(--muted); background: none; border: 0; cursor: pointer; padding: 0 3px; }
+.dw .del:hover { color: var(--x); }

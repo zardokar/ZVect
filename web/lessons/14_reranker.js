@@ -2,7 +2,7 @@ import { cosine, fmt } from "../../lib/zvect.js";
 import { M, esc } from "../js/kit.js";
 import { LANGS, LANG, AXIS_NAMES, NEG, split, encodeTokens, matches, chips, mountPanel, sampleOf } from "../js/multilang.js";
 
-// 6.2 Reranker in four languages (WIP202610029): stage 1 = bi-encoder top 3 by cosine, stage 2 = a toy reranker that
+// 6.3 Reranker in four languages (WIP202610029): stage 1 = bi-encoder top 3 by cosine, stage 2 = a toy reranker that
 // reads query and document text together and does not count a word that a negation word denies.
 // The five documents are written in all four languages; each language searches its own translation.
 // Negation sits before the word in English (not), Thai (ไม่), Chinese (不 / 没) and after it in Japanese (ない).

@@ -11,7 +11,7 @@ export const deg = (rad) => (rad * 180) / Math.PI;
 // ---------- MathML ----------
 const cls = (c) => (c ? ` class="${c}"` : "");
 export const M = {
-  math: (...xs) => `<math display="block">${xs.join("")}</math>`,
+  math: (...xs) => `<math display="block" class="eq">${xs.join("")}</math>`,   // .eq = the equation box in style.css
   row: (...xs) => `<mrow>${xs.join("")}</mrow>`,
   i: (s, c = "") => `<mi${cls(c)}>${s}</mi>`,
   // bold vector name, e.g. M.v("a")
@@ -82,7 +82,9 @@ export function makeUI(panel, notify) {
     // a row of buttons: list = [[text, fn], ...]; fn runs, then the lesson redraws.
     // pressed (optional) = () => index of the button whose result is on screen now (-1 = none): that button is shown
     // pressed, and it updates after any change, e.g. typing over a sample (owner, 2026-10-11 14:55: "กดแล้วไม่เหมือนกด").
-    buttons(title, list, { pressed = null } = {}) {
+    // visible (optional) = () => whether the group is shown now: a lone "back to the default" button appears only after the
+    // learner has changed something (owner, 2026-10-11 21:30: "ถ้ามันมีตัวเลือกเดียวจะแสดงทำไม").
+    buttons(title, list, { pressed = null, visible = null } = {}) {
       const box = group(title);
       const wrap = document.createElement("div");
       wrap.className = pressed ? "seg pick" : "seg";
@@ -97,6 +99,11 @@ export function makeUI(panel, notify) {
         const sync = () => { const k = pressed(); btns.forEach((b, i) => b.setAttribute("aria-pressed", String(i === k))); };
         syncers.push(sync);
         queueMicrotask(sync);
+      }
+      if (visible) {
+        const sync = () => { box.style.display = visible() ? "" : "none"; };
+        syncers.push(sync);
+        sync();
       }
       box.append(wrap);
     },
@@ -140,6 +147,7 @@ export function makeUI(panel, notify) {
       const box = group(title);
       const inp = document.createElement("input");
       inp.type = "text"; inp.value = state[key]; inp.placeholder = placeholder; inp.className = "txt";
+      inp.setAttribute("aria-label", title.replace(/<[^>]*>/g, ""));
       inp.addEventListener("input", () => { state[key] = inp.value; onChange(); });
       box.append(inp);
       return inp;
@@ -190,6 +198,7 @@ export function makeUI(panel, notify) {
       sel.innerHTML = tags.map(([v, t]) => `<option value="${v}">${t}</option>`).join("");
       const inp = document.createElement("input");
       inp.type = "text"; inp.placeholder = placeholder; inp.className = "txt";
+      inp.setAttribute("aria-label", title.replace(/<[^>]*>/g, ""));
       const sync = () => {
         sel.value = state[tagKey]; inp.value = state[textKey][state[tagKey]] ?? "";
         sel.style.setProperty("--c", `var(${tags.find(([v]) => v === state[tagKey])[2]})`);

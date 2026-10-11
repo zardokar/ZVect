@@ -44,12 +44,13 @@ Branch: **main**, folder **/ (root)** → Save หลังจากนั้น
 | | 2.3 | Cosine similarity: เทียบทิศโดยไม่สนความยาว, cosine distance = 1 − cos | `03_cosine` |
 | 3 เปลี่ยนข้อความเป็นเวกเตอร์ | 3.1 | Tokenization: ตัดข้อความเป็นตัวอักษรหรือคำ แล้วเปิดคลังหาเลข (4 ภาษา EN / TH / 中文 / 日本語) | `34_tokenize` |
 | | 3.2 | BPE: เริ่มจากตัวอักษร แล้วรวมคู่ที่เจอบ่อยทีละรอบ (นับสดทุกรอบ) | `35_bpe` |
-| | 3.3 | Token ID: เลขประจำคำเป็นแค่ป้ายชื่อ (good 6, bad 22, great 21) | `21_token_id` |
-| | 3.4 | One-hot: เลข 1 ตัวเดียว ทุกคู่ห่างกันเท่ากัน | `22_one_hot` |
-| | 3.5 | Bag of words: นับคำแล้วได้เวกเตอร์ (StatQuest) | `23_bag_of_words` |
-| | 3.6 | Embedding matrix: one-hot × ตาราง = หยิบแถวของคำ | `12_embedding_matrix` |
-| | 3.7 | ตารางมาจากการฝึก: เริ่มสุ่ม แล้วปรับทีละนิด (CBOW แบบย่อ) | `24_learn_table` |
-| | 3.8 | Latent space: แกนที่มีความหมาย, king − man + woman | `05_latent_space` |
+| | 3.3 | Tokenizer ของ GPT: BPE ที่เริ่มจากไบต์ UTF-8 (ไทย 3 ไบต์ต่อตัว, เลขใหม่ 256 + i, encode / decode, regex ของ GPT-2) | `37_gpt_tokenizer` |
+| | 3.4 | Token ID: เลขประจำคำเป็นแค่ป้ายชื่อ (good 6, bad 22, great 21) | `21_token_id` |
+| | 3.5 | One-hot: เลข 1 ตัวเดียว ทุกคู่ห่างกันเท่ากัน | `22_one_hot` |
+| | 3.6 | Bag of words: นับคำแล้วได้เวกเตอร์ (StatQuest) | `23_bag_of_words` |
+| | 3.7 | Embedding matrix: one-hot × ตาราง = หยิบแถวของคำ | `12_embedding_matrix` |
+| | 3.8 | ตารางมาจากการฝึก: เริ่มสุ่ม แล้วปรับทีละนิด (CBOW แบบย่อ) | `24_learn_table` |
+| | 3.9 | Latent space: แกนที่มีความหมาย, king − man + woman | `05_latent_space` |
 | 4 ค้นหาของที่ใกล้ที่สุด | 4.1 | ค้นด้วย cosine (top-3) | `06_similarity` |
 | | 4.2 | ค้นด้วย distance | `18_search_distance` |
 | | 4.3 | ค้นด้วย dot | `19_search_dot` |
@@ -71,18 +72,18 @@ Branch: **main**, folder **/ (root)** → Save หลังจากนั้น
 | 7 เวกเตอร์ใน LLM | 7.1 | LLM input: แถวละ token แล้วบวกเวกเตอร์ตำแหน่ง | `25_llm_input` |
 | | 7.2 | Attention: ให้คะแนนด้วย query · key | `26_attention` |
 
-เลขหน้าไฟล์ (`01_`…`36_`) คือลำดับที่เขียนไฟล์ ไม่ใช่ลำดับบท ลำดับบทกำหนดใน `GROUPS` ของ `web/js/app.js`
+เลขหน้าไฟล์ (`01_`…`37_`) คือลำดับที่เขียนไฟล์ ไม่ใช่ลำดับบท ลำดับบทกำหนดใน `GROUPS` ของ `web/js/app.js`
 
 ## โครงสร้าง
 
 ```
 lib/          ไลบรารีเวกเตอร์ (zvect.js / zvect.py / zvect.hpp) + MANIFEST.json  ← เอาไปใช้ที่นี่
 examples/     ตัวอย่างของแต่ละบท js/ py/ cpp/ (ไฟล์เดียวกับแท็บโค้ดในเว็บ)
-web/          หน้าเว็บบทเรียน: js/scene3d.js (3D renderer), lessons/*.js, css/
+web/          หน้าเว็บบทเรียน: js/scene3d.js (3D renderer), js/dict/ (พจนานุกรม 4 ภาษา: index.js = facade, adapters.js, model.js, page.js), lessons/*.js, css/
 tools/        check-examples.js, make-manifest.js, zv.js
-tests/        node:test
+tests/        node:test (lib + dict facade)
 docs/         APPROVALS.md (กติกาเรื่อง dependency), outhtm/ + aimd/ (สรุปคลิปที่อ่านมา)
-REFERENCE.md  แหล่งที่อ่านมาและใช้ประกอบบทเรียน
+REFERENCE.md  แหล่งที่อ่านมาและใช้ประกอบบทเรียน (มีกลุ่มหัวข้อและดัชนี tag ให้ค้นเร็ว)
 checkpoints/  สถานะงานและ WIP ledger สำหรับ AI session ถัดไป
 index.html    หน้าแรกของ GitHub Pages (พาไปที่ web/)
 server.js     เว็บเซิร์ฟเวอร์ด้วย node:http (layout เดียวกับ GitHub Pages)

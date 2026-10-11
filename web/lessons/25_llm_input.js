@@ -22,13 +22,13 @@ export default {
   axisNames: ["dim 1", "dim 2", "dim 3"],
   view: { dist: 13, yaw: 0.75 },
   intro: `
-    <p>ก่อนเข้า LLM ประโยคถูกตัดเป็น token แล้วหยิบแถวจากตาราง embedding (บท 3.4) มาเรียง <b>แถวละ token</b>:
+    <p>ก่อนเข้า LLM ประโยคถูกตัดเป็น token แล้วหยิบแถวจากตาราง embedding (บท 3.7) มาเรียง <b>แถวละ token</b>:
     6 token ได้ตาราง 6 × d (บท 1.5)</p>
     <p>LLM อ่านทุก token พร้อมกัน จึงต้อง <b>บวกเวกเตอร์ตำแหน่ง</b> (positional encoding) เข้าไปในแต่ละแถว ไม่งั้นจะไม่รู้ว่าคำไหนมาก่อน</p>`,
   try: [
     "กด \"แถวถัดไป\": ลูกศรสั้น ๆ คือเวกเตอร์ตำแหน่งที่บวกเข้าไป จุดจึงขยับจากแถวเดิมนิดหน่อย",
     "เลือก \"ไม่บวกตำแหน่ง\" แล้วกด \"สลับ cat กับ mat\": ตารางมีแถวชุดเดิมทุกแถว แค่สลับที่ ลำดับคำจึงหายไป",
-    "เลือก \"บวกตำแหน่ง\" แล้วสลับอีกครั้ง: แถวของ cat เปลี่ยนตามตำแหน่งที่มันอยู่",
+    "เลือก \"บวกตำแหน่ง\" แล้วกดสลับไปมาระหว่าง \"ตามประโยค\" กับ \"สลับ cat กับ mat\": แถวของ cat เปลี่ยนตามตำแหน่งที่มันอยู่",
   ],
   steps: [
     ["เปลี่ยนประโยคเป็นตาราง", "หยิบแถวของทุก token มาเรียงกัน"],
@@ -43,7 +43,7 @@ export default {
   formulaFrom: "ประโยค \"The cat sat on a mat\", ID 791, 8415, 7731, 389, 264, 5634, ตาราง 6 × d และการบวกเวกเตอร์ตำแหน่ง (ขนาดไม่เปลี่ยน) มาจากคลิป Under The Hood · ตัวเลข 3 ตัวของแต่ละแถวและของแต่ละตำแหน่งผู้จัดทำแต่งเอง (ของจริงมีหลายร้อยมิติ และค่าตำแหน่งได้จากการฝึกหรือจากสูตรคงที่)",
   symbols: [
     ["t<sub>i</sub>", "token ตำแหน่งที่ i", "t₂ = cat (ID 8415)"],
-    ["e<sub>t</sub>", "แถวของ token t ในตาราง embedding", "หยิบด้วย ID (บท 3.4)"],
+    ["e<sub>t</sub>", "แถวของ token t ในตาราง embedding", "หยิบด้วย ID (บท 3.7)"],
     ["X", "ตารางของทั้งประโยค: แถวละ token", "6 × d"],
     ["p<sub>i</sub>", "เวกเตอร์ของตำแหน่ง i", "ลูกศรสั้นในภาพ"],
     ["x<sub>i</sub>", "แถวหลังบวกตำแหน่ง", "จุดสีในภาพ"],
@@ -70,13 +70,16 @@ export default {
   refs: [["wordemb", "The cat sat on a mat → 6 × d, ID บนจอ, ชั้น embedding ฝึกพร้อมโมเดล, positional encoding (ฝึกได้หรือคงที่, ขนาดไม่เปลี่ยน)"],
     ["sofar", "ลำดับขั้นใน GPT, ขนาดคำศัพท์และมิติของ GPT-1/2/3"], ["choose", "static (Word2Vec: bank มีพิกัดเดียว) กับ contextual"]],
   mount(ui) {
-    const st = { i: 1, pos: "on", order: ORDER };
+    const st = { i: 1, pos: "on", order: ORDER, ord: "order" };
     ui.buttons("เลือกแถว i", [["← แถวก่อน", () => { st.i = (st.i + 5) % 6; }], ["แถวถัดไป →", () => { st.i = (st.i + 1) % 6; }]]);
     ui.choice("ตำแหน่ง", [["off", "ไม่บวกตำแหน่ง"], ["on", "บวกตำแหน่ง"]], st, "pos");
-    ui.buttons("ลำดับคำ", [["สลับ cat กับ mat", () => { st.order = st.order === ORDER ? SWAP : ORDER; }]]);
+    // two states, so a two-way choice instead of one toggle button (owner 21:30: no lone buttons)
+    ui.choice("ลำดับคำ", [["order", "ตามประโยค (cat … mat)"], ["swap", "สลับ cat กับ mat"]], st, "ord");
+    const sync = () => { st.order = st.ord === "swap" ? SWAP : ORDER; };
     const rowOf = (k) => { const t = st.order[k]; return st.pos === "on" ? add(E[t], P[k]) : E[t]; };
     return {
       draw(s) {
+        sync();
         s.grid(4); s.axes(4.6);
         st.order.forEach((t, k) => {
           const on = k === st.i, col = on ? s.c.a : t === "cat" || t === "mat" ? s.c.b : s.c.ink;
@@ -88,6 +91,7 @@ export default {
         });
       },
       live() {
+        sync();
         const k = st.i, t = st.order[k], e = E[t], x = rowOf(k);
         const rows = st.order.map((w, j) => `<tr class="${j === k ? "win" : ""}"><td>${j + 1}</td><td>${w}</td><td class="dim">${IDS[w]}</td><td>${f2(rowOf(j))}</td></tr>`).join("");
         const math = st.pos === "on"

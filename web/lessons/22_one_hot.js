@@ -1,7 +1,7 @@
 import { cosine, distance, dot, fmt } from "../../lib/zvect.js";
 import { M } from "../js/kit.js";
 
-// 3.2 One-hot (WIP202610026): one idea only — one 1 at the word's position, the rest 0; every pair of words
+// 3.5 One-hot (WIP202610026): one idea only — one 1 at the word's position, the rest 0; every pair of words
 // ends up equally far apart. A 3-word vocabulary so each one-hot vector is one axis of the 3D room.
 const VOCAB = ["good", "bad", "great"];
 const oneHot = (w) => VOCAB.map((x) => (x === w ? 1 : 0));
@@ -17,7 +17,7 @@ export default {
   view: { dist: 13, yaw: 0.8 },
   intro: `
     <p><b>One-hot</b> แทนคำด้วยเวกเตอร์ที่ยาวเท่าจำนวนคำทั้งหมด มีเลข <b>1 ตัวเดียว</b> ตรงตำแหน่งของคำนั้น ช่องอื่นเป็น 0</p>
-    <p>ทุกคู่คำจึง <b>ห่างกันเท่ากันหมด</b> ลำดับปลอมของเลขประจำคำ (บท 3.1) หายไป แต่ก็บอกไม่ได้ว่าคู่ไหนความหมายใกล้กัน</p>`,
+    <p>ทุกคู่คำจึง <b>ห่างกันเท่ากันหมด</b> ลำดับปลอมของเลขประจำคำ (บท 3.4) หายไป แต่ก็บอกไม่ได้ว่าคู่ไหนความหมายใกล้กัน</p>`,
   try: [
     "เลือก good กับ great แล้วเปลี่ยนเป็น bad กับ great: cosine และ distance เท่าเดิมทุกคู่",
     "เลือกคำเดียวกันทั้งสองช่อง: cosine 1, distance 0",
@@ -59,7 +59,7 @@ export default {
       <li>คลิป BlackBoard AI ให้ตัวอย่าง 'cat' → [1, 0, 0, 0] และ 'dog' → [0, 0, 0, 1]</li>
     </ul>
     <h2>บทถัดไป</h2>
-    <p>บท 3.3 นับคำทั้งประโยค (bag of words) ส่วนบท 3.4 ใช้ one-hot เป็นตัวชี้ว่าจะหยิบแถวไหนจากตาราง embedding</p>`,
+    <p>บท 3.6 นับคำทั้งประโยค (bag of words) ส่วนบท 3.7 ใช้ one-hot เป็นตัวชี้ว่าจะหยิบแถวไหนจากตาราง embedding</p>`,
   refs: [["wordemb", "one-hot ยาวเท่าจำนวนคำ, ไม่มีลำดับปลอม, sparse 50,000 มิติ, ไม่มีความหมาย"],
     ["blackboard", "one-hot ยาว 50,000+ ทุกคำต่างกันเท่ากัน, ตัวอย่าง cat / dog"]],
   mount(ui) {

@@ -1,7 +1,7 @@
 import { add, sub, scale, mean, cosine, fmt } from "../../lib/zvect.js";
 import { M } from "../js/kit.js";
 
-// 3.5 Learning the table (WIP202610026): one idea only — rows start random and are nudged a little at a time
+// 3.8 Learning the table (WIP202610026): one idea only — rows start random and are nudged a little at a time
 // toward what their context says; words used in the same context end up close. A TOY update (my choice), not real
 // word2vec training: context rows stay fixed and the center row moves toward their mean.
 const CTX = { pet: [-0.5, 3.5, 0.5], sleeps: [0.5, 2.5, -0.5], drive: [3.5, 0, 0.5], fast: [2.5, 1, -0.5] };
@@ -29,7 +29,7 @@ export default {
   example: "24_learn_table",
   view: { dist: 17, yaw: 0.9 },
   intro: `
-    <p>ตาราง embedding (บท 3.4) <b>ไม่มีใครเขียนเอง</b> แถวทุกแถวเริ่มจากเลขสุ่ม แล้วโมเดลค่อย ๆ <b>ปรับทีละนิด</b> จากข้อความจำนวนมาก</p>
+    <p>ตาราง embedding (บท 3.7) <b>ไม่มีใครเขียนเอง</b> แถวทุกแถวเริ่มจากเลขสุ่ม แล้วโมเดลค่อย ๆ <b>ปรับทีละนิด</b> จากข้อความจำนวนมาก</p>
     <p>วิธีหนึ่งคือ <b>CBOW</b>: ใช้คำรอบข้างเดาคำกลาง ฝึกซ้ำไปเรื่อย ๆ คำที่อยู่ในบริบทเดียวกัน (cat กับ dog) จึงถูกดันมาอยู่ใกล้กัน</p>
     <p class="fine">ภาพในบทนี้ใช้กติกาย่อของแนวคิดนี้ (ผู้จัดทำเลือก) ไม่ใช่การฝึก CBOW จริง</p>`,
   try: [
@@ -67,7 +67,7 @@ export default {
       <li>BlackBoard AI: แถวเริ่มเป็นเลขสุ่มเล็ก ๆ · โมเดลทายคำผิด (คำที่ถูกคือ crown) → คำนวณความผิด → ปรับแถวของ queen นิดเดียว
         · ทำซ้ำเป็นล้านครั้งกับข้อความปริมาณระดับอินเทอร์เน็ต คำที่อยู่ในบริบทคล้ายกัน (king, queen) จึงถูกดันไปทางเดียวกัน</li>
       <li>Under The Hood (Word2Vec แบบ CBOW): หน้าต่างกว้าง 3 = คำรอบข้างข้างละ 1 คำ เช่น fox กับ over → เดา jumps
-        · ใส่คำรอบข้างเป็น one-hot (บท 3.2) · ชั้นกลางมีจำนวน neuron = จำนวนมิติของ embedding · ชั้น output = จำนวนคำ
+        · ใส่คำรอบข้างเป็น one-hot (บท 3.5) · ชั้นกลางมีจำนวน neuron = จำนวนมิติของ embedding · ชั้น output = จำนวนคำ
         · คำนวณ error แล้ว backpropagate แล้วเลื่อนหน้าต่างไปคำถัดไป</li>
       <li>ฝึกเสร็จ weight ของชั้นแรก (จำนวนคำ × จำนวนมิติ) ก็คือตาราง embedding นั่นเอง</li>
       <li>Skip-gram ทำกลับกัน: ใช้คำกลางเดาคำรอบข้าง ทั้งสองแบบใช้ได้ดี</li>

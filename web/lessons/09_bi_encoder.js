@@ -1,6 +1,7 @@
 import { cosine, fmt } from "../../lib/zvect.js";
 import { M } from "../js/kit.js";
-import { LANGS, LANG, AXIS_NAMES, split, encodeTokens, chips, vocab, mountPanel, sampleOf } from "../js/multilang.js";
+import { LANGS, LANG, AXIS_NAMES, SAMPLES, split, encodeTokens, chips, vocab, mountPanel, sampleOf } from "../js/multilang.js";
+const escV = (s) => String(s).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c]);
 
 // 6.1 Bi-Encoder in four languages (WIP202610029, owner 2026-10-11 13:42): the same sentence in EN / TH / 中文 / 日本語,
 // one shared toy vocabulary, documents stay in English. Shows (1) same meaning -> same place, whatever the language,
@@ -16,15 +17,7 @@ const DOCS = [
 const S = 3.2;
 const up = (v) => v.map((x) => x * S);
 const DOCV = DOCS.map((d, i) => ({ tag: "d" + (i + 1), text: d, v: encodeTokens(split(d, "space")) })); // encoded once, offline
-// six samples, each written in all four languages, and the document that should come first
-const SAMPLES = [
-  { label: "หมากินปลา", want: "d5", text: { en: "my dog eats fish", th: "หมาของฉันกินปลา", zh: "我的狗吃鱼", jp: "私の犬は魚を食べる" } },
-  { label: "เขียนโค้ด", want: "d3", text: { en: "I write code on my computer", th: "ฉันเขียนโค้ดบนคอมพิวเตอร์", zh: "我在电脑上写代码", jp: "パソコンでコードを書く" } },
-  { label: "แอปมีบั๊ก", want: "d4", text: { en: "the app on my phone has a bug", th: "แอปในโทรศัพท์ของฉันมีบั๊ก", zh: "我手机上的应用有错误", jp: "スマホのアプリにバグがある" } },
-  { label: "กินก๋วยเตี๋ยว", want: "d2", text: { en: "I want to eat noodles", th: "ฉันอยากกินก๋วยเตี๋ยว", zh: "我想吃面条", jp: "麺が食べたい" } },
-  { label: "หุ่นยนต์เห่า", want: "d6", text: { en: "a robot dog that can bark", th: "หมาหุ่นยนต์ที่เห่าได้", zh: "会叫的机器狗", jp: "吠えるロボット犬" } },
-  { label: "หมากับแมว", want: "d1", text: { en: "pets like cats and dogs", th: "สัตว์เลี้ยงอย่างแมวและหมา", zh: "像猫和狗这样的宠物", jp: "猫や犬などのペット" } },
-];
+// six samples, each written in all four languages, and the document that should come first: web/data/samples.json
 
 function search(text, mode) {                         // -> { tokens, q, top: {tag, text, score} | null }
   const tokens = split(text, mode), q = encodeTokens(tokens);
@@ -81,7 +74,8 @@ export default {
     ["score(q, d) = q · d", "คะแนนของเอกสาร d", "เอกสารคะแนนสูงสุดขึ้นก่อน"],
   ],
   symbolsNote: `<h2>คำที่ตารางรู้จัก (ตารางของเล่น 3 แกน: food, animal, tech)</h2>` +
-    LANGS.map((l) => `<p class="vocab"><b style="color: var(${l.css})">${l.label}</b> ${vocab(l.id).join(" · ")}</p>`).join("") +
+    LANGS.map((l) => `<p class="vocab"><b style="color: var(${l.css})">${l.label}</b> <span style="color: var(${l.css})">${vocab(l.id).map(escV).join(" · ")}</span></p>`).join("") +
+    `<p class="fine">เพิ่มคำของตัวเองได้ที่หน้า <a href="#/dict">พจนานุกรม</a></p>` +
     `<h2>เอกสาร (ภาษาอังกฤษ แปลงเป็นเวกเตอร์ไว้ล่วงหน้า)</h2><p class="vocab">${DOCV.map((d) => `${d.tag} ${d.text}`).join(" · ")}</p>`,
   notes: `
     <h2>encoder จริงแปลงคำเป็นเวกเตอร์อย่างไร</h2>
@@ -95,7 +89,7 @@ export default {
       <li><b>bi-encoder</b> (บทนี้) แปลงคำถามกับเอกสารแยกกัน เอกสารแปลงเก็บไว้ล่วงหน้าได้ จึงเร็วพอค้นเอกสารนับล้าน</li>
       <li>ข้อเสีย: อัดทั้งเอกสารเป็นเวกเตอร์เดียวก่อนเห็นคำถาม รายละเอียดบางอย่างหายไป</li>
       <li><b>cross-encoder</b> อ่านคำถามกับเอกสารพร้อมกัน แม่นกว่าแต่ต้องรันโมเดลทุกคู่ จึงใช้ได้กับผลไม่กี่ชิ้น</li>
-      <li>ระบบจริงใช้สองขั้น: bi-encoder คัดผู้สมัครจำนวนมาก แล้ว cross-encoder จัดอันดับ 10–100 ชิ้นบนสุด (บท 6.2)</li>
+      <li>ระบบจริงใช้สองขั้น: bi-encoder คัดผู้สมัครจำนวนมาก แล้ว cross-encoder จัดอันดับ 10–100 ชิ้นบนสุด (บท 6.3)</li>
     </ul>
     <h2>โมเดลหลายภาษาที่คลิปพูดถึง</h2>
     <ul>
@@ -108,7 +102,7 @@ export default {
     <h2>ข้อจำกัดที่ควรรู้</h2>
     <ul>
       <li>embedding อ่านตัวเลขไม่เก่ง ในงานวิจัยหนึ่ง 13 โมเดลแม่นเฉลี่ยราว 54% กับคำถามการเงินที่ต้องเทียบตัวเลข ส่วนหนึ่งเพราะ tokenizer ตัดตัวเลขเป็นชิ้น ๆ จึงควรกรองตัวเลขด้วย filter</li>
-      <li>คำปฏิเสธ เช่น "ไม่มีเบาหวาน" ยังถูกดึงมาเมื่อค้นคำว่าเบาหวาน ต้องมีขั้นกรองอีกชั้น (บท 6.2)</li>
+      <li>คำปฏิเสธ เช่น "ไม่มีเบาหวาน" ยังถูกดึงมาเมื่อค้นคำว่าเบาหวาน ต้องมีขั้นกรองอีกชั้น (บท 6.3)</li>
     </ul>
     <p class="fine">ความรู้ทั่วไป (ไม่ได้มาจากคลิป): โมเดลหลายภาษาจริงใช้คลังคำ (vocabulary) ชุดเดียวกันทุกภาษา และตัดคำเป็นชิ้นย่อย (subword) แทนการเปิดพจนานุกรมแบบบทนี้ ภาษาที่มีข้อมูลฝึกน้อยมักได้เวกเตอร์ที่แม่นน้อยกว่า</p>`,
   refs: [["blackboard", "ตาราง embedding, การแปลงคำ = ค้นหาแถว, การปรับค่าระหว่างฝึก"],

@@ -4,6 +4,8 @@ import { makeUI } from "./kit.js";
 import { highlight } from "./highlight.js";
 import { VERSION } from "../../lib/zvect.js";
 import { SOURCES } from "./sources.js";
+import { dict } from "./dict/index.js";
+import { mountDictPage } from "./dict/page.js";
 
 import l1 from "../lessons/01_vector.js";
 import l2 from "../lessons/02_dot_product.js";
@@ -38,6 +40,10 @@ import l30 from "../lessons/30_hnsw_beam.js";
 import l31 from "../lessons/31_hnsw_build.js";
 import l32 from "../lessons/32_filter_graph.js";
 import l33 from "../lessons/33_keyword_search.js";
+import l34 from "../lessons/34_tokenize.js";
+import l35 from "../lessons/35_bpe.js";
+import l36 from "../lessons/36_late_interaction.js";
+import l37 from "../lessons/37_gpt_tokenizer.js";
 
 // Chapters and lessons in teaching order, numbered 1, 1.1, 1.2, … (owner, 2026-10-11: one idea per lesson,
 // "มันควรจะ 1 แล้ว 1.1 1.2"). Each lesson only uses ideas from earlier ones. File prefixes are the order the
@@ -45,10 +51,10 @@ import l33 from "../lessons/33_keyword_search.js";
 const GROUPS = [
   { title: "พื้นฐานเวกเตอร์", lessons: [l1, l16, l4, l15, l20] },
   { title: "วัดว่าสองเวกเตอร์ใกล้กันแค่ไหน", lessons: [l11, l2, l3] },
-  { title: "เปลี่ยนข้อความเป็นเวกเตอร์", lessons: [l21, l22, l23, l12, l24, l5] },
+  { title: "เปลี่ยนข้อความเป็นเวกเตอร์", lessons: [l34, l35, l37, l21, l22, l23, l12, l24, l5] },
   { title: "ค้นหาของที่ใกล้ที่สุด", lessons: [l6, l18, l19, l7, l33] },
   { title: "ค้นให้เร็วเมื่อข้อมูลเยอะ", lessons: [l27, l8, l17, l28, l29, l13, l30, l31, l32] },
-  { title: "ใช้งานจริง", lessons: [l9, l14, l10] },
+  { title: "การผสานทฤษฎี", lessons: [l9, l36, l14, l10] },   // was "ใช้งานจริง" (owner 15:55: still theory; 16:04 picked this name)
   { title: "เวกเตอร์ใน LLM", lessons: [l25, l26] },
 ];
 const NUM = new Map(GROUPS.flatMap((g, gi) => g.lessons.map((l, li) => [l, `${gi + 1}.${li + 1}`])));
@@ -114,10 +120,13 @@ window.addEventListener("hashchange", route);
 
 function route() {
   const slug = location.hash.replace(/^#\/?/, "") || LESSONS[0].slug;
-  document.querySelectorAll("#nav a, #libnav").forEach((a) =>
+  // a word added on the Dict page changes what lessons computed when they loaded: start fresh when leaving it
+  if (slug !== "dict" && dict.changed) return location.reload();
+  document.querySelectorAll("#nav a, #libnav, #dictnav").forEach((a) =>
     a.dataset.slug === slug ? a.setAttribute("aria-current", "page") : a.removeAttribute("aria-current"));
   $("#sidebar").classList.remove("open");
   if (slug === "lib") return showLib();
+  if (slug === "dict") return showDict();
   const i = Math.max(0, LESSONS.findIndex((l) => l.slug === slug));
   showLesson(LESSONS[i], i);
 }
@@ -172,8 +181,10 @@ function splitList() {
 function fitMath() {
   document.querySelectorAll(".formula math").forEach((m) => {
     m.style.fontSize = "";
-    const room = m.parentElement.clientWidth, w = m.scrollWidth;
-    if (room && w > room) m.style.fontSize = (Math.max(0.5, room / w) * parseFloat(getComputedStyle(m).fontSize)).toFixed(2) + "px";
+    // the equation box (.eq) has padding: compare the formula's own width with the room inside the padding
+    const cs = getComputedStyle(m), pad = parseFloat(cs.paddingLeft) + parseFloat(cs.paddingRight);
+    const room = m.clientWidth - pad, w = m.scrollWidth - parseFloat(cs.paddingLeft);
+    if (room > 0 && w > room) m.style.fontSize = (Math.max(0.5, room / w) * parseFloat(cs.fontSize)).toFixed(2) + "px";
   });
 }
 new ResizeObserver(() => fitMath()).observe($(".formula"));
@@ -216,6 +227,7 @@ function showLesson(L, i) {
   scene.setView(L.view || {});
   scene.draw = inst.draw || (() => {});
   scene.overlay = inst.draw2d || null; // flat chart lessons draw here instead of in 3D
+  scene.flat = inst.zoom2d ? { zoom: 1, x: 0, y: 0 } : null;   // 2D picture that can be zoomed and moved (3.1, 3.2, 3.3)
   refresh();
 
   const prev = LESSONS[i - 1], next = LESSONS[i + 1];
@@ -333,6 +345,13 @@ async function showLib() {
       ลิงก์ดาวน์โหลดแบบ raw และวิธีตรวจ sha256 ไว้ในที่เดียว</p>
     <pre class="code">https://raw.githubusercontent.com/zardokar/ZVect/main/llms.txt</pre>
     <p class="fine">ใช้ได้เพื่อศึกษาและทดลอง ห้ามใช้เชิงพาณิชย์โดยไม่ได้รับอนุญาต ดู <a href="../LICENSE">LICENSE</a></p>`;
+}
+
+
+// ---------- Dict page: web/js/dict/page.js (the dictionary itself is the facade in web/js/dict/index.js) ----------
+function showDict() {
+  document.body.dataset.page = "lib";
+  mountDictPage($("#libpage"));
 }
 
 route(); // start after everything above is defined

@@ -1,7 +1,7 @@
 import { words, cosine, angle, dot, norm, fmt } from "../../lib/zvect.js";
 import { M } from "../js/kit.js";
 
-// 3.3 Bag of words (WIP202610026): one idea only — a sentence becomes a vector by counting each word.
+// 3.6 Bag of words (WIP202610026): one idea only — a sentence becomes a vector by counting each word.
 // Presets are the StatQuest examples. Two different words fit on a flat graph; more words = more dimensions,
 // shown as a table only (StatQuest: a 5-word example needs a 5-D graph nobody can draw).
 const PRESETS = [
@@ -71,7 +71,7 @@ export default {
     </ul>
     <h2>นับคำไม่ใช่ความหมาย</h2>
     <p>"Troll 2 is bad." กับ "I love Troll 2!" ได้ 0.50 ทั้งที่ความเห็นตรงข้ามกัน เพราะสูตรแค่ดูว่ามีคำร่วมกันกี่คำ
-    (ตัวเลขนี้คำนวณเองในไฟล์สรุปของ StatQuest ไม่ได้อยู่ในคลิป) บท 3.4 จึงใช้ตารางที่ทำให้คำมีความหมายแทน</p>`,
+    (ตัวเลขนี้คำนวณเองในไฟล์สรุปของ StatQuest ไม่ได้อยู่ในคลิป) บท 3.7 จึงใช้ตารางที่ทำให้คำมีความหมายแทน</p>`,
   refs: [["statquest", "ตารางนับคำ, กราฟ hello / world, 45° → 0.71, ความยาวไม่มีผล, สูตร ∑, ตัวอย่าง 5 คำ → 0.58"],
     ["wordemb", "bag of words, unigram / bigram / n-gram และข้อเสีย"]],
   mount(ui) {

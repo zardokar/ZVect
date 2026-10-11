@@ -22,11 +22,20 @@ export class Scene3D {
     this.home = { ...HOME };
     this.draw = () => {};
     this.overlay = null;
+    // flat = { zoom, x, y }: a 2D lesson that asked for zoom (owner, 2026-10-11 15:45: "ทำ Zoom ดีกว่าขึ้นบรรทัดใหม่").
+    // Then wheel / pinch / + − zoom, drag / arrows move, double-click / 0 show everything; the camera is left alone.
+    this.flat = null;
     this.axisNames = ["x", "y", "z"];
     this.items = [];
+    // fit (owner, 2026-10-11 21:36: "ปรับให้ระยะมันอยู่ใน canvas เป็น Default"): the start view moves the camera back until every
+    // arrow, point and label of the lesson is inside the canvas. Only the start view: once the learner orbits or zooms, the
+    // camera is theirs; double-click / 0 / a resize while untouched fits again.
+    this.anchors = null;
+    this.fitPending = false;
+    this.atHome = true;
     this.readColors();
     this.bindInput();
-    new ResizeObserver(() => this.render()).observe(canvas);
+    new ResizeObserver(() => { if (this.atHome && !this.flat) this.fitPending = true; this.render(); }).observe(canvas);
   }
 
   // colors come from CSS variables (web/css/style.css, dark theme only)
@@ -42,7 +51,38 @@ export class Scene3D {
 
   setView({ yaw, pitch, dist }) {
     Object.assign(this.home, { yaw: yaw ?? HOME.yaw, pitch: pitch ?? HOME.pitch, dist: dist ?? HOME.dist });
+    this.baseDist = this.home.dist;                         // the lesson's own distance: fitting only ever moves back from it
     Object.assign(this.cam, this.home);
+    this.fitPending = true; this.atHome = true;
+  }
+
+  // how many pixels the farthest anchor sticks out past the canvas edge minus a margin (≤ 0 = everything fits)
+  overflow() {
+    const M = 14;
+    let out = -Infinity;
+    for (const a of this.anchors) {
+      const q = this.project(a.p);
+      if (!q) return Infinity;
+      const x0 = q.x + (a.dx || 0) - (a.r || 0), x1 = q.x + (a.dx || 0) + (a.w || 0) + (a.r || 0);
+      const y0 = q.y + (a.dy || 0) - (a.h || 0), y1 = q.y + (a.dy || 0) + (a.h || 0);
+      out = Math.max(out, M - x0, x1 - (this.W - M), M - y0, y1 - (this.H - M));
+    }
+    return out;
+  }
+
+  // move the camera back (same angle, same target) until the lesson's picture fits; never closer than the lesson asked for
+  fit() {
+    this.fitPending = false;
+    this.anchors = [];
+    this.cam.dist = this.home.dist = this.baseDist ?? this.home.dist;
+    this.B = this.basis();
+    this.items = [];
+    this.draw(this);                                         // a dry run that only collects anchors
+    if (this.anchors.length) {
+      while (this.cam.dist < 60 && this.overflow() > 0) { this.cam.dist *= 1.04; this.B = this.basis(); }
+      this.home.dist = this.cam.dist;
+    }
+    this.anchors = null;
   }
 
   // ---------- camera ----------
@@ -78,6 +118,7 @@ export class Scene3D {
     }
     this.W = r.width; this.H = r.height;
     this.F = Math.min(this.W, this.H) * 1.25;
+    if (this.fitPending && !this.flat) this.fit();
     this.B = this.basis();
     this.items = [];
     this.draw(this);
@@ -89,7 +130,7 @@ export class Scene3D {
     this.items.sort((a, b) => a.layer - b.layer || b.z - a.z);
     for (const it of this.items) it.paint(g);
     // optional flat 2D drawing on top (lessons that need a chart, not a 3D scene)
-    if (this.overlay) { g.save(); this.overlay(g, this.W, this.H, this.c); g.restore(); }
+    if (this.overlay) { g.save(); this.overlay(g, this.W, this.H, this.c, this.flat); g.restore(); }
   }
 
   add(layer, z, paint) { this.items.push({ layer, z, paint }); }
@@ -119,6 +160,7 @@ export class Scene3D {
   }
 
   arrow(from, to, color, label = "", { width = 3, layer = 1 } = {}) {
+    if (this.anchors) this.anchors.push({ p: from, r: 4 }, { p: to, r: 8 });
     const p = this.project(from), q = this.project(to);
     if (!p || !q) return;
     const dx = q.x - p.x, dy = q.y - p.y, len = Math.hypot(dx, dy);
@@ -141,6 +183,7 @@ export class Scene3D {
   }
 
   point(p3, color, label = "", { r = 5, ring = false, layer = 1 } = {}) {
+    if (this.anchors) this.anchors.push({ p: p3, r: r + 2 });
     const p = this.project(p3);
     if (!p) return;
     this.add(layer, p.z - 0.02, (g) => {
@@ -153,7 +196,12 @@ export class Scene3D {
     if (label) this.label(p3, label, color, { dx: r + 4, dy: -r - 2 });
   }
 
-  label(p3, text, color, { dx = 0, dy = 0, size = 13, weight = 600, align = "left" } = {}) {
+  label(p3, text, color, { dx = 0, dy = 0, size = 13, weight = 600, align = "left", fit = true } = {}) {
+    if (this.anchors && fit && text) {
+      this.g.font = `${weight} ${size}px ${getComputedStyle(this.cv).fontFamily}`;
+      const w = this.g.measureText(text).width;
+      this.anchors.push({ p: p3, dx: align === "center" ? dx - w / 2 : align === "right" ? dx - w : dx, w, dy, h: size / 2 + 2 });
+    }
     const p = this.project(p3);
     if (!p) return;
     this.add(3, p.z, (g) => {
@@ -194,7 +242,7 @@ export class Scene3D {
       pos[k] = L; neg[k] = -L;
       this.line([0, 0, 0], pos, cols[k], { width: 2, layer: 0.2 });
       this.line([0, 0, 0], neg, cols[k], { width: 1.2, dash: [4, 5], layer: 0.2, alpha: 0.6 });
-      this.label(pos, this.axisNames[k], cols[k], { dx: 6, size: 13, weight: 700 });
+      this.label(pos, this.axisNames[k], cols[k], { dx: 6, size: 13, weight: 700, fit: false });   // axis names may run off
     }
   }
 
@@ -231,32 +279,63 @@ export class Scene3D {
   }
 
   // ---------- input ----------
+  // 2D zoom about a point (canvas pixels); zoom 1 = the whole picture fits
+  zoomAt(mx, my, k) {
+    const f = this.flat, z = Math.min(8, Math.max(1, f.zoom * k));
+    k = z / f.zoom; f.x = mx - (mx - f.x) * k; f.y = my - (my - f.y) * k; f.zoom = z;
+    this.render();
+  }
+
   bindInput() {
     const cv = this.cv;
     let drag = null;
-    cv.addEventListener("pointerdown", (e) => { drag = { x: e.clientX, y: e.clientY }; cv.setPointerCapture(e.pointerId); });
+    const pts = new Map();                                   // pointers down (two = pinch in 2D mode)
+    const at = (e) => { const r = cv.getBoundingClientRect(); return { x: e.clientX - r.left, y: e.clientY - r.top }; };
+    const pinch = () => { const [a, b] = [...pts.values()]; return { d: Math.hypot(a.x - b.x, a.y - b.y), x: (a.x + b.x) / 2, y: (a.y + b.y) / 2 }; };
+    cv.addEventListener("pointerdown", (e) => { drag = { x: e.clientX, y: e.clientY }; pts.set(e.pointerId, at(e)); cv.setPointerCapture(e.pointerId); });
     cv.addEventListener("pointermove", (e) => {
       if (!drag) return;
-      this.orbit((e.clientX - drag.x) * -0.008, (e.clientY - drag.y) * 0.008);
+      if (this.flat) {
+        const before = pts.size === 2 ? pinch() : null;
+        pts.set(e.pointerId, at(e));
+        if (before && pts.size === 2) { const now = pinch(); if (before.d > 0) this.zoomAt(now.x, now.y, now.d / before.d); }
+        else { this.flat.x += e.clientX - drag.x; this.flat.y += e.clientY - drag.y; this.render(); }
+      } else this.orbit((e.clientX - drag.x) * -0.008, (e.clientY - drag.y) * 0.008);
       drag = { x: e.clientX, y: e.clientY };
     });
-    const end = () => (drag = null);
+    const end = (e) => { pts.delete(e.pointerId); drag = pts.size ? drag : null; };
     cv.addEventListener("pointerup", end);
     cv.addEventListener("pointercancel", end);
     cv.addEventListener("wheel", (e) => {
       e.preventDefault();
+      if (this.flat) { const p = at(e); return this.zoomAt(p.x, p.y, Math.exp(-e.deltaY * 0.0015)); }
       this.cam.dist = Math.min(60, Math.max(5, this.cam.dist * Math.exp(e.deltaY * 0.001)));
+      this.atHome = false;
       this.render();
     }, { passive: false });
-    cv.addEventListener("dblclick", () => { Object.assign(this.cam, this.home); this.render(); });
+    const home = () => {
+      if (this.flat) Object.assign(this.flat, { zoom: 1, x: 0, y: 0 });
+      else { Object.assign(this.cam, this.home); this.atHome = true; this.fitPending = true; }
+      this.render();
+    };
+    cv.addEventListener("dblclick", home);
     cv.addEventListener("keydown", (e) => {
+      if (this.flat) {
+        const m = { ArrowLeft: [40, 0], ArrowRight: [-40, 0], ArrowUp: [0, 40], ArrowDown: [0, -40] }[e.key];
+        if (m) { e.preventDefault(); this.flat.x += m[0]; this.flat.y += m[1]; this.render(); }
+        if (e.key === "+" || e.key === "=") this.zoomAt(this.W / 2, this.H / 2, 1.25);
+        if (e.key === "-") this.zoomAt(this.W / 2, this.H / 2, 0.8);
+        if (e.key === "0") home();
+        return;
+      }
       const k = { ArrowLeft: [0.08, 0], ArrowRight: [-0.08, 0], ArrowUp: [0, 0.08], ArrowDown: [0, -0.08] }[e.key];
       if (k) { e.preventDefault(); this.orbit(...k); }
-      if (e.key === "0") { Object.assign(this.cam, this.home); this.render(); }
+      if (e.key === "0") home();
     });
   }
 
   orbit(dYaw, dPitch) {
+    this.atHome = false;
     this.cam.yaw += dYaw;
     this.cam.pitch = Math.max(-1.45, Math.min(1.45, this.cam.pitch + dPitch));
     this.render();

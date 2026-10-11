@@ -12,7 +12,7 @@
   ],
   "scripts": {
     "start": "node server.js",
-    "test": "node --test tests/zvect.test.js",
+    "test": "node --test tests/zvect.test.js tests/dict.test.js",
     "check": "node tools/check-examples.js",
     "manifest": "node tools/make-manifest.js",
     "zv": "node tools/zv.js"

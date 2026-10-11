@@ -47,6 +47,18 @@ export const SOURCES = {
     title: "Qdrant: Open Source Vector Search Engine (Andrey Vasnetsov)", by: "CMU Database Group", date: "2023-09-15",
     url: "https://www.youtube.com/watch?v=bU38Ovdh3NY", report: R + "20230915_Qdrant-Open-Source-Vector-Search-Engine-CMU.html",
   },
+  bpe: {
+    title: "Byte Pair Encoding - How does the BPE algorithm work? - Step by Step Guide", by: "Raj Pulapakura", date: "2024-01-24",
+    url: "https://www.youtube.com/watch?v=BcxJk4WQVIw", report: R + "20240124_Byte-Pair-Encoding-How-Does-The-BPE-Algorithm-Work.html",
+  },
+  colbert: {
+    title: "Supercharge Your RAG with Contextualized Late Interactions", by: "Prompt Engineering", date: "2024-03-22",
+    url: "https://www.youtube.com/watch?v=xTzUn3G9YA0", report: R + "20240322_Supercharge-Your-RAG-With-Contextualized-Late-Interactions.html",
+  },
+  karpathy: {
+    title: "Let's build the GPT Tokenizer", by: "Andrej Karpathy", date: "2024-02-20",
+    url: "https://www.youtube.com/watch?v=zduSFxRajkE", report: R + "20240220_Lets-Build-The-GPT-Tokenizer.html",
+  },
   choose: {
     title: "How to choose the embedding model based on the task at hand", by: "Byte Goose AI", date: "2026-02-28",
     url: "https://www.youtube.com/watch?v=H6q1UWCCnKw", report: R + "20260228_How-To-Choose-An-Embedding-Model-By-Task.html",
