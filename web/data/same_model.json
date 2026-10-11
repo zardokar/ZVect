@@ -1,0 +1,23 @@
+{
+  "_how": [
+    "Config + toy data of lesson 4.6 same-model (web/lessons/38_same_model.js). The examples/*/38_same_model.* files carry the same values; tests/samemodel.test.js fails if they drift.",
+    "vocab is listed in partner pairs (cat/dog, car/bus): the partner of vocab[i] is vocab[i ^ 1]. maxTries = seeds the random-B button may draw before it gives up."
+  ],
+  "config": {
+    "eta": 0.3,
+    "passes": 5,
+    "seedA": 16,
+    "seedB": 18,
+    "burn": 10,
+    "rowSteps": 17,
+    "rowScale": 0.5,
+    "groupedMin": 0.9,
+    "maxTries": 200
+  },
+  "data": {
+    "windows": [["pet", "cat", "sleeps"], ["pet", "dog", "sleeps"], ["drive", "car", "fast"], ["drive", "bus", "fast"]],
+    "ctxWords": ["pet", "sleeps", "drive", "fast"],
+    "vocab": ["cat", "dog", "car", "bus"],
+    "group": { "cat": "สัตว์", "dog": "สัตว์", "car": "รถ", "bus": "รถ" }
+  }
+}

@@ -11,7 +11,7 @@
   through the device bridge (new outputs dir, `expectedMtimeMs`, stage back, md5). No sync script. Claude never runs git write commands.
 - **DO-FIRST for the next session:** read `README.md` → walk `checkpoints/checkpoint.zvect.ver*.md` numerically → read the latest in full
   (§6 first) and the previous one → read the newest `.dropzone/hzup_claude/*.md` (now `20261011_2317.md`; its job, `WIP202610041`, is done in #42) → run `npm test` and `npm run check` → summarize the open
-  WIP count before any work. Expected after upckp #43: 10 open rows in §6, 37 closed rows in §5c, 37 IDs in the archive (§5c IDs = archive IDs, checked at #43).
+  WIP count before any work. Expected after upckp #44: 9 open rows in §6, 39 closed rows in §5c, 39 IDs in the archive (§5c IDs = archive IDs, checked at #44).
 
 ---
 
@@ -69,6 +69,7 @@ Owner rules (เคาะ by the owner 2026-10-10 / 2026-10-11):
   - 6 ค้นให้เร็วเมื่อข้อมูลเยอะ: 27 brute force, 08 high dimensions, 17 binary xor, 28 ann tree, 29 nsw graph, 13 vector search, 30 hnsw beam, 31 hnsw build, 32 filter graph
   - 7 การผสานทฤษฎี: 09 bi-encoder, 36 late interaction, 14 reranker, 10 classification
   - 8 เวกเตอร์ใน LLM: 25 llm input, 26 attention
+- Re-run at #44: `npm test` 45 / 0 (27 + 13 same-model + 5 style); `npm run style` PASS 10 files; `npm run check` PASS 41 suites; Playwright 38 lessons + Dict × 3 sizes 0 problems.
 - Re-run at #42: `npm test` 27 pass / 0 fail; `npm run check` 41 suites OK (40 examples + edge_cases), PASS; Playwright 38 lessons + Dict × 3 sizes, 0 problems
   (sidebar nav scroll excluded), no unresolved `{#…}`. Re-run at #40: `npm test` 27 pass / 0 fail (15 lib + 5 dict + 7 chapters); `npm run check` 40 suites OK, PASS; Playwright 37 lessons + Dict × 3 sizes,
   0 problems, no unresolved `{#…}`.
@@ -95,6 +96,8 @@ Owner rules (เคาะ by the owner 2026-10-10 / 2026-10-11):
 | `web/js/multilang.js` · `web/js/tokdraw.js` | 4-language toy encoder · token → number picture |
 | `web/lessons/*.js` | 38 lessons (+ 2 stale files, `WIP202610021`) |
 | `tools/check-examples.js` | 3-language parity gate |
+| `tools/check-style.js` · `tools/style-mask.js` · `tools/style-scope.json` | coder-rule checker (`npm run style`, prints `file:line`) · its tokenizer · the files under the rules (#44) |
+| `web/js/samemodel.js` · `web/data/same_model.json` | lesson 4.6 logic (pure) · its config + toy data (#44) |
 | `tools/zv.js` | terminal calculator that prints every step (`npm run zv -- dot 1,2,3 4,5,6`) |
 | `docs/APPROVALS.md` | dependency approval log (no approvals) |
 | `REFERENCE.md` | every source read (iw) and what each lesson took from it, corrected, or added; topic groups + tag index on top, a `tags:` / `ใช้ในบท:` line under every source heading (#34) |
@@ -104,13 +107,18 @@ Owner rules (เคาะ by the owner 2026-10-10 / 2026-10-11):
 
 Skills the owner asked for: **checkpoint** (this file; ledger rules of the checkpoint-writer skill applied by hand, toolchain not ported —
 owner 23:57 #43: stays manual, `WIP202610007` closed), **hz** (handzup; handoffs in `.dropzone/hzup_claude/`, git-ignored), **iw** (intelligence-writer v5.1, `WIP202610022`),
-**coder** and **reviewer** — **not found in this environment** (`WIP202610008`). Reviews are done by an independent subagent that did not
-write the work (handzup rule 12 substitute; its verdict is not a named "reviewer" skill's verdict).
+**coder** and **review** — supplied by the owner 2026-10-12 00:07 (files `coder.skill`, `SKILL.md` = review, plus `app-maker.v01.skill`),
+proposed for saving to the account (#44, `WIP202610008` closed). Both are written for Zigma; ZVect adaptations are in
+`docs/arch/WIP202610042_coder-rules/plan.md`. Scope: new code + lesson 4.6 only (owner 00:13); older files are not refactored.
 
 ## §5 Workflow + §5a laws
 
 - After editing `lib/`: `npm run manifest` → `npm test` → `npm run check`. All must pass.
 - After editing a lesson: Playwright check of every lesson at 3 sizes (0 page errors, no overflow), look at screenshots, dark theme.
+- **coder + review for NEW code (owner 2026-10-12, #44):** ≤200 lines, no one-line functions, one statement per line, comment block ≤3 lines,
+  logical (`web/js/<name>.js`, pure, tested in `tests/`) apart from component (`web/lessons/NN_*.js`), text in `NN_*.text.js`, tunables in
+  `web/data/*.json`; add every new code file to `tools/style-scope.json`; `npm run style` + `npm test` + red proof; then the review skill
+  (fresh subagent, data-only brief, JSON fail-closed, ≤2 fix cycles; a 3rd only with the owner's yes). Plan: `docs/arch/WIP202610042_coder-rules/plan.md`.
 - New lesson = `examples/{js,py,cpp}/NN_name.*` (identical output) + `web/lessons/NN_name.js` + an object in `web/data/chapters.json`
   (`file, slug, short, readme, llms`) + `npm run reindex` (README / llms.txt / REFERENCE.md lists) + REFERENCE.md source lines. A lesson carries `intro`, `try`, `lines` (+ `steps` [name, why] when ≥ 2 lines, optional `stepsWhy`), `formulaFrom`,
   `symbols`, `notes`, `refs` ([sourceId, what was used], ids in `web/js/sources.js`). Optional: `extra`, `symbolsNote`, `hint`,
@@ -141,6 +149,24 @@ write the work (handzup rule 12 substitute; its verdict is not a named "reviewer
 6. A closed row not filed in the archive is a defect (7 were found at the 002 cut, #33): check §5c IDs ⊆ archive IDs at every upckp.
 
 ## §5b Update log (newest on top)
+
+### #44 — 2026-10-12 00:07–00:4x — coder + review skills; lesson 4.6 under the coder rules (`WIP202610008`, `WIP202610042` closed)
+
+- Owner (00:07) uploaded `review` SKILL.md, `coder.skill`, `app-maker.v01.skill`; (00:13) "ใช้กับงานใหม่ + แก้บท 4.6 ทันที", "บันทึกทั้งสองตัว";
+  (00:33) "แก้เลย รอไร" (= yes to a 3rd review cycle). coder + review proposed as account skills (review description shortened to fit 1,024
+  characters; SKILL.md text unchanged). `WIP202610008` closed.
+- `WIP202610042` minted + closed: 4.6 split into `web/js/samemodel.js` (logical, pure), `web/lessons/38_same_model.js` (component),
+  `web/lessons/38_same_model.text.js` (text constants), `web/data/same_model.json` (config + toy data; `maxTries` added). Examples rewritten without
+  one-line functions (output unchanged). New `tools/check-style.js` + `tools/style-mask.js` + `tools/style-scope.json` (`npm run style`),
+  `tests/samemodel.test.js` (13) + `tests/style.test.js` (5) in `npm test`. Adaptations (LF, npm scripts, folder mapping) in
+  `docs/arch/WIP202610042_coder-rules/plan.md`; written after the build because the owner declared it urgent.
+- Red proofs: config passes 5→6 (2 tests fail), grouped() broken (1), planted one-line arrow (style FAIL), backslash-newline fix reverted (1),
+  tie fix disabled (1); each restored byte-identical.
+- Review (skill `review`): cycle 1 FAIL (3 checker defects + MAX_TRIES hard-coded), cycle 2 FAIL (cat/dog named in the live box), cycle 3 PASS
+  with the owner's yes. Applied after PASS: `grouped()` rejects identical partner rows (seed 13893, ~0.03% of random-B draws), same-model verdict
+  checks rank 1; gates re-run. reviewed: PASS (#44, cycle 3) · not re-reviewed after those two suggestions.
+- Gates: `npm test` 45 / 0, `npm run style` PASS 10 files, `npm run check` PASS 41 suites, Playwright 38 lessons + Dict × 3 sizes 0 problems,
+  random-B × 30 0 errors. Older files untouched (5 files > 200 lines and ~437 one-line arrows remain by the owner's choice).
 
 ### #43 — 2026-10-11 23:57 — `WIP202610007` closed: checkpoint stays manual
 
@@ -348,6 +374,8 @@ write the work (handzup rule 12 substitute; its verdict is not a named "reviewer
 | WIP202610039 | FINISH | 002 | iw yt:izbifbq3-eI (Annie Sexton, Tokens vs Embeddings), own-words rewrite, 5 fidelity fixes; REFERENCE row + section | file:docs/outhtm/20250529_Tokens-Vs-Embeddings.html · ckp:002#39 |
 | WIP202610040 | FINISH | 002 | Chapter 3 split into 3 Token + 4 Embedding (8 chapters / 37 topics); chapters in web/data/chapters.json; {#slug} in lessons; npm run reindex | file:web/data/chapters.json · file:tools/reindex.js · ckp:002#40 |
 | WIP202610038 | FINISH | 002 | iw yt:zduSFxRajkE (Karpathy GPT tokenizer) + lesson 3.3 Tokenizer ของ GPT (byte-level BPE playground); chapter 3 now 3.1–3.9 | file:web/lessons/37_gpt_tokenizer.js · ckp:002#35 |
+| WIP202610008 | FINISH | 002 | Owner supplied the coder + review skills (00:07); proposed for saving; ZVect adaptation in docs/arch/WIP202610042 | ckp:002#44 |
+| WIP202610042 | FINISH | 002 | coder + review applied to new code; lesson 4.6 split logical / component / text / config, npm run style, review PASS at cycle 3 | file:web/js/samemodel.js · file:tools/check-style.js · ckp:002#44 |
 | WIP202610007 | FINISH | 002 | Owner decided: checkpoint stays a manual ledger; no toolchain port (wipchecker / lint / lang check) | ckp:002#43 |
 | WIP202610041 | FINISH | 002 | Topic 4.6 same embedding model for question + documents (two toy tables from seeds 16 / 18, cos(cat_A, cat_B) −0.968), 6 aimd refs, review applied | file:web/lessons/38_same_model.js · ckp:002#42 |
 | WIP202610037 | FINISH | 002 | 6 iw reports (RAG multivector, ColBERT precision, Qdrant Edge, Google word2vec, NitMonk Hindi, EmbeddingGemma 2 fine-tune) + tagged REFERENCE.md | file:REFERENCE.md · ckp:002#34 |
@@ -356,7 +384,6 @@ write the work (handzup rule 12 substitute; its verdict is not a named "reviewer
 
 | WIP ID | title | since | ref |
 |---|---|---|---|
-| WIP202610008 | [process] Skills "coder" and "reviewer" not found in this environment; owner to supply them or confirm the subagent substitute | 2026-10-10 | ckp:001#1 |
 | WIP202610011 | [verify] Run `npm start`, `npm test`, `npm run check` on the owner's Windows machine (python/g++ discovery, `.\name.exe` run line) | 2026-10-10 | ckp:001#1 |
 | WIP202610012 | [web] Arrows and points vanish when an endpoint is behind the camera at close zoom (lines are clipped, arrows are not; min zoom raised to 5 as mitigation) | 2026-10-10 | ckp:001#1 |
 | WIP202610013 | [lib] Untested divergences: `angle` with NaN (Python 0.0 vs NaN), `fmt(NaN)` text ("NaN" vs "nan") | 2026-10-10 | ckp:001#1 |
@@ -369,7 +396,8 @@ write the work (handzup rule 12 substitute; its verdict is not a named "reviewer
 
 ### Narrative
 
-- **Latest (#43, 23:57):** `WIP202610007` closed, checkpoint stays manual.
+- **Latest (#44, 00:4x):** coder + review adopted for new code, 4.6 refactored, review PASS (cycle 3). Next: owner saves the two skill cards, commits.
+- Before that (#43, 23:57): `WIP202610007` closed, checkpoint stays manual.
 - Before that (#42, 23:4x): 4.6 "ต้องใช้ model เดียวกันทั้งคำถามและเอกสาร" built and reviewed (`WIP202610041` closed). Next: owner opens #/same-model, commits #34–#42,
   `git rm web/js/dict.js`, deletes stale files (`WIP202610021`), picks the next topic (`WIP202610036` RAG 8.3 / `WIP202610023`).
 - Before that (#41, 23:17): handoff `.dropzone/hzup_claude/20261011_2317.md`; next session builds 4.6 (`WIP202610041`, approved).

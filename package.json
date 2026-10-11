@@ -12,11 +12,12 @@
   ],
   "scripts": {
     "start": "node server.js",
-    "test": "node --test tests/zvect.test.js tests/dict.test.js tests/chapters.test.js",
+    "test": "node --test tests/zvect.test.js tests/dict.test.js tests/chapters.test.js tests/samemodel.test.js tests/style.test.js",
     "check": "node tools/check-examples.js",
     "manifest": "node tools/make-manifest.js",
     "reindex": "node tools/reindex.js",
-    "zv": "node tools/zv.js"
+    "zv": "node tools/zv.js",
+    "style": "node tools/check-style.js"
   },
   "engines": {
     "node": ">=18"

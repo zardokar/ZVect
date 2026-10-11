@@ -1,6 +1,6 @@
 // 38 Same model for the question and the documents (toy): two tables trained with the same rule from different random
 // starts. Inside each model cat is near dog, but cat in model A and cat in model B are unrelated vectors.
-// Training rule = 24_learn_table (c = (e_left + e_right) / 2 ; e_w <- e_w + eta * (c - e_w)); here the context rows start random too.
+// Training rule = 24_learn_table (c = (e_left + e_right) / 2 ; e_w <- e_w + eta * (c - e_w)); context rows start random too.
 #include <array>
 #include <iostream>
 #include <map>
@@ -17,17 +17,34 @@ const int passes = 5;
 
 // a tiny repeatable random (minstd), so JS / Python / C++ make the same tables: x = x * 48271 mod (2^31 - 1)
 std::map<std::string, Vec> train(long long seed) {
-  auto next = [&]() { seed = (seed * 48271) % 2147483647; return seed; };
-  for (int i = 0; i < 10; ++i) next();                          // the first numbers after a small seed are tiny; skip them
-  auto row = [&]() { Vec v; for (int i = 0; i < 3; ++i) v.push_back(double(next() % 17 - 8) / 2); return v; };   // -4 .. 4 in steps of 0.5
-  std::map<std::string, Vec> ctx, E;
-  for (auto& w : ctxWords) ctx[w] = row();
-  for (auto& w : vocab) E[w] = row();
-  for (int p = 0; p < passes; ++p)
+  auto next = [&]() {
+    seed = (seed * 48271) % 2147483647;
+    return seed;
+  };
+  for (int i = 0; i < 10; ++i) {
+    next();                                       // the first numbers after a small seed are tiny; skip them
+  }
+  auto row = [&]() {
+    Vec v;
+    for (int i = 0; i < 3; ++i) {
+      v.push_back(double(next() % 17 - 8) / 2);   // -4 .. 4 in steps of 0.5
+    }
+    return v;
+  };
+  std::map<std::string, Vec> ctx;
+  std::map<std::string, Vec> E;
+  for (auto& w : ctxWords) {
+    ctx[w] = row();
+  }
+  for (auto& w : vocab) {
+    E[w] = row();
+  }
+  for (int p = 0; p < passes; ++p) {
     for (auto& [l, w, r] : windows) {
       Vec c = mean({ctx[l], ctx[r]});
       E[w] = add(E[w], scale(sub(c, E[w]), eta));
     }
+  }
   return E;
 }
 
@@ -45,10 +62,14 @@ int main() {
   std::cout << "question \"cat\"\n";
   for (auto [q, d] : std::vector<std::pair<std::string, std::string>>{{"A", "A"}, {"B", "A"}, {"B", "B"}, {"A", "B"}}) {
     std::vector<Item> docs;
-    for (auto& w : vocab) docs.push_back({w, model[d][w]});
+    for (auto& w : vocab) {
+      docs.push_back({w, model[d][w]});
+    }
     auto ranked = topK(model[q]["cat"], docs, 4);
     std::cout << "  question by " << q << ", documents by " << d << ": ";
-    for (size_t i = 0; i < ranked.size(); ++i) std::cout << (i ? ", " : "") << ranked[i].first << " " << fmt(ranked[i].second);
+    for (size_t i = 0; i < ranked.size(); ++i) {
+      std::cout << (i ? ", " : "") << ranked[i].first << " " << fmt(ranked[i].second);
+    }
     std::cout << "  -> top-1 " << ranked[0].first << (q == d ? "  (same model)" : "  (mixed: meaningless)") << "\n";
   }
 }

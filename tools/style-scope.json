@@ -1,0 +1,18 @@
+{
+  "_how": [
+    "Files that follow the coder rules (owner 2026-10-12: new work + lesson 4.6; older files are NOT refactored).",
+    "Add every NEW code file here; npm run style checks them; tests/style.test.js runs it inside npm test."
+  ],
+  "files": [
+    "web/lessons/38_same_model.js",
+    "web/lessons/38_same_model.text.js",
+    "web/js/samemodel.js",
+    "examples/js/38_same_model.js",
+    "examples/py/38_same_model.py",
+    "examples/cpp/38_same_model.cpp",
+    "tools/check-style.js",
+    "tools/style-mask.js",
+    "tests/samemodel.test.js",
+    "tests/style.test.js"
+  ]
+}
