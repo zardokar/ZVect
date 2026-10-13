@@ -1,0 +1,96 @@
+{
+  "_how": [
+    "Tunables of tviz (WIP202610052). A host overrides any key with options.config; code never hard-codes these.",
+    "seedPlan = the seed offsets of ZVect web/js/tblock.js blockWeights (kept equal by tests/tviz_zvect.test.js); x = offset for seeded token vectors.",
+    "animation ms = 0 means instant; prefers-reduced-motion forces 0. easing names: linear, easeInCubic, easeOutCubic, easeInOutCubic."
+  ],
+  "lang": "en",
+  "limits": {
+    "maxTokens": 16,
+    "maxDims": 64,
+    "maxLayers": 12,
+    "maxHeadsPerLayer": 12,
+    "maxHeads": 144,
+    "maxVocab": 64,
+    "rowSumTolerance": 1e-6
+  },
+  "views": ["embed", "attention", "lines", "heads", "block", "sampling"],
+  "view": {
+    "layer": 0,
+    "head": 0,
+    "step": 5,
+    "mode": "dots",
+    "threshold": 0.1,
+    "thresholdMin": 0,
+    "thresholdMax": 1,
+    "thresholdStep": 0.01
+  },
+  "player": {
+    "stepIntervalMs": 1600
+  },
+  "animation": {
+    "stepMs": 450,
+    "maskFadeMs": 300,
+    "linesMs": 300,
+    "barsMs": 350,
+    "easing": "easeInOutCubic"
+  },
+  "sampling": {
+    "temperature": 1,
+    "tMin": 0.1,
+    "tMax": 2,
+    "tStep": 0.05,
+    "mode": "none",
+    "k": 3,
+    "kMin": 1,
+    "p": 0.8,
+    "pMin": 0.05,
+    "pMax": 1,
+    "pStep": 0.05,
+    "seed": 1,
+    "topPEpsilon": 1e-12
+  },
+  "seed": {
+    "seed": 7,
+    "dModel": 4,
+    "heads": 2,
+    "dK": 2,
+    "dFF": 8,
+    "scale": 0.8,
+    "burn": 10,
+    "eps": 1e-5,
+    "base": 10000,
+    "causal": false
+  },
+  "seedPlan": {
+    "headStride": 10,
+    "q": 1,
+    "k": 2,
+    "v": 3,
+    "wo": 101,
+    "w1": 102,
+    "w2": 103,
+    "x": 100
+  },
+  "dots": {
+    "rMinRatio": 0.08,
+    "rMaxRatio": 0.48
+  },
+  "lines": {
+    "widthMin": 0.5,
+    "widthMax": 6,
+    "alphaMin": 0.15,
+    "alphaMax": 0.95
+  },
+  "legend": {
+    "width": 160,
+    "height": 10,
+    "ticks": 3
+  },
+  "digits": {
+    "cell": 2,
+    "card": 3,
+    "pct": 1
+  },
+  "cellGap": 2
+}

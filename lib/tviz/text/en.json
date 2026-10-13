@@ -1,0 +1,137 @@
+{
+  "_how": [
+    "Every word tviz shows (WIP202610052). {name} placeholders are filled by core/format.js fill().",
+    "Same keys as th.json (lib/tviz/atdd/format.test.js fails if they drift). A host overrides any key with options.text."
+  ],
+  "lang": "en",
+  "header": {
+    "counter": "{n} tokens · head {h} of {H} · layer {l} of {L}",
+    "source": {
+      "trace": "trace",
+      "weights": "given weights",
+      "seed": "seeded toy weights"
+    }
+  },
+  "views": {
+    "embed": "Tokens and embeddings",
+    "attention": "Attention, step by step",
+    "lines": "Attention lines",
+    "heads": "All heads",
+    "block": "Transformer block",
+    "sampling": "Next-token probabilities"
+  },
+  "steps": {
+    "x": "X",
+    "qkv": "Q, K, V",
+    "raw": "QKᵀ",
+    "scaled": "÷ √d_k",
+    "mask": "mask",
+    "maskOff": "mask: off",
+    "softmax": "softmax",
+    "out": "· V"
+  },
+  "captions": {
+    "x": "Each token is a row of numbers (its vector). With position on, X0 = X + P.",
+    "qkv": "X0 (n × d) · W_Q (d × d_k) = Q (n × d_k); the same for K and V.",
+    "raw": "Score of query i and key j = q_i · k_j. One row per query token.",
+    "scaled": "Divide every score by √d_k so the softmax does not get too sharp.",
+    "mask": "Causal mask: a token may not look at later tokens; their scores become −∞.",
+    "maskOff": "Causal mask is off: every token may look at every token.",
+    "softmax": "Softmax per row: weights above 0 that add up to 1.",
+    "out": "out = A · V: each token's new vector is a weighted mix of the value rows."
+  },
+  "stages": {
+    "x0": "X0 (embedding + position)",
+    "mha": "multi-head attention",
+    "norm1": "+ residual, LayerNorm",
+    "ffn": "FFN (d_ff)",
+    "out": "+ residual, LayerNorm = out"
+  },
+  "stageFormulas": {
+    "x0": "X0 = X + P",
+    "mha": "concat(head_1 … head_h) · W_O",
+    "norm1": "LayerNorm(X0 + MHA)",
+    "ffn": "ReLU(norm1 · W_1)",
+    "out": "LayerNorm(norm1 + hidden · W_2)"
+  },
+  "player": {
+    "first": "First step",
+    "prev": "Previous step",
+    "next": "Next step",
+    "last": "Last step",
+    "play": "Play",
+    "pause": "Pause",
+    "stepOf": "step {i} of {n}",
+    "missing": "not in this trace"
+  },
+  "tooltip": {
+    "cell": "q_{i} · k_{j} / √d_k = {v}",
+    "weight": "{from} → {to}: {v}",
+    "dim": "dim {d} = {v}",
+    "head": "layer {l} · head {h} · max weight {max} · entropy {entropy}",
+    "masked": "masked (−∞)",
+    "dimsSampled": "showing {shown} of {total} dims"
+  },
+  "controls": {
+    "threshold": "Hide lines below",
+    "mark": "Mark",
+    "dots": "dots",
+    "cells": "cells",
+    "temperature": "Temperature T",
+    "filter": "Filter",
+    "none": "none",
+    "topk": "top-k",
+    "topp": "top-p",
+    "k": "k",
+    "p": "p",
+    "sample": "Sample",
+    "argmax": "argmax"
+  },
+  "sampling": {
+    "formula": "logit / T → filter → softmax → %",
+    "ruleTopK": "top-k keeps the k most likely tokens; on a tie the earlier token wins.",
+    "ruleTopP": "top-p keeps the smallest set of most likely tokens whose probabilities add up to at least p.",
+    "picked": "sampled: {token} (u = {u})",
+    "filtered": "filtered out"
+  },
+  "legend": {
+    "min": "min",
+    "max": "max"
+  },
+  "format": {
+    "negInf": "−∞",
+    "posInf": "+∞",
+    "nan": "—",
+    "pct": "{v}%",
+    "shape": "{rows} × {cols}",
+    "listSep": ", "
+  },
+  "a11y": {
+    "table": "{name} values, {rows} × {cols}",
+    "token": "token {i}: {token}",
+    "query": "query",
+    "key": "key"
+  },
+  "errors": {
+    "notObject": "{path}: expected an object.",
+    "tokensMissing": "{path}: give a list of tokens.",
+    "tooManyTokens": "{path}: at most {max} tokens.",
+    "tokenNotString": "{path}: every token must be text.",
+    "sourceNone": "Give one of trace, weights or seed.",
+    "sourceMany": "Give only one of trace, weights or seed.",
+    "notMatrix": "{path}: expected a matrix (a list of rows).",
+    "ragged": "{path}: every row must have the same length.",
+    "notFinite": "{path}: every value must be a finite number.",
+    "rowsMismatch": "{path}: expected {want} rows, got {got}.",
+    "colsMismatch": "{path}: expected {want} columns, got {got}.",
+    "lengthMismatch": "{path}: expected {want} values, got {got}.",
+    "blockPartial": "{path}: give all of Wo, W1 and W2, or none of them.",
+    "missingA": "{path}: every head needs its attention weights A.",
+    "rowSum": "{path}: each row of A must add up to 1.",
+    "emptyList": "{path}: the list is empty.",
+    "tooMany": "{path}: at most {max}.",
+    "badInt": "{path}: expected a whole number of at least {min}.",
+    "badEnum": "{path}: expected one of {allowed}.",
+    "badNumber": "{path}: expected a finite number."
+  }
+}

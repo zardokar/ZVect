@@ -12,7 +12,7 @@
   ],
   "scripts": {
     "start": "node server.js",
-    "test": "node --test tests/zvect.test.js tests/dict.test.js tests/chapters.test.js tests/samemodel.test.js tests/contextual.test.js tests/transformer.test.js tests/style.test.js",
+    "test": "node --test tests/zvect.test.js tests/dict.test.js tests/chapters.test.js tests/samemodel.test.js tests/contextual.test.js tests/transformer.test.js tests/tviz_zvect.test.js lib/tviz/atdd/tmath.test.js lib/tviz/atdd/trace.test.js lib/tviz/atdd/validate.test.js lib/tviz/atdd/guards.test.js lib/tviz/atdd/steps.test.js lib/tviz/atdd/sampling.test.js lib/tviz/atdd/color.test.js lib/tviz/atdd/geometry.test.js lib/tviz/atdd/bus.test.js lib/tviz/atdd/format.test.js lib/tviz/atdd/tween.test.js tests/style.test.js",
     "check": "node tools/check-examples.js",
     "manifest": "node tools/make-manifest.js",
     "reindex": "node tools/reindex.js",

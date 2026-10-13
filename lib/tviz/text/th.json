@@ -1,0 +1,137 @@
+{
+  "_how": [
+    "ข้อความทุกคำที่ tviz แสดง (WIP202610052) ช่อง {name} เติมโดย core/format.js fill()",
+    "key ต้องตรงกับ en.json (lib/tviz/atdd/format.test.js จะแดงถ้าไม่ตรง) host เปลี่ยนคำได้ด้วย options.text"
+  ],
+  "lang": "th",
+  "header": {
+    "counter": "{n} token · head {h} จาก {H} · layer {l} จาก {L}",
+    "source": {
+      "trace": "trace",
+      "weights": "weights ที่ให้มา",
+      "seed": "weights ตัวอย่างจาก seed"
+    }
+  },
+  "views": {
+    "embed": "token และ embedding",
+    "attention": "attention ทีละขั้น",
+    "lines": "เส้น attention",
+    "heads": "ทุก head",
+    "block": "Transformer block",
+    "sampling": "ความน่าจะเป็นของ token ถัดไป"
+  },
+  "steps": {
+    "x": "X",
+    "qkv": "Q, K, V",
+    "raw": "QKᵀ",
+    "scaled": "÷ √d_k",
+    "mask": "mask",
+    "maskOff": "mask: ปิด",
+    "softmax": "softmax",
+    "out": "· V"
+  },
+  "captions": {
+    "x": "token แต่ละตัวคือตัวเลขหนึ่งแถว (vector ของมัน) ถ้าเปิด position จะได้ X0 = X + P",
+    "qkv": "X0 (n × d) · W_Q (d × d_k) = Q (n × d_k) ส่วน K และ V ทำแบบเดียวกัน",
+    "raw": "คะแนนของ query i กับ key j = q_i · k_j หนึ่งแถวต่อ token ที่เป็น query",
+    "scaled": "หารทุกคะแนนด้วย √d_k เพื่อไม่ให้ softmax แหลมเกินไป",
+    "mask": "causal mask: token มองไปข้างหลังไม่ได้ คะแนนของ token ที่อยู่ถัดไปกลายเป็น −∞",
+    "maskOff": "ปิด causal mask อยู่: ทุก token มองเห็นทุก token",
+    "softmax": "softmax ทีละแถว: ได้น้ำหนักที่มากกว่า 0 และรวมกันได้ 1",
+    "out": "out = A · V: vector ใหม่ของแต่ละ token คือการผสมแถวของ V ตามน้ำหนัก"
+  },
+  "stages": {
+    "x0": "X0 (embedding + position)",
+    "mha": "multi-head attention",
+    "norm1": "+ residual แล้ว LayerNorm",
+    "ffn": "FFN (d_ff)",
+    "out": "+ residual แล้ว LayerNorm = out"
+  },
+  "stageFormulas": {
+    "x0": "X0 = X + P",
+    "mha": "concat(head_1 … head_h) · W_O",
+    "norm1": "LayerNorm(X0 + MHA)",
+    "ffn": "ReLU(norm1 · W_1)",
+    "out": "LayerNorm(norm1 + hidden · W_2)"
+  },
+  "player": {
+    "first": "ขั้นแรก",
+    "prev": "ขั้นก่อนหน้า",
+    "next": "ขั้นถัดไป",
+    "last": "ขั้นสุดท้าย",
+    "play": "เล่น",
+    "pause": "หยุด",
+    "stepOf": "ขั้น {i} จาก {n}",
+    "missing": "trace นี้ไม่มีขั้นนี้"
+  },
+  "tooltip": {
+    "cell": "q_{i} · k_{j} / √d_k = {v}",
+    "weight": "{from} → {to}: {v}",
+    "dim": "มิติ {d} = {v}",
+    "head": "layer {l} · head {h} · น้ำหนักสูงสุด {max} · entropy {entropy}",
+    "masked": "ถูก mask (−∞)",
+    "dimsSampled": "แสดง {shown} จาก {total} มิติ"
+  },
+  "controls": {
+    "threshold": "ซ่อนเส้นที่ต่ำกว่า",
+    "mark": "แสดงเป็น",
+    "dots": "จุด",
+    "cells": "ช่อง",
+    "temperature": "temperature T",
+    "filter": "ตัวกรอง",
+    "none": "ไม่กรอง",
+    "topk": "top-k",
+    "topp": "top-p",
+    "k": "k",
+    "p": "p",
+    "sample": "สุ่ม",
+    "argmax": "argmax"
+  },
+  "sampling": {
+    "formula": "logit / T → กรอง → softmax → %",
+    "ruleTopK": "top-k เก็บ k token ที่น่าจะเป็นที่สุด ถ้าเท่ากัน token ที่มาก่อนได้ไป",
+    "ruleTopP": "top-p เก็บชุด token ที่เล็กที่สุดซึ่งความน่าจะเป็นรวมกันได้อย่างน้อย p",
+    "picked": "สุ่มได้: {token} (u = {u})",
+    "filtered": "ถูกกรองออก"
+  },
+  "legend": {
+    "min": "ต่ำสุด",
+    "max": "สูงสุด"
+  },
+  "format": {
+    "negInf": "−∞",
+    "posInf": "+∞",
+    "nan": "—",
+    "pct": "{v}%",
+    "shape": "{rows} × {cols}",
+    "listSep": ", "
+  },
+  "a11y": {
+    "table": "ค่าของ {name} ขนาด {rows} × {cols}",
+    "token": "token ที่ {i}: {token}",
+    "query": "query",
+    "key": "key"
+  },
+  "errors": {
+    "notObject": "{path}: ต้องเป็น object",
+    "tokensMissing": "{path}: ต้องมีรายการ token",
+    "tooManyTokens": "{path}: ได้ไม่เกิน {max} token",
+    "tokenNotString": "{path}: token ทุกตัวต้องเป็นข้อความ",
+    "sourceNone": "ต้องให้ trace, weights หรือ seed อย่างใดอย่างหนึ่ง",
+    "sourceMany": "ให้ได้แค่อย่างเดียวจาก trace, weights หรือ seed",
+    "notMatrix": "{path}: ต้องเป็น matrix (รายการของแถว)",
+    "ragged": "{path}: ทุกแถวต้องยาวเท่ากัน",
+    "notFinite": "{path}: ทุกค่าต้องเป็นตัวเลขที่มีค่าจำกัด",
+    "rowsMismatch": "{path}: ต้องมี {want} แถว แต่ได้ {got}",
+    "colsMismatch": "{path}: ต้องมี {want} คอลัมน์ แต่ได้ {got}",
+    "lengthMismatch": "{path}: ต้องมี {want} ค่า แต่ได้ {got}",
+    "blockPartial": "{path}: ต้องให้ Wo, W1 และ W2 ครบทั้งสาม หรือไม่ให้เลย",
+    "missingA": "{path}: ทุก head ต้องมีน้ำหนัก attention A",
+    "rowSum": "{path}: ทุกแถวของ A ต้องรวมกันได้ 1",
+    "emptyList": "{path}: รายการว่าง",
+    "tooMany": "{path}: ได้ไม่เกิน {max}",
+    "badInt": "{path}: ต้องเป็นจำนวนเต็มตั้งแต่ {min} ขึ้นไป",
+    "badEnum": "{path}: ต้องเป็นค่าใดค่าหนึ่งใน {allowed}",
+    "badNumber": "{path}: ต้องเป็นตัวเลขที่มีค่าจำกัด"
+  }
+}
