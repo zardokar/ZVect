@@ -31,9 +31,9 @@ Branch: **main**, folder **/ (root)** → Save หลังจากนั้น
 ## บทเรียน
 
 <!-- chapters:start (สร้างด้วย npm run reindex จาก web/data/chapters.json ห้ามแก้ตรงนี้) -->
-เลขแบบ บท.หัวข้อ (1, 1.1, 1.2 …) หนึ่งหัวข้อมีเรื่องเดียว ในบท 6 เรียงจากง่ายไปยากและตามปีของแนวคิด
+เลขแบบ บท.หัวข้อ (1, 1.1, 1.2 …) หนึ่งหัวข้อมีเรื่องเดียว ในบท 6 และ 7 เรียงจากง่ายไปยากและตามปีของแนวคิด
 
-8 บท 38 หัวข้อ
+10 บท 43 หัวข้อ
 
 | บท | หัวข้อ | เรื่อง | ไฟล์ |
 |---|---|---|---|
@@ -49,12 +49,13 @@ Branch: **main**, folder **/ (root)** → Save หลังจากนั้น
 |  | 3.2 | BPE: เริ่มจากตัวอักษร แล้วรวมคู่ที่เจอบ่อยทีละรอบ (นับสดทุกรอบ) | `35_bpe` |
 |  | 3.3 | Tokenizer ของ GPT: BPE ที่เริ่มจากไบต์ UTF-8 (ไทย 3 ไบต์ต่อตัว, เลขใหม่ 256 + i, encode / decode, regex ของ GPT-2) | `37_gpt_tokenizer` |
 |  | 3.4 | Token ID: เลขประจำคำเป็นแค่ป้ายชื่อ (good 6, bad 22, great 21) | `21_token_id` |
-| 4 Embedding: เลขกลายเป็นเวกเตอร์ที่มีความหมาย | 4.1 | One-hot: เลข 1 ตัวเดียว ทุกคู่ห่างกันเท่ากัน | `22_one_hot` |
+| 4 Text Embeddings: เลขกลายเป็นเวกเตอร์ที่มีความหมาย | 4.1 | One-hot: เลข 1 ตัวเดียว ทุกคู่ห่างกันเท่ากัน | `22_one_hot` |
 |  | 4.2 | Bag of words: นับคำแล้วได้เวกเตอร์ (StatQuest) | `23_bag_of_words` |
 |  | 4.3 | Embedding matrix: one-hot × ตาราง = หยิบแถวของคำ | `12_embedding_matrix` |
 |  | 4.4 | ตารางมาจากการฝึก: เริ่มสุ่ม แล้วปรับทีละนิด (CBOW แบบย่อ) | `24_learn_table` |
 |  | 4.5 | Latent space: แกนที่มีความหมาย, king − man + woman | `05_latent_space` |
 |  | 4.6 | ใช้ model เดียวกันทั้งคำถามและเอกสาร: สองตารางฝึกจากเลขสุ่มต่างกัน คำเดียวกันได้เวกเตอร์ที่ไม่เกี่ยวกัน | `38_same_model` |
+|  | 4.7 | Static กับ contextual embedding: คำเดียวกัน (bank, apple) ได้เวกเตอร์เดียว หรือได้เวกเตอร์ตามประโยค | `39_contextual` |
 | 5 ค้นหาของที่ใกล้ที่สุด | 5.1 | ค้นด้วย cosine (top-3) | `06_similarity` |
 |  | 5.2 | ค้นด้วย distance | `18_search_distance` |
 |  | 5.3 | ค้นด้วย dot | `19_search_dot` |
@@ -64,19 +65,23 @@ Branch: **main**, folder **/ (root)** → Save หลังจากนั้น
 |  | 6.2 | มิติสูง: ระยะและ cosine บีบเข้าหากัน | `08_high_dimensions` |
 |  | 6.3 | เวกเตอร์ 1 บิต: เทียบด้วย XOR + popcount | `17_binary_xor` |
 |  | 6.4 | ANN แบบต้นไม้ (Annoy): แบ่งครึ่งซ้ำ ๆ แล้วเดินลงไปหากลุ่มเล็ก | `28_ann_tree` |
-|  | 6.5 | ANN แบบกราฟชั้นเดียว: เดินไปหาเพื่อนบ้านที่ใกล้กว่า | `29_nsw_graph` |
-|  | 6.6 | HNSW: กราฟหลายชั้น ขึ้นทางด่วนก่อน แล้วค่อยลงซอย | `13_vector_search` |
-|  | 6.7 | HNSW: beam (efSearch) | `30_hnsw_beam` |
-|  | 6.8 | HNSW: สร้างชั้นด้วยการโยนเหรียญ (1/M) | `31_hnsw_build` |
-|  | 6.9 | กรองระหว่างค้น: กรองเยอะเกินไป กราฟขาด (1/k) | `32_filter_graph` |
-| 7 การผสานทฤษฎี | 7.1 | Bi-Encoder: แปลงคำถามและเอกสารเป็นเวกเตอร์แยกกัน 4 ภาษา (EN / TH / 中文 / 日本語) ตัดคำด้วยช่องว่าง vs พจนานุกรม | `09_bi_encoder` |
-|  | 7.2 | Late interaction (ColBERT): เวกเตอร์ทุก token, MaxSim แล้วรวม (Σ) เทียบกับ Bi-Encoder 4 ภาษา | `36_late_interaction` |
-|  | 7.3 | Reranker (Cross-Encoder): คัด top-k แล้วจัดอันดับใหม่ (จับคำปฏิเสธ 4 ภาษา: not · ไม่ · 不 หน้าคำ, ない หลังคำ) | `14_reranker` |
-|  | 7.4 | Classification: nearest centroid | `10_classification` |
-| 8 เวกเตอร์ใน LLM | 8.1 | LLM input: แถวละ token แล้วบวกเวกเตอร์ตำแหน่ง | `25_llm_input` |
-|  | 8.2 | Attention: ให้คะแนนด้วย query · key | `26_attention` |
+| 7 ค้นเร็วด้วยกราฟ (NSW → HNSW) | 7.1 | ANN แบบกราฟชั้นเดียว: เดินไปหาเพื่อนบ้านที่ใกล้กว่า | `29_nsw_graph` |
+|  | 7.2 | HNSW: กราฟหลายชั้น ขึ้นทางด่วนก่อน แล้วค่อยลงซอย | `13_vector_search` |
+|  | 7.3 | HNSW: beam (efSearch) | `30_hnsw_beam` |
+|  | 7.4 | HNSW: สร้างชั้นด้วยการโยนเหรียญ (1/M) | `31_hnsw_build` |
+|  | 7.5 | กรองระหว่างค้น: กรองเยอะเกินไป กราฟขาด (1/k) | `32_filter_graph` |
+| 8 การผสานทฤษฎี | 8.1 | Bi-Encoder: แปลงคำถามและเอกสารเป็นเวกเตอร์แยกกัน 4 ภาษา (EN / TH / 中文 / 日本語) ตัดคำด้วยช่องว่าง vs พจนานุกรม | `09_bi_encoder` |
+|  | 8.2 | Late interaction (ColBERT): เวกเตอร์ทุก token, MaxSim แล้วรวม (Σ) เทียบกับ Bi-Encoder 4 ภาษา | `36_late_interaction` |
+|  | 8.3 | Reranker (Cross-Encoder): คัด top-k แล้วจัดอันดับใหม่ (จับคำปฏิเสธ 4 ภาษา: not · ไม่ · 不 หน้าคำ, ない หลังคำ) | `14_reranker` |
+|  | 8.4 | Classification: nearest centroid | `10_classification` |
+| 9 เวกเตอร์ใน LLM | 9.1 | LLM input: แถวละ token แล้วบวกเวกเตอร์ตำแหน่ง | `25_llm_input` |
+|  | 9.2 | Attention: ให้คะแนนด้วย query · key | `26_attention` |
+| 10 LLM - Stanford: Transformer | 10.1 | Transformer มาจากไหน: RNN อ่านทีละคำผ่าน hidden state ส่วน attention ต่อตรงทุกคำ | `40_transformer_why` |
+|  | 10.2 | Self-attention เต็มสูตร: softmax(QKᵀ/√d)V, การหาร √d และ mask | `41_self_attention` |
+|  | 10.3 | ตำแหน่งแบบ sin / cos: เข็มนาฬิกาหลายความเร็ว ตำแหน่งใกล้กันคล้ายกัน | `42_position_encoding` |
+|  | 10.4 | Transformer block: multi-head attention, residual, layer norm, feed forward ขนาดเข้าเท่าขนาดออก | `43_transformer_block` |
 
-เลขหน้าไฟล์ (`01_`…`38_`) คือลำดับที่เขียนไฟล์ ไม่ใช่ลำดับบท ลำดับบทและหมวด (บท) กำหนดใน `web/data/chapters.json` ที่เดียว แก้แล้วรัน `npm run reindex`
+เลขหน้าไฟล์ (`01_`…`43_`) คือลำดับที่เขียนไฟล์ ไม่ใช่ลำดับบท ลำดับบทและหมวด (บท) กำหนดใน `web/data/chapters.json` ที่เดียว แก้แล้วรัน `npm run reindex`
 <!-- chapters:end -->
 
 ## โครงสร้าง

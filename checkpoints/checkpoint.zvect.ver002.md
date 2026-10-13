@@ -10,8 +10,8 @@
 - **Edit flow:** the owner edits / commits on Windows in `D:\repository\ZVect`. Claude works in a cloud container and copies files back
   through the device bridge (new outputs dir, `expectedMtimeMs`, stage back, md5). No sync script. Claude never runs git write commands.
 - **DO-FIRST for the next session:** read `README.md` → walk `checkpoints/checkpoint.zvect.ver*.md` numerically → read the latest in full
-  (§6 first) and the previous one → read the newest `.dropzone/hzup_claude/*.md` (now `20261011_2317.md`; its job, `WIP202610041`, is done in #42) → run `npm test` and `npm run check` → summarize the open
-  WIP count before any work. Expected after upckp #44: 9 open rows in §6, 39 closed rows in §5c, 39 IDs in the archive (§5c IDs = archive IDs, checked at #44).
+  (§6 first) and the previous one → read the newest `.dropzone/hzup_claude/*.md` (now `20261013_1150.md`; next job LLM manual T1, `WIP202610050`: read `docs/arch/WIP202610050_llm-manual/README.md`, then `T1_brief.md` only) → look in `.dropzone/hzup_intercomm/` for `*_to_claude-zvect.md` from other projects → run `npm test` and `npm run check` → summarize the open
+  WIP count before any work. Expected after upckp #56: 10 open rows in §6, 46 closed rows in §5c, 46 IDs in the archive (§5c IDs = archive IDs; #55 and #56 minted and closed nothing).
 
 ---
 
@@ -149,6 +149,160 @@ proposed for saving to the account (#44, `WIP202610008` closed). Both are writte
 6. A closed row not filed in the archive is a defect (7 were found at the 002 cut, #33): check §5c IDs ⊆ archive IDs at every upckp.
 
 ## §5b Update log (newest on top)
+
+### #56 — 2026-10-13 11:43–11:5x — start-up shortcuts: entry README, T1 brief, part packs, cross-project pointer, handoff
+
+- Owner (11:43) "แล้วถ้าให้ session อื่นมาอ่านหละ มันก็ไม่ต้องวุ่นวายไหม หรือมีทาง shotcut ให้พร้อมเอาไปประกอบไหม"; (11:44) "ok แยกเรื่องก่อน
+  session ใหม่ของ Project นี้เอง ก็หาวิธีเลย แต่มันมีเคส Session อื่นจาก Project อื่นให้ทำยังไงชี้ไปไหน".
+- Same project: `docs/arch/WIP202610050_llm-manual/README.md` (entry point, read-by-task table) · `T1_brief.md` (77 lines: files to create,
+  smallest edits to `index.html` / `app.js` / `style.css`, section text format with ref comments, `details.deep` box and `{widget:x}`,
+  done-when gates, md5 of the 10 files it was written from) · `.dropzone/Create_LLM/tools/make_packs.py` (stdlib Python) → 14 packs
+  `.dropzone/Create_LLM/packs/part_*.md` + `INDEX.md` (outline + cited aimd lines + N / C / G rows + lesson numbers, md5 header; 0 range
+  problems; spot-checked A05 L10–L15 and A06 L6, L12 against the plan's claims). Handoff `20261013_1150.md` supersedes `20261013_0327.md`.
+- Other projects: `llms.txt` gains a section pointing to that README (public on GitHub once pushed). README rules: read-only, cite aimd lines,
+  messages to `.dropzone/hzup_intercomm/YYYYMMDD_HHMM_<sender>_to_claude-zvect.md`. A "zvect-pointer" skill card was proposed so any
+  project's session can find ZVect; owner saves it or not. `reindex` rewrites only the "- Lessons (" line of `llms.txt`, so the new section survives.
+- `plan.md` not changed (packs stay valid). No site, lesson or aimd change. No WIP minted or closed. Gates not run (no code changed).
+
+### #55 — 2026-10-13 11:27–11:4x — LLM manual decisions answered; plan moved into `docs/arch` (`WIP202610050` open)
+
+- Owner (11:27) pointed at handoff `20261013_0327.md`. Asked D1–D7, T0b and the plan's location through two multiple-choice rounds.
+- Answers (11:3x): D1 (a) "คู่มือ" section of the site · D2 "1+2" (both levels: beginner–intermediate main text, advanced layer in
+  "เจาะลึก" boxes) · D3 strict + iw for gaps · D4 not asked, recommended value used (Thai + English terms) · D5 "1+2" (links **and**
+  mini-widgets in chapters, each widget its own WIP + review) · D6 front to back 0 → XII (owner overrode "core first") · D7 (c) own Node
+  encoder over a cl100k_base ranks file · T0b G1 + G2, G3, G7 picked, with "G7 เปลี่ยนเป็น 6 และ G6 เป็น G7": read as an id swap, so hybrid
+  search is now G6 (first iw batch G1, G2, G3, G6) and agents / MCP is G7 (later). Move plan into git: yes.
+- Plan moved to `docs/arch/WIP202610050_llm-manual/plan.md` (old `.dropzone/Create_LLM/plan.md` is now a pointer with the old md5; `index/`
+  stays in `.dropzone`). Edited: header status, Thai summary, §1 Reader, §2 answers table, §9 G6 ↔ G7 (every ref swapped, rows reordered),
+  §10 widget mount point + "เจาะลึก" box + R6 / R8, §11 (T0, T0b ticked; T4 front-to-back with iw before each gap part; T5 widgets; T6 needs
+  the APPROVALS row), §12 note. No review run on these edits (T0c not requested).
+- `docs/APPROVALS.md` row #1 (first row): the cl100k_base ranks data file, dev-only, owner 11:3x via D7 = (c); sha256 to be filled at T6.
+- No site, lesson or aimd change. No WIP minted or closed. Next: T1 (route, renderer, "เจาะลึก" box, widget mount) and the iw source picks for G1–G3, G6.
+
+### #54 — 2026-10-13 03:27 — handoff (hz)
+
+- Owner (03:27) "hz". Handoff `.dropzone/hzup_claude/20261013_0327.md` (supersedes `20261012_2243.md`): no purpose given, so the next session
+  asks D1–D7 + gap sources for the LLM manual (`WIP202610050`); older proposals still open. No WIP minted or closed.
+
+### #53 — 2026-10-13 02:01–03:xx — plan for an LLM manual (`WIP202610050` minted, open)
+
+- Owner (02:01) "ร่างแผนทำ LLM manual จากความรู้ทั้งหมดที่ได้มาที ขอให้คิดให้ดีๆ และ ref เชิงลึก ใน aimd ทุก file ที่ทำ LLM
+  .dropzone/Create_LLM/plan.md เรียก ตัวเอง Review แล้วถ้าผ่านให้ เรียก Fable Review ด้วย อีก 1 ครั้ง แล้วบอกทีว่าต้องทำอะไรบ้างใส่ไว้".
+- Four indexing subagents built a line-level index of all 27 aimd files (A01–A27, topic codes T01–T25). The plan has 12 parts + appendices,
+  section-by-section aimd line refs (every file cited; bounds checked by script), a numbers table N, a contradiction register C, gaps G1–G12,
+  decisions D1–D7, process/tooling/risks and a to-do list T0–T8. Plan only: nothing in the site, lessons or docs changed.
+- Location `.dropzone/Create_LLM/plan.md` is git-ignored (owner's choice of path); T0 offers a copy to `docs/arch/WIP202610050_llm-manual/plan.md`.
+- Reviews (plan §12): self-review cycle 1 FAIL (11 must: wrong refs/labels, tier count, WIP claim, tiktoken vs law 2, 200-line rule) → fixed;
+  cycle 2 FAIL (1 ref) → fixed; Fable review FAIL (1 must: no section on the training loop → new IV.7; 10 should) → all applied. No re-review
+  after the last fixes (cycle 3 needs the owner's yes; owner asked for one Fable pass). Index files kept in `.dropzone/Create_LLM/index/`.
+
+### #52 — 2026-10-13 01:07–02:xx — iwd yt:4JofSJIrjwU (Tech With Tim, fine-tune locally with Unsloth Studio) (`WIP202610049` closed)
+
+- Owner (01:07) "iwd https://www.youtube.com/watch?v=4JofSJIrjwU". intelligence-writer v6.1, mode iwd, standard license → own-words rewrite; captions:
+  en-CA manual track (905 lines, SHA matched) chosen over en ASR. Temp `.dropzone/iw_temp/20261013_0107/`. Report
+  `20260727_How-To-Fine-Tune-Any-AI-Model-Locally` (41:06, published 2026-07-27): 15 sections, 9 frames, 2 own SVGs (flow, VRAM bars + table);
+  HeyGen sponsor read (~5:40–7:03) and description CTAs removed.
+- Fact-check 15 (subagent): 4 confirmed, 9 partly, 2 contradicted (Unsloth is not built by NVIDIA engineers — founders Daniel & Michael Han, Data
+  Recipes on NVIDIA NeMo Data Designer; the fine-tuned model's "alone = sama" is wrong, alone = sendiri / sendirian). Also: Unsloth's QLoRA VRAM
+  table is 1.7–2.4× below the clip's; Unsloth calls loss < 0.2 likely overfitting (Export-page checkpoint 0.0582); research (Ovadia 2023, Gekhman
+  2024) is less optimistic than "fine-tuning can replicate all of RAG". Own arithmetic: LoRA r16 on Llama-3.1-8B = 41.9M params ≈ 0.52% ≈ 84 MB.
+- Two independent fidelity reviewers (halves): 5 must (broken table row from `\|` in a cell; LoRA 22 GB is above, not below, the slide; base model's
+  answer misread — it lists sendiriri / tersendiri / sendirian; unlabelled author takeaway), 20 should, 16 nits — all applied. iw_check --render PASS.
+- Gotchas: Web View console messages are cut at ~8,000 characters — grab with chunk ≤ 7,000 (then ~10 full frames fit in one read); a grab call
+  with the pane hidden can stall on a seek (readyState 1) → navigate with `&t=` and grab again. A manual caption track for another locale (en-CA)
+  needs the player switched to it first (`setOption('captions','track',{languageCode:'en-CA'})`), then refetch that request as json3.
+- REFERENCE.md: row, section, new group "Fine-tuning / LoRA", tags; fixed the malformed "ภายใน LLM" group row. Lessons unchanged; proposals only.
+
+### #51 — 2026-10-13 00:xx–01:xx — new chapter 10 "LLM - Stanford: Transformer" (4 topics) (`WIP202610048` closed)
+
+- Owner (22:56) "เปิดหัวข้อ LLM - Stanford ต่อจาก LLM เลย" → asked: REFERENCE group or a lesson chapter → owner "ทั้งสองอย่าง". Owner (23:25)
+  "ควรจะอธิบายเรื่อง Transformers ด้วยนะ คืออะไรมายังไงเห็นหลาย clip แต่ไม่มีบท Theory อธิบายเลย" → the chapter is Transformer theory.
+- Chapter 10 `stanford` after chapter 9 LLM: 10.1 transformer-why (RNN hidden state hops vs direct attention; toy keep 0.6 → near 5 steps 0.078, far
+  15 steps; sequential steps n vs 1), 10.2 self-attention (softmax(QKᵀ/√d)V on 5 tokens of the lecture's sentence, d = 3; teddy bear → cute 0.538,
+  unscaled 0.759, causal mask), 10.3 position-encoding (sin / cos clock hands, d = 8; cos(10, 11 / 15 / 30) = 0.884 / 0.790 / 0.493), 10.4
+  transformer-block (d_model 4, 2 heads, d_ff 8, seeded weights; every stage n × d_model except FFN hidden; decoder view with mask + cross-attention
+  in the picture). Logic `web/js/attention.js`, `web/js/tblock.js`; data `web/data/transformer.json`; text files; examples js/py/cpp ×4 identical;
+  `tests/transformer.test.js` (11 incl. steps = lines per lesson, try-text numbers, example drift). Sources stanford + syntaxllm added to sources.js.
+- Review: cycle 1 FAIL (3 must: unsourced "all LLMs" claim, hard-coded focus token, FFN bias unlabelled; 14 should) → all applied; cycle 2 PASS (2 nits
+  applied). Red proofs: sin/cos swap and missing residual each fail tests. Fixed during build: steps vs formula lines mismatch (10.1, 10.4), 10.2 matrix
+  table overflow (numbered headers). Python treats "# … encoding: …" on line 1 as a source-encoding declaration — avoid "coding:" in first lines.
+- Gates: `npm test` 66 / 0, `npm run style` PASS 40 files, `npm run check` PASS, Playwright 43 lessons + Dict × 3 sizes 0 problems; 10 chapters / 43 topics.
+  REFERENCE usage lines for stanford, syntaxllm, wordemb, thuvu, nitmonk, metrics, sofar list 10.x.
+
+### #50 — 2026-10-12 23:2x–00:xx — iwd yt:114i2Kz-LZA (Stanford CME295 Lecture 1 - Transformers) (`WIP202610047` closed)
+
+- Owner (22:56) "iwd https://www.youtube.com/watch?v=114i2Kz-LZA". intelligence-writer v6.1, mode iwd, standard license → own-words rewrite; manual English
+  captions (1,768 lines, SHA matched; `iw_tx min` stops at 1:00:00 for hour timestamps — the rest condensed by hand). Temp `.dropzone/iw_temp/20261012_2256/`.
+  Report `20260928_Stanford-CME295-Lecture-1-Transformers` (1:44:28, published 2026-09-28): 13 sections, 9 slide frames, 2 own SVGs.
+- Fact-check 16 (subagent): 12 confirmed, 4 partly, 0 contradicted (FFN-holds-most-parameters true per encoder layer, ~39% of the base model; ChatGPT
+  tweet typo not found). Two independent fidelity reviewers (halves): 2 must (deep summary implied unspoken paper values; 8-author row not in the clip),
+  18 should, 15 nits — all applied. iw_check --render PASS.
+- REFERENCE.md: row, section, new group "LLM - Stanford (CME295: Transformer เต็มสูตร)" right after "ภายใน LLM", 13 new tags.
+
+### #49 — 2026-10-12 22:46–23:2x — iwd yt:YmLp8qe87A0 (Syntax / CJ, LLMs Explained) (`WIP202610046` closed)
+
+- Owner (22:46) "iwd https://www.youtube.com/watch?v=YmLp8qe87A0". intelligence-writer v6.1, mode iwd, standard license → own-words rewrite
+  (en:asr 1,577 lines, SHA matched; transcript stays in the scratchpad). Temp `.dropzone/iw_temp/20261012_2246/`. Report `20260710_LLMs-Explained-Tokens-Embeddings-Transformers-And-More` (51:48,
+  published 2026-07-10): 17 sections (chatbot history + if-bot, XOR net = weights file 3 / 17 numbers, BPE + tokenizer demo, word2vec skip-gram demo,
+  transformer history + block, own 6-layer story transformer, softmax / temperature / top-p, autoregressive + context window, pre-training / fine-tuning /
+  RLHF, tool calling, Dartmouth + speaker's view), 9 frames, 2 own SVGs (cycle, timeline).
+- Fact-check 33 rows incl. the speaker's repo (read via raw.githubusercontent.com; github.com tree pages refused; WebFetch of github.com timed out on
+  approval): 17 confirmed, 10 partly, 2 not found, 4 contradicted — top-p "top 20% of tokens" wrong; 6-layer config = 102,792 params (52,000 = 2-layer
+  default 51,976); repo MAX_MERGES 1000 (said 10,000); word2vec window default 2 max 5 (said "five or six").
+- Independent fidelity review: 1 must (dropped "not necessarily" hedge in the speaker's closing view), 8 should, 7 nits — all applied. iw_check --render PASS.
+- REFERENCE.md: row, section, group "ภายใน LLM", 14 new tags. Lessons unchanged; proposals 3.2, 4.4, 4.5, 4.7, 9.1, 9.2 + new-topic ideas (model = weights
+  file, softmax / temperature / top-p, autoregressive loop) for `WIP202610023`.
+- Owner (22:56, mid-job) queued: "iwd https://www.youtube.com/watch?v=114i2Kz-LZA" + "เปิดหัวข้อ LLM - Stanford ต่อจาก LLM เลย" (next).
+
+### #48 — 2026-10-12 22:43 — handoff (hz)
+
+- Owner (22:43) "hz". Handoff `.dropzone/hzup_claude/20261012_2243.md` (supersedes `20261011_2317.md`): no purpose given, so the next session
+  asks which waiting proposal to do (chapter 7 HNSW additions, chapter 4 additions, 5.4 / 6.1 notes, RAG `WIP202610036`, close `WIP202610022`?).
+  No WIP minted or closed.
+
+### #47 — 2026-10-12 22:06–22:4x — new topic 4.7 static vs contextual embedding (`WIP202610045` closed)
+
+- Owner (22:06) "เดี๋ยวนะ แล้วไม่ปรับปรุงเนื้อหาหรือ เพิ่มเติมอะไรเหรอ"; Claude offered 4 options (chapter 7 HNSW additions, chapter 4 additions,
+  new topic static vs contextual, short notes 5.4 + 6.1); owner picked only "หัวข้อใหม่ static vs contextual". The other three stay proposals.
+- Built 4.7 `contextual` (`39_contextual`, coder rules): `web/js/contextual.js` (logical), `web/lessons/39_contextual.js` (component),
+  `39_contextual.text.js` (text), `web/data/contextual.json` (11-word 3-D table made up by the author, 2 cases: bank in NitMonk's money / Yamuna river
+  sentences, apple in "I ate an apple" / "Apple released a phone"; scoreDivisor sqrtDim, tieEps). Toy rule (author, simplified attention, no W):
+  score = e·E[x]/√d, softmax, c = Σ a E[x]. Numbers: static bank cos 0.777 / 0.777 (tie), contextual 0.987 money / 0.977 river, cos between the two
+  sentences 0.563 (static 1.000); apple 0.946 fruit / 0.983 company, 0.670. Refs thuvu, choose, nitmonk, annie, sofar (3 new in `web/js/sources.js`).
+- Examples js/py/cpp identical; `tests/contextual.test.js` 10 tests (incl. the try-list numbers read from the text file = code numbers; red proofs for the
+  text test and the 2-sentence guard). chapters.json + reindex: 9 chapters / 39 topics. REFERENCE.md "ใช้ในบท" for the 5 sources now include 4.7.
+  `docs/aimd/` work copy gained the two #45 aimd files (already on the device).
+- Independent review (data-only brief, JSON): PASS, 6 should + 6 nits — all applied (legend matched to the canvas, thuvu ref no longer ties ELMo to
+  self-attention, NitMonk attention caveat, 2-sentence guard, hasOwn, SOFAR ~7:56). Not re-reviewed after the fixes.
+- Gates: `npm test` 55 / 0, `npm run style` PASS 17 files, `npm run check` PASS, Playwright 39 lessons + Dict × 3 sizes 0 problems; canvas labels checked by screenshot.
+
+### #46 — 2026-10-12 20:04–20:2x — chapter 6 split, chapter 4 renamed "Text Embeddings" (`WIP202610044` closed)
+
+- Owner (20:04) "จัดหมวดหมู่ใหม่ไหม ?" → Claude: the two new clips fit existing topics; only chapter 6 (9 topics) is crowded; owner picked
+  "แยกบท 6 เป็นสองบท". Owner (20:06) "Text Embeddings เรามีหัวข้อนี้ยัง ถ้ามันเป็นภาษาไทย ขอให้ใช้ตัวนี้เหอะ" → chapter 4 title
+  "Text Embeddings: เลขกลายเป็นเวกเตอร์ที่มีความหมาย" (was "Embedding: …"; Thai subtitle kept).
+- `web/data/chapters.json`: 6 `fast-search` keeps 6.1–6.4 (brute force, high dimensions, 1-bit XOR, ANN tree); new 7 `graph-search`
+  "ค้นเร็วด้วยกราฟ (NSW → HNSW)" = 7.1 graph-walk, 7.2 vector-search, 7.3 hnsw-beam, 7.4 hnsw-build, 7.5 filter-graph; combine → 8, llm → 9.
+  readme_intro names both chapters. `npm run reindex`: 9 chapters / 38 topics, 119 REFERENCE numbers remapped (RAG proposal "8.3" → "9.3").
+- `tools/reindex.js` NUM_RE skips comma-joined pairs: the dry run would have turned the HNSW point Q(8.5,1.2) into Q(9.5,1.2). New assert in
+  `tests/chapters.test.js`; red proof: old regex fails it.
+- Gates: `npm test` 45 / 0, `npm run style` PASS, `npm run check` PASS, Playwright 38 lessons + Dict × 3 sizes 0 problems, sidebar shows 9 chapters.
+
+### #45 — 2026-10-12 19:20–2x:xx — iwd of two clips: text embeddings (Thu Vu) + HNSW from scratch (`WIP202610043` closed)
+
+- Owner (19:20): "iwd https://www.youtube.com/watch?v=Q6TBHDgWCDQ" + "iwd https://www.youtube.com/watch?v=wyWFLIlgmAw". Skill intelligence-writer
+  v6.1, mode iwd (routing rule 2), standard YouTube license → own-words rewrite; transcripts (en:asr, 483 / 1,193 lines, SHA matched) stay in the
+  session scratchpad. Temp `.dropzone/iw_temp/20261012_1920/` (preflight, factcheck, job.md + aimd_body.md + 7 frames each).
+- yt:Q6TBHDgWCDQ → `20260523_Learn-Text-Embeddings-In-20-Minutes` (19:56; one-hot / BoW / n-gram / TF-IDF, 4 shortcomings, distributional idea,
+  dense space, word2vec CBOW / skip-gram, static vs contextual, MTEB, ada-002 cosine demo). Fact-check 10: 7 confirmed, 3 partly. Review: 4 must
+  (count 6/4 → 7/3, unlabelled author content, false "คลิปแนะนำ", ELMo tied to self-attention), hedges restored, nits — all applied.
+- yt:wyWFLIlgmAw → `20260628_HNSW-Explained-From-Scratch` (61:04; RAG → ANN, NSW insert / greedy search, min/max heaps + ef, skip list, HNSW
+  layers, Mmax / Mmax0, p = 1/M). Fact-check 9: 2 confirmed, 6 partly, 1 contradicted (six degrees is not from game theory: Karinthy 1929,
+  Milgram 1967). Running the ef example in code: ef = 1 and ef = 2 stop at B(6), not D(7) as said (the slide agrees with B) → fix boxes.
+  Review: 1 must, 6 should, 5 nits — all applied.
+- Both HTML `iw_check --render` PASS (0 warns), per-figure shots checked. REFERENCE.md: 2 rows, 2 sections, groups (Embeddings; ANN / vector DB;
+  RAG / Multivector), 10 new tags; `npm run reindex -- --check` up to date. Lessons unchanged; proposals: Q6 → 4.1, 4.2, 4.4, 4.5, 4.6, 5.4;
+  wy → 6.1, 6.5–6.8 (HNSW topics). Delivered via bridge (new outputs dir, expectedMtimeMs, stage back, md5).
 
 ### #44 — 2026-10-12 00:07–00:4x — coder + review skills; lesson 4.6 under the coder rules (`WIP202610008`, `WIP202610042` closed)
 
@@ -313,6 +467,11 @@ proposed for saving to the account (#44, `WIP202610008` closed). Both are writte
 
 | ref | date | title | HTML | MD |
 |---|---|---|---|---|
+| yt:4JofSJIrjwU | 2026-07-27 (published) / 2026-10-13 (read) | How to Fine-Tune any AI Model Locally (FULL Tutorial) (Tech With Tim; Unsloth Studio; iwd own-words rewrite, 15-claim fact-check) | docs/outhtm/20260727_How-To-Fine-Tune-Any-AI-Model-Locally.html | docs/aimd/20260727_How-To-Fine-Tune-Any-AI-Model-Locally_claude.md |
+| yt:114i2Kz-LZA | 2026-09-28 (published) / 2026-10-12 (read) | Stanford CME295 Transformers & LLMs, Autumn 2026, Lecture 1 - Transformers (Stanford Online, Afshine & Shervine Amidi; iwd own-words rewrite, 16-claim fact-check) | docs/outhtm/20260928_Stanford-CME295-Lecture-1-Transformers.html | docs/aimd/20260928_Stanford-CME295-Lecture-1-Transformers_claude.md |
+| yt:YmLp8qe87A0 | 2026-07-10 (published) / 2026-10-12 (read) | LLMs Explained: Tokens, Embeddings, Transformers and More (Syntax, CJ; iwd own-words rewrite, 33-row fact-check incl. the speaker's repo) | docs/outhtm/20260710_LLMs-Explained-Tokens-Embeddings-Transformers-And-More.html | docs/aimd/20260710_LLMs-Explained-Tokens-Embeddings-Transformers-And-More_claude.md |
+| yt:wyWFLIlgmAw | 2026-06-28 (published) / 2026-10-12 (read) | HNSW Explained from Scratch, The Vector Search Algorithm Behind RAG (AI Is All You Need; iwd own-words rewrite, 9-claim fact-check, ef example re-run in code) | docs/outhtm/20260628_HNSW-Explained-From-Scratch.html | docs/aimd/20260628_HNSW-Explained-From-Scratch_claude.md |
+| yt:Q6TBHDgWCDQ | 2026-05-23 (published) / 2026-10-12 (read) | Learn Text Embeddings in 20 Minutes (full guide for beginners) (Thu Vu; iwd own-words rewrite, 10-claim fact-check) | docs/outhtm/20260523_Learn-Text-Embeddings-In-20-Minutes.html | docs/aimd/20260523_Learn-Text-Embeddings-In-20-Minutes_claude.md |
 | yt:izbifbq3-eI | 2025-05-29 (published) / 2026-10-11 (read) | Tokens vs Embeddings – what are they + how are they different? (Annie Sexton; own-words rewrite, slides checked, no web fact-check) | docs/outhtm/20250529_Tokens-Vs-Embeddings.html | docs/aimd/20250529_Tokens-Vs-Embeddings_claude.md |
 | yt:zduSFxRajkE | 2024-02-20 (published) / 2026-10-11 (read) | Let's build the GPT Tokenizer (Andrej Karpathy; own-words rewrite in 16 steps, frames checked, no web fact-check) | docs/outhtm/20240220_Lets-Build-The-GPT-Tokenizer.html | docs/aimd/20240220_Lets-Build-The-GPT-Tokenizer_claude.md |
 | yt:S7tFyREI19I | 2026-10-08 (published) / 2026-10-11 (read) | Training Your Own Embedding Model Is Not As Hard As You Think (Prompt Engineering; own-words rewrite, 8-claim fact-check) | docs/outhtm/20261008_Training-Your-Own-Embedding-Model-Is-Not-As-Hard-As-You-Think.html | docs/aimd/20261008_Training-Your-Own-Embedding-Model-Is-Not-As-Hard-As-You-Think_claude.md |
@@ -376,6 +535,13 @@ proposed for saving to the account (#44, `WIP202610008` closed). Both are writte
 | WIP202610038 | FINISH | 002 | iw yt:zduSFxRajkE (Karpathy GPT tokenizer) + lesson 3.3 Tokenizer ของ GPT (byte-level BPE playground); chapter 3 now 3.1–3.9 | file:web/lessons/37_gpt_tokenizer.js · ckp:002#35 |
 | WIP202610008 | FINISH | 002 | Owner supplied the coder + review skills (00:07); proposed for saving; ZVect adaptation in docs/arch/WIP202610042 | ckp:002#44 |
 | WIP202610042 | FINISH | 002 | coder + review applied to new code; lesson 4.6 split logical / component / text / config, npm run style, review PASS at cycle 3 | file:web/js/samemodel.js · file:tools/check-style.js · ckp:002#44 |
+| WIP202610049 | FINISH | 002 | iwd yt:4JofSJIrjwU (Tech With Tim, Unsloth Studio fine-tuning); fact-check 15 (4/9/0/2); two reviewers; REFERENCE group Fine-tuning / LoRA | file:docs/outhtm/20260727_How-To-Fine-Tune-Any-AI-Model-Locally.html · ckp:002#52 |
+| WIP202610048 | FINISH | 002 | Chapter 10 LLM - Stanford: Transformer theory (10.1 why, 10.2 self-attention, 10.3 sin/cos position, 10.4 block), coder rules, review PASS cycle 2 | file:web/js/attention.js · file:web/js/tblock.js · ckp:002#51 |
+| WIP202610047 | FINISH | 002 | iwd yt:114i2Kz-LZA (Stanford CME295 Lecture 1); fact-check 16 (12/4/0/0); two reviewers; REFERENCE group LLM - Stanford | file:docs/outhtm/20260928_Stanford-CME295-Lecture-1-Transformers.html · ckp:002#50 |
+| WIP202610046 | FINISH | 002 | iwd yt:YmLp8qe87A0 (Syntax / CJ, LLMs Explained); fact-check 33 (17/10/2/4) incl. repo; params 102,792 not 52,000; top-p fixed; REFERENCE row + section | file:docs/outhtm/20260710_LLMs-Explained-Tokens-Embeddings-Transformers-And-More.html · ckp:002#49 |
+| WIP202610045 | FINISH | 002 | Topic 4.7 static vs contextual embedding (bank / apple, toy simplified attention), coder rules, review PASS + fixes; 9 chapters / 39 topics | file:web/lessons/39_contextual.js · file:web/js/contextual.js · ckp:002#47 |
+| WIP202610044 | FINISH | 002 | Chapter 6 split: 6 fast search (4) + 7 graph search NSW → HNSW (5), 9 chapters / 38 topics; chapter 4 titled Text Embeddings; reindex regex skips Q(8.5,1.2) | file:web/data/chapters.json · file:tools/reindex.js · ckp:002#46 |
+| WIP202610043 | FINISH | 002 | iwd yt:Q6TBHDgWCDQ (Thu Vu, text embeddings) + yt:wyWFLIlgmAw (HNSW from scratch); fact-check 10 + 9; ef example B(6) not D(7); REFERENCE rows + sections | file:docs/outhtm/20260628_HNSW-Explained-From-Scratch.html · file:docs/outhtm/20260523_Learn-Text-Embeddings-In-20-Minutes.html · ckp:002#45 |
 | WIP202610007 | FINISH | 002 | Owner decided: checkpoint stays a manual ledger; no toolchain port (wipchecker / lint / lang check) | ckp:002#43 |
 | WIP202610041 | FINISH | 002 | Topic 4.6 same embedding model for question + documents (two toy tables from seeds 16 / 18, cos(cat_A, cat_B) −0.968), 6 aimd refs, review applied | file:web/lessons/38_same_model.js · ckp:002#42 |
 | WIP202610037 | FINISH | 002 | 6 iw reports (RAG multivector, ColBERT precision, Qdrant Edge, Google word2vec, NitMonk Hindi, EmbeddingGemma 2 fine-tune) + tagged REFERENCE.md | file:REFERENCE.md · ckp:002#34 |
@@ -386,6 +552,7 @@ proposed for saving to the account (#44, `WIP202610008` closed). Both are writte
 |---|---|---|---|
 | WIP202610011 | [verify] Run `npm start`, `npm test`, `npm run check` on the owner's Windows machine (python/g++ discovery, `.\name.exe` run line) | 2026-10-10 | ckp:001#1 |
 | WIP202610012 | [web] Arrows and points vanish when an endpoint is behind the camera at close zoom (lines are clipped, arrows are not; min zoom raised to 5 as mitigation) | 2026-10-10 | ckp:001#1 |
+| WIP202610050 | [docs] LLM manual: plan in `docs/arch/WIP202610050_llm-manual/plan.md`; decisions answered (#55: site section, both levels, strict + iw, links + widgets, front to back, own encoder); entry `README.md` + `T1_brief.md` + packs (#56); next T1, then T2–T8; iw G1 + G2, G3, G6 (hybrid) before the parts that need them — sources (URLs) still to pick | 2026-10-13 | ckp:002#53 · ckp:002#55 · ckp:002#56 |
 | WIP202610013 | [lib] Untested divergences: `angle` with NaN (Python 0.0 vs NaN), `fmt(NaN)` text ("NaN" vs "nan") | 2026-10-10 | ckp:001#1 |
 | WIP202610021 | [repo] Owner deletes the 8 pre-rename files (copies kept in `.dropzone/_to_delete/`) | 2026-10-10 | ckp:001#5 |
 | WIP202610022 | [skill] iw v5.1: meaning-fidelity rule, no lyrics, per-batch frame prefixes, C2PA-aware verify, crop presenter chrome, li/p wrap, own-words rule for standard licenses — card re-shown 23:4x (first one was not visible to the owner), owner to save | 2026-10-10 | ckp:001#7 |
@@ -396,7 +563,19 @@ proposed for saving to the account (#44, `WIP202610008` closed). Both are writte
 
 ### Narrative
 
-- **Latest (#44, 00:4x):** coder + review adopted for new code, 4.6 refactored, review PASS (cycle 3). Next: owner saves the two skill cards, commits.
+- **Latest (#56, 2026-10-13 11:5x):** start-up shortcuts (entry README, T1 brief, packs), `llms.txt` pointer for other projects, handoff `20261013_1150.md`. Next: T1; owner commits #45–#56.
+- Before that (#55, 2026-10-13 11:4x): LLM manual decisions answered, plan moved to `docs/arch/WIP202610050_llm-manual/`, APPROVALS row #1. Next: T1 build; owner names or approves sources for G1–G3, G6; commits #45–#55.
+- Before that (#54, 2026-10-13 03:27): handoff `20261013_0327.md`. Next: owner answers the LLM manual decisions, commits #45–#54.
+- Before that (#53, 2026-10-13 03:xx): LLM manual plan written and reviewed (`WIP202610050` open). Next: owner answers D1–D7 and picks sources for G1–G10.
+- Before that (#52, 2026-10-13 02:xx): iwd Unsloth Studio fine-tuning (Tech With Tim) done (`WIP202610049`); lessons unchanged, proposals in REFERENCE. Next: owner commits #50–#52, says whether a fine-tuning / RAG-vs-fine-tuning topic is wanted.
+- Before that (#51, 2026-10-13): chapter 10 "LLM - Stanford: Transformer" built (4 topics, `WIP202610048`) after the Stanford iwd (#50, `WIP202610047`). Next: owner opens #/transformer-why … #/transformer-block, commits; open proposals as in #48.
+- Before that (#49, 23:2x): iwd LLMs Explained done (`WIP202610046`). Next (queued by the owner 22:56): iwd yt:114i2Kz-LZA + topic "LLM - Stanford" after LLM.
+- Before that (#48, 22:43): handoff `20261012_2243.md`; next session asks which proposal to build.
+- Before that (#47, 22:4x): topic 4.7 static vs contextual built (`WIP202610045`). Next: owner opens #/contextual, commits; other content proposals (7.x HNSW, 4.x, 5.4 / 6.1 notes) wait for a yes.
+- Before that (#46, 20:2x): chapter 6 split into 6 fast search + 7 graph search, chapter 4 = Text Embeddings (`WIP202610044`). Next: owner opens the site, commits.
+- Before that (#45, 19:5x): iwd of Thu Vu text embeddings + HNSW from scratch (`WIP202610043` closed); lesson use proposed only. Next: owner commits,
+  says which proposed lessons to touch (HNSW ef / layers for 6.x, TF-IDF / skip-gram for 4.x), decides whether `WIP202610022` closes (account iw is now v6.1).
+- Before that (#44, 00:4x): coder + review adopted for new code, 4.6 refactored, review PASS (cycle 3). Next: owner saves the two skill cards, commits.
 - Before that (#43, 23:57): `WIP202610007` closed, checkpoint stays manual.
 - Before that (#42, 23:4x): 4.6 "ต้องใช้ model เดียวกันทั้งคำถามและเอกสาร" built and reviewed (`WIP202610041` closed). Next: owner opens #/same-model, commits #34–#42,
   `git rm web/js/dict.js`, deletes stale files (`WIP202610021`), picks the next topic (`WIP202610036` RAG 8.3 / `WIP202610023`).

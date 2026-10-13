@@ -41,6 +41,13 @@ Known gaps (review cycle 3 suggestions): code inside `${...}` of a template lite
 | 2 | FAIL | live box named cat/dog instead of reading the pair from the JSON → fixed |
 | 3 | PASS (owner allowed a 3rd cycle) | suggestions applied after PASS: identical partner rows rejected by `grouped()` (seed 13893), same-model verdict checks rank 1; gates re-run |
 
+## Later lessons under the same rules
+
+| WIP | lesson | files |
+|---|---|---|
+| WIP202610048 | chapter 10 "LLM - Stanford" (10.1 transformer-why, 10.2 self-attention, 10.3 position-encoding, 10.4 transformer-block) | `web/js/attention.js` (matmul, transpose, softmaxRows, causalMask, scoreDivisor, attention, position, handAngles, positionCos, indexOf) · `web/js/tblock.js` (rnnHops, kept, sequentialSteps, seeded, addRows, layerNorm, relu, blockWeights, encoderBlock, shape) · `web/lessons/40–43_*.js` + `.text.js` · `web/data/transformer.json` · `tests/transformer.test.js` (11) · examples js/py/cpp |
+| WIP202610045 | 4.7 contextual (static vs contextual) | `web/js/contextual.js` (divisor, softmax, scores, contextualize, embed, senseCos, findSentence, row) · `web/lessons/39_contextual.js` · `39_contextual.text.js` · `web/data/contextual.json` · `tests/contextual.test.js` (10, incl. text numbers = code numbers) · examples js/py/cpp |
+
 ## Open for the owner
 
 - A new code file must be added to `tools/style-scope.json` (otherwise the checker does not see it).

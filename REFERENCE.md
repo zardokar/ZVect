@@ -6,7 +6,7 @@
 
 - ตัวเลขทุกตัวในบทเรียนคำนวณใหม่ในเครื่องด้วย `lib/` ไม่ได้ลอกจากคลิป ถ้าตัวเลขในคลิปผิด จะบอกไว้ในหัวข้อ "แก้จากต้นฉบับ"
 - ทุกแหล่งที่อ่านด้วย iw มีไฟล์สองชุด: รายงานภาษาไทย `docs/outhtm/` (เปิดจากปุ่ม "อ่านเพิ่ม" ในบทเรียนได้) และไฟล์บริบทภาษาอังกฤษ `docs/aimd/` สำหรับ AI session ถัดไป
-- เลขบทในไฟล์นี้ใช้เลขแบบบท.หัวข้อ สร้างด้วย `npm run reindex` จาก `web/data/chapters.json` (8 บท 38 หัวข้อ; ประวัติการเลื่อนเลขอยู่ใน checkpoint): 1.1 Vector · 1.2 ความยาว · 1.3 Vector space · 1.4 บวก ลบ คูณ · 1.5 Matrix · 2.1 Euclidean distance · 2.2 Dot product · 2.3 Cosine · 3.1 Tokenization · 3.2 BPE · 3.3 Tokenizer ของ GPT (byte-level BPE) · 3.4 Token ID · 4.1 One-hot · 4.2 Bag of words · 4.3 Embedding matrix · 4.4 ตารางมาจากการฝึก · 4.5 Latent space · 4.6 ใช้ model เดียวกัน · 5.1 ค้นด้วย cosine · 5.2 ค้นด้วย distance · 5.3 ค้นด้วย dot · 5.4 เลือกวิธีวัด · 5.5 ค้นด้วยคำ vs ความหมาย · 6.1 ค้นทุกชิ้น (brute force) · 6.2 มิติสูง · 6.3 เวกเตอร์ 1 บิต (XOR + popcount) · 6.4 ANN แบบต้นไม้ · 6.5 ANN แบบกราฟชั้นเดียว · 6.6 HNSW กราฟหลายชั้น · 6.7 HNSW beam (efSearch) · 6.8 HNSW สร้างชั้นด้วยการโยนเหรียญ · 6.9 กรองระหว่างค้น · 7.1 Bi-Encoder · 7.2 Late interaction (ColBERT) · 7.3 Reranker (Cross-Encoder) · 7.4 Classification · 8.1 LLM input (embedding + ตำแหน่ง) · 8.2 Attention: query · key
+- เลขบทในไฟล์นี้ใช้เลขแบบบท.หัวข้อ สร้างด้วย `npm run reindex` จาก `web/data/chapters.json` (10 บท 43 หัวข้อ; ประวัติการเลื่อนเลขอยู่ใน checkpoint): 1.1 Vector · 1.2 ความยาว · 1.3 Vector space · 1.4 บวก ลบ คูณ · 1.5 Matrix · 2.1 Euclidean distance · 2.2 Dot product · 2.3 Cosine · 3.1 Tokenization · 3.2 BPE · 3.3 Tokenizer ของ GPT (byte-level BPE) · 3.4 Token ID · 4.1 One-hot · 4.2 Bag of words · 4.3 Embedding matrix · 4.4 ตารางมาจากการฝึก · 4.5 Latent space · 4.6 ใช้ model เดียวกัน · 4.7 Static กับ contextual · 5.1 ค้นด้วย cosine · 5.2 ค้นด้วย distance · 5.3 ค้นด้วย dot · 5.4 เลือกวิธีวัด · 5.5 ค้นด้วยคำ vs ความหมาย · 6.1 ค้นทุกชิ้น (brute force) · 6.2 มิติสูง · 6.3 เวกเตอร์ 1 บิต (XOR + popcount) · 6.4 ANN แบบต้นไม้ · 7.1 ANN แบบกราฟชั้นเดียว · 7.2 HNSW กราฟหลายชั้น · 7.3 HNSW beam (efSearch) · 7.4 HNSW สร้างชั้นด้วยการโยนเหรียญ · 7.5 กรองระหว่างค้น · 8.1 Bi-Encoder · 8.2 Late interaction (ColBERT) · 8.3 Reranker (Cross-Encoder) · 8.4 Classification · 9.1 LLM input (embedding + ตำแหน่ง) · 9.2 Attention: query · key · 10.1 Transformer มาจากไหน · 10.2 Self-attention เต็มสูตร · 10.3 ตำแหน่งแบบ sin / cos · 10.4 Transformer block
 - อ่านแหล่งใหม่เมื่อไหร่ ให้เพิ่มแถวในตารางด้านล่าง เพิ่มหัวข้อของแหล่งนั้น (พร้อมบรรทัด `tags:` และแถวใน "ดัชนี tag") และเพิ่มแถวใน READING REGISTRY ของ checkpoint ล่าสุด
 - tag ใช้ตัวพิมพ์เล็กคั่นด้วย `-` ใช้คำเดิมซ้ำเมื่อเรื่องเดียวกัน (ดูรายการในดัชนี) tag `zvect-x-y` ไม่ใช้ในไฟล์นี้ บทที่ใช้อยู่ในบรรทัด `ใช้ในบท:` แล้ว
 
@@ -20,173 +20,235 @@
 
 | กลุ่ม | ref |
 |---|---|
-| RAG / Multivector | yt:6iCmnd0k3fs · yt:xTzUn3G9YA0 · yt:8LPgGU34RoE · yt:H6q1UWCCnKw |
+| RAG / Multivector | yt:6iCmnd0k3fs · yt:xTzUn3G9YA0 · yt:8LPgGU34RoE · yt:H6q1UWCCnKw · yt:wyWFLIlgmAw |
 | ColBERT / late interaction | yt:xTzUn3G9YA0 · yt:aiNQ4I8YaD0 · yt:8LPgGU34RoE · yt:6iCmnd0k3fs |
-| Embeddings | yt:my5wFNQpFO0 · yt:hVM8qGRTaOA · yt:YIR-KxNpSbA · yt:S7tFyREI19I · yt:lPTcTh5sRug · yt:NEreO2zlXDk · yt:1Qex37vowTM · yt:H6q1UWCCnKw · yt:izbifbq3-eI |
+| Embeddings | yt:my5wFNQpFO0 · yt:hVM8qGRTaOA · yt:YIR-KxNpSbA · yt:S7tFyREI19I · yt:lPTcTh5sRug · yt:NEreO2zlXDk · yt:1Qex37vowTM · yt:H6q1UWCCnKw · yt:izbifbq3-eI · yt:Q6TBHDgWCDQ |
 | Tokenization | yt:zduSFxRajkE · yt:izbifbq3-eI · yt:BcxJk4WQVIw · yt:YIR-KxNpSbA · yt:hVM8qGRTaOA · yt:lPTcTh5sRug |
 | วัดความใกล้ (metrics) | yt:xTaDx3tbYMs · yt:e9U0QAFbfLI · yt:fNk_zzaMoSs |
-| ค้นเร็ว / ANN / vector DB | yt:Lc4dzmSFb14 · yt:c10w0Ptn_CU · yt:bU38Ovdh3NY · yt:YLkSfz3EFGw |
-| Quantization / precision | yt:bU38Ovdh3NY · yt:6iCmnd0k3fs · yt:aiNQ4I8YaD0 |
-| ภายใน LLM (attention, token ถัดไป) | yt:YIR-KxNpSbA · yt:zduSFxRajkE · yt:hVM8qGRTaOA · yt:1Qex37vowTM · yt:xTaDx3tbYMs |
+| ค้นเร็ว / ANN / vector DB | yt:Lc4dzmSFb14 · yt:c10w0Ptn_CU · yt:bU38Ovdh3NY · yt:YLkSfz3EFGw · yt:wyWFLIlgmAw |
+| Quantization / precision | yt:bU38Ovdh3NY · yt:6iCmnd0k3fs · yt:aiNQ4I8YaD0 · yt:4JofSJIrjwU |
+| ภายใน LLM (attention, token ถัดไป) | yt:YIR-KxNpSbA · yt:zduSFxRajkE · yt:hVM8qGRTaOA · yt:1Qex37vowTM · yt:xTaDx3tbYMs · yt:YmLp8qe87A0 |
+| LLM - Stanford (CME295: Transformer เต็มสูตร) | yt:114i2Kz-LZA |
+| Fine-tuning / LoRA (ฝึก model ต่อ, เทียบกับ RAG) | yt:4JofSJIrjwU · yt:S7tFyREI19I · yt:YmLp8qe87A0 |
 
 ### ดัชนี tag
 
 | tag | ref |
 |---|---|
 | `agent-search` | yt:YLkSfz3EFGw |
-| `ann` | yt:Lc4dzmSFb14 · yt:c10w0Ptn_CU |
+| `alpaca-format` | yt:4JofSJIrjwU |
+| `ann` | yt:Lc4dzmSFb14 · yt:c10w0Ptn_CU · yt:wyWFLIlgmAw |
 | `annoy` | yt:c10w0Ptn_CU |
 | `asymmetric-quantization` | yt:6iCmnd0k3fs |
-| `attention` | yt:YIR-KxNpSbA · yt:hVM8qGRTaOA · yt:xTaDx3tbYMs |
-| `bag-of-words` | yt:e9U0QAFbfLI · yt:hVM8qGRTaOA |
+| `attention` | yt:YIR-KxNpSbA · yt:hVM8qGRTaOA · yt:xTaDx3tbYMs · yt:YmLp8qe87A0 · yt:114i2Kz-LZA |
+| `autoregressive` | yt:YmLp8qe87A0 |
+| `backpropagation` | yt:YmLp8qe87A0 |
+| `bag-of-words` | yt:e9U0QAFbfLI · yt:hVM8qGRTaOA · yt:Q6TBHDgWCDQ |
+| `best-first-search` | yt:wyWFLIlgmAw |
 | `bi-encoder` | yt:H6q1UWCCnKw |
 | `binary-quantization` | yt:6iCmnd0k3fs · yt:bU38Ovdh3NY |
 | `bm25` | yt:YLkSfz3EFGw |
-| `bpe` | yt:BcxJk4WQVIw · yt:YIR-KxNpSbA · yt:zduSFxRajkE |
+| `bpe` | yt:BcxJk4WQVIw · yt:YIR-KxNpSbA · yt:zduSFxRajkE · yt:YmLp8qe87A0 · yt:114i2Kz-LZA |
 | `brute-force` | yt:Lc4dzmSFb14 · yt:c10w0Ptn_CU |
 | `byte-fallback` | yt:zduSFxRajkE |
 | `byte-level-bpe` | yt:zduSFxRajkE |
-| `cbow` | yt:hVM8qGRTaOA |
+| `cbow` | yt:hVM8qGRTaOA · yt:Q6TBHDgWCDQ |
 | `centroids` | yt:aiNQ4I8YaD0 |
+| `chatbot` | yt:YmLp8qe87A0 |
 | `chunking` | yt:xTzUn3G9YA0 |
 | `colbert` | yt:6iCmnd0k3fs · yt:8LPgGU34RoE · yt:aiNQ4I8YaD0 · yt:xTzUn3G9YA0 |
-| `contextual-embeddings` | yt:YIR-KxNpSbA · yt:izbifbq3-eI |
+| `context-window` | yt:YmLp8qe87A0 |
+| `contextual-embeddings` | yt:YIR-KxNpSbA · yt:izbifbq3-eI · yt:Q6TBHDgWCDQ |
 | `contrastive-learning` | yt:S7tFyREI19I |
-| `cosine` | yt:e9U0QAFbfLI · yt:xTaDx3tbYMs |
+| `cosine` | yt:e9U0QAFbfLI · yt:xTaDx3tbYMs · yt:Q6TBHDgWCDQ |
+| `cross-attention` | yt:114i2Kz-LZA |
 | `cross-encoder` | yt:H6q1UWCCnKw |
+| `data-recipes` | yt:4JofSJIrjwU |
 | `dense-retrieval` | yt:xTzUn3G9YA0 |
+| `distributional-hypothesis` | yt:Q6TBHDgWCDQ |
 | `dot-product` | yt:xTaDx3tbYMs |
-| `efsearch` | yt:Lc4dzmSFb14 |
+| `ef-construction` | yt:wyWFLIlgmAw |
+| `efsearch` | yt:Lc4dzmSFb14 · yt:wyWFLIlgmAw |
+| `eliza` | yt:YmLp8qe87A0 |
 | `embedding-dimensions` | yt:1Qex37vowTM · yt:YIR-KxNpSbA |
 | `embedding-matrix` | yt:YIR-KxNpSbA · yt:hVM8qGRTaOA · yt:lPTcTh5sRug · yt:my5wFNQpFO0 |
-| `embedding-model-choice` | yt:H6q1UWCCnKw |
+| `embedding-model-choice` | yt:H6q1UWCCnKw · yt:Q6TBHDgWCDQ |
 | `embeddinggemma-2` | yt:S7tFyREI19I |
-| `embeddings` | yt:1Qex37vowTM · yt:H6q1UWCCnKw · yt:NEreO2zlXDk · yt:S7tFyREI19I · yt:YIR-KxNpSbA · yt:hVM8qGRTaOA · yt:lPTcTh5sRug · yt:my5wFNQpFO0 · yt:izbifbq3-eI |
+| `embeddings` | yt:1Qex37vowTM · yt:H6q1UWCCnKw · yt:NEreO2zlXDk · yt:S7tFyREI19I · yt:YIR-KxNpSbA · yt:hVM8qGRTaOA · yt:lPTcTh5sRug · yt:my5wFNQpFO0 · yt:izbifbq3-eI · yt:Q6TBHDgWCDQ · yt:YmLp8qe87A0 |
+| `encoder-decoder` | yt:114i2Kz-LZA |
+| `epochs` | yt:4JofSJIrjwU |
 | `euclidean` | yt:xTaDx3tbYMs |
 | `evaluation` | yt:S7tFyREI19I |
-| `fact-checked` | yt:6iCmnd0k3fs · yt:8LPgGU34RoE · yt:H6q1UWCCnKw · yt:S7tFyREI19I · yt:YIR-KxNpSbA · yt:YLkSfz3EFGw |
+| `fact-checked` | yt:6iCmnd0k3fs · yt:8LPgGU34RoE · yt:H6q1UWCCnKw · yt:S7tFyREI19I · yt:YIR-KxNpSbA · yt:YLkSfz3EFGw · yt:Q6TBHDgWCDQ · yt:wyWFLIlgmAw · yt:YmLp8qe87A0 · yt:114i2Kz-LZA · yt:4JofSJIrjwU |
+| `feed-forward` | yt:114i2Kz-LZA |
 | `filtering` | yt:bU38Ovdh3NY |
+| `fine-tuning` | yt:YmLp8qe87A0 · yt:4JofSJIrjwU |
 | `fine-tuning-embeddings` | yt:S7tFyREI19I |
+| `gguf` | yt:4JofSJIrjwU |
 | `high-dimensions` | yt:xTaDx3tbYMs |
 | `hindi` | yt:YIR-KxNpSbA |
-| `hnsw` | yt:Lc4dzmSFb14 · yt:bU38Ovdh3NY |
+| `history-of-ai` | yt:YmLp8qe87A0 · yt:114i2Kz-LZA |
+| `hnsw` | yt:Lc4dzmSFb14 · yt:bU38Ovdh3NY · yt:wyWFLIlgmAw |
 | `hybrid-search` | yt:YLkSfz3EFGw |
 | `hyperplane` | yt:c10w0Ptn_CU |
 | `in-batch-negatives` | yt:S7tFyREI19I |
 | `in-browser` | yt:6iCmnd0k3fs |
 | `index-artifacts` | yt:aiNQ4I8YaD0 |
+| `instruction-tuning` | yt:4JofSJIrjwU |
 | `inverted-index` | yt:Lc4dzmSFb14 |
 | `ivf` | yt:aiNQ4I8YaD0 |
 | `k-means` | yt:aiNQ4I8YaD0 |
 | `keyword-search` | yt:Lc4dzmSFb14 · yt:YLkSfz3EFGw |
 | `king-queen-analogy` | yt:izbifbq3-eI |
-| `knn` | yt:NEreO2zlXDk · yt:c10w0Ptn_CU |
+| `knn` | yt:NEreO2zlXDk · yt:c10w0Ptn_CU · yt:wyWFLIlgmAw |
+| `label-smoothing` | yt:114i2Kz-LZA |
 | `late-interaction` | yt:6iCmnd0k3fs · yt:8LPgGU34RoE · yt:xTzUn3G9YA0 |
-| `latent-space` | yt:1Qex37vowTM · yt:NEreO2zlXDk · yt:hVM8qGRTaOA |
+| `latent-space` | yt:1Qex37vowTM · yt:NEreO2zlXDk · yt:hVM8qGRTaOA · yt:Q6TBHDgWCDQ |
+| `layer-norm` | yt:114i2Kz-LZA |
+| `learning-rate` | yt:4JofSJIrjwU |
 | `linear-algebra` | yt:fNk_zzaMoSs |
-| `llm-internals` | yt:1Qex37vowTM · yt:YIR-KxNpSbA · yt:hVM8qGRTaOA · yt:zduSFxRajkE · yt:izbifbq3-eI |
+| `llama-3-1` | yt:4JofSJIrjwU |
+| `llm-internals` | yt:1Qex37vowTM · yt:YIR-KxNpSbA · yt:hVM8qGRTaOA · yt:zduSFxRajkE · yt:izbifbq3-eI · yt:YmLp8qe87A0 |
 | `llm-quirks` | yt:zduSFxRajkE |
+| `local-llm` | yt:4JofSJIrjwU |
+| `local-minimum` | yt:wyWFLIlgmAw |
 | `lookup-table` | yt:6iCmnd0k3fs |
-| `lora` | yt:S7tFyREI19I |
+| `lora` | yt:S7tFyREI19I · yt:4JofSJIrjwU |
+| `lstm` | yt:114i2Kz-LZA |
+| `masked-attention` | yt:114i2Kz-LZA |
 | `matryoshka` | yt:H6q1UWCCnKw |
 | `maxsim` | yt:6iCmnd0k3fs · yt:8LPgGU34RoE · yt:xTzUn3G9YA0 |
 | `metric-choice` | yt:xTaDx3tbYMs |
 | `minbpe` | yt:zduSFxRajkE |
 | `mixed-precision` | yt:aiNQ4I8YaD0 |
+| `mteb` | yt:Q6TBHDgWCDQ |
+| `multi-head-attention` | yt:YmLp8qe87A0 · yt:114i2Kz-LZA |
 | `multilingual` | yt:H6q1UWCCnKw |
 | `multimodal-embeddings` | yt:S7tFyREI19I |
 | `multivector` | yt:6iCmnd0k3fs · yt:8LPgGU34RoE · yt:xTzUn3G9YA0 |
-| `n-gram` | yt:hVM8qGRTaOA |
+| `n-gram` | yt:hVM8qGRTaOA · yt:Q6TBHDgWCDQ |
 | `negation` | yt:H6q1UWCCnKw |
-| `next-token` | yt:YIR-KxNpSbA · yt:izbifbq3-eI |
+| `neural-network` | yt:YmLp8qe87A0 |
+| `next-token` | yt:YIR-KxNpSbA · yt:izbifbq3-eI · yt:YmLp8qe87A0 |
+| `nf4` | yt:4JofSJIrjwU |
 | `normalization` | yt:xTaDx3tbYMs |
+| `nsw` | yt:wyWFLIlgmAw |
 | `numeracy-gap` | yt:H6q1UWCCnKw |
 | `offline-search` | yt:8LPgGU34RoE |
-| `one-hot` | yt:hVM8qGRTaOA · yt:lPTcTh5sRug · yt:my5wFNQpFO0 |
+| `ollama` | yt:4JofSJIrjwU |
+| `one-hot` | yt:hVM8qGRTaOA · yt:lPTcTh5sRug · yt:my5wFNQpFO0 · yt:Q6TBHDgWCDQ |
 | `outliers` | yt:NEreO2zlXDk |
+| `overfitting` | yt:4JofSJIrjwU |
 | `percolation` | yt:bU38Ovdh3NY |
 | `plaid` | yt:aiNQ4I8YaD0 |
 | `pleias-rag` | yt:6iCmnd0k3fs |
 | `polysemy` | yt:izbifbq3-eI |
-| `positional-encoding` | yt:hVM8qGRTaOA |
+| `positional-encoding` | yt:hVM8qGRTaOA · yt:YmLp8qe87A0 · yt:114i2Kz-LZA |
 | `pre-tokenization` | yt:zduSFxRajkE |
 | `pylate-rs` | yt:6iCmnd0k3fs |
 | `qdrant` | yt:8LPgGU34RoE · yt:bU38Ovdh3NY |
 | `qdrant-edge` | yt:8LPgGU34RoE |
-| `quantization` | yt:6iCmnd0k3fs · yt:aiNQ4I8YaD0 · yt:bU38Ovdh3NY |
-| `rag` | yt:6iCmnd0k3fs · yt:H6q1UWCCnKw · yt:xTzUn3G9YA0 |
+| `qlora` | yt:4JofSJIrjwU |
+| `quantization` | yt:6iCmnd0k3fs · yt:aiNQ4I8YaD0 · yt:bU38Ovdh3NY · yt:4JofSJIrjwU |
+| `query-key-value` | yt:114i2Kz-LZA |
+| `rag` | yt:6iCmnd0k3fs · yt:H6q1UWCCnKw · yt:xTzUn3G9YA0 · yt:wyWFLIlgmAw · yt:4JofSJIrjwU |
+| `rag-vs-fine-tuning` | yt:4JofSJIrjwU |
 | `ragatouille` | yt:xTzUn3G9YA0 |
 | `random-projection-tree` | yt:c10w0Ptn_CU |
 | `recall` | yt:aiNQ4I8YaD0 |
 | `reranking` | yt:8LPgGU34RoE · yt:H6q1UWCCnKw |
 | `rescoring` | yt:bU38Ovdh3NY |
+| `residual` | yt:114i2Kz-LZA |
 | `retrieve-then-rerank` | yt:8LPgGU34RoE |
+| `rlhf` | yt:YmLp8qe87A0 |
+| `rnn` | yt:114i2Kz-LZA |
 | `scalar-multiplication` | yt:fNk_zzaMoSs |
+| `scaled-dot-product` | yt:114i2Kz-LZA |
 | `scifact` | yt:6iCmnd0k3fs |
+| `self-attention` | yt:114i2Kz-LZA |
 | `sentencepiece` | yt:zduSFxRajkE |
 | `similarity-metrics` | yt:NEreO2zlXDk · yt:e9U0QAFbfLI · yt:xTaDx3tbYMs |
-| `skip-gram` | yt:hVM8qGRTaOA · yt:my5wFNQpFO0 |
-| `softmax` | yt:YIR-KxNpSbA · yt:my5wFNQpFO0 |
+| `skip-gram` | yt:hVM8qGRTaOA · yt:my5wFNQpFO0 · yt:Q6TBHDgWCDQ · yt:YmLp8qe87A0 |
+| `skip-list` | yt:wyWFLIlgmAw |
+| `small-world` | yt:wyWFLIlgmAw |
+| `softmax` | yt:YIR-KxNpSbA · yt:my5wFNQpFO0 · yt:YmLp8qe87A0 |
 | `special-tokens` | yt:zduSFxRajkE |
+| `stanford` | yt:114i2Kz-LZA |
+| `static-embeddings` | yt:Q6TBHDgWCDQ |
 | `subword` | yt:BcxJk4WQVIw |
-| `temperature` | yt:YIR-KxNpSbA |
+| `synthetic-data` | yt:4JofSJIrjwU |
+| `temperature` | yt:YIR-KxNpSbA · yt:YmLp8qe87A0 |
+| `tf-idf` | yt:Q6TBHDgWCDQ |
 | `tiktoken` | yt:zduSFxRajkE |
 | `token-efficiency` | yt:zduSFxRajkE |
 | `token-id` | yt:YIR-KxNpSbA · yt:hVM8qGRTaOA · yt:lPTcTh5sRug · yt:izbifbq3-eI |
 | `token-vs-embedding` | yt:izbifbq3-eI |
-| `tokenization` | yt:BcxJk4WQVIw · yt:YIR-KxNpSbA · yt:zduSFxRajkE · yt:izbifbq3-eI |
+| `tokenization` | yt:BcxJk4WQVIw · yt:YIR-KxNpSbA · yt:zduSFxRajkE · yt:izbifbq3-eI · yt:YmLp8qe87A0 · yt:114i2Kz-LZA |
 | `tokens` | yt:izbifbq3-eI |
+| `tool-calling` | yt:YmLp8qe87A0 |
+| `top-p` | yt:YmLp8qe87A0 |
 | `training-embeddings` | yt:1Qex37vowTM · yt:YIR-KxNpSbA · yt:lPTcTh5sRug · yt:my5wFNQpFO0 |
+| `training-loss` | yt:4JofSJIrjwU |
+| `transformer` | yt:YmLp8qe87A0 · yt:114i2Kz-LZA |
+| `unsloth` | yt:4JofSJIrjwU |
+| `unsloth-studio` | yt:4JofSJIrjwU |
 | `utf-8` | yt:zduSFxRajkE |
 | `vector-addition` | yt:fNk_zzaMoSs |
 | `vector-basics` | yt:fNk_zzaMoSs · yt:izbifbq3-eI |
 | `vector-database` | yt:YIR-KxNpSbA · yt:YLkSfz3EFGw · yt:bU38Ovdh3NY |
-| `vector-search` | yt:Lc4dzmSFb14 · yt:c10w0Ptn_CU |
+| `vector-search` | yt:Lc4dzmSFb14 · yt:c10w0Ptn_CU · yt:wyWFLIlgmAw |
 | `vocab-size` | yt:zduSFxRajkE |
 | `vocabulary` | yt:BcxJk4WQVIw · yt:lPTcTh5sRug · yt:zduSFxRajkE |
+| `vram` | yt:4JofSJIrjwU |
 | `webgpu` | yt:6iCmnd0k3fs |
 | `word-counts` | yt:e9U0QAFbfLI |
-| `word-embeddings` | yt:hVM8qGRTaOA |
-| `word2vec` | yt:1Qex37vowTM · yt:hVM8qGRTaOA · yt:my5wFNQpFO0 |
+| `word-embeddings` | yt:hVM8qGRTaOA · yt:Q6TBHDgWCDQ |
+| `word2vec` | yt:1Qex37vowTM · yt:hVM8qGRTaOA · yt:my5wFNQpFO0 · yt:Q6TBHDgWCDQ · yt:YmLp8qe87A0 · yt:114i2Kz-LZA |
+| `xor` | yt:YmLp8qe87A0 |
 
 ## ตาราง
 
 | ref | แหล่ง | เผยแพร่ / อ่าน | ใช้ในบท | รายงาน |
 |---|---|---|---|---|
-| yt:izbifbq3-eI | Annie Sexton, "Tokens vs Embeddings – what are they + how are they different?" (6:52) <https://www.youtube.com/watch?v=izbifbq3-eI> | 2025-05-29 / 2026-10-11 | ยังไม่ใช้ (เสนอ: 3.4, 4.3, 4.5, 8.1, 8.2 และการแยกบท Token / Embedding) | [HTML](docs/outhtm/20250529_Tokens-Vs-Embeddings.html) · [MD](docs/aimd/20250529_Tokens-Vs-Embeddings_claude.md) |
+| yt:4JofSJIrjwU | Tech With Tim, "How to Fine-Tune any AI Model Locally (FULL Tutorial)" (41:06) <https://www.youtube.com/watch?v=4JofSJIrjwU> | 2026-07-27 / 2026-10-13 | ยังไม่ใช้ (เสนอ: 1.5, 4.4, 6.3 และหัวข้อ RAG ที่เสนอไว้ใน WIP202610036) | [HTML](docs/outhtm/20260727_How-To-Fine-Tune-Any-AI-Model-Locally.html) · [MD](docs/aimd/20260727_How-To-Fine-Tune-Any-AI-Model-Locally_claude.md) |
+| yt:114i2Kz-LZA | Stanford Online (Afshine & Shervine Amidi), "Stanford CME295 Transformers & LLMs, Autumn 2026, Lecture 1 - Transformers" (1:44:28) <https://www.youtube.com/watch?v=114i2Kz-LZA> | 2026-09-28 / 2026-10-12 | 10.1–10.4 (เสนอ: 3.1, 3.2, 4.1, 4.4, 4.7, 9.1, 9.2) | [HTML](docs/outhtm/20260928_Stanford-CME295-Lecture-1-Transformers.html) · [MD](docs/aimd/20260928_Stanford-CME295-Lecture-1-Transformers_claude.md) |
+| yt:YmLp8qe87A0 | Syntax (CJ), "LLMs Explained: Tokens, Embeddings, Transformers and More" (51:48) <https://www.youtube.com/watch?v=YmLp8qe87A0> | 2026-07-10 / 2026-10-12 | 10.1–10.4 (เสนอ: 3.2, 4.4, 4.5, 4.7, 9.1, 9.2) | [HTML](docs/outhtm/20260710_LLMs-Explained-Tokens-Embeddings-Transformers-And-More.html) · [MD](docs/aimd/20260710_LLMs-Explained-Tokens-Embeddings-Transformers-And-More_claude.md) |
+| yt:wyWFLIlgmAw | AI Is All You Need, "HNSW Explained from Scratch, The Vector Search Algorithm Behind RAG" (61:04) <https://www.youtube.com/watch?v=wyWFLIlgmAw> | 2026-06-28 / 2026-10-12 | ยังไม่ใช้ (เสนอ: 6.1, 7.1–7.4) | [HTML](docs/outhtm/20260628_HNSW-Explained-From-Scratch.html) · [MD](docs/aimd/20260628_HNSW-Explained-From-Scratch_claude.md) |
+| yt:Q6TBHDgWCDQ | Thu Vu, "Learn Text Embeddings in 20 Minutes (full guide for beginners)" (19:56) <https://www.youtube.com/watch?v=Q6TBHDgWCDQ> | 2026-05-23 / 2026-10-12 | 4.7, 10.1 (เสนอ: 4.1, 4.2, 4.4, 4.5, 4.6, 5.4) | [HTML](docs/outhtm/20260523_Learn-Text-Embeddings-In-20-Minutes.html) · [MD](docs/aimd/20260523_Learn-Text-Embeddings-In-20-Minutes_claude.md) |
+| yt:izbifbq3-eI | Annie Sexton, "Tokens vs Embeddings – what are they + how are they different?" (6:52) <https://www.youtube.com/watch?v=izbifbq3-eI> | 2025-05-29 / 2026-10-11 | 4.7 (เสนอ: 3.4, 4.3, 4.5, 9.1, 9.2 และการแยกบท Token / Embedding) | [HTML](docs/outhtm/20250529_Tokens-Vs-Embeddings.html) · [MD](docs/aimd/20250529_Tokens-Vs-Embeddings_claude.md) |
 | yt:zduSFxRajkE | Andrej Karpathy, "Let's build the GPT Tokenizer" (2:13:34) <https://www.youtube.com/watch?v=zduSFxRajkE> | 2024-02-20 / 2026-10-11 | 3.3 (แหล่งหลักของบท 3.3 Tokenizer ของ GPT) | [HTML](docs/outhtm/20240220_Lets-Build-The-GPT-Tokenizer.html) · [MD](docs/aimd/20240220_Lets-Build-The-GPT-Tokenizer_claude.md) |
-| yt:S7tFyREI19I | Prompt Engineering, "Training Your Own Embedding Model Is Not As Hard As You Think" (12:36) <https://www.youtube.com/watch?v=S7tFyREI19I> | 2026-10-08 / 2026-10-11 | ยังไม่ใช้ (เสนอ: 4.4, 7.1) | [HTML](docs/outhtm/20261008_Training-Your-Own-Embedding-Model-Is-Not-As-Hard-As-You-Think.html) · [MD](docs/aimd/20261008_Training-Your-Own-Embedding-Model-Is-Not-As-Hard-As-You-Think_claude.md) |
-| yt:6iCmnd0k3fs | Vishal Bakshi, "multivector-rag-demo (coded by Opus 5.5 Extra)" (39:22) <https://www.youtube.com/watch?v=6iCmnd0k3fs> | 2026-09-30 / 2026-10-11 | ยังไม่ใช้ (เสนอ: 8.3 RAG, 6.3, 7.2) | [HTML](docs/outhtm/20260930_Multivector-RAG-Demo-Coded-By-Opus-5-5-Extra.html) · [MD](docs/aimd/20260930_Multivector-RAG-Demo-Coded-By-Opus-5-5-Extra_claude.md) |
-| yt:YIR-KxNpSbA | NitMonk, "How Tokens, Vectors & Embeddings Actually Work — Self-Attention Deep Dive" (39:56, ภาษาฮินดี) <https://www.youtube.com/watch?v=YIR-KxNpSbA> | 2026-08-03 / 2026-10-11 | ยังไม่ใช้ (เสนอ: 3.4, 4.3, 8.1, 8.2) | [HTML](docs/outhtm/20260803_How-Tokens-Vectors-And-Embeddings-Actually-Work.html) · [MD](docs/aimd/20260803_How-Tokens-Vectors-And-Embeddings-Actually-Work_claude.md) |
-| yt:8LPgGU34RoE | HiDevs, "Build ColBERT Search Locally with Qdrant Edge (Step-by-Step)" (16:52) <https://www.youtube.com/watch?v=8LPgGU34RoE> | 2026-07-31 / 2026-10-11 | ยังไม่ใช้ (เสนอ: 7.2, 7.3) | [HTML](docs/outhtm/20260731_Build-ColBERT-Search-Locally-With-Qdrant-Edge.html) · [MD](docs/aimd/20260731_Build-ColBERT-Search-Locally-With-Qdrant-Edge_claude.md) |
+| yt:S7tFyREI19I | Prompt Engineering, "Training Your Own Embedding Model Is Not As Hard As You Think" (12:36) <https://www.youtube.com/watch?v=S7tFyREI19I> | 2026-10-08 / 2026-10-11 | ยังไม่ใช้ (เสนอ: 4.4, 8.1) | [HTML](docs/outhtm/20261008_Training-Your-Own-Embedding-Model-Is-Not-As-Hard-As-You-Think.html) · [MD](docs/aimd/20261008_Training-Your-Own-Embedding-Model-Is-Not-As-Hard-As-You-Think_claude.md) |
+| yt:6iCmnd0k3fs | Vishal Bakshi, "multivector-rag-demo (coded by Opus 5.5 Extra)" (39:22) <https://www.youtube.com/watch?v=6iCmnd0k3fs> | 2026-09-30 / 2026-10-11 | ยังไม่ใช้ (เสนอ: 9.3 RAG, 6.3, 8.2) | [HTML](docs/outhtm/20260930_Multivector-RAG-Demo-Coded-By-Opus-5-5-Extra.html) · [MD](docs/aimd/20260930_Multivector-RAG-Demo-Coded-By-Opus-5-5-Extra_claude.md) |
+| yt:YIR-KxNpSbA | NitMonk, "How Tokens, Vectors & Embeddings Actually Work — Self-Attention Deep Dive" (39:56, ภาษาฮินดี) <https://www.youtube.com/watch?v=YIR-KxNpSbA> | 2026-08-03 / 2026-10-11 | 4.7, 10.2 (เสนอ: 3.4, 4.3, 9.1, 9.2) | [HTML](docs/outhtm/20260803_How-Tokens-Vectors-And-Embeddings-Actually-Work.html) · [MD](docs/aimd/20260803_How-Tokens-Vectors-And-Embeddings-Actually-Work_claude.md) |
+| yt:8LPgGU34RoE | HiDevs, "Build ColBERT Search Locally with Qdrant Edge (Step-by-Step)" (16:52) <https://www.youtube.com/watch?v=8LPgGU34RoE> | 2026-07-31 / 2026-10-11 | ยังไม่ใช้ (เสนอ: 8.2, 8.3) | [HTML](docs/outhtm/20260731_Build-ColBERT-Search-Locally-With-Qdrant-Edge.html) · [MD](docs/aimd/20260731_Build-ColBERT-Search-Locally-With-Qdrant-Edge_claude.md) |
 | yt:aiNQ4I8YaD0 | Vishal Bakshi, "Exploring Precision in ColBERT Indexing and Retrieval" (18:42) <https://www.youtube.com/watch?v=aiNQ4I8YaD0> | 2025-05-25 / 2026-10-11 | ยังไม่ใช้ (เสนอ: 6.3, WIP k-means) | [HTML](docs/outhtm/20250525_Exploring-Precision-In-ColBERT-Indexing-And-Retrieval.html) · [MD](docs/aimd/20250525_Exploring-Precision-In-ColBERT-Indexing-And-Retrieval_claude.md) |
 | yt:my5wFNQpFO0 | Google for Developers, "Machine Learning Crash Course: Embeddings" (2:36) <https://www.youtube.com/watch?v=my5wFNQpFO0> | 2024-09-09 / 2026-10-11 | ยังไม่ใช้ (เสนอ: 4.1, 4.3, 4.4) | [HTML](docs/outhtm/20240909_Machine-Learning-Crash-Course-Embeddings.html) · [MD](docs/aimd/20240909_Machine-Learning-Crash-Course-Embeddings_claude.md) |
-| yt:xTzUn3G9YA0 | Prompt Engineering, "Supercharge Your RAG with Contextualized Late Interactions" (17:44) <https://www.youtube.com/watch?v=xTzUn3G9YA0> | 2024-03-22 / 2026-10-11 | 7.2 (แหล่งหลักของบท 7.2 Late interaction) | [HTML](docs/outhtm/20240322_Supercharge-Your-RAG-With-Contextualized-Late-Interactions.html) · [MD](docs/aimd/20240322_Supercharge-Your-RAG-With-Contextualized-Late-Interactions_claude.md) |
+| yt:xTzUn3G9YA0 | Prompt Engineering, "Supercharge Your RAG with Contextualized Late Interactions" (17:44) <https://www.youtube.com/watch?v=xTzUn3G9YA0> | 2024-03-22 / 2026-10-11 | 8.2 (แหล่งหลักของบท 8.2 Late interaction) | [HTML](docs/outhtm/20240322_Supercharge-Your-RAG-With-Contextualized-Late-Interactions.html) · [MD](docs/aimd/20240322_Supercharge-Your-RAG-With-Contextualized-Late-Interactions_claude.md) |
 | yt:BcxJk4WQVIw | Raj Pulapakura, "Byte Pair Encoding - How does the BPE algorithm work? - Step by Step Guide" (14:33) <https://www.youtube.com/watch?v=BcxJk4WQVIw> | 2024-01-24 / 2026-10-11 | 3.1, 3.2, 3.3 (แหล่งหลักของบท 3.1 Tokenization และ 3.2 BPE; บท 3.3 ต่อยอดจาก 3.2) | [HTML](docs/outhtm/20240124_Byte-Pair-Encoding-How-Does-The-BPE-Algorithm-Work.html) · [MD](docs/aimd/20240124_Byte-Pair-Encoding-How-Does-The-BPE-Algorithm-Work_claude.md) |
-| yt:H6q1UWCCnKw | Byte Goose AI, "Vector Embeddings. How to choose the embedding model based on the task at hand. Semantic Search RAG." (20:57) <https://www.youtube.com/watch?v=H6q1UWCCnKw> | 2026-02-28 / 2026-10-10 | 4.5–4.6, 5.1–5.3, 6.2, 7.1, 7.3, 7.4, 8.1 (และไอเดียบท Matryoshka) | [HTML](docs/outhtm/20260228_How-To-Choose-An-Embedding-Model-By-Task.html) · [MD](docs/aimd/20260228_How-To-Choose-An-Embedding-Model-By-Task_claude.md) |
-| yt:bU38Ovdh3NY | CMU Database Group, "Qdrant: Open Source Vector Search Engine and Vector Database (Andrey Vasnetsov)" (62:38, CC BY) <https://www.youtube.com/watch?v=bU38Ovdh3NY> | 2023-09-15 / 2026-10-10 | 2.2, 4.6, 5.1–5.3, 5.4, 6.2, 6.3, 6.5–6.9, 7.1 (แหล่งหลักของบท 6.9) | [HTML](docs/outhtm/20230915_Qdrant-Open-Source-Vector-Search-Engine-CMU.html) · [MD](docs/aimd/20230915_Qdrant-Open-Source-Vector-Search-Engine-CMU_claude.md) |
-| yt:YLkSfz3EFGw | Devsplainers, "Vector Databases Are Dead. Use This Instead" (8:29) <https://www.youtube.com/watch?v=YLkSfz3EFGw> | 2026-10-08 / 2026-10-10 | 5.1–5.3, 5.4, 5.5, 7.1 | [HTML](docs/outhtm/20261008_Vector-Databases-Are-Dead-Use-This-Instead.html) · [MD](docs/aimd/20261008_Vector-Databases-Are-Dead-Use-This-Instead_claude.md) |
+| yt:H6q1UWCCnKw | Byte Goose AI, "Vector Embeddings. How to choose the embedding model based on the task at hand. Semantic Search RAG." (20:57) <https://www.youtube.com/watch?v=H6q1UWCCnKw> | 2026-02-28 / 2026-10-10 | 4.5–4.7, 5.1–5.3, 6.2, 8.1, 8.3, 8.4, 9.1 (และไอเดียบท Matryoshka) | [HTML](docs/outhtm/20260228_How-To-Choose-An-Embedding-Model-By-Task.html) · [MD](docs/aimd/20260228_How-To-Choose-An-Embedding-Model-By-Task_claude.md) |
+| yt:bU38Ovdh3NY | CMU Database Group, "Qdrant: Open Source Vector Search Engine and Vector Database (Andrey Vasnetsov)" (62:38, CC BY) <https://www.youtube.com/watch?v=bU38Ovdh3NY> | 2023-09-15 / 2026-10-10 | 2.2, 4.6, 5.1–5.3, 5.4, 6.2, 6.3, 7.1–7.5, 8.1 (แหล่งหลักของบท 7.5) | [HTML](docs/outhtm/20230915_Qdrant-Open-Source-Vector-Search-Engine-CMU.html) · [MD](docs/aimd/20230915_Qdrant-Open-Source-Vector-Search-Engine-CMU_claude.md) |
+| yt:YLkSfz3EFGw | Devsplainers, "Vector Databases Are Dead. Use This Instead" (8:29) <https://www.youtube.com/watch?v=YLkSfz3EFGw> | 2026-10-08 / 2026-10-10 | 5.1–5.3, 5.4, 5.5, 8.1 | [HTML](docs/outhtm/20261008_Vector-Databases-Are-Dead-Use-This-Instead.html) · [MD](docs/aimd/20261008_Vector-Databases-Are-Dead-Use-This-Instead_claude.md) |
 | yt:c10w0Ptn_CU | Sefik Ilkin Serengil, "Approximate Nearest Neighbour From Scratch In Python: Build Your Own Vector Database" (19:06) <https://www.youtube.com/watch?v=c10w0Ptn_CU> | 2024-06-23 / 2026-10-10 | 2.2, 5.1–5.3, 6.1, 6.2, 6.4 (แหล่งหลักของบท 6.4 ANN แบบต้นไม้) | [HTML](docs/outhtm/20240623_Approximate-Nearest-Neighbour-From-Scratch-In-Python.html) · [MD](docs/aimd/20240623_Approximate-Nearest-Neighbour-From-Scratch-In-Python_claude.md) |
-| yt:Lc4dzmSFb14 | Satyajit Das, "Vector Search and HNSW Explained Visually" (8:22) <https://www.youtube.com/watch?v=Lc4dzmSFb14> | 2026-05-30 / 2026-10-10 | 2.1, 5.1–5.3, 5.5, 6.1, 6.2, 6.5–6.8, 7.1 (แหล่งหลักของบท 6.5–6.8) | [HTML](docs/outhtm/20260530_Vector-Search-And-HNSW-Explained-Visually.html) · [MD](docs/aimd/20260530_Vector-Search-And-HNSW-Explained-Visually_claude.md) |
-| yt:1Qex37vowTM | SOFAR, "Vector Embedding : Build LLM from scratch" (13:56) <https://www.youtube.com/watch?v=1Qex37vowTM> | 2026-06-15 / 2026-10-10 | 3.4, 4.4–4.6, 5.1–5.3, 6.2, 7.1, 8.1, 8.2 | [HTML](docs/outhtm/20260615_Vector-Embedding-Build-LLM-From-Scratch.html) · [MD](docs/aimd/20260615_Vector-Embedding-Build-LLM-From-Scratch_claude.md) |
-| yt:hVM8qGRTaOA | Under The Hood, "What Are Word Embeddings?" (19:32) <https://www.youtube.com/watch?v=hVM8qGRTaOA> | 2025-02-21 / 2026-10-10 | 1.5, 3.4, 4.1–4.6, 7.1, 8.1, 8.2 (แหล่งหลักของบท 3.4 Token ID, 4.1 One-hot, 4.3 Embedding matrix, 4.4, 8.1) | [HTML](docs/outhtm/20250221_What-Are-Word-Embeddings.html) · [MD](docs/aimd/20250221_What-Are-Word-Embeddings_claude.md) |
-| yt:NEreO2zlXDk | Colin Talks Tech, "A Beginner's Guide to Vector Embeddings" (8:29) <https://www.youtube.com/watch?v=NEreO2zlXDk> | 2023-06-08 / 2026-10-10 | 4.5–4.6, 5.1–5.3, 5.4, 7.1, 7.4 (แหล่งหลักของบท 4.6; และไอเดียบท outlier) | [HTML](docs/outhtm/20230608_A-Beginners-Guide-To-Vector-Embeddings.html) · [MD](docs/aimd/20230608_A-Beginners-Guide-To-Vector-Embeddings_claude.md) |
-| yt:e9U0QAFbfLI | StatQuest, "Cosine Similarity, Clearly Explained!!!" (10:13) <https://www.youtube.com/watch?v=e9U0QAFbfLI> | 2023-01-29 / 2026-10-10 | 2.3, 4.2, 5.1–5.3, 7.1 (แหล่งหลักของบท 4.2 Bag of words) | [HTML](docs/outhtm/20230129_Cosine-Similarity-Clearly-Explained.html) · [MD](docs/aimd/20230129_Cosine-Similarity-Clearly-Explained_claude.md) |
+| yt:Lc4dzmSFb14 | Satyajit Das, "Vector Search and HNSW Explained Visually" (8:22) <https://www.youtube.com/watch?v=Lc4dzmSFb14> | 2026-05-30 / 2026-10-10 | 2.1, 5.1–5.3, 5.5, 6.1, 6.2, 7.1–7.4, 8.1 (แหล่งหลักของบท 7.1–7.4) | [HTML](docs/outhtm/20260530_Vector-Search-And-HNSW-Explained-Visually.html) · [MD](docs/aimd/20260530_Vector-Search-And-HNSW-Explained-Visually_claude.md) |
+| yt:1Qex37vowTM | SOFAR, "Vector Embedding : Build LLM from scratch" (13:56) <https://www.youtube.com/watch?v=1Qex37vowTM> | 2026-06-15 / 2026-10-10 | 3.4, 4.4–4.7, 5.1–5.3, 6.2, 8.1, 9.1, 9.2, 10.4 | [HTML](docs/outhtm/20260615_Vector-Embedding-Build-LLM-From-Scratch.html) · [MD](docs/aimd/20260615_Vector-Embedding-Build-LLM-From-Scratch_claude.md) |
+| yt:hVM8qGRTaOA | Under The Hood, "What Are Word Embeddings?" (19:32) <https://www.youtube.com/watch?v=hVM8qGRTaOA> | 2025-02-21 / 2026-10-10 | 1.5, 3.4, 4.1–4.6, 8.1, 9.1, 9.2, 10.1, 10.3 (แหล่งหลักของบท 3.4 Token ID, 4.1 One-hot, 4.3 Embedding matrix, 4.4, 9.1) | [HTML](docs/outhtm/20250221_What-Are-Word-Embeddings.html) · [MD](docs/aimd/20250221_What-Are-Word-Embeddings_claude.md) |
+| yt:NEreO2zlXDk | Colin Talks Tech, "A Beginner's Guide to Vector Embeddings" (8:29) <https://www.youtube.com/watch?v=NEreO2zlXDk> | 2023-06-08 / 2026-10-10 | 4.5–4.6, 5.1–5.3, 5.4, 8.1, 8.4 (แหล่งหลักของบท 4.6; และไอเดียบท outlier) | [HTML](docs/outhtm/20230608_A-Beginners-Guide-To-Vector-Embeddings.html) · [MD](docs/aimd/20230608_A-Beginners-Guide-To-Vector-Embeddings_claude.md) |
+| yt:e9U0QAFbfLI | StatQuest, "Cosine Similarity, Clearly Explained!!!" (10:13) <https://www.youtube.com/watch?v=e9U0QAFbfLI> | 2023-01-29 / 2026-10-10 | 2.3, 4.2, 5.1–5.3, 8.1 (แหล่งหลักของบท 4.2 Bag of words) | [HTML](docs/outhtm/20230129_Cosine-Similarity-Clearly-Explained.html) · [MD](docs/aimd/20230129_Cosine-Similarity-Clearly-Explained_claude.md) |
 | yt:fNk_zzaMoSs | 3Blue1Brown, "Vectors, Chapter 1, Essence of linear algebra" (9:51) <https://www.youtube.com/watch?v=fNk_zzaMoSs> | 2016-08-05 / 2026-10-10 | 1.1, 1.3, 1.4, 2.1 (และข้อเสนอเรื่องลำดับบท) | [HTML](docs/outhtm/20160805_Vectors-Chapter-1-Essence-Of-Linear-Algebra.html) · [MD](docs/aimd/20160805_Vectors-Chapter-1-Essence-Of-Linear-Algebra_claude.md) |
-| yt:xTaDx3tbYMs | SH AI Academy, "Cosine Similarity vs. Euclidean Distance vs. Dot Product: Choosing the Right Metric for AI Search" (6:13) <https://www.youtube.com/watch?v=xTaDx3tbYMs> | 2025-09-23 / 2026-10-10 | 1.2, 1.5, 2.1, 2.2, 2.3, 5.1–5.3, 5.4, 6.2, 8.2 | [HTML](docs/outhtm/20250923_Cosine-Similarity-Vs-Euclidean-Distance-Vs-Dot-Product.html) · [MD](docs/aimd/20250923_Cosine-Similarity-Vs-Euclidean-Distance-Vs-Dot-Product_claude.md) |
-| yt:lPTcTh5sRug | BlackBoard AI, "How AI Turns Words Into Vectors: Embeddings" (3:34) <https://www.youtube.com/watch?v=lPTcTh5sRug> | 2025-08-18 / 2026-10-10 | 1.5, 3.4, 4.1, 4.3, 4.4, 4.6, 7.1 | [HTML](docs/outhtm/20250818_How-AI-Turns-Words-Into-Vectors-Embeddings.html) · [MD](docs/aimd/20250818_How-AI-Turns-Words-Into-Vectors-Embeddings_claude.md) |
+| yt:xTaDx3tbYMs | SH AI Academy, "Cosine Similarity vs. Euclidean Distance vs. Dot Product: Choosing the Right Metric for AI Search" (6:13) <https://www.youtube.com/watch?v=xTaDx3tbYMs> | 2025-09-23 / 2026-10-10 | 1.2, 1.5, 2.1, 2.2, 2.3, 5.1–5.3, 5.4, 6.2, 9.2, 10.2 | [HTML](docs/outhtm/20250923_Cosine-Similarity-Vs-Euclidean-Distance-Vs-Dot-Product.html) · [MD](docs/aimd/20250923_Cosine-Similarity-Vs-Euclidean-Distance-Vs-Dot-Product_claude.md) |
+| yt:lPTcTh5sRug | BlackBoard AI, "How AI Turns Words Into Vectors: Embeddings" (3:34) <https://www.youtube.com/watch?v=lPTcTh5sRug> | 2025-08-18 / 2026-10-10 | 1.5, 3.4, 4.1, 4.3, 4.4, 4.6, 8.1 | [HTML](docs/outhtm/20250818_How-AI-Turns-Words-Into-Vectors-Embeddings.html) · [MD](docs/aimd/20250818_How-AI-Turns-Words-Into-Vectors-Embeddings_claude.md) |
 
 ## yt:xTaDx3tbYMs — Cosine vs Euclidean vs Dot
 
 tags: `similarity-metrics` `cosine` `euclidean` `dot-product` `normalization` `metric-choice` `high-dimensions` `attention`  
-ใช้ในบท: 1.2, 1.5, 2.1, 2.2, 2.3, 5.1–5.3, 5.4, 6.2, 8.2
+ใช้ในบท: 1.2, 1.5, 2.1, 2.2, 2.3, 5.1–5.3, 5.4, 6.2, 9.2, 10.2
 
 **เอามาใช้**
 
 - บท 5.1–5.3 Similarity search: เพิ่ม dot เป็น metric ที่สาม และตารางเรียงอันดับสามแบบเทียบกัน
 - บท 5.4 เลือก metric: แนวคิด "ความยาวของเวกเตอร์มีความหมายไหม" (decision framework) และตารางตัวอย่างงาน
 - บท 2.2 Dot product: ตัวอย่าง attention = query · key
-- บท 8.2 Attention: query · key ด้วยเวกเตอร์บนสไลด์ (~3:44) ใช้ค่าที่แก้แล้ว 0.70 / 0.23 และบอกไว้ใต้สูตรว่าสไลด์พิมพ์ผิด
+- บท 9.2 Attention: query · key ด้วยเวกเตอร์บนสไลด์ (~3:44) ใช้ค่าที่แก้แล้ว 0.70 / 0.23 และบอกไว้ใต้สูตรว่าสไลด์พิมพ์ผิด
 - บท 1.5 Matrix: `batch_cosine` ที่รับตารางแถวละเวกเตอร์ (ตัวอย่างว่าเก็บเป็นตารางแล้วคำนวณทีละหลายแถวได้)
 - บท 6.2 มิติสูง: หัวข้อ curse of dimensionality
 
@@ -215,11 +277,11 @@ tags: `similarity-metrics` `cosine` `euclidean` `dot-product` `normalization` `m
 ## yt:lPTcTh5sRug — Embeddings
 
 tags: `embeddings` `embedding-matrix` `one-hot` `token-id` `vocabulary` `training-embeddings`  
-ใช้ในบท: 1.5, 3.4, 4.1, 4.3, 4.4, 4.6, 7.1
+ใช้ในบท: 1.5, 3.4, 4.1, 4.3, 4.4, 4.6, 8.1
 
 **เอามาใช้**
 
-- บท 7.1 Bi-Encoder: ลิงก์ "อ่านเพิ่ม" ไปส่วน Embedding matrix เพราะตาราง `table` ในบทนั้นคือ embedding matrix ขนาดเล็ก (คำ → เวกเตอร์)
+- บท 8.1 Bi-Encoder: ลิงก์ "อ่านเพิ่ม" ไปส่วน Embedding matrix เพราะตาราง `table` ในบทนั้นคือ embedding matrix ขนาดเล็ก (คำ → เวกเตอร์)
 - บท 1.5 Matrix: ขนาด 50,000 × 300 แถวละคำ · บท 3.4 Token ID: Vocabulary mapping King → 0 … ใช้เลขเป็นที่อยู่ของแถว · บท 4.1 One-hot: 'cat' → [1, 0, 0, 0], 50,000+ ช่อง, ทุกคำต่างกันเท่ากัน
 - บท 4.3 Embedding matrix: หยิบแถวด้วย ID และสี่ขั้นตอน (vocabulary & ID → matrix → lookup → learn & adjust) · บท 4.4: เริ่มสุ่ม → ทายผิด (คำที่ถูกคือ crown) → ปรับแถวของ queen ทีละนิด ซ้ำเป็นล้านครั้ง
 
@@ -250,7 +312,7 @@ tags: `vector-basics` `vector-addition` `scalar-multiplication` `linear-algebra`
 ## yt:e9U0QAFbfLI — StatQuest, Cosine Similarity
 
 tags: `similarity-metrics` `cosine` `bag-of-words` `word-counts`  
-ใช้ในบท: 2.3, 4.2, 5.1–5.3, 7.1 (แหล่งหลักของบท 4.2 Bag of words)
+ใช้ในบท: 2.3, 4.2, 5.1–5.3, 8.1 (แหล่งหลักของบท 4.2 Bag of words)
 
 **โหมดรายงาน:** แปลแบบตีความ ครบทุกรายละเอียด (license มาตรฐานของ YouTube; ตัดช่วงผู้สนับสนุนและโปรโมตตัวเอง)
 
@@ -268,7 +330,7 @@ tags: `similarity-metrics` `cosine` `bag-of-words` `word-counts`
 ## yt:NEreO2zlXDk — Colin Talks Tech, A Beginner's Guide to Vector Embeddings
 
 tags: `embeddings` `latent-space` `knn` `outliers` `similarity-metrics`  
-ใช้ในบท: 4.5–4.6, 5.1–5.3, 5.4, 7.1, 7.4 (แหล่งหลักของบท 4.6; และไอเดียบท outlier)
+ใช้ในบท: 4.5–4.6, 5.1–5.3, 5.4, 8.1, 8.4 (แหล่งหลักของบท 4.6; และไอเดียบท outlier)
 
 **โหมดรายงาน:** แปลแบบตีความ ครบทุกรายละเอียด (license มาตรฐานของ YouTube) คลิปเปิดบทความของ Pinecone และเดโม Colorful Vectors บน Hugging Face
 
@@ -276,7 +338,7 @@ tags: `embeddings` `latent-space` `knn` `outliers` `similarity-metrics`
 
 - บท 4.5 Latent space: เดโมสี RGB เป็นตัวอย่างแกนที่มีความหมาย
 - บท 5.1–5.3 / 5.4: KNN = top-k ตามระยะ; ตารางสีแสดงว่า distance กับ cosine เรียงต่างกัน
-- บท 7.1 Bi-Encoder: บอตถามตอบใช้โมเดลเดียวกันกับเอกสารและคำถาม
+- บท 8.1 Bi-Encoder: บอตถามตอบใช้โมเดลเดียวกันกับเอกสารและคำถาม
 - บท 4.6 ใช้ model เดียวกัน (2026-10-11, `WIP202610041`): ขั้นตอน embed เอกสารก่อน → embed คำถามด้วย model เดียวกัน → หาที่ใกล้สุด (~5:25)
   · ร่วมกับ BlackBoard AI / SOFAR (ตารางเริ่มสุ่มแล้วฝึก), Under The Hood (ความหมายของมิติขึ้นกับข้อมูลที่ฝึก), Byte Goose AI (768 vs 3072 มิติ, EmbeddingGemma)
   และ Qdrant (เปลี่ยน encoder แล้ว embed ใหม่ทั้งหมด) · ตาราง A / B (seed 16 / 18) ผู้จัดทำฝึกเอง
@@ -290,7 +352,7 @@ tags: `embeddings` `latent-space` `knn` `outliers` `similarity-metrics`
 ## yt:hVM8qGRTaOA — Under The Hood, What Are Word Embeddings?
 
 tags: `embeddings` `word-embeddings` `token-id` `one-hot` `bag-of-words` `n-gram` `embedding-matrix` `word2vec` `cbow` `skip-gram` `latent-space` `positional-encoding` `attention` `llm-internals`  
-ใช้ในบท: 1.5, 3.4, 4.1–4.6, 7.1, 8.1, 8.2 (แหล่งหลักของบท 3.4 Token ID, 4.1 One-hot, 4.3 Embedding matrix, 4.4, 8.1)
+ใช้ในบท: 1.5, 3.4, 4.1–4.6, 8.1, 9.1, 9.2, 10.1, 10.3 (แหล่งหลักของบท 3.4 Token ID, 4.1 One-hot, 4.3 Embedding matrix, 4.4, 9.1)
 
 **โหมดรายงาน:** แปลแบบตีความ ครบทุกรายละเอียด (license มาตรฐานของ YouTube)
 
@@ -298,20 +360,20 @@ tags: `embeddings` `word-embeddings` `token-id` `one-hot` `bag-of-words` `n-gram
 
 - แหล่งหลักของบท 3.4 Token ID (good 6, bad 22, great 21; เลขเหมาะกับของที่มีลำดับเท่านั้น), 4.1 One-hot, 4.2 (bag of words, unigram / bigram / n-gram), 4.3 Embedding matrix (ตาราง lookup 8 × 3, one-hot × matrix = แถว), 4.4 (CBOW หน้าต่าง 3, fox + over → jumps, skip-gram) และ 1.5 Matrix (แถว = จำนวนคำ คอลัมน์ = จำนวนมิติ)
 - บท 4.5 Latent space: ตัวอย่าง 1 มิติ (อายุ) → 2 มิติ (อายุ, royalty), king − man + woman และ Beijing + Japan − China ≈ Tokyo
-- บท 7.1 Bi-Encoder: `table` คือ embedding matrix ขนาดเล็ก
-- บท 8.1 LLM input: "The cat sat on a mat" (ID 791, 8415, 7731, 389, 264, 5634) → ตาราง 6 × d, ชั้น embedding ฝึกพร้อมโมเดล, บวกเวกเตอร์ตำแหน่งแล้วขนาดไม่เปลี่ยน (ทำแล้ว 2026-10-11)
-- บท 8.2 Attention: attention เป็นชั้นแรกของ decoder block และให้บริบท
+- บท 8.1 Bi-Encoder: `table` คือ embedding matrix ขนาดเล็ก
+- บท 9.1 LLM input: "The cat sat on a mat" (ID 791, 8415, 7731, 389, 264, 5634) → ตาราง 6 × d, ชั้น embedding ฝึกพร้อมโมเดล, บวกเวกเตอร์ตำแหน่งแล้วขนาดไม่เปลี่ยน (ทำแล้ว 2026-10-11)
+- บท 9.2 Attention: attention เป็นชั้นแรกของ decoder block และให้บริบท
 
 **แก้จากต้นฉบับ:** ไม่พบจุดผิด
 
 **เราคำนวณหรือเพิ่มเอง:** ระยะเลข token |good − great| = 15 เทียบ |bad − great| = 1; one-hot cos 0 ระยะ √2;
 bag of words ของ "This movie was good" กับ "This movie was bad" ได้ cosine 0.75; one-hot × matrix = แถว
-· ปุ่ม "แจกเลขใหม่" ในบท 3.4 และเลขเรียงตามตัวอักษรในโค้ดตัวอย่าง (bad 0, good 1, great 2) · กติกาฝึกย่อของบท 4.4 (c = ค่าเฉลี่ยคำรอบข้าง, e ← e + 0.3 (c − e), คำรอบข้างตรึงไว้) และประโยคฝึก 4 ประโยค · ตัวเลข 3 ตัวของแถวและของเวกเตอร์ตำแหน่งในบท 8.1 — ผู้จัดทำแต่งเองทั้งหมด ไม่ใช่การฝึกจริง
+· ปุ่ม "แจกเลขใหม่" ในบท 3.4 และเลขเรียงตามตัวอักษรในโค้ดตัวอย่าง (bad 0, good 1, great 2) · กติกาฝึกย่อของบท 4.4 (c = ค่าเฉลี่ยคำรอบข้าง, e ← e + 0.3 (c − e), คำรอบข้างตรึงไว้) และประโยคฝึก 4 ประโยค · ตัวเลข 3 ตัวของแถวและของเวกเตอร์ตำแหน่งในบท 9.1 — ผู้จัดทำแต่งเองทั้งหมด ไม่ใช่การฝึกจริง
 
 ## yt:1Qex37vowTM — SOFAR, Vector Embedding : Build LLM from scratch
 
 tags: `embeddings` `word2vec` `latent-space` `embedding-dimensions` `training-embeddings` `llm-internals`  
-ใช้ในบท: 3.4, 4.4–4.6, 5.1–5.3, 6.2, 7.1, 8.1, 8.2
+ใช้ในบท: 3.4, 4.4–4.7, 5.1–5.3, 6.2, 8.1, 9.1, 9.2, 10.4
 
 **โหมดรายงาน:** แปลแบบตีความ ครบทุกรายละเอียด (license มาตรฐานของ YouTube)
 
@@ -320,9 +382,9 @@ tags: `embeddings` `word2vec` `latent-space` `embedding-dimensions` `training-em
 - บท 4.5 Latent space: ตารางน้ำหนัก cat/lion/dog/blue/sandwich บนแกน animal, human, pet, edible เป็นตัวอย่าง "แกนที่มีความหมาย" ที่เข้าใจง่าย
 - บท 5.1–5.3 Similarity search: "ความต่างของน้ำหนักน้อย = คล้าย" คือ distance
 - บท 3.4 Token ID: เลขประจำคำ (cat 23, lion 50, dog 150) ไม่มีความหมาย, การจับคู่คำกับเลขคือ vocabulary · บท 4.4: สุ่ม → ทาย → error → gradient → ปรับ, Word2Vec 3 ล้านคำ × 300, king–queen 0.651 vs king–man 0.229
-- บท 8.1 / 8.2: ลำดับขั้นใน GPT (tokenization → embedding → positional → contextual → self-attention) และขนาดของ GPT-1/2/3
+- บท 9.1 / 9.2: ลำดับขั้นใน GPT (tokenization → embedding → positional → contextual → self-attention) และขนาดของ GPT-1/2/3
 - บท 6.2 มิติสูง: ขนาดมิติของ GPT-1 (768), GPT-2 (768–1,600), GPT-3 (12,288) เทียบกับ Word2Vec (300)
-- บท 7.1 Bi-Encoder: คำที่ไม่มีในคลังคำ (`KeyError: 'Bill_Gates'`) ตรงกับที่ `encode()` ของ ZVect ข้ามคำที่ไม่รู้จัก
+- บท 8.1 Bi-Encoder: คำที่ไม่มีในคลังคำ (`KeyError: 'Bill_Gates'`) ตรงกับที่ `encode()` ของ ZVect ข้ามคำที่ไม่รู้จัก
 
 **แก้จากต้นฉบับ** (ใส่ไว้ในกล่องแยก ไม่ได้แก้เนื้อหาของผู้สอน)
 
@@ -338,9 +400,9 @@ cat–dog 0.141 / 0.997, cat–lion 0.415 / 0.965, dog–lion 0.539 / 0.950, cat
 ## yt:Lc4dzmSFb14 — Satyajit Das, Vector Search and HNSW Explained Visually
 
 tags: `vector-search` `brute-force` `inverted-index` `keyword-search` `ann` `hnsw` `efsearch`  
-ใช้ในบท: 2.1, 5.1–5.3, 5.5, 6.1, 6.2, 6.5–6.8, 7.1 (แหล่งหลักของบท 6.5–6.8)
+ใช้ในบท: 2.1, 5.1–5.3, 5.5, 6.1, 6.2, 7.1–7.4, 8.1 (แหล่งหลักของบท 7.1–7.4)
 
-**ใช้ในบทชุดใหม่ (2026-10-11, `WIP202610027`):** 6.1 ค้นทุกชิ้น (อ่านทีละชิ้น ~1M ครั้ง, ข้อมูล 2 เท่า = ช้า 2 เท่า) · 5.5 inverted index และตัวอย่าง cancel (#15, #103, #588) ที่พลาด "End your membership today" · 6.5 กราฟเพื่อนบ้านเดินแบบ greedy (1.43 → 0.95 → 0.52), วนในซอย · 6.6 ชั้นทางด่วน / ถนนหลัก / ซอย · 6.7 beam = efSearch, ตัวอย่าง beam แคบ / กว้างบนจอ · 6.8 โยนเหรียญ ~1/M, ตัวอย่าง Pause billing (หัว หัว ก้อย → ชั้น 2), ตาราง N × (1/M)^k (คำนวณในไฟล์สรุป)
+**ใช้ในบทชุดใหม่ (2026-10-11, `WIP202610027`):** 6.1 ค้นทุกชิ้น (อ่านทีละชิ้น ~1M ครั้ง, ข้อมูล 2 เท่า = ช้า 2 เท่า) · 5.5 inverted index และตัวอย่าง cancel (#15, #103, #588) ที่พลาด "End your membership today" · 7.1 กราฟเพื่อนบ้านเดินแบบ greedy (1.43 → 0.95 → 0.52), วนในซอย · 7.2 ชั้นทางด่วน / ถนนหลัก / ซอย · 7.3 beam = efSearch, ตัวอย่าง beam แคบ / กว้างบนจอ · 7.4 โยนเหรียญ ~1/M, ตัวอย่าง Pause billing (หัว หัว ก้อย → ชั้น 2), ตาราง N × (1/M)^k (คำนวณในไฟล์สรุป)
 
 **โหมดรายงาน:** แปลแบบตีความ ครบทุกรายละเอียด (license มาตรฐานของ YouTube, caption อัตโนมัติ)
 
@@ -348,7 +410,7 @@ tags: `vector-search` `brute-force` `inverted-index` `keyword-search` `ann` `hns
 
 - บท 5.1–5.3 Similarity search: บทนี้วนเทียบทุกรายการ ซึ่งคือ brute force ในคลิป ใช้ประโยค "embeddings solve meaning, not speed" อธิบายว่าทำไมระบบใหญ่ต้องมี index
 - บท 6.2 มิติสูง: เหตุผลที่การค้นหาแบบประมาณต้องยอมแลก recall
-- บท 7.1 Bi-Encoder: ขั้น embed คำถาม → ค้นเวกเตอร์ใกล้สุด → (กรอง/rerank) → LLM ตรงกับบอท help center ในคลิป
+- บท 8.1 Bi-Encoder: ขั้น embed คำถาม → ค้นเวกเตอร์ใกล้สุด → (กรอง/rerank) → LLM ตรงกับบอท help center ในคลิป
 - ไอเดียบทใหม่ "ค้นหาแบบประมาณ (ANN)": brute force เทียบกับ greedy walk บนกราฟเพื่อนบ้าน นับจำนวนการคำนวณระยะ (คู่กับ c10w0Ptn_CU)
 
 **แก้จากต้นฉบับ** (ใส่ไว้ในกล่องแยก ไม่ได้แก้เนื้อหาของผู้สอน)
@@ -390,7 +452,7 @@ tags: `vector-search` `ann` `annoy` `random-projection-tree` `hyperplane` `knn` 
 ## yt:YLkSfz3EFGw — Devsplainers, Vector Databases Are Dead. Use This Instead
 
 tags: `vector-database` `keyword-search` `bm25` `hybrid-search` `agent-search` `fact-checked`  
-ใช้ในบท: 5.1–5.3, 5.4, 5.5, 7.1
+ใช้ในบท: 5.1–5.3, 5.4, 5.5, 8.1
 
 **ใช้ในบทชุดใหม่ (2026-10-11, `WIP202610027`):** 5.5 ค้นด้วยคำ vs ความหมาย (BM25 68.8% vs เวกเตอร์ 51.4%, รหัส / ตัวย่อ / เลข ticket, BrowseComp-Plus 70.1 vs 55.9, Cursor +12.5%, keyword ก่อน) · เอกสาร 8 ชิ้นและตารางเวกเตอร์คำในบทนั้นผู้จัดทำแต่งเอง
 
@@ -400,7 +462,7 @@ tags: `vector-database` `keyword-search` `bm25` `hybrid-search` `agent-search` `
 
 - บท 5.1–5.3 Similarity search: "ใกล้ในความหมาย" ไม่ใช่ทุกอย่าง ค่าที่ต้องตรงเป๊ะ (เลขลูกค้า, เลข ticket) ควรค้นด้วยคำหรือ filter
 - บท 5.4 เลือก metric: ต่อยอดเป็น "เลือกวิธีค้น" (BM25, vector, filter, ถามแอปตรง)
-- บท 7.1 Bi-Encoder: embedding จากข้อความสาธารณะไม่รู้จักชื่อรหัสภายในองค์กร
+- บท 8.1 Bi-Encoder: embedding จากข้อความสาธารณะไม่รู้จักชื่อรหัสภายในองค์กร
 - ไอเดียบทใหม่ "keyword กับ vector": เทียบ BM25 กับ cosine บนชุดเอกสารเล็กที่มีทั้งคำพ้องความหมายและรหัสเฉพาะ
 
 **ผลตรวจข้อเท็จจริง** (ใส่ไว้ในกล่องแยก ไม่ได้แก้เนื้อหาของผู้เล่า): ยืนยัน 11 ข้อ บางส่วน 7 ข้อ ไม่พบข้อที่ขัดกับแหล่งตรง ๆ จุดที่ควรรู้:
@@ -417,9 +479,9 @@ tags: `vector-database` `keyword-search` `bm25` `hybrid-search` `agent-search` `
 ## yt:bU38Ovdh3NY — CMU Database Group, Qdrant (Andrey Vasnetsov)
 
 tags: `vector-database` `qdrant` `hnsw` `filtering` `percolation` `quantization` `binary-quantization` `rescoring`  
-ใช้ในบท: 2.2, 4.6, 5.1–5.3, 5.4, 6.2, 6.3, 6.5–6.9, 7.1 (แหล่งหลักของบท 6.9)
+ใช้ในบท: 2.2, 4.6, 5.1–5.3, 5.4, 6.2, 6.3, 7.1–7.5, 8.1 (แหล่งหลักของบท 7.5)
 
-**ใช้ในบทชุดใหม่ (2026-10-11, `WIP202610027`):** 6.5–6.6 greedy ไม่รับประกันตัวใกล้สุด, ใส่จุด ~2 เท่าของการค้น, ต้องใช้ RAM · 6.7 beam แลกความแม่นกับความเร็ว · 6.9 กรองระหว่างเดิน, กรองเข้มแล้วกราฟขาด (ขีด 1/k, 10 เส้น → 90%), เส้นเสริมต่อค่า payload · กราฟสุ่ม 2,000 จุดในบท 6.9 ผู้จัดทำสร้างเอง
+**ใช้ในบทชุดใหม่ (2026-10-11, `WIP202610027`):** 7.1–7.2 greedy ไม่รับประกันตัวใกล้สุด, ใส่จุด ~2 เท่าของการค้น, ต้องใช้ RAM · 7.3 beam แลกความแม่นกับความเร็ว · 7.5 กรองระหว่างเดิน, กรองเข้มแล้วกราฟขาด (ขีด 1/k, 10 เส้น → 90%), เส้นเสริมต่อค่า payload · กราฟสุ่ม 2,000 จุดในบท 7.5 ผู้จัดทำสร้างเอง
 
 **โหมดรายงาน:** แปลคำต่อคำฉบับเต็มทั้งการบรรยายและถามตอบ (Creative Commons Attribution, ตรวจในหน้าคลิป) พร้อมสรุปเชิงลึกด้านบน
 · transcript ภาษาอังกฤษเก็บไว้ใน `.dropzone/iw_temp/20261010_2013/transcript_bU38Ovdh3NY.txt`
@@ -431,7 +493,7 @@ tags: `vector-database` `qdrant` `hnsw` `filtering` `percolation` `quantization`
 - บท 2.2 และ 5.4: "ฟังก์ชันระยะกำหนดโดยโมเดล แต่ส่วนใหญ่ใช้ dot product"
 - บท 5.1–5.3: "ทุกเวกเตอร์อาจเป็นผลลัพธ์ได้ ขีดเส้นจากคะแนนอย่างเดียวไม่ได้" ใช้เป็นข้อควรระวังเรื่อง threshold
 - บท 6.2: การเทียบเวกเตอร์ช้าลงเชิงเส้นตามจำนวนมิติ และ binary quantization สำหรับเวกเตอร์ราว 1,500 มิติ
-- บท 7.1: Qdrant สมมติว่า embedding มาจากโมเดลภายนอก
+- บท 8.1: Qdrant สมมติว่า embedding มาจากโมเดลภายนอก
 - ไอเดียบท ANN: filter ระหว่างเดินกราฟ และกราฟขาดตาม percolation (สัดส่วนที่ตัดได้ 1 − 1/k)
 
 **แก้จากต้นฉบับ** (ใส่ไว้ในกล่องแยก ไม่ได้แก้คำแปล)
@@ -445,7 +507,7 @@ tags: `vector-database` `qdrant` `hnsw` `filtering` `percolation` `quantization`
 ## yt:H6q1UWCCnKw — Byte Goose AI, How to choose the embedding model based on the task
 
 tags: `embeddings` `embedding-model-choice` `multilingual` `matryoshka` `bi-encoder` `cross-encoder` `reranking` `rag` `negation` `numeracy-gap` `fact-checked`  
-ใช้ในบท: 4.5–4.6, 5.1–5.3, 6.2, 7.1, 7.3, 7.4, 8.1 (และไอเดียบท Matryoshka)
+ใช้ในบท: 4.5–4.7, 5.1–5.3, 6.2, 8.1, 8.3, 8.4, 9.1 (และไอเดียบท Matryoshka)
 
 **โหมดรายงาน:** เรียบเรียงใหม่ด้วยคำของผู้จัดทำ ครบทุกประเด็นและตัวเลข (license มาตรฐานของ YouTube, caption อัตโนมัติ) ไม่ใช่คำแปลคำต่อคำ พร้อมตรวจข้อเท็จจริง 11 ข้อด้วยการค้นเว็บ
 · ไม่ได้เก็บ transcript ไว้ใน repo (เก็บเฉพาะใน workspace ของ session)
@@ -455,14 +517,14 @@ tags: `embeddings` `embedding-model-choice` `multilingual` `matryoshka` `bi-enco
 - บท 4.5 Latent space: ตัวอย่าง "bank" ที่ word2vec ให้พิกัดเดียว เทียบ transformer ที่ดูบริบท และ "ถ้าโมเดลวางสองแนวคิดไว้ใกล้กัน ปลายทางแก้ไม่ได้"
 - บท 5.1–5.3 Similarity search: numeracy gap ("ถือหุ้น 20%" กับ "5%" อาจได้เวกเตอร์ใกล้กัน) ค่าที่ต้องเทียบเชิงตัวเลขควรใช้ filter
 - บท 6.2 High dimensions: ต้นทุน RAM ตามจำนวนมิติ และ Matryoshka (MRL) ที่ตัดมิติท้ายทิ้ง
-- บท 7.1 Bi-Encoder: bi-encoder อัดเอกสารเป็นเวกเตอร์เดียวก่อนเห็นคำถาม ต่างจาก cross-encoder · affirmative bias กับคำปฏิเสธ
-- บท 7.4 Classification: linear separability
+- บท 8.1 Bi-Encoder: bi-encoder อัดเอกสารเป็นเวกเตอร์เดียวก่อนเห็นคำถาม ต่างจาก cross-encoder · affirmative bias กับคำปฏิเสธ
+- บท 8.4 Classification: linear separability
 
 **ใช้ในบทชุดหลายภาษา (WIP202610029, 2026-10-11)**
 
-- บท 7.1 Bi-Encoder (4 ภาษา): ชื่อโมเดลหลายภาษาที่ผู้ดำเนินรายการเลือก (Qwen3-Embedding-8B, text-multilingual-embedding-002) · BGE-M3 (ค้นแบบผสม) และ EmbeddingGemma (อุปกรณ์เล็ก) ระบุว่าคลิปยกไว้ใช้งานอื่น ส่วน "กว่า 100 ภาษา" มาจากการตรวจทาน · tokenizer ตัดตัวเลขเป็นชิ้น (โยงกับเรื่องตัดคำ) · คลิปไม่มีตัวเลขความแม่นแยกภาษา ตัวเลขในบทมาจากตารางของเล่นและเขียนกำกับไว้
-- บท 7.3 Reranker (4 ภาษา): faithfulness เขียนตามคลิป 0.347 → 0.797 พร้อมค่าตรวจทาน 0.621 = RAG พื้นฐาน (RAG ขั้นสูงมีทั้งการตัดเอกสารที่ดีขึ้นและ cross-encoder) · negation verifier · ตำแหน่งคำปฏิเสธแต่ละภาษาเป็นความรู้ทั่วไป
-- บท 8.1 LLM input: static (Word2Vec ให้ bank พิกัดเดียว) ยังไม่รู้บริบท
+- บท 8.1 Bi-Encoder (4 ภาษา): ชื่อโมเดลหลายภาษาที่ผู้ดำเนินรายการเลือก (Qwen3-Embedding-8B, text-multilingual-embedding-002) · BGE-M3 (ค้นแบบผสม) และ EmbeddingGemma (อุปกรณ์เล็ก) ระบุว่าคลิปยกไว้ใช้งานอื่น ส่วน "กว่า 100 ภาษา" มาจากการตรวจทาน · tokenizer ตัดตัวเลขเป็นชิ้น (โยงกับเรื่องตัดคำ) · คลิปไม่มีตัวเลขความแม่นแยกภาษา ตัวเลขในบทมาจากตารางของเล่นและเขียนกำกับไว้
+- บท 8.3 Reranker (4 ภาษา): faithfulness เขียนตามคลิป 0.347 → 0.797 พร้อมค่าตรวจทาน 0.621 = RAG พื้นฐาน (RAG ขั้นสูงมีทั้งการตัดเอกสารที่ดีขึ้นและ cross-encoder) · negation verifier · ตำแหน่งคำปฏิเสธแต่ละภาษาเป็นความรู้ทั่วไป
+- บท 9.1 LLM input: static (Word2Vec ให้ bank พิกัดเดียว) ยังไม่รู้บริบท
 - ไอเดียบทใหม่ "ตัด vector แบบ Matryoshka" (เวกเตอร์ของเล่นไม่ได้ฝึกแบบ MRL ใช้สาธิตเท่านั้น)
 
 **แก้จากต้นฉบับ** (ใส่ไว้ในกล่องแยก ไม่ได้แก้เนื้อหาของผู้ดำเนินรายการ)
@@ -478,22 +540,22 @@ tags: `embeddings` `embedding-model-choice` `multilingual` `matryoshka` `bi-enco
 ## yt:xTzUn3G9YA0 — Prompt Engineering, Supercharge Your RAG with Contextualized Late Interactions (ColBERTv2)
 
 tags: `colbert` `late-interaction` `maxsim` `multivector` `rag` `chunking` `dense-retrieval` `ragatouille`  
-ใช้ในบท: 7.2 (แหล่งหลักของบท 7.2 Late interaction)
+ใช้ในบท: 8.2 (แหล่งหลักของบท 8.2 Late interaction)
 
 **โหมดรายงาน:** เรียบเรียงใหม่ด้วยคำของผู้จัดทำ ครบทุกประเด็นและตัวเลข (license มาตรฐานของ YouTube, caption อัตโนมัติ) ไม่ใช่คำแปลคำต่อคำ
 ตัวเลขบางตัวอ่านจากภาพบนจอ (34,104 embeddings, MaxSim + Σ ในรูปของเปเปอร์, 4096 มิติของ SFR-Embedding-Mistral) และกำกับไว้ · ไม่ได้เก็บ transcript ไว้ใน repo
 
 **เอามาใช้ / เสนอให้ใช้**
 
-- บท 7.2 Late interaction (ใหม่): dense ใช้เวกเตอร์เดียวต่อ chunk และ chunk ยาวเสียข้อมูล · ColBERT ตัดเป็น token, เวกเตอร์ทุก token (contextualized), ทุก token ของคำถามเทียบทุก token ของเอกสารแล้วรวม · MaxSim + Σ จากรูปบนจอ · 219 passages → ราว 34,104 embeddings (ต้นทุนการเก็บ)
-- ข้อเสนอบท 8.3 RAG (ยังไม่ทำ): chunk 256 / 512, ตัวอย่างที่ dense ดึงหน้าสารบัญมาปน
+- บท 8.2 Late interaction (ใหม่): dense ใช้เวกเตอร์เดียวต่อ chunk และ chunk ยาวเสียข้อมูล · ColBERT ตัดเป็น token, เวกเตอร์ทุก token (contextualized), ทุก token ของคำถามเทียบทุก token ของเอกสารแล้วรวม · MaxSim + Σ จากรูปบนจอ · 219 passages → ราว 34,104 embeddings (ต้นทุนการเก็บ)
+- ข้อเสนอบท 9.3 RAG (ยังไม่ทำ): chunk 256 / 512, ตัวอย่างที่ dense ดึงหน้าสารบัญมาปน
 
 **แก้จากต้นฉบับ** (ใส่ไว้ในส่วนที่ 7 ของรายงาน)
 
 - ผลเทียบเป็นคำถามสองข้อบนเอกสารเดียว ไม่ใช่การวัดผล (chunk และจำนวนผลของแต่ละฝั่งไม่เท่ากัน) ผู้สอนเองใช้คำว่า "น่าจะ / ผมคิดว่า / อาจ"
 - คลิปไม่ได้พูดถึงต้นทุนที่เก็บหนึ่งเวกเตอร์ต่อ token
 
-**เราคำนวณหรือเพิ่มเอง:** บท 7.2 ใช้เวกเตอร์คำของเล่น 3 มิติจากพจนานุกรม (ไม่ขึ้นกับบริบท) เอกสาร d1–d6 ชุดเดียวกับบท 7.1 และเพิ่ม d7 เป็น chunk ยาวหลายเรื่อง ·
+**เราคำนวณหรือเพิ่มเอง:** บท 8.2 ใช้เวกเตอร์คำของเล่น 3 มิติจากพจนานุกรม (ไม่ขึ้นกับบริบท) เอกสาร d1–d6 ชุดเดียวกับบท 8.1 และเพิ่ม d7 เป็น chunk ยาวหลายเรื่อง ·
 ตัวอย่าง "กินข้าวแล้วแก้บั๊ก" (bi-encoder เลือก d2, late interaction เลือก d7) และ "แมวกับแอป" (d6 กับ d7) ผู้จัดทำหาโดยคำนวณ
 
 ## yt:BcxJk4WQVIw — Raj Pulapakura, Byte Pair Encoding (BPE) step by step
@@ -508,7 +570,7 @@ tags: `tokenization` `bpe` `subword` `vocabulary`
 
 - บท 3.1 Tokenization (ใหม่): เครื่องเข้าใจแต่ตัวเลข การแปลงข้อความเป็นเลขคือ tokenization · คลังตัวอักษร a–z = 1–26, ! @ # $ = 27–30 (ภาพ hello there you are amazing → 23 เลข ช่องว่างไม่ได้เลข) · คลังคำสร้างจากคำไม่ซ้ำในข้อความฝึก เรียงแบบพจนานุกรม · ข้อแลก: ตัวอักษร = คลังเล็ก เลขยาว, คำ = คลังใหญ่ เลขสั้น, subword = ทางกลาง
 - บท 3.2 BPE (ใหม่): ขั้นตอนเริ่มจากตัวอักษร → นับคู่ที่ติดกัน → รวมคู่ที่บ่อยที่สุด → แทนในข้อความ ทำ k รอบ · ข้อความฝึก fred fed ted bread, and ted fed fred bread · ใช้กฎตามลำดับกับ ted and fred are friends · i, s เป็น ? · BPE (GPT) / WordPiece (BERT) / Unigram (T5)
-- บท 8.1 LLM input: ขั้น tokenization ก่อน embedding (ยังไม่ได้แก้บท)
+- บท 9.1 LLM input: ขั้น tokenization ก่อน embedding (ยังไม่ได้แก้บท)
 
 **แก้จากต้นฉบับ** (ใส่ไว้ในกล่องแยกในรายงาน และในหัวข้อ "สรุปจากแหล่ง" ของบท 3.2)
 
@@ -517,20 +579,20 @@ tags: `tokenization` `bpe` `subword` `vocabulary`
 - ผลลัพธ์สุดท้าย: fred␣ ควรได้ 13 ตามคลังของสไลด์ (สไลด์เขียน 7 ซึ่งเป็นเลขของ r)
 - คลังเริ่มต้นในสไลด์ไม่มีจุลภาค (ผู้สอนบอกเอง)
 
-**เราคำนวณหรือเพิ่มเอง:** บท 3.1 ใช้ประโยค 6 ชุด × 4 ภาษาของบท 7.1 เป็นข้อความฝึก (คลังตัวอักษร 192 ตัว = 30 ตัวของสไลด์ + อักษรไทยครบชุด ก … ๛ + ตัวอื่นเรียงตามรหัส, คลังคำ 100 คำ ตัดด้วยพจนานุกรมของเล่นของบท 7.1; ข้อความที่พิมพ์เองแสดงเฉพาะภาษาที่พิมพ์; วิธีตัดคำภาษาไทยจริงเป็นความรู้ทั่วไป) · บท 3.2 นับสดทุกรอบ เมื่อเสมอเลือกคู่ที่เจอก่อน และเรียงคลังเริ่มต้นแบบตัวอักษรก่อน แล้วช่องว่าง เครื่องหมาย (a = 1 … t = 8, ␣ = 9 ตรงกับสไลด์ จุลภาค = 10) · byte-level BPE ของ GPT-2 และการตัดที่ช่องว่างก่อนรวมคู่เป็นความรู้ทั่วไป
+**เราคำนวณหรือเพิ่มเอง:** บท 3.1 ใช้ประโยค 6 ชุด × 4 ภาษาของบท 8.1 เป็นข้อความฝึก (คลังตัวอักษร 192 ตัว = 30 ตัวของสไลด์ + อักษรไทยครบชุด ก … ๛ + ตัวอื่นเรียงตามรหัส, คลังคำ 100 คำ ตัดด้วยพจนานุกรมของเล่นของบท 8.1; ข้อความที่พิมพ์เองแสดงเฉพาะภาษาที่พิมพ์; วิธีตัดคำภาษาไทยจริงเป็นความรู้ทั่วไป) · บท 3.2 นับสดทุกรอบ เมื่อเสมอเลือกคู่ที่เจอก่อน และเรียงคลังเริ่มต้นแบบตัวอักษรก่อน แล้วช่องว่าง เครื่องหมาย (a = 1 … t = 8, ␣ = 9 ตรงกับสไลด์ จุลภาค = 10) · byte-level BPE ของ GPT-2 และการตัดที่ช่องว่างก่อนรวมคู่เป็นความรู้ทั่วไป
 
 ## yt:6iCmnd0k3fs — Vishal Bakshi, multivector-rag-demo (coded by Opus 5.5 Extra)
 
 tags: `rag` `multivector` `colbert` `maxsim` `late-interaction` `pylate-rs` `in-browser` `quantization` `binary-quantization` `asymmetric-quantization` `lookup-table` `scifact` `pleias-rag` `webgpu` `fact-checked`  
-ใช้ในบท: ยังไม่ใช้ (เสนอ: 8.3 RAG, 6.3, 7.2)
+ใช้ในบท: ยังไม่ใช้ (เสนอ: 9.3 RAG, 6.3, 8.2)
 
 **โหมดรายงาน:** เรียบเรียงใหม่ด้วยคำของผู้จัดทำ ครบทุกประเด็นและตัวเลข (license มาตรฐานของ YouTube, caption อัตโนมัติ) ตาราง 3 ชุดบนจอถอดเป็น HTML · ตรวจข้อเท็จจริง 7 ข้อด้วยการค้นเว็บ (ยืนยัน 3 · บางส่วน 4)
 
 **เสนอให้ใช้ (ยังไม่ได้แก้บท)**
 
-- ข้อเสนอบท 8.3 RAG (`WIP202610036`): เส้นทางครบ ค้น (pylate-rs + ColBERT 33M ในเบราว์เซอร์) → MaxSim → ส่ง passage ให้ Pleias-RAG-350M ตอบ · ตาราง MaxSim ต่อ token ของคำถาม "What does the cavern represent?" (cavern 7.25 vs 3.59–4.71)
+- ข้อเสนอบท 9.3 RAG (`WIP202610036`): เส้นทางครบ ค้น (pylate-rs + ColBERT 33M ในเบราว์เซอร์) → MaxSim → ส่ง passage ให้ Pleias-RAG-350M ตอบ · ตาราง MaxSim ต่อ token ของคำถาม "What does the cavern represent?" (cavern 7.25 vs 3.59–4.71)
 - บท 6.3 เวกเตอร์ 1 บิต: asymmetric quantization คำถาม float × เอกสาร ±1 → q · d = 2 × Σ(q ที่บิต 1) − Σq และตาราง lookup 256 ช่องต่อไบต์ (32 × 12 × 256 = 98,304) · ตาราง SciFact (FP32 74.18 · int8 74.51 · FP32×binary 70.56 · binary×binary 60.16; 533 / 133 / 16.7 MB)
-- บท 7.2 Late interaction: คำถามถูกเติม [MASK] จนครบ 32 token และคอลัมน์ token พิเศษ + [MASK] ได้คะแนนราว 82% ของคะแนนรวม
+- บท 8.2 Late interaction: คำถามถูกเติม [MASK] จนครบ 32 token และคอลัมน์ token พิเศษ + [MASK] ได้คะแนนราว 82% ของคะแนนรวม
 
 **แก้จากต้นฉบับ** (ในกล่องแยกของรายงาน)
 
@@ -563,15 +625,15 @@ tags: `colbert` `plaid` `mixed-precision` `quantization` `centroids` `ivf` `k-me
 ## yt:8LPgGU34RoE — HiDevs, Build ColBERT Search Locally with Qdrant Edge
 
 tags: `colbert` `late-interaction` `maxsim` `multivector` `qdrant` `qdrant-edge` `offline-search` `retrieve-then-rerank` `reranking` `fact-checked`  
-ใช้ในบท: ยังไม่ใช้ (เสนอ: 7.2, 7.3)
+ใช้ในบท: ยังไม่ใช้ (เสนอ: 8.2, 8.3)
 
 **โหมดรายงาน:** เรียบเรียงใหม่ด้วยคำของผู้จัดทำ ครบทุกประเด็นและตัวเลข (license มาตรฐานของ YouTube, caption อัตโนมัติ) · ตรวจข้อเท็จจริง 5 ข้อด้วยการค้นเว็บ (ยืนยัน 4 · บางส่วน 1)
 
 **เสนอให้ใช้ (ยังไม่ได้แก้บท)**
 
-- บท 7.2 Late interaction: รูป "หนึ่งเวกเตอร์ต่อเอกสาร vs หนึ่งเวกเตอร์ต่อ token" และตาราง MaxSim (best match per query token → summed) · โค้ด Qdrant `MultiVectorConfig(comparator=MultiVectorComparator.MaxSim)`
-- บท 7.3 Reranker: รูปแบบ retrieve-then-rerank (ค้นเร็วด้วยเวกเตอร์เดียว → rerank ด้วย ColBERT) ซึ่งเอกสาร Qdrant ยืนยัน
-- ข้อเสนอบท 8.3 RAG: ค้นแบบออฟไลน์ในเครื่อง 24 passage ~1.5 ms
+- บท 8.2 Late interaction: รูป "หนึ่งเวกเตอร์ต่อเอกสาร vs หนึ่งเวกเตอร์ต่อ token" และตาราง MaxSim (best match per query token → summed) · โค้ด Qdrant `MultiVectorConfig(comparator=MultiVectorComparator.MaxSim)`
+- บท 8.3 Reranker: รูปแบบ retrieve-then-rerank (ค้นเร็วด้วยเวกเตอร์เดียว → rerank ด้วย ColBERT) ซึ่งเอกสาร Qdrant ยืนยัน
+- ข้อเสนอบท 9.3 RAG: ค้นแบบออฟไลน์ในเครื่อง 24 passage ~1.5 ms
 
 **แก้จากต้นฉบับ** (ในกล่องแยกของรายงาน)
 
@@ -601,7 +663,7 @@ tags: `embeddings` `word2vec` `skip-gram` `one-hot` `embedding-matrix` `softmax`
 ## yt:YIR-KxNpSbA — NitMonk, How Tokens, Vectors & Embeddings Actually Work (ภาษาฮินดี)
 
 tags: `embeddings` `tokenization` `bpe` `token-id` `embedding-matrix` `embedding-dimensions` `training-embeddings` `vector-database` `attention` `contextual-embeddings` `next-token` `softmax` `temperature` `llm-internals` `hindi` `fact-checked`  
-ใช้ในบท: ยังไม่ใช้ (เสนอ: 3.4, 4.3, 8.1, 8.2)
+ใช้ในบท: 4.7, 10.2 (เสนอ: 3.4, 4.3, 9.1, 9.2)
 
 **โหมดรายงาน:** เรียบเรียงใหม่ด้วยคำของผู้จัดทำ ครบทุกประเด็นและตัวเลข (license มาตรฐานของ YouTube) อ่านจาก caption ภาษาฮินดีอัตโนมัติ ใช้คำแปลอังกฤษอัตโนมัติช่วย ตัดช่วงทำอาหาร 3 ช่วงตามบทของคลิป · ตรวจข้อเท็จจริง 5 ข้อ (ยืนยัน 4 · บางส่วน 1)
 
@@ -609,7 +671,7 @@ tags: `embeddings` `tokenization` `bpe` `token-id` `embedding-matrix` `embedding
 
 - บท 3.4 Token ID: ตาราง cat / dog / tiger / lion (ขา ขน หาง ขนาด สัตว์เลี้ยง ดุร้าย) แสดงว่าเลข ID ไม่มีความหมาย ตัวเลขที่มีความหมายมาจากคุณสมบัติ
 - บท 3.1: กฎ 1 token ≈ 4 ตัวอักษร (ภาษาอังกฤษ) และราคาคิดตาม token · "I love AI Agents" → 2, 891, 15, 4402
-- บท 4.3 / 8.1: token ID = ที่อยู่, เวกเตอร์ = ตัวเลขที่ที่อยู่นั้น, embedding matrix = lookup table · บท 8.2: bank / apple ได้เวกเตอร์ต่างกันหลัง attention
+- บท 4.3 / 9.1: token ID = ที่อยู่, เวกเตอร์ = ตัวเลขที่ที่อยู่นั้น, embedding matrix = lookup table · บท 9.2: bank / apple ได้เวกเตอร์ต่างกันหลัง attention
 - ไอเดียบทใหม่: เลือก token ถัดไป (softmax + temperature, milk 93%)
 
 **แก้จากต้นฉบับ** (ในส่วนที่ 8 ของรายงาน)
@@ -623,14 +685,14 @@ tags: `embeddings` `tokenization` `bpe` `token-id` `embedding-matrix` `embedding
 ## yt:S7tFyREI19I — Prompt Engineering, Training Your Own Embedding Model Is Not As Hard As You Think
 
 tags: `embeddings` `fine-tuning-embeddings` `contrastive-learning` `in-batch-negatives` `lora` `multimodal-embeddings` `embeddinggemma-2` `evaluation` `fact-checked`  
-ใช้ในบท: ยังไม่ใช้ (เสนอ: 4.4, 7.1)
+ใช้ในบท: ยังไม่ใช้ (เสนอ: 4.4, 8.1)
 
 **โหมดรายงาน:** เรียบเรียงใหม่ด้วยคำของผู้จัดทำ ครบทุกประเด็นและตัวเลข (license มาตรฐานของ YouTube, caption อัตโนมัติ) ตัวเลขบางตัวจากสไลด์ / คำอธิบายคลิป · ตรวจข้อเท็จจริง 8 ข้อ (ยืนยัน 7 · บางส่วน 1)
 
 **เสนอให้ใช้ (ยังไม่ได้แก้บท)**
 
 - บท 4.4 ตารางมาจากการฝึก: แนวคิด "ไม่มีเวกเตอร์คำตอบที่ถูก บอกได้แค่อะไรควรใกล้อะไร" และ in-batch negatives (ดึงคู่เข้า ดันคู่อื่นออก) พร้อมกับดักข้อความซ้ำ (false negative)
-- บท 7.1 Bi-Encoder: fine-tune ด้วยคู่ (คำถาม, ข้อความ) และ prompt ตอนฝึก = ตอนค้น
+- บท 8.1 Bi-Encoder: fine-tune ด้วยคู่ (คำถาม, ข้อความ) และ prompt ตอนฝึก = ตอนค้น
 - ไอเดียบทใหม่: ผลข้างเคียงของ fine-tune (เรียนป้าย ไม่ใช่ทักษะทั่วไป; ข้อความทั่วไป −3.6 NanoBEIR)
 
 **แก้จากต้นฉบับ:** ไม่พบจุดผิด · ASR ได้ยิน "Embedding Gemini 2" = EmbeddingGemma 2 · model card ระบุ encoder ภาพ / เสียงแยก แต่เข้าปริภูมิร่วม (ตรงกับสไลด์)
@@ -650,7 +712,7 @@ tags: `tokenization` `bpe` `byte-level-bpe` `utf-8` `vocabulary` `pre-tokenizati
 
 **เสนอให้ใช้ (ยังไม่ได้แก้บท)**
 
-- บท 3.4 / 8.1: ขนาดคลังโผล่แค่ตาราง embedding กับ lm_head, ข้อแลกของคลังใหญ่ (คำนวณแพง, token หายากฝึกไม่พอ) · การเพิ่ม special token = เพิ่มแถว
+- บท 3.4 / 9.1: ขนาดคลังโผล่แค่ตาราง embedding กับ lm_head, ข้อแลกของคลังใหญ่ (คำนวณแพง, token หายากฝึกไม่พอ) · การเพิ่ม special token = เพิ่มแถว
 - ไอเดียบทใหม่: ความแปลกของ LLM จาก tokenization (สะกดคำ, เลขคณิต, ช่องว่างท้าย, SolidGoldMagikarp = แถว embedding ที่ไม่เคยถูกฝึก) และ JSON 116 vs YAML 99 token
 
 **แก้จากต้นฉบับ:** ไม่พบจุดผิดของผู้สอน · caption: "50,2 57" = 50,257, "1,24" = 1,024, merge ที่ 20 บนจอคือ (259, 256) → 275, "2556" = 256, "MBP" = minbpe (24,000 / 19,000 ผู้สอนพูดปัดเอง ค่าบนจอ 24,597 / 19,438)
@@ -660,7 +722,7 @@ tags: `tokenization` `bpe` `byte-level-bpe` `utf-8` `vocabulary` `pre-tokenizati
 ## yt:izbifbq3-eI — Annie Sexton, Tokens vs Embeddings
 
 tags: `tokens` `tokenization` `embeddings` `token-id` `token-vs-embedding` `vector-basics` `king-queen-analogy` `contextual-embeddings` `polysemy` `llm-internals` `next-token`  
-ใช้ในบท: ยังไม่ใช้ (เสนอ: 3.4, 4.3, 4.5, 8.1, 8.2 และการแยกบท Token / Embedding)
+ใช้ในบท: 4.7 (เสนอ: 3.4, 4.3, 4.5, 9.1, 9.2 และการแยกบท Token / Embedding)
 
 **โหมดรายงาน:** เรียบเรียงใหม่ด้วยคำของผู้จัดทำ ครบทุกประเด็นและตัวเลข 7 ส่วน (license มาตรฐานของ YouTube, caption อังกฤษอัตโนมัติ 171 บรรทัด) · สไลด์ 7 ภาพ + SVG วาดเอง 2 ภาพ ·
 ผู้ตรวจอิสระเทียบกับ transcript และสไลด์: 0 ต้องแก้ 5 ควรแก้ แก้ครบ · ไม่ยกเนื้อเพลงที่คลิปอ้างถึง · ไม่ได้เก็บ transcript ไว้ใน repo
@@ -671,11 +733,111 @@ tags: `tokens` `tokenization` `embeddings` `token-id` `token-vs-embedding` `vect
 - บท 3.4 Token ID: เลข token ใกล้กันไม่ได้แปลว่าคำเกี่ยวกัน · ประโยค fox → [464, 2068, 1051, 4414, 12898, 1168, 262, 13660, 3290, 13]
 - บท 4.3 Embedding matrix: token ชี้ไปที่ embedding หนึ่งตัว · prompt → token → embedding → ทายส่วนถัดไป
 - บท 4.5 Latent space: king (1, 9) − man (1, 0) = (0, 9) ไม่มีคำ · + woman (9, 0) = (9, 9) = queen (เลขจำนวนเต็ม คิดในใจได้)
-- บท 8.1 / 8.2: embedding ตั้งต้นเป็นแค่จุดเริ่ม ปรับตามบริบท (train ฝึก / รถไฟ, she = Annie) · นิยาม "เวกเตอร์ที่ช่วยทายคำรอบข้างได้ดีที่สุดโดยเฉลี่ย" · embedding บอกตำแหน่งของความหมายเมื่อเทียบกัน
+- บท 9.1 / 9.2: embedding ตั้งต้นเป็นแค่จุดเริ่ม ปรับตามบริบท (train ฝึก / รถไฟ, she = Annie) · นิยาม "เวกเตอร์ที่ช่วยทายคำรอบข้างได้ดีที่สุดโดยเฉลี่ย" · embedding บอกตำแหน่งของความหมายเมื่อเทียบกัน
 
 **แก้จากต้นฉบับ:** ไม่พบจุดผิดของตัวเลข · ภาพแบบง่ายที่ติดป้ายในรายงาน: คำ = token (จริงเป็น subword), "หลายร้อยมิติ" (LLM ใหญ่มักหลายพัน), ไม่บอก tokenizer ของเลขบนสไลด์ · ASR "09" / "99" = (0, 9) / (9, 9)
 
 **เราคำนวณหรือเพิ่มเอง:** ภาพระนาบ 2 มิติของ king / queen / man / woman พร้อมการอ่านแกน (ความเป็นผู้หญิง / ความเป็นราชวงศ์) เป็นของผู้จัดทำ
+
+## yt:Q6TBHDgWCDQ — Thu Vu, Learn Text Embeddings in 20 Minutes
+
+tags: `embeddings` `word-embeddings` `one-hot` `bag-of-words` `n-gram` `tf-idf` `distributional-hypothesis` `word2vec` `cbow` `skip-gram` `contextual-embeddings` `static-embeddings` `latent-space` `cosine` `embedding-model-choice` `mteb` `fact-checked`  
+ใช้ในบท: 4.7, 10.1 (เสนอ: 4.1, 4.2, 4.4, 4.5, 4.6, 5.4)
+
+**โหมดรายงาน:** iwd (ลึก วิเคราะห์) เรียบเรียงใหม่ด้วยคำของผู้จัดทำ ครบทุกประเด็น 8 ส่วน (license มาตรฐานของ YouTube, caption อังกฤษอัตโนมัติ 483 บรรทัด) · ภาพจากคลิป 7 ภาพ + SVG วาดเอง 3 ภาพ ·
+ตรวจข้อเท็จจริง 10 ข้อ (ยืนยัน 7 · บางส่วน 3 · ขัดแย้ง 0) · ผู้ตรวจอิสระ: 3 ต้องแก้ (นับผลตรวจผิด, เนื้อหาผู้จัดทำไม่ติดป้าย, อ้างว่าคลิปแนะนำ) แก้ครบ · ไม่ได้เก็บ transcript ไว้ใน repo
+
+**เสนอให้ใช้ (ยังไม่ได้แก้บท)**
+
+- บท 4.1 One-hot: คลังคำ 100,000 คำ = เวกเตอร์ 100,000 ช่องต่อคำ · ID และ one-hot "ไม่มีความหมาย"
+- บท 4.2 Bag of words: "Her dog bit the owner" / "The dog bit her owner" ได้เวกเตอร์เดียวกัน · "Meal was bad" / "Food is awful" ความหมายเดียวกันแต่เวกเตอร์ต่างกัน · fine สองความหมาย · n-gram และ TF-IDF เป็นรุ่นปรับปรุง
+- บท 4.4 ตารางมาจากการฝึก: CBOW กับ skip-gram (หน้าต่าง 3 คำ) · hidden layer ขนาด = ขนาด embedding · ตัวอย่างบวก/ลบ (apricot) · เก็บ weight เป็น embedding
+- บท 4.5 Latent space: ค่าแต่ละช่องไม่มีความหมายในตัว ความสัมพันธ์สำคัญ · ลดมิติ 32 → 2 เห็นกลุ่ม king / queen และ cat / dog · ตัวอย่าง ong choy (แนวคิด distributional ยุค 1950s)
+- บท 4.6 ใช้ model เดียวกัน: ใช้ model สำเร็จรูปผ่าน API (ada-002 1,536 มิติ) · Anthropic ไม่มี embedding model ของตัวเอง
+- บท 5.4 เลือกวิธีวัด: เดโมรายงานเป็น cosine distance (Amsterdam 0.175 < Paris 0.224) ยิ่งน้อยยิ่งใกล้
+- static กับ contextual embedding (bank): ทำแล้วเป็นบท 4.7
+
+**แก้จากต้นฉบับ:** สไลด์ bag of words ที่ ~1:58 มีเลข 1 ผิดช่อง (ควรเป็น 0 1 0 0 0 1 1 1) · ตัวอย่าง ong choy มาจากตำรา Jurafsky & Martin (คลิปไม่อ้าง) · skip-gram เล่าแบบ softmax ทั้งคลังคำปนกับ negative sampling · ada-002 มีรุ่นใหม่กว่าแล้ว (text-embedding-3-small 1,536 / -3-large 3,072) · Google เรื่อง embedding ในการค้นหา ยืนยันบางส่วน
+
+**เราคำนวณหรือเพิ่มเอง:** นับ bag of words ใหม่ · อ่านค่า cosine distance จากหน้าจอ notebook (0.17454…, 0.22435…) · ผังวงจรชีวิต, CBOW vs skip-gram, static vs contextual (SVG ของผู้จัดทำ)
+
+## yt:wyWFLIlgmAw — AI Is All You Need, HNSW Explained from Scratch
+
+tags: `hnsw` `nsw` `ann` `knn` `rag` `small-world` `skip-list` `efsearch` `ef-construction` `local-minimum` `best-first-search` `vector-search` `fact-checked`  
+ใช้ในบท: ยังไม่ใช้ (เสนอ: 6.1, 7.1–7.4)
+
+**โหมดรายงาน:** iwd (ลึก วิเคราะห์) เรียบเรียงใหม่ด้วยคำของผู้จัดทำ ครบทุกประเด็น 9 ส่วน (license มาตรฐานของ YouTube, caption อังกฤษอัตโนมัติ 1,193 บรรทัด) · ภาพหน้าโน้ตของผู้สอน 7 ภาพ + SVG วาดเอง 3 ภาพ ·
+ตรวจข้อเท็จจริง 9 ข้อ (ยืนยัน 2 · บางส่วน 6 · ขัดแย้ง 1) · ผู้ตรวจอิสระ: 1 ต้องแก้ 6 ควรแก้ แก้ครบ · ไม่ได้เก็บ transcript ไว้ใน repo
+
+**เสนอให้ใช้ (ยังไม่ได้แก้บท)**
+
+- บท 6.1 ค้นทุกชิ้น: KNN เทียบทุกชิ้น vs ANN เมื่อเอกสารเป็นพันล้าน
+- บท 7.1 ANN แบบกราฟชั้นเดียว: ตัวอย่าง NSW จุด A(1,1) … E(9,1) คำถาม Q(8.5,1.2) เส้นทาง A → C → E · การสร้างด้วย M = 2 · six degrees (50^6 = 15.6 พันล้าน)
+- บท 7.2 / 7.3 HNSW และ beam: กราฟ 5 จุด A10 B6 C8 D7 E2 · ef = 1 และ 2 หยุดที่ B (6) ส่วน ef = 5 เจอ E (2) เป็นตัวอย่าง local minimum ที่พร้อมใช้ · ตัวอย่างค้นสามชั้น N1(30) → … → N10(5)
+- บท 7.4 HNSW สร้างชั้นด้วยการโยนเหรียญ: skip list p = 1/2 · P(ชั้นสูงสุด = l) = (1/2)^(l+1) กับ P(อยู่ในชั้น l) = p^l · HNSW p = 1/M, level = floor(−ln(U)/ln(M)) · Mmax = M, Mmax0 = 2M
+
+**แก้จากต้นฉบับ:** six degrees ไม่ได้มาจาก game theory (Karinthy 1929, Milgram 1967) · การค้นเป็น best-first ไม่ใช่ breadth-first · ef = 1 / 2 ผู้สอนพูดว่าได้ D (7) แต่หน้าโน้ตและ algorithm ได้ B (6) · ระยะถึง Q ของ A–D บนหน้าโน้ตเป็นระยะจาก E · เหตุผลของ mL = 1/ln(M) ในบทความคือลดการซ้อนกันของเพื่อนบ้านระหว่างชั้น · ตาราง skip list บนหน้าโน้ตเขียน 19 ซ้ำแทน 25
+
+**เราคำนวณหรือเพิ่มเอง:** ระยะจริงถึง Q (A 7.50 · B 6.55 · C 3.51 · D 2.62 · E 0.54) · รัน search_layer กับตัวอย่าง 5 จุด · โค้ด search_layer ใน _claude.md · ผังเส้นทางค้น, ระนาบ NSW, จำนวนจุดต่อชั้น (SVG ของผู้จัดทำ)
+
+## yt:YmLp8qe87A0 — Syntax (CJ), LLMs Explained: Tokens, Embeddings, Transformers and More
+
+tags: `llm-internals` `history-of-ai` `chatbot` `eliza` `neural-network` `xor` `backpropagation` `tokenization` `bpe` `embeddings` `word2vec` `skip-gram` `transformer` `attention` `multi-head-attention` `positional-encoding` `softmax` `temperature` `top-p` `next-token` `autoregressive` `context-window` `fine-tuning` `rlhf` `tool-calling` `fact-checked`  
+ใช้ในบท: 10.1–10.4 (เสนอ: 3.2, 4.4, 4.5, 4.7, 9.1, 9.2)
+
+**โหมดรายงาน:** iwd (ลึก วิเคราะห์) เรียบเรียงใหม่ด้วยคำของผู้จัดทำ ครบทุกประเด็น 17 ส่วน (license มาตรฐานของ YouTube, caption อังกฤษอัตโนมัติ 1,577 บรรทัด) · ภาพจากคลิป 9 ภาพ + SVG วาดเอง 2 ภาพ ·
+ตรวจข้อเท็จจริง 33 ข้อ รวมการอ่านโค้ดของผู้สอนใน repo (ยืนยัน 17 · บางส่วน 10 · ไม่พบ 2 · ขัดแย้ง 4) · ผู้ตรวจอิสระ: 1 ต้องแก้ 8 ควรแก้ 7 ข้อย่อย แก้ครบ · ไม่ได้เก็บ transcript ไว้ใน repo
+
+**เสนอให้ใช้ (ยังไม่ได้แก้บท)**
+
+- บท 3.2 BPE: ตัวอย่าง "the cat sat on the mat" รวม 7 ขั้น (a+t → at ×3, t+h → th ×2, th+e → the ×2, c+at, s+at, o+n, m+at) ได้ 6 token · จำกัดการรวม 3 ครั้งได้ at กับ the · regex แบ่งคำก่อน เพราะ BPE ไม่รวมข้ามคำ
+- บท 4.4 ตารางมาจากการฝึก: skip-gram ดึงคู่ที่อยู่ใกล้กันให้ใกล้ ผลักคู่ที่ไม่เคยอยู่ด้วยกันให้ห่าง · corpus ประโยคคู่ขนาน king / queen / prince / princess
+- บท 4.5 Latent space: king − man + woman = queen และ queen − woman + man = king, prince − boy + girl = princess, kitten − cat + dog = puppy
+- บท 4.7 Static กับ contextual: ประโยค "Bank of the river was muddy" กับ "I went to the bank to deposit money" (self-attention ให้เวกเตอร์ต่างกัน)
+- บท 9.1 / 9.2 LLM input และ attention: query / key / value, multi-head, feed forward, ซ้อน block · positional embedding
+- ไอเดียหัวข้อใหม่ (`WIP202610023`): "model คือไฟล์ weight" (XOR 3 กับ 17 ตัวเลข, สูตรนับพารามิเตอร์) · softmax + temperature + top-p (ตัวอย่างความน่าจะเป็นบนจอ there 0.30 …) · วงวน autoregressive + context window
+
+**แก้จากต้นฉบับ:** top-p 0.2 ไม่ใช่ "token บนสุด 20%" แต่เป็นชุดที่ความน่าจะเป็นรวมถึง 0.2 · config บนจอ 6 ชั้นมี 102,792 พารามิเตอร์ (52,000 ตรงกับแบบ 2 ชั้น 51,976) · repo: MAX_MERGES = 1000 (พูดว่า 10,000) และหน้าต่าง word2vec ค่าเริ่มต้น 2 สูงสุด 5 (พูดว่าห้าหรือหก) · cosine 0 = ตั้งฉาก ค่าต่ำสุด −1 · temperature 0 ไม่ deterministic ในระบบจริง · gpt-oss-120b = 117B · "ชั้นท้ายจับการให้เหตุผล" ไม่มีหลักฐาน · Dartmouth: คำว่า AI มาจากข้อเสนอปี 1955 · ชื่อ Alexandra Birch
+
+**เราคำนวณหรือเพิ่มเอง:** สูตรนับพารามิเตอร์จาก weight-layout.ts (2VD + V + CD + 2D + L(4D² + 2DF + 9D + F)) · ตัวอย่าง top-p จากค่าความน่าจะเป็นบนจอ · อ่านค่าบนจอ (merge 7 ขั้น, ความคล้าย 0.92 / 0.73 …, analogy 0.84 / 0.86, config) · ผังวงจรสร้าง token และเส้นเวลา (SVG ของผู้จัดทำ)
+
+## yt:114i2Kz-LZA — Stanford Online, CME295 Lecture 1 - Transformers
+
+tags: `transformer` `self-attention` `attention` `query-key-value` `scaled-dot-product` `multi-head-attention` `positional-encoding` `encoder-decoder` `cross-attention` `masked-attention` `feed-forward` `residual` `layer-norm` `label-smoothing` `tokenization` `bpe` `word2vec` `rnn` `lstm` `stanford` `history-of-ai` `fact-checked`  
+ใช้ในบท: 10.1–10.4 (เสนอ: 3.1, 3.2, 4.1, 4.4, 4.7, 9.1, 9.2)
+
+**โหมดรายงาน:** iwd (ลึก วิเคราะห์) เรียบเรียงใหม่ด้วยคำของผู้จัดทำ ครบทุกประเด็น 13 ส่วน (license มาตรฐานของ YouTube, คำบรรยายอังกฤษที่ทำด้วยคน 1,768 บรรทัด) · สไลด์ 9 ภาพ + SVG วาดเอง 2 ภาพ ·
+ตรวจข้อเท็จจริง 16 ข้อ (ยืนยัน 12 · บางส่วน 4 · ขัดแย้ง 0) · ผู้ตรวจอิสระ 2 คน (แบ่งครึ่งคาบ): 2 ต้องแก้ 18 ควรแก้ 15 ข้อย่อย แก้ครบ · ไม่ได้เก็บ transcript ไว้ใน repo
+
+**เสนอให้ใช้ (ยังไม่ได้แก้บท)**
+
+- บท 10 LLM - Stanford (Transformer ทฤษฎี) ทำแล้วเป็น 10.1–10.4 จากแหล่งนี้: ลำดับเหตุผล one-hot → word2vec → RNN / LSTM → attention → self-attention · สูตร softmax(QKᵀ/√d_k)V พร้อมขนาดเมทริกซ์ · position แบบ sin/cos (เปรียบนาฬิกา) · multi-head + W_O · residual, layer norm, mask · encoder / decoder / cross-attention
+- บท 3.1 / 3.2: ข้อดีข้อเสียของ token ระดับคำ ตัวอักษร คำย่อย · token พิเศษ [UNK] [BOS] [EOS] padding · คลังคำ LLM หลักแสน
+- บท 4.1 One-hot: ทุกคู่ตั้งฉาก (teddy bear, soft, book) · บท 4.4: word2vec ทายคำถัดไป V = 6, hidden (0.2, 0.9), p(cute) = 0.4
+- บท 4.7: bank ริมแม่น้ำ / ธนาคาร และลำดับคำ "the child is hugging the Teddy bear" · บท 9.1 / 9.2: position embedding, query / key / value
+
+**แก้จากต้นฉบับ:** ไม่พบข้อผิด · "พารามิเตอร์ส่วนใหญ่อยู่ใน feed forward" จริงในระดับ encoder layer แต่ทั้ง model base ราว 39% · ไม่พบหลักฐานเรื่อง tweet ของ ChatGPT ที่พิมพ์ผิด · ค่า h = 8, d_model = 512, d_ff = 2048, label smoothing 0.1 มาจากบทความ ผู้สอนไม่ได้บอก
+
+**เราคำนวณหรือเพิ่มเอง:** สัดส่วนพารามิเตอร์ feed forward กับ attention จากค่าในบทความ · โค้ด self-attention พร้อม mask ใน _claude.md · ผังสถาปัตยกรรมและเส้นเวลา (SVG ของผู้จัดทำ)
+
+## yt:4JofSJIrjwU — Tech With Tim, How to Fine-Tune any AI Model Locally (Unsloth Studio)
+
+tags: `fine-tuning` `lora` `qlora` `quantization` `nf4` `unsloth` `unsloth-studio` `llama-3-1` `synthetic-data` `data-recipes` `instruction-tuning` `alpaca-format` `epochs` `learning-rate` `training-loss` `overfitting` `gguf` `ollama` `rag` `rag-vs-fine-tuning` `vram` `local-llm` `fact-checked`  
+ใช้ในบท: ยังไม่ใช้ (เสนอ: 1.5, 4.4, 6.3 และหัวข้อ RAG ที่เสนอไว้ใน WIP202610036)
+
+**โหมดรายงาน:** iwd (ลึก วิเคราะห์) เรียบเรียงใหม่ด้วยคำของผู้จัดทำ ครบทุกประเด็น 15 ส่วน (license มาตรฐานของ YouTube, คำบรรยายอังกฤษ en-CA ที่ทำด้วยคน 905 บรรทัด) · ภาพจากคลิป 9 ภาพ + SVG วาดเอง 2 ภาพ ·
+ตรวจข้อเท็จจริง 15 ข้อ (ยืนยัน 4 · บางส่วน 9 · ไม่พบ 0 · ขัดแย้ง 2) · ผู้ตรวจอิสระ 2 คน (แบ่งครึ่ง): 5 ต้องแก้ 20 ควรแก้ 16 ข้อย่อย แก้ครบ · ตัดโฆษณา HeyGen (~5:40–7:03) · ไม่ได้เก็บ transcript ไว้ใน repo
+
+**เสนอให้ใช้ (ยังไม่ได้แก้บท)**
+
+- บท 1.5 Matrix: LoRA คือ W + B·A ที่ A ย่อ B ขยายกลับ · ตัวอย่างนับพารามิเตอร์ 4096×16 + 16×4096 = 131,072 เทียบกับ 4096×4096 ≈ 16.8 ล้าน · rank 16 บน Llama 3.1 8B ≈ 41.9 ล้าน ≈ 0.52%
+- บท 6.3 Binary / quantization: เลขหน่วยความจำ 8.03 พันล้าน × 2 ไบต์ ≈ 16 GB → 4-bit ราว 4–5.6 GB (embedding กับชั้น output มักเก็บ 16-bit) · ไฟล์จริง 5.98 GB
+- บท 4.4 ตารางมาจากการฝึก: กราฟ loss ที่ลดลง, learning rate (warm-up แล้วลด), epoch และ overfitting (loss ต่ำกว่า 0.2 ตามเอกสาร Unsloth)
+- หัวข้อ RAG (`WIP202610036`): ตาราง prompting / RAG / fine-tuning และผลงานวิจัย Ovadia 2023, Gekhman 2024 ว่า RAG ใส่ความรู้ใหม่ได้ดีกว่า fine-tuning แบบ unsupervised
+
+**แก้จากต้นฉบับ:** Unsloth ไม่ได้สร้างโดยวิศวกร NVIDIA (ผู้ก่อตั้ง Daniel และ Michael Han; Data Recipes ใช้ NVIDIA NeMo Data Designer) · model ที่ฝึกแล้วตอบ alone = sama ผิด (ที่ถูก sendiri / sendirian) · ตาราง VRAM ของ Unsloth: 8B QLoRA 6 GB, LoRA 22 GB (สไลด์ ~10 / ~20 GB) · loss 0.0582 ของ checkpoint บนหน้า Export ต่ำจนเอกสาร Unsloth ถือว่าน่าจะ overfitting · Unsloth เขียนว่า fine-tuning ทำได้ "mostly" ทุกอย่างที่ RAG ทำ ไม่ใช่ "ทั้งหมด"
+
+**เราคำนวณหรือเพิ่มเอง:** จำนวนพารามิเตอร์ LoRA และขนาด adapter (≈ 84 MB) · หน่วยความจำ 16-bit กับ 4-bit · ผัง workflow และกราฟแท่งหน่วยความจำ (SVG ของผู้จัดทำ) · โค้ด Unsloth แบบ Python และสคริปต์ตรวจคำศัพท์ใน _claude.md
 
 ## การตรวจตัวเลขและข้อเท็จจริง
 
@@ -688,3 +850,4 @@ yt:6iCmnd0k3fs, yt:8LPgGU34RoE, yt:YIR-KxNpSbA, yt:S7tFyREI19I ตรวจข�
 yt:aiNQ4I8YaD0 และ yt:my5wFNQpFO0 ไม่ได้ค้นเว็บ (อยู่ในช่วงความรู้ของผู้จัดทำ) ตัวเลขบนจอตรวจกับภาพนิ่ง · ทุกรายงานชุดนี้ผ่านผู้ตรวจความตรงของความหมาย (fidelity) แยกคนละคน และแก้ตามข้อที่พบแล้ว
 yt:zduSFxRajkE ไม่ได้ค้นเว็บ (คลิปปี 2024 อยู่ในช่วงความรู้ของผู้จัดทำ) ตัวเลขบนจอตรวจกับภาพนิ่ง 6 ภาพ ผู้ตรวจอิสระเทียบรายงานกับ transcript (5 ต้องแก้, 7 ควรแก้, แก้ครบ) และตัวเลขของบท 3.3 นับสดด้วยโค้ด (`37_gpt_tokenizer` ทั้งสามภาษาพิมพ์ผลเหมือนกัน)
 yt:izbifbq3-eI ไม่ได้ค้นเว็บ (คลิปปี 2025 อยู่ในช่วงความรู้ของผู้จัดทำ) ตัวเลขทุกตัวเทียบกับสไลด์ ผู้ตรวจอิสระเทียบรายงานกับ transcript และสไลด์ (0 ต้องแก้, 5 ควรแก้, แก้ครบ)
+yt:4JofSJIrjwU ตรวจข้อเท็จจริง 15 ข้อด้วยการค้นเว็บ (ผู้ตรวจแยก) เมื่อ 2026-10-13: ยืนยัน 4 · บางส่วน 9 · ไม่พบ 0 · ขัดแย้ง 2 (ตารางอยู่ในรายงาน) เอกสาร Unsloth อ่านจาก unsloth.ai/docs เพราะ docs.unsloth.ai เปิดตรงไม่ได้ ตัวเลข LoRA และหน่วยความจำคำนวณในเครื่อง
