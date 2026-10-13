@@ -78,8 +78,8 @@ export function runs(list) {
   return out.join(", ");
 }
 
-// numbers like 3.7 or 4.1–4.3; not 0.95, 68.8, 1.43, −3.6, ~1.5 ms, 1.2 เท่า, v1.2.3
-const NUM_RE = /(?<![\d.\-−+$~×])([1-9]\.[1-9]\d?)(?:–([1-9]\.[1-9]\d?))?(?![\d%]|\.\d|\s?(?:ms|s\b|x\b|×|เท่า|วินาที|GB|MB|KB))/g;
+// numbers like 3.7 or 4.1–4.3; not 0.95, 68.8, 1.43, −3.6, ~1.5 ms, 1.2 เท่า, v1.2.3, a point Q(8.5,1.2)
+const NUM_RE = /(?<![\d.\-−+$~×,])([1-9]\.[1-9]\d?)(?:–([1-9]\.[1-9]\d?))?(?![\d%]|\.\d|,\d|\s?(?:ms|s\b|x\b|×|เท่า|วินาที|GB|MB|KB))/g;
 
 export function remapText(text, m, log) {
   return text.replace(NUM_RE, (all, a, b) => {

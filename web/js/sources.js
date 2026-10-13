@@ -63,4 +63,24 @@ export const SOURCES = {
     title: "How to choose the embedding model based on the task at hand", by: "Byte Goose AI", date: "2026-02-28",
     url: "https://www.youtube.com/watch?v=H6q1UWCCnKw", report: R + "20260228_How-To-Choose-An-Embedding-Model-By-Task.html",
   },
+  thuvu: {
+    title: "Learn Text Embeddings in 20 Minutes (full guide for beginners)", by: "Thu Vu", date: "2026-05-23",
+    url: "https://www.youtube.com/watch?v=Q6TBHDgWCDQ", report: R + "20260523_Learn-Text-Embeddings-In-20-Minutes.html",
+  },
+  nitmonk: {
+    title: "How Tokens, Vectors & Embeddings Actually Work", by: "NitMonk", date: "2026-08-03",
+    url: "https://www.youtube.com/watch?v=YIR-KxNpSbA", report: R + "20260803_How-Tokens-Vectors-And-Embeddings-Actually-Work.html",
+  },
+  annie: {
+    title: "Tokens vs Embeddings – what are they + how are they different?", by: "Annie Sexton", date: "2025-05-29",
+    url: "https://www.youtube.com/watch?v=izbifbq3-eI", report: R + "20250529_Tokens-Vs-Embeddings.html",
+  },
+  stanford: {
+    title: "Stanford CME295 Transformers & LLMs, Autumn 2026, Lecture 1 - Transformers", by: "Stanford Online (Afshine & Shervine Amidi)", date: "2026-09-28",
+    url: "https://www.youtube.com/watch?v=114i2Kz-LZA", report: R + "20260928_Stanford-CME295-Lecture-1-Transformers.html",
+  },
+  syntaxllm: {
+    title: "LLMs Explained: Tokens, Embeddings, Transformers and More", by: "Syntax (CJ)", date: "2026-07-10",
+    url: "https://www.youtube.com/watch?v=YmLp8qe87A0", report: R + "20260710_LLMs-Explained-Tokens-Embeddings-Transformers-And-More.html",
+  },
 };

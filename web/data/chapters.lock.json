@@ -7,8 +7,10 @@
     "embedding": 4,
     "nearest": 5,
     "fast-search": 6,
-    "combine": 7,
-    "llm": 8
+    "graph-search": 7,
+    "combine": 8,
+    "llm": 9,
+    "stanford": 10
   },
   "numbers": {
     "vector": "1.1",
@@ -29,6 +31,7 @@
     "learn-table": "4.4",
     "latent-space": "4.5",
     "same-model": "4.6",
+    "contextual": "4.7",
     "search-cosine": "5.1",
     "search-distance": "5.2",
     "search-dot": "5.3",
@@ -38,16 +41,20 @@
     "high-dimensions": "6.2",
     "binary-xor": "6.3",
     "ann-tree": "6.4",
-    "graph-walk": "6.5",
-    "vector-search": "6.6",
-    "hnsw-beam": "6.7",
-    "hnsw-build": "6.8",
-    "filter-graph": "6.9",
-    "bi-encoder": "7.1",
-    "late-interaction": "7.2",
-    "reranker": "7.3",
-    "classification": "7.4",
-    "llm-input": "8.1",
-    "attention": "8.2"
+    "graph-walk": "7.1",
+    "vector-search": "7.2",
+    "hnsw-beam": "7.3",
+    "hnsw-build": "7.4",
+    "filter-graph": "7.5",
+    "bi-encoder": "8.1",
+    "late-interaction": "8.2",
+    "reranker": "8.3",
+    "classification": "8.4",
+    "llm-input": "9.1",
+    "attention": "9.2",
+    "transformer-why": "10.1",
+    "self-attention": "10.2",
+    "position-encoding": "10.3",
+    "transformer-block": "10.4"
   }
 }

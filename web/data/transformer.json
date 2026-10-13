@@ -1,0 +1,210 @@
+{
+  "_how": [
+    "Config + toy data of chapter 10 \"LLM - Stanford\" (lessons 40_transformer_why, 41_self_attention, 42_position_encoding, 43_transformer_block). Logic: web/js/attention.js, web/js/tblock.js.",
+    "All numbers are made up by the author (Stanford CME295 Lecture 1 gives the ideas, not these values). The examples/*/4x_* files carry the same values; tests/transformer.test.js fails if they drift.",
+    "why.keep = the toy share of an old signal an RNN hidden state keeps per step (illustration only). attn: 5 tokens of the lecture's sentence, d_model = d_k = 3 so vectors can be drawn; W_Q swaps dims 1 and 2, W_K = W_V = I.",
+    "position: sin / cos pairs, angle = pos / base^(i/d) (formula of the 2017 paper). block: d_model 4, 2 heads of d_k 2, d_ff 8, weights from minstd seeds."
+  ],
+  "config": {
+    "why": {
+      "keep": 0.6
+    },
+    "attn": {
+      "scale": "sqrtDk"
+    },
+    "position": {
+      "base": 10000,
+      "dim": 8,
+      "maxPos": 60,
+      "probes": [
+        1,
+        5,
+        20
+      ],
+      "start": 10
+    },
+    "block": {
+      "dModel": 4,
+      "heads": 2,
+      "dK": 2,
+      "dFF": 8,
+      "seed": 7,
+      "scale": 0.8,
+      "burn": 10,
+      "eps": 1e-05,
+      "base": 10000
+    }
+  },
+  "data": {
+    "why": {
+      "near": [
+        "My",
+        "teddy bear",
+        "is",
+        "so",
+        "cute",
+        ".",
+        "It",
+        "is",
+        "3",
+        "feet",
+        "tall"
+      ],
+      "far": [
+        "My",
+        "teddy bear",
+        "is",
+        "so",
+        "cute",
+        ".",
+        "We",
+        "went",
+        "to",
+        "the",
+        "park",
+        "and",
+        "played",
+        "all",
+        "day",
+        ".",
+        "It",
+        "is",
+        "3",
+        "feet",
+        "tall"
+      ],
+      "from": "It",
+      "to": "teddy bear"
+    },
+    "attn": {
+      "tokens": [
+        "A",
+        "cute",
+        "teddy bear",
+        "is",
+        "reading"
+      ],
+      "X": [
+        [
+          0.2,
+          0.2,
+          0.1
+        ],
+        [
+          2.0,
+          0.4,
+          0.2
+        ],
+        [
+          0.6,
+          2.0,
+          0.4
+        ],
+        [
+          0.2,
+          0.2,
+          0.6
+        ],
+        [
+          0.4,
+          0.6,
+          2.0
+        ]
+      ],
+      "Wq": [
+        [
+          0,
+          1,
+          0
+        ],
+        [
+          1,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          1
+        ]
+      ],
+      "Wk": [
+        [
+          1,
+          0,
+          0
+        ],
+        [
+          0,
+          1,
+          0
+        ],
+        [
+          0,
+          0,
+          1
+        ]
+      ],
+      "Wv": [
+        [
+          1,
+          0,
+          0
+        ],
+        [
+          0,
+          1,
+          0
+        ],
+        [
+          0,
+          0,
+          1
+        ]
+      ],
+      "start": "teddy bear"
+    },
+    "block": {
+      "tokens": [
+        "A",
+        "cute",
+        "teddy bear",
+        "is",
+        "reading"
+      ],
+      "X": [
+        [
+          0.2,
+          0.2,
+          0.1,
+          0.0
+        ],
+        [
+          2.0,
+          0.4,
+          0.2,
+          0.1
+        ],
+        [
+          0.6,
+          2.0,
+          0.4,
+          0.2
+        ],
+        [
+          0.2,
+          0.2,
+          0.6,
+          0.1
+        ],
+        [
+          0.4,
+          0.6,
+          2.0,
+          0.3
+        ]
+      ],
+      "focus": "teddy bear"
+    }
+  }
+}

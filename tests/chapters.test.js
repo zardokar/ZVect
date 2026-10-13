@@ -54,6 +54,7 @@ test("old -> new numbers: by slug, ranges split, values left alone", () => {
   const m = mapper(lock, fresh.num, fresh.chapterNo);
   assert.equal(remapText("ใช้ในบท: 1.1–1.3, 2.1, 2.4 (เสนอ)", m), "ใช้ในบท: 1.1, 2.1–2.2, 3.1, 3.4 (เสนอ)");
   assert.equal(remapText("บท 1.2 ได้ 0.95, 68.8%, −1.2, ~1.3 ms, 2.25", m), "บท 2.1 ได้ 0.95, 68.8%, −1.2, ~1.3 ms, 2.25");
+  assert.equal(remapText("บท 1.2 จุด Q(1.2,1.3)", m), "บท 2.1 จุด Q(1.2,1.3)");
 });
 
 test("docs are up to date with chapters.json (npm run reindex -- --check)", () => {

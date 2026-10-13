@@ -7,7 +7,7 @@
     "fields: file = web/lessons/<file>.js and examples/*/<file>.*; short = Thai short name (REFERENCE list); readme = README row text; llms = English text for llms.txt",
     "readme_intro: the line above the README table; {#ch:<id>} = that chapter number."
   ],
-  "readme_intro": "เลขแบบ บท.หัวข้อ (1, 1.1, 1.2 …) หนึ่งหัวข้อมีเรื่องเดียว ในบท {#ch:fast-search} เรียงจากง่ายไปยากและตามปีของแนวคิด",
+  "readme_intro": "เลขแบบ บท.หัวข้อ (1, 1.1, 1.2 …) หนึ่งหัวข้อมีเรื่องเดียว ในบท {#ch:fast-search} และ {#ch:graph-search} เรียงจากง่ายไปยากและตามปีของแนวคิด",
   "chapters": [
     {
       "id": "basics",
@@ -116,8 +116,8 @@
     },
     {
       "id": "embedding",
-      "title": "Embedding: เลขกลายเป็นเวกเตอร์ที่มีความหมาย",
-      "en": "embeddings (ids to meaningful vectors)",
+      "title": "Text Embeddings: เลขกลายเป็นเวกเตอร์ที่มีความหมาย",
+      "en": "text embeddings (ids to meaningful vectors)",
       "lessons": [
         {
           "file": "22_one_hot",
@@ -160,6 +160,13 @@
           "short": "ใช้ model เดียวกัน",
           "readme": "ใช้ model เดียวกันทั้งคำถามและเอกสาร: สองตารางฝึกจากเลขสุ่มต่างกัน คำเดียวกันได้เวกเตอร์ที่ไม่เกี่ยวกัน",
           "llms": "same embedding model for query and documents (vectors from different models are not comparable)"
+        },
+        {
+          "file": "39_contextual",
+          "slug": "contextual",
+          "short": "Static กับ contextual",
+          "readme": "Static กับ contextual embedding: คำเดียวกัน (bank, apple) ได้เวกเตอร์เดียว หรือได้เวกเตอร์ตามประโยค",
+          "llms": "static vs contextual embeddings (same word, different sentences)"
         }
       ]
     },
@@ -208,7 +215,7 @@
     {
       "id": "fast-search",
       "title": "ค้นให้เร็วเมื่อข้อมูลเยอะ",
-      "en": "fast search at scale, simple to complex",
+      "en": "fast search at scale: less work per item, simple to complex",
       "lessons": [
         {
           "file": "27_brute_force",
@@ -237,7 +244,14 @@
           "short": "ANN แบบต้นไม้",
           "readme": "ANN แบบต้นไม้ (Annoy): แบ่งครึ่งซ้ำ ๆ แล้วเดินลงไปหากลุ่มเล็ก",
           "llms": "ANN random-split tree (Annoy)"
-        },
+        }
+      ]
+    },
+    {
+      "id": "graph-search",
+      "title": "ค้นเร็วด้วยกราฟ (NSW → HNSW)",
+      "en": "graph search: one-layer walk to HNSW",
+      "lessons": [
         {
           "file": "29_nsw_graph",
           "slug": "graph-walk",
@@ -328,6 +342,41 @@
           "short": "Attention: query · key",
           "readme": "Attention: ให้คะแนนด้วย query · key",
           "llms": "attention scores with query · key"
+        }
+      ]
+    },
+    {
+      "id": "stanford",
+      "title": "LLM - Stanford: Transformer",
+      "en": "Transformer theory (Stanford CME295)",
+      "lessons": [
+        {
+          "file": "40_transformer_why",
+          "slug": "transformer-why",
+          "short": "Transformer มาจากไหน",
+          "readme": "Transformer มาจากไหน: RNN อ่านทีละคำผ่าน hidden state ส่วน attention ต่อตรงทุกคำ",
+          "llms": "why the Transformer (RNN hidden state vs direct attention)"
+        },
+        {
+          "file": "41_self_attention",
+          "slug": "self-attention",
+          "short": "Self-attention เต็มสูตร",
+          "readme": "Self-attention เต็มสูตร: softmax(QKᵀ/√d)V, การหาร √d และ mask",
+          "llms": "self-attention softmax(QK^T/sqrt(d))V with mask"
+        },
+        {
+          "file": "42_position_encoding",
+          "slug": "position-encoding",
+          "short": "ตำแหน่งแบบ sin / cos",
+          "readme": "ตำแหน่งแบบ sin / cos: เข็มนาฬิกาหลายความเร็ว ตำแหน่งใกล้กันคล้ายกัน",
+          "llms": "sinusoidal position encoding"
+        },
+        {
+          "file": "43_transformer_block",
+          "slug": "transformer-block",
+          "short": "Transformer block",
+          "readme": "Transformer block: multi-head attention, residual, layer norm, feed forward ขนาดเข้าเท่าขนาดออก",
+          "llms": "transformer block (multi-head, residual, layer norm, FFN; encoder vs decoder)"
         }
       ]
     }
