@@ -10,7 +10,7 @@
 - **Edit flow:** the owner edits / commits on Windows in `D:\repository\ZVect`. Claude works in a cloud container and copies files back
   through the device bridge (new outputs dir, `expectedMtimeMs`, stage back, md5). No sync script. Claude never runs git write commands.
 - **DO-FIRST for the next session:** read `README.md` → walk `checkpoints/checkpoint.zvect.ver*.md` numerically → read the latest in full
-  (§6 first) and the previous one → read the newest `.dropzone/hzup_claude/*.md` (now `20261013_2230.md`: tviz S2 next (`WIP202610052`, all 23 questions answered, S1 delivered); then the iw v6.2 talk `WIP202610053`; LLM manual T1 `WIP202610050` after that) → look in `.dropzone/hzup_intercomm/` for `*_to_claude-zvect.md` from other projects → run `npm test` and `npm run check` → summarize the open
+  (§6 first) and the previous one → read the newest `.dropzone/hzup_claude/*.md` (now `20261013_2245.md`: FIRST the iw v6.2 talk — scope = the 3 causes in `.dropzone/skills/iw_v6.2_wip/WHY_REDO_th.md`, any fix that raises token cost fails (owner 22:40) — `WIP202610053` from `.dropzone/skills/iw_v6.2_wip/AGENDA.md` (owner 22:33: top item); then tviz S2 `WIP202610052`; then LLM manual T1 `WIP202610050`) → look in `.dropzone/hzup_intercomm/` for `*_to_claude-zvect.md` from other projects → run `npm test` and `npm run check` → summarize the open
   WIP count before any work. Expected after upckp #58: 12 open rows in §6, 47 closed rows in §5c, 47 IDs in the archive (§5c IDs = archive IDs; #58 minted and closed nothing). `npm test` now 155 tests (66 before tviz S1), `npm run style` 64 files.
 
 ---
@@ -168,6 +168,11 @@ proposed for saving to the account (#44, `WIP202610008` closed). Both are writte
 - Plan corrections noted for S4: `node --test` needs `atdd/*.test.js` (a directory argument fails on Node 22); §4.2 totals now 11 logic files.
 - Delivered: 31 files (26 new under `lib/tviz/`, `tests/tviz_zvect.test.js`, `package.json`, `tools/style-scope.json`, plan.md, viz board),
   `deliver.py verify` PASS 31/31. Not reviewed yet (Q19: one independent Opus review before close). No WIP minted or closed.
+- Handoff `20261013_2230.md`, then (owner 22:33 "iw v6.2 เป็นเรื่องที่ต้อง hz ในอันเมื่อกี้ที่สุด") `20261013_2240.md` with iw v6.2 first.
+  Owner 22:40: attach the Thai "why the redo" explanation to the hz (`WHY_REDO_th.md`); v6.2 scope = only its 3 causes; a fix that raises token
+  cost fails (AGENDA §3 rewritten as T1–T6 with a token-effect column; MathML measured ≈ 8.8× LaTeX). Handoff `20261013_2245.md`.
+  Saved the v6.2 talk kit to `.dropzone/skills/iw_v6.2_wip/`: AGENDA.md (W1–W5 causes, round-2 method, proposals P1–P13), the four
+  briefs, 7 diverging forks of the container-only `tex2mml.py`, `eqshots.py`, one example (slides.md / coverage.md / job.src.md of yt:1qQCuWiRIfA).
 
 ### #57 — 2026-10-13 12:51–19:3x — iw batch: 34 sources (TabFM, LSA/LSI, TF-IDF, BM25, RRF, hybrid, rerank, sentiment, LLM, viz) + ChindaMT; iwd redo with displayed equations (`WIP202610051` closed; `WIP202610052`, `WIP202610053` minted, open)
 
@@ -634,7 +639,7 @@ proposed for saving to the account (#44, `WIP202610008` closed). Both are writte
 | WIP202610011 | [verify] Run `npm start`, `npm test`, `npm run check` on the owner's Windows machine (python/g++ discovery, `.\name.exe` run line) | 2026-10-10 | ckp:001#1 |
 | WIP202610012 | [web] Arrows and points vanish when an endpoint is behind the camera at close zoom (lines are clipped, arrows are not; min zoom raised to 5 as mitigation) | 2026-10-10 | ckp:001#1 |
 | WIP202610052 | [lib] Reusable Transformer visualizer (lib/tviz/, Canvas + HTML, zero dependency, drop-in for other projects): plan `docs/arch/WIP202610052_transformer-viz/plan.md`; all 23 answered (#58); **S1 done** (core logic + ATDD, 155 tests); next S2 (facade, css, surface, widgets, tokens, heat map, player, attention, lines, heads, app, demo), then S3, S4 (incl. "Lib & Demo" hub page), then one Opus review | 2026-10-13 | ckp:002#57 · ckp:002#58 |
-| WIP202610053 | [skill] intelligence-writer v6.2 — owner: talk first, do not change the skill yet. Topics: displayed equations (MathML block type), equation/slide inventory + coverage, reviewer gets frames + completeness/depth checks, iwd depth floor, `|` in tables/captions, Sonnet vs Opus writer | 2026-10-13 | ckp:002#57 |
+| WIP202610053 | [skill] intelligence-writer v6.2 — owner: talk first, do not change the skill yet. Agenda + kit: `.dropzone/skills/iw_v6.2_wip/AGENDA.md` (#58), FIRST item of the next session. Topics: displayed equations (MathML block type), equation/slide inventory + coverage, reviewer gets frames + completeness/depth checks, iwd depth floor, `|` in tables/captions, Sonnet vs Opus writer | 2026-10-13 | ckp:002#57 |
 | WIP202610050 | [docs] LLM manual: plan in `docs/arch/WIP202610050_llm-manual/plan.md`; decisions answered (#55: site section, both levels, strict + iw, links + widgets, front to back, own encoder); entry `README.md` + `T1_brief.md` + packs (#56); next T1, then T2–T8; iw G1 + G2, G3, G6 (hybrid) before the parts that need them — sources (URLs) still to pick | 2026-10-13 | ckp:002#53 · ckp:002#55 · ckp:002#56 |
 | WIP202610013 | [lib] Untested divergences: `angle` with NaN (Python 0.0 vs NaN), `fmt(NaN)` text ("NaN" vs "nan") | 2026-10-10 | ckp:001#1 |
 | WIP202610021 | [repo] Owner deletes the 8 pre-rename files (copies kept in `.dropzone/_to_delete/`) | 2026-10-10 | ckp:001#5 |
@@ -646,7 +651,7 @@ proposed for saving to the account (#44, `WIP202610008` closed). Both are writte
 
 ### Narrative
 
-- **Latest (#58, 2026-10-13 22:3x):** tviz questions all answered, S1 built and delivered (155 tests). Next: tviz S2; iw v6.2 talk; owner commits #45–#58.
+- **Latest (#58, 2026-10-13 22:3x):** tviz questions all answered, S1 built and delivered (155 tests). Next: iw v6.2 talk (top item, kit in `.dropzone/skills/iw_v6.2_wip/`); tviz S2; owner commits #45–#58.
 - Before that (#57, 2026-10-13 19:3x): iw batch of 34 sources + ChindaMT delivered after an Opus redo with displayed equations; visualizer plan waiting for the owner (`WIP202610052`); iw v6.2 talk (`WIP202610053`). Next: owner answers the plan questions, commits #45–#57.
 - Before that (#56, 2026-10-13 11:5x): start-up shortcuts (entry README, T1 brief, packs), `llms.txt` pointer for other projects, handoff `20261013_1150.md`. Next: T1; owner commits #45–#56.
 - Before that (#55, 2026-10-13 11:4x): LLM manual decisions answered, plan moved to `docs/arch/WIP202610050_llm-manual/`, APPROVALS row #1. Next: T1 build; owner names or approves sources for G1–G3, G6; commits #45–#55.
