@@ -117,7 +117,7 @@ llms.txt      คู่มือสั้นสำหรับ AI ที่จ�
 - **Authoritative checkpoint:** walk `checkpoints/checkpoint.zvect.ver*.md` by version number and read the
   latest in full, **§6 (WIP) first**, then the previous one. Current: `checkpoints/checkpoint.zvect.ver002.md` (2026-10-11);
   `ver001` = archive, its §5b holds upckp #1–#33. Closed rows in full: `checkpoints/archive/ARCHIVE.202610.md`.
-- Checkpoints are written in English. Shorthand: `upckp` = append an entry to §5b of the latest
+- **Reply to the owner in Thai** (chat, questions, summaries). Checkpoints, handoffs and code comments stay in English. Shorthand: `upckp` = append an entry to §5b of the latest
   checkpoint and update the WIP tables · `newckp` = cut the next version · `hz` = write a handoff into
   `.dropzone/hzup_claude/` (git-ignored).
 - Never run `git` write commands for the owner; he commits and pushes himself.
