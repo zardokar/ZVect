@@ -159,6 +159,12 @@ h1 { font-size: clamp(19px, 1.6vw, 24px); line-height: 1.25; margin: 2px 0 0; le
   cursor: grab; touch-action: none;
 }
 #scene:active { cursor: grabbing; }
+/* a lesson with wide: true (7.1, 7.3) puts the canvas on its own row at full width, the formula boxes under it */
+.bench.wide { grid-template-columns: minmax(0, 1fr); }
+.bench.wide .stage { position: static; }
+.bench.wide .canvas-wrap { aspect-ratio: 16 / 9; max-height: 62vh; }
+.ctool-seg { display: inline-flex; gap: 4px; }
+.ctool[aria-pressed="true"] { background: color-mix(in srgb, var(--ink) 18%, var(--canvas)); border-color: var(--muted); }
 /* on/off buttons in the canvas corner (ui.corner) */
 .ctools { position: absolute; top: 8px; right: 8px; z-index: 1; display: flex; gap: 6px; }
 .ctool {
@@ -266,6 +272,7 @@ math.eq { box-sizing: border-box;   /* keep MathML's own block layout: display: 
   border-radius: var(--eq-radius); padding: var(--eq-pad); }
 #live { min-height: 40px; }
 .verdict { margin: 4px 0 0; font-size: 15px; }
+.stepsay { margin: 8px 0 4px; padding: 6px 10px; border-left: 3px solid var(--vb); background: var(--eq-bg); border-radius: 6px; font-size: 14.5px; line-height: 1.6; }
 .meter { position: relative; height: 34px; margin: 10px 4px 4px; }
 .meter::before { content: ""; position: absolute; left: 0; right: 0; top: 9px; height: 6px; border-radius: 3px;
   background: linear-gradient(90deg, var(--x), var(--line) 50%, var(--y)); }

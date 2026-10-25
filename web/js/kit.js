@@ -68,6 +68,8 @@ export function makeUI(panel, notify) {
 
   return {
     panel, // the <form>; a lesson may add a layout class to it (app.js resets the class on every lesson)
+    // redraw the canvas and the values box without a control being touched (a lesson's own timer, e.g. "▶ เล่น")
+    redraw: onChange,
     // three sliders x, y, z that edit the array `v` in place
     vec3(title, v, { min = -5, max = 5, step = 0.5 } = {}) {
       const box = group(title);

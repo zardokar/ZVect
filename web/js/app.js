@@ -174,7 +174,9 @@ function showLesson(L, i) {
   const refresh = () => { scene.render(); live.innerHTML = resolve(inst.live()); splitList(); fitMath(); };
   inst = L.mount(makeUI(panel, refresh));
   scene.axisNames = L.axisNames || ["x", "y", "z"];
+  scene.cam.target = L.view?.target ? [...L.view.target] : [0, 0, 0];   // a lesson may look at another point (7.1, 7.3)
   scene.setView(L.view || {});
+  $(".bench").classList.toggle("wide", !!L.wide);   // big canvas on its own row (7.1, 7.3: the board view)
   scene.draw = inst.draw || (() => {});
   scene.overlay = inst.draw2d || null; // flat chart lessons draw here instead of in 3D
   scene.flat = inst.zoom2d ? { zoom: 1, x: 0, y: 0 } : null;   // 2D picture that can be zoomed and moved (3.1, 3.2, 3.3)

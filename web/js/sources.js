@@ -43,6 +43,10 @@ export const SOURCES = {
     title: "Vector Databases Are Dead. Use This Instead", by: "Devsplainers", date: "2026-10-08",
     url: "https://www.youtube.com/watch?v=YLkSfz3EFGw", report: R + "20261008_Vector-Databases-Are-Dead-Use-This-Instead.html",
   },
+  weaviate: {
+    title: "ANN Algorithms in a nutshell", by: "Weaviate vector database", date: "2024-10-23",
+    url: "https://www.youtube.com/shorts/7fc4TfLmvsg", report: R + "20241023_ANN-Algorithms-In-A-Nutshell.html",
+  },
   qdrant: {
     title: "Qdrant: Open Source Vector Search Engine (Andrey Vasnetsov)", by: "CMU Database Group", date: "2023-09-15",
     url: "https://www.youtube.com/watch?v=bU38Ovdh3NY", report: R + "20230915_Qdrant-Open-Source-Vector-Search-Engine-CMU.html",

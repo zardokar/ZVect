@@ -65,3 +65,48 @@ export function beam(q, nb, start, ef, seen = new Map()) {
   }
   return { cur: keep[0], keep, expanded, seen, count: seen.size };
 }
+
+// the same two walks, one state per step (for "ทีละขั้น"): every state lists what has been measured so far.
+// greedySteps: state k = after k moves. beamSteps: state 0 = start at the best hub, state k = after expanding k points.
+export function greedySteps(q, nb, start) {
+  const seen = new Map(), d = (i) => { if (!seen.has(i)) seen.set(i, distance(q, P[i])); return seen.get(i); };
+  let cur = start;
+  d(cur);
+  const path = [cur], out = [{ cur, keep: [], seen: new Set(seen.keys()), hot: [], from: -1, path: [...path], done: false }];
+  for (;;) {
+    let best = cur;
+    const hot = [];
+    for (const j of nb[cur]) { if (!seen.has(j)) hot.push(j); if (d(j) < d(best)) best = j; }
+    if (best === cur) { out.push({ cur, keep: [], seen: new Set(seen.keys()), hot, from: cur, path: [...path], done: true }); break; }
+    const from = cur;
+    cur = best; path.push(cur);
+    out.push({ cur, keep: [], seen: new Set(seen.keys()), hot, from, path: [...path], done: false });
+  }
+  return out;
+}
+export function beamSteps(q, nb, ef) {
+  const seen = new Map(), d = (i) => { if (!seen.has(i)) seen.set(i, distance(q, P[i])); return seen.get(i); };
+  let hub = HUBS[0];
+  for (const h of HUBS) if (d(h) < d(hub)) hub = h;
+  const byD = (a, b) => d(a) - d(b) || a - b;
+  const visited = new Set([hub]), cand = [hub], keep = [hub];
+  const out = [{ cur: hub, hub, keep: [...keep], seen: new Set(seen.keys()), hot: [], from: -1, path: [], done: false }];
+  while (cand.length) {
+    cand.sort(byD);
+    const c = cand.shift();
+    if (d(c) > d(keep[keep.length - 1])) break;
+    const hot = [];
+    let added = 0;
+    for (const e of nb[c]) {
+      if (visited.has(e)) continue;
+      visited.add(e); d(e); hot.push(e);
+      if (keep.length < ef || d(e) < d(keep[keep.length - 1])) {
+        cand.push(e); keep.push(e); keep.sort(byD); added++;
+        if (keep.length > ef) keep.pop();
+      }
+    }
+    out.push({ cur: c, hub, keep: [...keep], seen: new Set(seen.keys()), hot, added, from: c, path: [], done: false });
+  }
+  out.push({ cur: keep[0], hub, keep: [...keep], seen: new Set(seen.keys()), hot: [], from: -1, path: [], done: true });
+  return out;
+}

@@ -1,16 +1,11 @@
 import { distance, fmt } from "../../lib/zvect.js";
 import { M } from "../js/kit.js";
-import { P, name, COLOR, HUBS, AXIS_NAMES, up, GRAPHS, beam, brute } from "../js/graph.js";
+import { P, name, AXIS_NAMES, GRAPHS, beamSteps, brute } from "../js/graph.js";
+import { makeBoard, tag, COL, VIEW } from "../js/boardview.js";
 
 // HNSW beam / efSearch (WIP202610027): one idea only — on the bottom layer keep ef candidates at once instead of one;
 // a wider beam measures more points but misses less. Same graph as 5.5 / 5.6 (M = 2), top layer = the 3 hubs.
 const NB = GRAPHS[2];
-function run(q, ef) {
-  const seen = new Map();
-  let hub = HUBS[0];
-  for (const h of HUBS) { seen.set(h, distance(q, P[h])); if (seen.get(h) < seen.get(hub)) hub = h; }
-  return { hub, ...beam(q, NB, hub, ef, seen) };
-}
 
 export default {
   slug: "hnsw-beam",
@@ -18,7 +13,9 @@ export default {
   en: "HNSW: beam width (efSearch)",
   example: "30_hnsw_beam",
   axisNames: AXIS_NAMES,
-  view: { dist: 12.5, yaw: 0.75 },
+  view: VIEW.board,
+  wide: true,
+  hint: "ลากเพื่อหมุน ใช้ล้อเมาส์ซูม ดับเบิลคลิกเพื่อรีเซ็ต · มุมขวาบนสลับ แบบกระดาน / ตำแหน่งจริง 3 มิติ",
   intro: `
     <p>บท {#vector-search} ชั้นล่างเดินแบบ "ถือผู้สมัครตัวเดียว" จึงหยุดผิดที่ได้ HNSW ของจริงเก็บ <b>ผู้สมัครไว้ ef ตัวพร้อมกัน</b> (เรียกว่า beam)
     แล้วขยายดูเพื่อนบ้านของตัวที่ดีที่สุดที่ยังไม่ได้ดูไปเรื่อย ๆ</p>
@@ -27,6 +24,7 @@ export default {
     "ef = 1 กับ 2: หยุดที่ a5 ซึ่งไม่ใช่จุดที่ใกล้ที่สุด",
     "ef = 4: เจอ a8 (ตัวที่ใกล้ที่สุดจริง) แต่วัด 11 ครั้ง · ef = 8 วัด 14 ครั้ง",
     "ลาก query ไปที่อื่น: ef = 1 เจอตัวที่ใกล้ที่สุดราว 2 ใน 3 ครั้ง ef ยิ่งกว้างยิ่งพลาดน้อยลง แต่วัดเพิ่มขึ้น",
+    "ef = 3 แล้วกด \"ทีละขั้น\": เหมือนภาพในคลิป Weaviate · เก็บ 3 ตัวที่ใกล้ที่สุด (เขียว + เหลือง) แล้วย้ายไปขยายตัวที่ดีที่สุด (เหลือง)",
   ],
   steps: [
     ["เก็บผู้สมัคร ef ตัว", "ถือหลายตัวพร้อมกัน จึงหยุดผิดที่น้อยกว่าการถือตัวเดียว"],
@@ -43,9 +41,9 @@ export default {
   ],
   formulaFrom: "การเก็บผู้สมัครหลายตัวที่ชั้นล่าง (beam), ความกว้าง = efSearch ปรับได้ตอนค้น, กว้าง = แม่นขึ้น แคบ = เร็วแต่อาจพลาด มาจากคลิป Satyajit Das และทอล์ก Qdrant · กติกาขยายและหยุดในขั้นตอน 2–3 เป็นความรู้ทั่วไป (ตามอัลกอริทึม HNSW) คลิปไม่ได้ลงรายละเอียด · จุดและกราฟเหมือนบท {#graph-walk}–{#vector-search}",
   symbols: [
-    ["ef", "efSearch: จำนวนผู้สมัครที่เก็บพร้อมกันที่ชั้นล่าง", "เลือก 1, 2, 4, 8"],
-    ["keep", "ผู้สมัคร ef ตัวที่ดีที่สุดที่เจอมา", "วงแหวนในภาพ"],
-    ["c", "ผู้สมัครที่ใกล้ q ที่สุดที่ยังไม่ได้ขยาย", "จุดใหญ่สีม่วงในภาพ = ขยายแล้ว"],
+    ["ef", "efSearch: จำนวนผู้สมัครที่เก็บพร้อมกันที่ชั้นล่าง", "เลือก 1, 2, 3, 4, 8 (คลิป Weaviate ใช้ 3)"],
+    ["keep", "ผู้สมัคร ef ตัวที่ดีที่สุดที่เจอมา", "กล่องสีเขียว (และสีเหลือง) ในภาพ"],
+    ["c", "ผู้สมัครที่ใกล้ q ที่สุดที่ยังไม่ได้ขยาย", "กล่องสีเหลือง = กำลังขยาย"],
     ["worst kept", "ตัวที่ไกล q ที่สุดใน keep", "ใช้ตัดสินว่าจะรับเพื่อนบ้านใหม่และจะหยุดเมื่อไหร่"],
   ],
   notes: `
@@ -60,30 +58,53 @@ export default {
     </ul>
     <h2>จากทอล์ก Qdrant</h2>
     <p>ขนาด beam คือตัวแลกระหว่างความแม่นกับความเร็ว</p>`,
-  refs: [["hnsw", "beam ที่ชั้นล่าง, efSearch ปรับตอนค้น, ตัวอย่าง beam แคบ / กว้างบนจอ, การแลกที่ปรับได้"], ["qdrant", "beam size แลกความแม่นกับความเร็ว"]],
+  refs: [["hnsw", "beam ที่ชั้นล่าง, efSearch ปรับตอนค้น, ตัวอย่าง beam แคบ / กว้างบนจอ, การแลกที่ปรับได้"], ["qdrant", "beam size แลกความแม่นกับความเร็ว"],
+    ["weaviate", "ภาพการค้นด้วย ef = 3: calculate 3 closest to query, recenter on best candidate, หน้าตาแบบกระดาน"]],
   mount(ui) {
-    const st = { ef: 1 };
+    const st = { ef: 3, at: 0, timer: null };
     const q = ui.vec3("query q", [0.5, 0.7, 0.1], { min: 0, max: 1, step: 0.05 });
-    ui.choice("ความกว้าง beam (efSearch)", [[1, "ef = 1"], [2, "ef = 2"], [4, "ef = 4"], [8, "ef = 8"]], st, "ef");
+    ui.choice("ความกว้าง beam (efSearch)", [[1, "ef = 1"], [2, "ef = 2"], [3, "ef = 3"], [4, "ef = 4"], [8, "ef = 8"]], st, "ef");
+    const v = makeBoard();
+    v.switch();
+    let key = "", steps = [];
+    const run = () => {
+      const k = q.join() + "|" + st.ef;
+      if (k !== key) { key = k; steps = beamSteps(q, NB, st.ef); st.at = 0; }
+      return steps;
+    };
+    const stop = () => { clearInterval(st.timer); st.timer = null; };
+    ui.buttons("ทีละขั้น", [
+      ["◀ ย้อน", () => { stop(); st.at = Math.max(0, st.at - 1); }],
+      ["ทีละขั้น ▶", () => { stop(); st.at = Math.min(run().length - 1, st.at + 1); }],
+      ["▶ เล่น", () => {
+        if (st.timer) return stop();
+        if (st.at >= run().length - 1) st.at = 0;
+        st.timer = setInterval(() => {
+          if (v.scene?.draw !== draw || st.at >= run().length - 1) return stop();
+          st.at++; ui.redraw();
+        }, 1000);
+      }],
+      ["จบ ⏭", () => { stop(); st.at = run().length - 1; }],
+    ]);
+    const draw = (s) => {
+      const tr = run(), r = tr[Math.min(st.at, tr.length - 1)], b = brute(q);
+      const { qw } = v.draw(s, { r, b, q, nb: NB });
+      tag(s, qw, "q", COL.q, 16, 14);
+      tag(s, v.pos(P[r.cur]), name(r.cur) + (r.done ? (r.cur === b ? " = คำตอบ ✓" : " = พลาด ✗") : st.at === 0 ? " = เริ่มชั้นล่าง" : " = กำลังขยาย"), COL.best, 26, -30);
+      if (r.done && r.cur !== b) tag(s, v.pos(P[b]), name(b) + " ใกล้ที่สุดจริง", COL.truth, -150, -34);
+    };
     return {
-      draw(s) {
-        s.grid(4); s.axes(4.6);
-        const r = run(q, st.ef), b = brute(q);
-        NB.forEach((list, i) => list.forEach((j) => { if (j > i) s.line(up(P[i]), up(P[j]), s.c.muted, { alpha: 0.3 }); }));
-        P.forEach((p, i) => {
-          const kept = r.keep.includes(i), exp = r.expanded.includes(i), measured = r.seen.has(i);
-          s.point(up(p), exp ? s.c.r : s.c[COLOR[Math.floor(i / 8)]], kept || i === b ? name(i) : "", { r: exp ? 6.5 : measured ? 5 : 3, ring: kept });
-        });
-        s.line(up(q), up(P[r.cur]), s.c.r, { width: 3 });
-        if (r.cur !== b) s.line(up(q), up(P[b]), s.c.ink, { dash: [3, 4] });
-        s.point(up(q), s.c.a, "q", { r: 7 });
-      },
+      draw,
       live() {
-        const r = run(q, st.ef), b = brute(q), ok = r.cur === b;
+        const tr = run(), r = tr[Math.min(st.at, tr.length - 1)], b = brute(q), last = tr.length - 1;
+        const say = st.at === 0 ? `ขั้น 0: ชั้นบนวัด hub 3 จุด (f1, a1, t1) แล้วลงมาเริ่มชั้นล่างที่ ${name(r.hub)} ซึ่งใกล้ q ที่สุด`
+          : r.done ? `หยุด: ตัวที่ยังไม่ได้ขยายไกลกว่าตัวที่แย่ที่สุดใน ${st.ef} ตัวที่เก็บไว้ จึงตอบ ${name(r.cur)} (${fmt(distance(q, P[r.cur]))})`
+          : `ขั้น ${st.at}: ขยาย ${name(r.cur)} (สีเหลือง) วัดเพื่อนบ้านใหม่ ${r.hot.length} จุด แล้วเก็บไว้ ${st.ef} ตัวที่ใกล้ q ที่สุด (${r.added ? "มีตัวใหม่เข้า " + r.added : "ไม่มีตัวใหม่เข้า"})`;
+        const verdict = r.done ? (r.cur === b ? `ได้ ${name(r.cur)} = จุดที่ใกล้ที่สุดจริง` : `<b>พลาด</b>: ได้ ${name(r.cur)} แต่จุดที่ใกล้ที่สุดจริงคือ ${name(b)} (วงสีขาว)`) : "ยังขยายอยู่";
         const rows = r.keep.map((i, k) => `<tr class="${k === 0 ? "win" : ""}"><td>${k + 1}</td><td>${name(i)}</td><td>${fmt(distance(q, P[i]))}</td></tr>`).join("");
-        return M.math(M.t("measured"), M.o("="), M.n(r.count, "res"), M.t("\u2003of\u00a0"), M.n(P.length), M.t("\u2003(ef\u00a0"), M.o("="), M.n(st.ef), M.t(")")) +
-          `<p class="verdict">เริ่มชั้นล่างที่ ${name(r.hub)} · ${ok ? `ได้ ${name(r.cur)} = จุดที่ใกล้ที่สุดจริง` : `<b>พลาด</b>: ได้ ${name(r.cur)} แต่จุดที่ใกล้ที่สุดจริงคือ ${name(b)}`}</p>` +
-          `<p class="fintro">ผู้สมัครที่เก็บไว้ตอนจบ (keep, ไม่เกิน ef ตัว):</p><div class="scroll"><table class="rank"><thead><tr><th>#</th><th>จุด</th><th>ระยะถึง q</th></tr></thead><tbody>${rows}</tbody></table></div>`;
+        return M.math(M.t("step"), M.o("="), M.n(st.at, "res"), M.t("\u00a0/\u00a0"), M.n(last), M.t("\u2003measured"), M.o("="), M.n(r.seen.size, "res"), M.t("\u2003of\u00a0"), M.n(P.length), M.t("\u2003(ef\u00a0"), M.o("="), M.n(st.ef), M.t(")")) +
+          `<p class="stepsay">${say}</p><p class="verdict">${verdict}</p>` +
+          `<p class="fintro">ผู้สมัครที่เก็บไว้ตอนนี้ (keep, ไม่เกิน ef ตัว):</p><div class="scroll"><table class="rank"><thead><tr><th>#</th><th>จุด</th><th>ระยะถึง q</th></tr></thead><tbody>${rows}</tbody></table></div>`;
       },
     };
   },
