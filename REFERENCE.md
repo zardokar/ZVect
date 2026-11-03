@@ -22,35 +22,37 @@
 |---|---|
 | RAG / Multivector | yt:6iCmnd0k3fs · yt:xTzUn3G9YA0 · yt:8LPgGU34RoE · yt:H6q1UWCCnKw · yt:wyWFLIlgmAw |
 | ColBERT / late interaction | yt:xTzUn3G9YA0 · yt:aiNQ4I8YaD0 · yt:8LPgGU34RoE · yt:6iCmnd0k3fs |
-| Embeddings | yt:my5wFNQpFO0 · yt:hVM8qGRTaOA · yt:YIR-KxNpSbA · yt:S7tFyREI19I · yt:lPTcTh5sRug · yt:NEreO2zlXDk · yt:1Qex37vowTM · yt:H6q1UWCCnKw · yt:izbifbq3-eI · yt:Q6TBHDgWCDQ |
-| Tokenization | yt:zduSFxRajkE · yt:izbifbq3-eI · yt:BcxJk4WQVIw · yt:YIR-KxNpSbA · yt:hVM8qGRTaOA · yt:lPTcTh5sRug |
-| วัดความใกล้ (metrics) | yt:xTaDx3tbYMs · yt:e9U0QAFbfLI · yt:fNk_zzaMoSs |
-| ค้นเร็ว / ANN / vector DB | yt:Lc4dzmSFb14 · yt:c10w0Ptn_CU · yt:bU38Ovdh3NY · yt:YLkSfz3EFGw · yt:wyWFLIlgmAw |
-| Quantization / precision | yt:bU38Ovdh3NY · yt:6iCmnd0k3fs · yt:aiNQ4I8YaD0 · yt:4JofSJIrjwU |
-| ภายใน LLM (attention, token ถัดไป) | yt:YIR-KxNpSbA · yt:zduSFxRajkE · yt:hVM8qGRTaOA · yt:1Qex37vowTM · yt:xTaDx3tbYMs · yt:YmLp8qe87A0 |
+| Embeddings | yt:my5wFNQpFO0 · yt:hVM8qGRTaOA · yt:YIR-KxNpSbA · yt:S7tFyREI19I · yt:lPTcTh5sRug · yt:NEreO2zlXDk · yt:1Qex37vowTM · yt:H6q1UWCCnKw · yt:izbifbq3-eI · yt:Q6TBHDgWCDQ · yt:ySus5ZS0b94 |
+| Tokenization | yt:zduSFxRajkE · yt:izbifbq3-eI · yt:BcxJk4WQVIw · yt:YIR-KxNpSbA · yt:hVM8qGRTaOA · yt:lPTcTh5sRug · yt:vKdKtxpfvIc · yt:-gfgQfw2g_E · yt:kCc8FmEb1nY |
+| วัดความใกล้ (metrics) | yt:xTaDx3tbYMs · yt:e9U0QAFbfLI · yt:fNk_zzaMoSs · yt:ySus5ZS0b94 |
+| ค้นเร็ว / ANN / vector DB | yt:Lc4dzmSFb14 · yt:c10w0Ptn_CU · yt:bU38Ovdh3NY · yt:YLkSfz3EFGw · yt:wyWFLIlgmAw · yt:ySus5ZS0b94 |
+| Quantization / precision | yt:bU38Ovdh3NY · yt:6iCmnd0k3fs · yt:aiNQ4I8YaD0 · yt:4JofSJIrjwU · yt:mmbkP8NARH4 |
+| ภายใน LLM (attention, token ถัดไป) | yt:YIR-KxNpSbA · yt:zduSFxRajkE · yt:hVM8qGRTaOA · yt:1Qex37vowTM · yt:xTaDx3tbYMs · yt:YmLp8qe87A0 · yt:s9w3gtgvNSU · yt:vKdKtxpfvIc · yt:-gfgQfw2g_E · yt:kCc8FmEb1nY |
 | LLM - Stanford (CME295: Transformer เต็มสูตร) | yt:114i2Kz-LZA |
-| Fine-tuning / LoRA (ฝึก model ต่อ, เทียบกับ RAG) | yt:4JofSJIrjwU · yt:S7tFyREI19I · yt:YmLp8qe87A0 |
+| Fine-tuning / LoRA (ฝึก model ต่อ, เทียบกับ RAG) | yt:4JofSJIrjwU · yt:S7tFyREI19I · yt:YmLp8qe87A0 · yt:mmbkP8NARH4 |
 | TabFM / foundation model สำหรับตาราง (zero-shot, in-context) | yt:5YJGDElbCDY · yt:8vW6gi5vRes · yt:XwYPRLMLcNs · yt:78_sbNNJe3Q · yt:tYO_bgB4Ti0 · yt:Xym8FGDcl34 |
 | Sentiment analysis | yt:5HQCNAsSO-s |
-| LSA / LSI (SVD บน term-document) | yt:hB51kkus-Rc · yt:Fy0bF7u6W20 · yt:NWb_4O3ssbA · yt:YX4xRIQ84Z0 · yt:OXJdfpEFmF8 · yt:M1duqgg8-IM · yt:bzNch-dBCN8 |
-| TF-IDF | yt:zLMEnNbdh4Q · yt:OymqCnh-APA · yt:TBUpxFw8oIA · yt:RPMYV-eb6lI |
+| LSA / LSI (SVD บน term-document) | yt:hB51kkus-Rc · yt:Fy0bF7u6W20 · yt:NWb_4O3ssbA · yt:YX4xRIQ84Z0 · yt:OXJdfpEFmF8 · yt:M1duqgg8-IM · yt:bzNch-dBCN8 · yt:DbzN_gMh3Mw |
+| TF-IDF | yt:zLMEnNbdh4Q · yt:OymqCnh-APA · yt:TBUpxFw8oIA · yt:RPMYV-eb6lI · yt:DbzN_gMh3Mw |
 | BM25 / ค้นด้วยคำ (keyword ranking) | yt:ruBm9WywevM · yt:TW9vHU1GpU4 · yt:fZH97QHHYjY · yt:XvKiTfd6Xvo |
 | Hybrid search / RRF / reranking | yt:BwgBU0CekFk · yt:1qQCuWiRIfA · yt:7WEtNxVh1vo · yt:VWA15n6uiS4 |
 | LLM - พื้นฐาน การใช้ผ่าน API และวิธีเล่าให้เข้าใจง่าย | yt:-f_i_a13IKc · yt:YHNi88FaGug |
 | SFT / curate ข้อมูล / ประเมินการแปล (ไทย-อังกฤษ) | arxiv:2609.34770 |
 | Visualization (Transformer และ visual analytics) | yt:TFUc41G2ikY · yt:ECR4oAwocjs · yt:uboTKqPNU5Y · yt:nZYHazugVNA · yt:-jeck0yrT_Q |
+| การฝึก model (loss, gradient descent, optimizer) | yt:vKdKtxpfvIc · yt:K1ksiPHfgVs |
 
 ### ดัชนี tag
 
 | tag | ref |
 |---|---|
 | `20-newsgroups` | yt:OXJdfpEFmF8 |
-| `ablation` | arxiv:2609.34770 |
+| `ablation` | arxiv:2609.34770 · yt:-gfgQfw2g_E |
 | `absa` | yt:5HQCNAsSO-s |
+| `adamw` | yt:vKdKtxpfvIc · yt:-gfgQfw2g_E · yt:kCc8FmEb1nY · yt:K1ksiPHfgVs |
 | `adult-income` | yt:8vW6gi5vRes |
 | `agent-search` | yt:YLkSfz3EFGw · yt:fZH97QHHYjY |
 | `agents` | yt:5YJGDElbCDY · yt:YHNi88FaGug |
-| `alpaca-format` | yt:4JofSJIrjwU |
+| `alpaca-format` | yt:4JofSJIrjwU · yt:mmbkP8NARH4 |
 | `ann` | yt:Lc4dzmSFb14 · yt:c10w0Ptn_CU · yt:wyWFLIlgmAw |
 | `annoy` | yt:c10w0Ptn_CU |
 | `anserini` | yt:fZH97QHHYjY |
@@ -62,9 +64,10 @@
 | `attention` | yt:YIR-KxNpSbA · yt:hVM8qGRTaOA · yt:xTaDx3tbYMs · yt:YmLp8qe87A0 · yt:114i2Kz-LZA · yt:-f_i_a13IKc · yt:TFUc41G2ikY · yt:ECR4oAwocjs · yt:uboTKqPNU5Y |
 | `attention-graph` | yt:uboTKqPNU5Y |
 | `attention-is-not-explanation` | yt:XwYPRLMLcNs |
-| `autoregressive` | yt:YmLp8qe87A0 |
-| `backpropagation` | yt:YmLp8qe87A0 |
-| `bag-of-words` | yt:e9U0QAFbfLI · yt:hVM8qGRTaOA · yt:Q6TBHDgWCDQ · yt:5HQCNAsSO-s · yt:hB51kkus-Rc · yt:zLMEnNbdh4Q |
+| `autograd` | yt:K1ksiPHfgVs |
+| `autoregressive` | yt:YmLp8qe87A0 · yt:s9w3gtgvNSU · yt:kCc8FmEb1nY |
+| `backpropagation` | yt:YmLp8qe87A0 · yt:vKdKtxpfvIc · yt:K1ksiPHfgVs |
+| `bag-of-words` | yt:e9U0QAFbfLI · yt:hVM8qGRTaOA · yt:Q6TBHDgWCDQ · yt:5HQCNAsSO-s · yt:hB51kkus-Rc · yt:zLMEnNbdh4Q · yt:DbzN_gMh3Mw |
 | `beir` | yt:XvKiTfd6Xvo |
 | `benchmarking` | yt:Xym8FGDcl34 |
 | `bert` | yt:uboTKqPNU5Y |
@@ -77,20 +80,20 @@
 | `bm25-b` | yt:ruBm9WywevM · yt:TW9vHU1GpU4 · yt:fZH97QHHYjY |
 | `bm25-k1` | yt:ruBm9WywevM · yt:TW9vHU1GpU4 · yt:fZH97QHHYjY |
 | `bm25s` | yt:fZH97QHHYjY · yt:XvKiTfd6Xvo |
-| `bootstrap-ci` | yt:Xym8FGDcl34 |
-| `bpe` | yt:BcxJk4WQVIw · yt:YIR-KxNpSbA · yt:zduSFxRajkE · yt:YmLp8qe87A0 · yt:114i2Kz-LZA |
+| `bootstrap-ci` | yt:Xym8FGDcl34 · yt:-gfgQfw2g_E |
+| `bpe` | yt:BcxJk4WQVIw · yt:YIR-KxNpSbA · yt:zduSFxRajkE · yt:YmLp8qe87A0 · yt:114i2Kz-LZA · yt:vKdKtxpfvIc |
 | `browsecomp-plus` | yt:fZH97QHHYjY |
-| `brute-force` | yt:Lc4dzmSFb14 · yt:c10w0Ptn_CU |
+| `brute-force` | yt:Lc4dzmSFb14 · yt:c10w0Ptn_CU · yt:ySus5ZS0b94 |
 | `byte-fallback` | yt:zduSFxRajkE |
 | `byte-level-bpe` | yt:zduSFxRajkE |
 | `cbow` | yt:hVM8qGRTaOA · yt:Q6TBHDgWCDQ |
 | `centering` | yt:hB51kkus-Rc |
 | `centroids` | yt:aiNQ4I8YaD0 |
-| `chain-of-thought` | yt:YHNi88FaGug |
+| `chain-of-thought` | yt:YHNi88FaGug · yt:mmbkP8NARH4 |
 | `chatbot` | yt:YmLp8qe87A0 |
 | `chroma` | yt:BwgBU0CekFk · yt:7WEtNxVh1vo |
 | `chunk-dedup` | yt:1qQCuWiRIfA |
-| `chunking` | yt:xTzUn3G9YA0 · yt:TBUpxFw8oIA |
+| `chunking` | yt:xTzUn3G9YA0 · yt:TBUpxFw8oIA · yt:ySus5ZS0b94 |
 | `class-imbalance` | yt:8vW6gi5vRes |
 | `cluster-width` | yt:-jeck0yrT_Q |
 | `cohen-kappa` | arxiv:2609.34770 |
@@ -104,66 +107,71 @@
 | `concept-strength` | yt:M1duqgg8-IM |
 | `condorcet` | yt:BwgBU0CekFk |
 | `confusion-matrix` | yt:tYO_bgB4Ti0 |
-| `context-window` | yt:YmLp8qe87A0 · yt:YHNi88FaGug |
+| `context-window` | yt:YmLp8qe87A0 · yt:YHNi88FaGug · yt:mmbkP8NARH4 |
 | `contextual-embeddings` | yt:YIR-KxNpSbA · yt:izbifbq3-eI · yt:Q6TBHDgWCDQ |
 | `contrastive-learning` | yt:S7tFyREI19I |
 | `corenlp` | yt:OXJdfpEFmF8 |
-| `cosine` | yt:e9U0QAFbfLI · yt:xTaDx3tbYMs · yt:Q6TBHDgWCDQ · yt:M1duqgg8-IM · yt:bzNch-dBCN8 · yt:zLMEnNbdh4Q |
-| `countvectorizer` | yt:Fy0bF7u6W20 · yt:NWb_4O3ssbA · yt:OXJdfpEFmF8 |
+| `cosine` | yt:e9U0QAFbfLI · yt:xTaDx3tbYMs · yt:Q6TBHDgWCDQ · yt:M1duqgg8-IM · yt:bzNch-dBCN8 · yt:zLMEnNbdh4Q · yt:ySus5ZS0b94 · yt:DbzN_gMh3Mw |
+| `countvectorizer` | yt:Fy0bF7u6W20 · yt:NWb_4O3ssbA · yt:OXJdfpEFmF8 · yt:DbzN_gMh3Mw |
 | `covariance-vs-xtx` | yt:YX4xRIQ84Z0 |
 | `critical-reading` | yt:XwYPRLMLcNs · yt:Xym8FGDcl34 |
-| `cross-attention` | yt:114i2Kz-LZA |
+| `cross-attention` | yt:114i2Kz-LZA · yt:kCc8FmEb1nY |
 | `cross-encoder` | yt:H6q1UWCCnKw · yt:XvKiTfd6Xvo · yt:VWA15n6uiS4 |
-| `data-recipes` | yt:4JofSJIrjwU |
+| `cross-entropy` | yt:vKdKtxpfvIc · yt:kCc8FmEb1nY · yt:K1ksiPHfgVs |
+| `data-recipes` | yt:4JofSJIrjwU · yt:mmbkP8NARH4 |
 | `data-selection` | arxiv:2609.34770 |
 | `debugging` | yt:RPMYV-eb6lI |
-| `deerwester-1990` | yt:bzNch-dBCN8 |
+| `deerwester-1990` | yt:bzNch-dBCN8 · yt:DbzN_gMh3Mw |
 | `dense-retrieval` | yt:xTzUn3G9YA0 |
-| `dimensionality-reduction` | yt:hB51kkus-Rc · yt:bzNch-dBCN8 |
-| `distillation` | arxiv:2609.34770 |
+| `dimensionality-reduction` | yt:hB51kkus-Rc · yt:bzNch-dBCN8 · yt:DbzN_gMh3Mw |
+| `distillation` | arxiv:2609.34770 · yt:mmbkP8NARH4 |
 | `distributional-hypothesis` | yt:Q6TBHDgWCDQ |
 | `document-frequency` | yt:TBUpxFw8oIA · yt:RPMYV-eb6lI |
-| `document-term-matrix` | yt:hB51kkus-Rc |
+| `document-term-matrix` | yt:hB51kkus-Rc · yt:DbzN_gMh3Mw |
 | `dodrio` | yt:uboTKqPNU5Y |
-| `dot-product` | yt:xTaDx3tbYMs |
+| `dot-product` | yt:xTaDx3tbYMs · yt:ySus5ZS0b94 |
 | `dr-dci` | yt:fZH97QHHYjY |
 | `edge-threshold` | yt:uboTKqPNU5Y |
 | `ef-construction` | yt:wyWFLIlgmAw |
 | `efsearch` | yt:Lc4dzmSFb14 · yt:wyWFLIlgmAw |
 | `eliza` | yt:YmLp8qe87A0 |
-| `embedding-dimensions` | yt:1Qex37vowTM · yt:YIR-KxNpSbA |
-| `embedding-matrix` | yt:YIR-KxNpSbA · yt:hVM8qGRTaOA · yt:lPTcTh5sRug · yt:my5wFNQpFO0 |
+| `embedding-dimensions` | yt:1Qex37vowTM · yt:YIR-KxNpSbA · yt:ySus5ZS0b94 |
+| `embedding-matrix` | yt:YIR-KxNpSbA · yt:hVM8qGRTaOA · yt:lPTcTh5sRug · yt:my5wFNQpFO0 · yt:s9w3gtgvNSU · yt:-gfgQfw2g_E |
 | `embedding-model-choice` | yt:H6q1UWCCnKw · yt:Q6TBHDgWCDQ |
 | `embeddinggemma-2` | yt:S7tFyREI19I |
-| `embeddings` | yt:1Qex37vowTM · yt:H6q1UWCCnKw · yt:NEreO2zlXDk · yt:S7tFyREI19I · yt:YIR-KxNpSbA · yt:hVM8qGRTaOA · yt:lPTcTh5sRug · yt:my5wFNQpFO0 · yt:izbifbq3-eI · yt:Q6TBHDgWCDQ · yt:YmLp8qe87A0 · yt:ECR4oAwocjs |
+| `embeddings` | yt:1Qex37vowTM · yt:H6q1UWCCnKw · yt:NEreO2zlXDk · yt:S7tFyREI19I · yt:YIR-KxNpSbA · yt:hVM8qGRTaOA · yt:lPTcTh5sRug · yt:my5wFNQpFO0 · yt:izbifbq3-eI · yt:Q6TBHDgWCDQ · yt:YmLp8qe87A0 · yt:ECR4oAwocjs · yt:ySus5ZS0b94 |
 | `emotion-detection` | yt:5HQCNAsSO-s |
-| `encoder-decoder` | yt:114i2Kz-LZA · yt:-f_i_a13IKc |
+| `encoder-decoder` | yt:114i2Kz-LZA · yt:-f_i_a13IKc · yt:s9w3gtgvNSU · yt:kCc8FmEb1nY |
 | `encoding-matrix` | yt:Fy0bF7u6W20 · yt:NWb_4O3ssbA |
 | `ensemble` | yt:78_sbNNJe3Q |
 | `ensemble-retriever` | yt:7WEtNxVh1vo |
-| `epochs` | yt:4JofSJIrjwU |
+| `epochs` | yt:4JofSJIrjwU · yt:mmbkP8NARH4 · yt:K1ksiPHfgVs |
 | `euclidean` | yt:xTaDx3tbYMs |
 | `evaluation` | yt:S7tFyREI19I · yt:8vW6gi5vRes · yt:fZH97QHHYjY · yt:XvKiTfd6Xvo · arxiv:2609.34770 |
 | `exemplar-view` | yt:-jeck0yrT_Q |
 | `explanation-flow` | yt:-f_i_a13IKc |
 | `f1` | yt:8vW6gi5vRes · yt:tYO_bgB4Ti0 |
-| `fact-checked` | yt:6iCmnd0k3fs · yt:8LPgGU34RoE · yt:H6q1UWCCnKw · yt:S7tFyREI19I · yt:YIR-KxNpSbA · yt:YLkSfz3EFGw · yt:Q6TBHDgWCDQ · yt:wyWFLIlgmAw · yt:YmLp8qe87A0 · yt:114i2Kz-LZA · yt:4JofSJIrjwU · yt:5YJGDElbCDY · yt:8vW6gi5vRes · yt:XwYPRLMLcNs · yt:78_sbNNJe3Q · yt:tYO_bgB4Ti0 · yt:Xym8FGDcl34 · yt:5HQCNAsSO-s · yt:hB51kkus-Rc · yt:Fy0bF7u6W20 · yt:NWb_4O3ssbA · yt:YX4xRIQ84Z0 · yt:OXJdfpEFmF8 · yt:M1duqgg8-IM · yt:bzNch-dBCN8 · yt:zLMEnNbdh4Q · yt:OymqCnh-APA · yt:TBUpxFw8oIA · yt:RPMYV-eb6lI · yt:ruBm9WywevM · yt:TW9vHU1GpU4 · yt:fZH97QHHYjY · yt:XvKiTfd6Xvo · yt:BwgBU0CekFk · yt:1qQCuWiRIfA · yt:7WEtNxVh1vo · yt:VWA15n6uiS4 · yt:-f_i_a13IKc · yt:YHNi88FaGug · arxiv:2609.34770 |
+| `fact-checked` | yt:6iCmnd0k3fs · yt:8LPgGU34RoE · yt:H6q1UWCCnKw · yt:S7tFyREI19I · yt:YIR-KxNpSbA · yt:YLkSfz3EFGw · yt:Q6TBHDgWCDQ · yt:wyWFLIlgmAw · yt:YmLp8qe87A0 · yt:114i2Kz-LZA · yt:4JofSJIrjwU · yt:5YJGDElbCDY · yt:8vW6gi5vRes · yt:XwYPRLMLcNs · yt:78_sbNNJe3Q · yt:tYO_bgB4Ti0 · yt:Xym8FGDcl34 · yt:5HQCNAsSO-s · yt:hB51kkus-Rc · yt:Fy0bF7u6W20 · yt:NWb_4O3ssbA · yt:YX4xRIQ84Z0 · yt:OXJdfpEFmF8 · yt:M1duqgg8-IM · yt:bzNch-dBCN8 · yt:zLMEnNbdh4Q · yt:OymqCnh-APA · yt:TBUpxFw8oIA · yt:RPMYV-eb6lI · yt:ruBm9WywevM · yt:TW9vHU1GpU4 · yt:fZH97QHHYjY · yt:XvKiTfd6Xvo · yt:BwgBU0CekFk · yt:1qQCuWiRIfA · yt:7WEtNxVh1vo · yt:VWA15n6uiS4 · yt:-f_i_a13IKc · yt:YHNi88FaGug · arxiv:2609.34770 · yt:ySus5ZS0b94 · yt:DbzN_gMh3Mw · yt:s9w3gtgvNSU · yt:vKdKtxpfvIc · yt:-gfgQfw2g_E · yt:kCc8FmEb1nY · yt:mmbkP8NARH4 · yt:K1ksiPHfgVs |
 | `feature-explorer` | yt:-jeck0yrT_Q |
-| `feed-forward` | yt:114i2Kz-LZA |
+| `feed-forward` | yt:114i2Kz-LZA · yt:s9w3gtgvNSU · yt:kCc8FmEb1nY |
 | `few-shot` | yt:YHNi88FaGug |
 | `filtering` | yt:bU38Ovdh3NY |
-| `fine-tuning` | yt:YmLp8qe87A0 · yt:4JofSJIrjwU |
+| `fine-tuning` | yt:YmLp8qe87A0 · yt:4JofSJIrjwU · yt:mmbkP8NARH4 |
 | `fine-tuning-embeddings` | yt:S7tFyREI19I |
 | `fiqa` | yt:XvKiTfd6Xvo |
 | `force-layout` | yt:uboTKqPNU5Y |
 | `frozen-weights` | yt:XwYPRLMLcNs |
 | `full-fine-tuning` | arxiv:2609.34770 |
+| `gelu` | yt:s9w3gtgvNSU |
 | `gemba` | arxiv:2609.34770 |
 | `generative-ai` | yt:-f_i_a13IKc |
-| `gguf` | yt:4JofSJIrjwU |
-| `gpt-2` | yt:TFUc41G2ikY |
+| `gguf` | yt:4JofSJIrjwU · yt:mmbkP8NARH4 |
+| `gpt-2` | yt:TFUc41G2ikY · yt:s9w3gtgvNSU · yt:vKdKtxpfvIc · yt:kCc8FmEb1nY |
+| `gradient-accumulation` | yt:mmbkP8NARH4 |
 | `gradient-boosting` | yt:Xym8FGDcl34 |
+| `gradient-descent` | yt:vKdKtxpfvIc · yt:K1ksiPHfgVs |
 | `graph-query` | yt:nZYHazugVNA · yt:-jeck0yrT_Q |
+| `green-code` | yt:s9w3gtgvNSU · yt:vKdKtxpfvIc |
 | `grep` | yt:fZH97QHHYjY |
 | `head-overview` | yt:uboTKqPNU5Y |
 | `high-dimensions` | yt:xTaDx3tbYMs |
@@ -188,45 +196,46 @@
 | `inverse-document-frequency` | yt:OXJdfpEFmF8 · yt:zLMEnNbdh4Q · yt:OymqCnh-APA · yt:TBUpxFw8oIA · yt:RPMYV-eb6lI · yt:TW9vHU1GpU4 · yt:fZH97QHHYjY |
 | `inverted-index` | yt:Lc4dzmSFb14 · yt:RPMYV-eb6lI |
 | `ivf` | yt:aiNQ4I8YaD0 |
-| `javascript` | yt:RPMYV-eb6lI |
+| `javascript` | yt:RPMYV-eb6lI · yt:ySus5ZS0b94 |
 | `jax` | yt:tYO_bgB4Ti0 |
 | `k-60` | yt:1qQCuWiRIfA |
 | `k-means` | yt:aiNQ4I8YaD0 |
 | `keyword-extraction` | yt:RPMYV-eb6lI |
 | `keyword-search` | yt:Lc4dzmSFb14 · yt:YLkSfz3EFGw · yt:ruBm9WywevM · yt:TW9vHU1GpU4 · yt:fZH97QHHYjY · yt:7WEtNxVh1vo |
-| `king-queen-analogy` | yt:izbifbq3-eI |
-| `knn` | yt:NEreO2zlXDk · yt:c10w0Ptn_CU · yt:wyWFLIlgmAw |
-| `l2-normalization` | yt:YX4xRIQ84Z0 · yt:zLMEnNbdh4Q · yt:OymqCnh-APA |
+| `king-queen-analogy` | yt:izbifbq3-eI · yt:s9w3gtgvNSU |
+| `knn` | yt:NEreO2zlXDk · yt:c10w0Ptn_CU · yt:wyWFLIlgmAw · yt:ySus5ZS0b94 |
+| `l2-normalization` | yt:YX4xRIQ84Z0 · yt:zLMEnNbdh4Q · yt:OymqCnh-APA · yt:ySus5ZS0b94 · yt:DbzN_gMh3Mw |
 | `label-smoothing` | yt:114i2Kz-LZA |
 | `langchain` | yt:BwgBU0CekFk · yt:7WEtNxVh1vo · yt:VWA15n6uiS4 |
 | `late-interaction` | yt:6iCmnd0k3fs · yt:8LPgGU34RoE · yt:xTzUn3G9YA0 |
-| `latent-space` | yt:1Qex37vowTM · yt:NEreO2zlXDk · yt:hVM8qGRTaOA · yt:Q6TBHDgWCDQ · yt:M1duqgg8-IM · yt:bzNch-dBCN8 |
-| `layer-norm` | yt:114i2Kz-LZA |
-| `learning-rate` | yt:4JofSJIrjwU |
+| `latent-space` | yt:1Qex37vowTM · yt:NEreO2zlXDk · yt:hVM8qGRTaOA · yt:Q6TBHDgWCDQ · yt:M1duqgg8-IM · yt:bzNch-dBCN8 · yt:DbzN_gMh3Mw |
+| `layer-norm` | yt:114i2Kz-LZA · yt:s9w3gtgvNSU · yt:kCc8FmEb1nY |
+| `learning-rate` | yt:4JofSJIrjwU · yt:vKdKtxpfvIc · yt:mmbkP8NARH4 · yt:K1ksiPHfgVs |
 | `lemmatization` | yt:OXJdfpEFmF8 |
 | `length-normalization` | yt:ruBm9WywevM · yt:TW9vHU1GpU4 |
 | `letor-3` | yt:BwgBU0CekFk |
 | `lexicon-based` | yt:5HQCNAsSO-s |
-| `linear-algebra` | yt:fNk_zzaMoSs |
+| `linear-algebra` | yt:fNk_zzaMoSs · yt:K1ksiPHfgVs |
+| `linear-regression` | yt:K1ksiPHfgVs |
 | `linked-views` | yt:nZYHazugVNA · yt:-jeck0yrT_Q |
 | `live-coding` | yt:RPMYV-eb6lI |
 | `llama-3-1` | yt:4JofSJIrjwU |
 | `llm` | yt:-f_i_a13IKc · yt:YHNi88FaGug |
 | `llm-as-judge` | arxiv:2609.34770 |
-| `llm-internals` | yt:1Qex37vowTM · yt:YIR-KxNpSbA · yt:hVM8qGRTaOA · yt:zduSFxRajkE · yt:izbifbq3-eI · yt:YmLp8qe87A0 |
+| `llm-internals` | yt:1Qex37vowTM · yt:YIR-KxNpSbA · yt:hVM8qGRTaOA · yt:zduSFxRajkE · yt:izbifbq3-eI · yt:YmLp8qe87A0 · yt:-gfgQfw2g_E |
 | `llm-quirks` | yt:zduSFxRajkE |
-| `local-llm` | yt:4JofSJIrjwU |
+| `local-llm` | yt:4JofSJIrjwU · yt:mmbkP8NARH4 |
 | `local-minimum` | yt:wyWFLIlgmAw |
 | `log-base` | yt:OymqCnh-APA |
 | `log10` | yt:TBUpxFw8oIA |
-| `lookup-table` | yt:6iCmnd0k3fs |
-| `lora` | yt:S7tFyREI19I · yt:4JofSJIrjwU |
-| `lsa` | yt:hB51kkus-Rc · yt:Fy0bF7u6W20 · yt:NWb_4O3ssbA · yt:YX4xRIQ84Z0 · yt:OXJdfpEFmF8 · yt:M1duqgg8-IM · yt:bzNch-dBCN8 |
-| `lsi` | yt:M1duqgg8-IM · yt:bzNch-dBCN8 |
+| `lookup-table` | yt:6iCmnd0k3fs · yt:-gfgQfw2g_E |
+| `lora` | yt:S7tFyREI19I · yt:4JofSJIrjwU · yt:mmbkP8NARH4 |
+| `lsa` | yt:hB51kkus-Rc · yt:Fy0bF7u6W20 · yt:NWb_4O3ssbA · yt:YX4xRIQ84Z0 · yt:OXJdfpEFmF8 · yt:M1duqgg8-IM · yt:bzNch-dBCN8 · yt:DbzN_gMh3Mw |
+| `lsi` | yt:M1duqgg8-IM · yt:bzNch-dBCN8 · yt:DbzN_gMh3Mw |
 | `lstm` | yt:114i2Kz-LZA |
 | `lucene` | yt:ruBm9WywevM · yt:TW9vHU1GpU4 · yt:fZH97QHHYjY · yt:XvKiTfd6Xvo |
 | `machine-translation` | arxiv:2609.34770 |
-| `masked-attention` | yt:114i2Kz-LZA |
+| `masked-attention` | yt:114i2Kz-LZA · yt:s9w3gtgvNSU · yt:vKdKtxpfvIc · yt:kCc8FmEb1nY |
 | `matmul-popover` | yt:TFUc41G2ikY · yt:ECR4oAwocjs |
 | `matrix-rank` | yt:M1duqgg8-IM |
 | `matryoshka` | yt:H6q1UWCCnKw |
@@ -236,37 +245,39 @@
 | `min-df` | yt:NWb_4O3ssbA |
 | `minbpe` | yt:zduSFxRajkE |
 | `mixed-precision` | yt:aiNQ4I8YaD0 |
+| `mixture-of-experts` | yt:-gfgQfw2g_E |
 | `mteb` | yt:Q6TBHDgWCDQ |
-| `multi-head-attention` | yt:YmLp8qe87A0 · yt:114i2Kz-LZA |
+| `multi-head-attention` | yt:YmLp8qe87A0 · yt:114i2Kz-LZA · yt:s9w3gtgvNSU · yt:kCc8FmEb1nY |
 | `multi-query` | yt:BwgBU0CekFk · yt:1qQCuWiRIfA · yt:7WEtNxVh1vo |
 | `multilingual` | yt:H6q1UWCCnKw |
-| `multimodal` | yt:-f_i_a13IKc |
+| `multimodal` | yt:-f_i_a13IKc · yt:-gfgQfw2g_E |
 | `multimodal-embeddings` | yt:S7tFyREI19I |
 | `multivector` | yt:6iCmnd0k3fs · yt:8LPgGU34RoE · yt:xTzUn3G9YA0 |
 | `n-gram` | yt:hVM8qGRTaOA · yt:Q6TBHDgWCDQ |
 | `naive-bayes` | yt:5HQCNAsSO-s |
+| `nanogpt` | yt:kCc8FmEb1nY |
 | `natural-log` | yt:RPMYV-eb6lI |
 | `ndcg` | yt:fZH97QHHYjY · yt:XvKiTfd6Xvo |
 | `negation` | yt:H6q1UWCCnKw · yt:5HQCNAsSO-s · yt:NWb_4O3ssbA |
 | `neural-network` | yt:YmLp8qe87A0 · yt:-f_i_a13IKc |
-| `next-token` | yt:YIR-KxNpSbA · yt:izbifbq3-eI · yt:YmLp8qe87A0 · yt:-f_i_a13IKc · yt:YHNi88FaGug |
+| `next-token` | yt:YIR-KxNpSbA · yt:izbifbq3-eI · yt:YmLp8qe87A0 · yt:-f_i_a13IKc · yt:YHNi88FaGug · yt:s9w3gtgvNSU · yt:vKdKtxpfvIc · yt:kCc8FmEb1nY |
 | `nf4` | yt:4JofSJIrjwU |
 | `non-commercial-license` | yt:5YJGDElbCDY |
 | `normalization` | yt:xTaDx3tbYMs |
 | `nsw` | yt:wyWFLIlgmAw |
 | `numeracy-gap` | yt:H6q1UWCCnKw |
-| `numpy` | yt:bzNch-dBCN8 · yt:XvKiTfd6Xvo |
+| `numpy` | yt:bzNch-dBCN8 · yt:XvKiTfd6Xvo · yt:s9w3gtgvNSU · yt:vKdKtxpfvIc |
 | `offline-search` | yt:8LPgGU34RoE |
 | `ollama` | yt:4JofSJIrjwU |
-| `one-hot` | yt:hVM8qGRTaOA · yt:lPTcTh5sRug · yt:my5wFNQpFO0 · yt:Q6TBHDgWCDQ |
-| `openai-api` | yt:YHNi88FaGug |
+| `one-hot` | yt:hVM8qGRTaOA · yt:lPTcTh5sRug · yt:my5wFNQpFO0 · yt:Q6TBHDgWCDQ · yt:-gfgQfw2g_E |
+| `openai-api` | yt:YHNi88FaGug · yt:ySus5ZS0b94 |
 | `orthonormal` | yt:M1duqgg8-IM |
 | `outliers` | yt:NEreO2zlXDk |
 | `overfitting` | yt:4JofSJIrjwU |
 | `p5-js` | yt:RPMYV-eb6lI |
-| `parameter-count` | yt:8vW6gi5vRes |
-| `partial-derivatives` | yt:ruBm9WywevM |
-| `pca` | yt:hB51kkus-Rc |
+| `parameter-count` | yt:8vW6gi5vRes · yt:vKdKtxpfvIc · yt:-gfgQfw2g_E · yt:kCc8FmEb1nY |
+| `partial-derivatives` | yt:ruBm9WywevM · yt:K1ksiPHfgVs |
+| `pca` | yt:hB51kkus-Rc · yt:DbzN_gMh3Mw |
 | `per-field-weights` | yt:TW9vHU1GpU4 |
 | `percolation` | yt:bU38Ovdh3NY |
 | `plaid` | yt:aiNQ4I8YaD0 |
@@ -274,23 +285,23 @@
 | `pmi` | yt:TBUpxFw8oIA |
 | `polarity` | yt:5HQCNAsSO-s |
 | `polo-club` | yt:TFUc41G2ikY · yt:ECR4oAwocjs · yt:uboTKqPNU5Y · yt:nZYHazugVNA · yt:-jeck0yrT_Q |
-| `polysemy` | yt:izbifbq3-eI |
-| `positional-encoding` | yt:hVM8qGRTaOA · yt:YmLp8qe87A0 · yt:114i2Kz-LZA · yt:ECR4oAwocjs |
+| `polysemy` | yt:izbifbq3-eI · yt:DbzN_gMh3Mw |
+| `positional-encoding` | yt:hVM8qGRTaOA · yt:YmLp8qe87A0 · yt:114i2Kz-LZA · yt:ECR4oAwocjs · yt:s9w3gtgvNSU · yt:vKdKtxpfvIc · yt:-gfgQfw2g_E · yt:kCc8FmEb1nY |
 | `postgres` | yt:5YJGDElbCDY |
 | `ppmi` | yt:TBUpxFw8oIA |
 | `pre-tokenization` | yt:zduSFxRajkE |
-| `pretraining` | yt:-f_i_a13IKc |
+| `pretraining` | yt:-f_i_a13IKc · yt:vKdKtxpfvIc · yt:-gfgQfw2g_E · yt:kCc8FmEb1nY |
 | `prompting` | yt:-f_i_a13IKc · yt:YHNi88FaGug |
 | `pylate-rs` | yt:6iCmnd0k3fs |
-| `pytorch` | yt:tYO_bgB4Ti0 |
+| `pytorch` | yt:tYO_bgB4Ti0 · yt:kCc8FmEb1nY · yt:K1ksiPHfgVs |
 | `pyvespa` | yt:TW9vHU1GpU4 |
 | `qdrant` | yt:8LPgGU34RoE · yt:bU38Ovdh3NY |
 | `qdrant-edge` | yt:8LPgGU34RoE |
-| `qlora` | yt:4JofSJIrjwU |
-| `quantization` | yt:6iCmnd0k3fs · yt:aiNQ4I8YaD0 · yt:bU38Ovdh3NY · yt:4JofSJIrjwU |
+| `qlora` | yt:4JofSJIrjwU · yt:mmbkP8NARH4 |
+| `quantization` | yt:6iCmnd0k3fs · yt:aiNQ4I8YaD0 · yt:bU38Ovdh3NY · yt:4JofSJIrjwU · yt:mmbkP8NARH4 |
 | `query-by-sketch` | yt:nZYHazugVNA |
-| `query-folding` | yt:M1duqgg8-IM · yt:bzNch-dBCN8 |
-| `query-key-value` | yt:114i2Kz-LZA · yt:ECR4oAwocjs |
+| `query-folding` | yt:M1duqgg8-IM · yt:bzNch-dBCN8 · yt:DbzN_gMh3Mw |
+| `query-key-value` | yt:114i2Kz-LZA · yt:ECR4oAwocjs · yt:kCc8FmEb1nY |
 | `rag` | yt:6iCmnd0k3fs · yt:H6q1UWCCnKw · yt:xTzUn3G9YA0 · yt:wyWFLIlgmAw · yt:4JofSJIrjwU · yt:XvKiTfd6Xvo · yt:1qQCuWiRIfA · yt:7WEtNxVh1vo · yt:VWA15n6uiS4 |
 | `rag-fusion` | yt:BwgBU0CekFk |
 | `rag-vs-fine-tuning` | yt:4JofSJIrjwU |
@@ -300,13 +311,15 @@
 | `rank-fusion` | yt:BwgBU0CekFk · yt:1qQCuWiRIfA |
 | `rank-profile` | yt:TW9vHU1GpU4 |
 | `recall` | yt:aiNQ4I8YaD0 |
-| `reranking` | yt:8LPgGU34RoE · yt:H6q1UWCCnKw · yt:XvKiTfd6Xvo · yt:7WEtNxVh1vo · yt:VWA15n6uiS4 |
+| `reinforcement-learning` | yt:-gfgQfw2g_E |
+| `reranking` | yt:8LPgGU34RoE · yt:H6q1UWCCnKw · yt:XvKiTfd6Xvo · yt:7WEtNxVh1vo · yt:VWA15n6uiS4 · yt:DbzN_gMh3Mw |
 | `rescoring` | yt:bU38Ovdh3NY |
-| `residual` | yt:114i2Kz-LZA |
+| `residual` | yt:114i2Kz-LZA · yt:s9w3gtgvNSU · yt:kCc8FmEb1nY |
 | `retrieve-then-rerank` | yt:8LPgGU34RoE · yt:VWA15n6uiS4 |
-| `rlhf` | yt:YmLp8qe87A0 · yt:-f_i_a13IKc |
-| `rmsnorm` | yt:8vW6gi5vRes |
+| `rlhf` | yt:YmLp8qe87A0 · yt:-f_i_a13IKc · yt:kCc8FmEb1nY |
+| `rmsnorm` | yt:8vW6gi5vRes · yt:-gfgQfw2g_E |
 | `rnn` | yt:114i2Kz-LZA · yt:-f_i_a13IKc |
+| `rope` | yt:-gfgQfw2g_E |
 | `row-compression` | yt:5YJGDElbCDY · yt:8vW6gi5vRes · yt:XwYPRLMLcNs |
 | `rowmatrix` | yt:OXJdfpEFmF8 |
 | `rrf` | yt:XvKiTfd6Xvo · yt:BwgBU0CekFk · yt:1qQCuWiRIfA · yt:VWA15n6uiS4 |
@@ -316,42 +329,44 @@
 | `saturation` | yt:TW9vHU1GpU4 |
 | `scala` | yt:OXJdfpEFmF8 |
 | `scalar-multiplication` | yt:fNk_zzaMoSs |
-| `scaled-dot-product` | yt:114i2Kz-LZA |
+| `scaled-dot-product` | yt:114i2Kz-LZA · yt:s9w3gtgvNSU · yt:kCc8FmEb1nY |
 | `scifact` | yt:6iCmnd0k3fs |
-| `scikit-learn` | yt:78_sbNNJe3Q · yt:hB51kkus-Rc · yt:Fy0bF7u6W20 · yt:NWb_4O3ssbA · yt:YX4xRIQ84Z0 · yt:zLMEnNbdh4Q |
-| `self-attention` | yt:114i2Kz-LZA · yt:TFUc41G2ikY |
-| `sentencepiece` | yt:zduSFxRajkE |
+| `scikit-learn` | yt:78_sbNNJe3Q · yt:hB51kkus-Rc · yt:Fy0bF7u6W20 · yt:NWb_4O3ssbA · yt:YX4xRIQ84Z0 · yt:zLMEnNbdh4Q · yt:DbzN_gMh3Mw |
+| `self-attention` | yt:114i2Kz-LZA · yt:TFUc41G2ikY · yt:s9w3gtgvNSU · yt:-gfgQfw2g_E · yt:kCc8FmEb1nY |
+| `sentencepiece` | yt:zduSFxRajkE · yt:kCc8FmEb1nY |
 | `sentiment-analysis` | yt:5HQCNAsSO-s |
-| `sft` | arxiv:2609.34770 |
-| `shakespeare` | yt:TBUpxFw8oIA |
+| `sft` | arxiv:2609.34770 · yt:kCc8FmEb1nY |
+| `shakespeare` | yt:TBUpxFw8oIA · yt:vKdKtxpfvIc · yt:kCc8FmEb1nY |
 | `shap` | yt:Xym8FGDcl34 |
 | `sigir-2009` | yt:BwgBU0CekFk |
-| `sign-ambiguity` | yt:Fy0bF7u6W20 · yt:NWb_4O3ssbA · yt:YX4xRIQ84Z0 · yt:OXJdfpEFmF8 |
+| `sign-ambiguity` | yt:Fy0bF7u6W20 · yt:NWb_4O3ssbA · yt:YX4xRIQ84Z0 · yt:OXJdfpEFmF8 · yt:DbzN_gMh3Mw |
 | `similarity-metrics` | yt:NEreO2zlXDk · yt:e9U0QAFbfLI · yt:xTaDx3tbYMs |
 | `simulated-ui` | yt:XwYPRLMLcNs |
+| `singlestore` | yt:ySus5ZS0b94 |
 | `skip-gram` | yt:hVM8qGRTaOA · yt:my5wFNQpFO0 · yt:Q6TBHDgWCDQ · yt:YmLp8qe87A0 |
 | `skip-list` | yt:wyWFLIlgmAw |
 | `slp3` | yt:TBUpxFw8oIA |
 | `small-world` | yt:wyWFLIlgmAw |
-| `smooth-idf` | yt:YX4xRIQ84Z0 · yt:zLMEnNbdh4Q · yt:OymqCnh-APA |
+| `smooth-idf` | yt:YX4xRIQ84Z0 · yt:zLMEnNbdh4Q · yt:OymqCnh-APA · yt:DbzN_gMh3Mw |
 | `soft-intersection` | yt:-jeck0yrT_Q |
-| `softmax` | yt:YIR-KxNpSbA · yt:my5wFNQpFO0 · yt:YmLp8qe87A0 · yt:YHNi88FaGug · yt:TFUc41G2ikY |
+| `softmax` | yt:YIR-KxNpSbA · yt:my5wFNQpFO0 · yt:YmLp8qe87A0 · yt:YHNi88FaGug · yt:TFUc41G2ikY · yt:s9w3gtgvNSU · yt:kCc8FmEb1nY · yt:K1ksiPHfgVs |
 | `spam` | yt:tYO_bgB4Ti0 |
 | `spambase` | yt:tYO_bgB4Ti0 |
 | `spark-mllib` | yt:OXJdfpEFmF8 |
-| `special-tokens` | yt:zduSFxRajkE |
+| `sparse-attention` | yt:-gfgQfw2g_E |
+| `special-tokens` | yt:zduSFxRajkE · yt:mmbkP8NARH4 |
 | `stanford` | yt:114i2Kz-LZA |
 | `static-embeddings` | yt:Q6TBHDgWCDQ |
-| `stop-words` | yt:NWb_4O3ssbA · yt:OymqCnh-APA · yt:RPMYV-eb6lI |
+| `stop-words` | yt:NWb_4O3ssbA · yt:OymqCnh-APA · yt:RPMYV-eb6lI · yt:DbzN_gMh3Mw |
 | `stopwordsremover` | yt:OXJdfpEFmF8 |
 | `storytelling` | yt:-f_i_a13IKc |
 | `streaming` | yt:YHNi88FaGug |
 | `structural-causal-model` | yt:78_sbNNJe3Q |
 | `structured-output` | yt:YHNi88FaGug |
 | `subword` | yt:BcxJk4WQVIw |
-| `svd` | yt:hB51kkus-Rc · yt:M1duqgg8-IM · yt:bzNch-dBCN8 |
+| `svd` | yt:hB51kkus-Rc · yt:M1duqgg8-IM · yt:bzNch-dBCN8 · yt:DbzN_gMh3Mw |
 | `svm` | yt:5HQCNAsSO-s |
-| `synthetic-data` | yt:4JofSJIrjwU · yt:5YJGDElbCDY · yt:78_sbNNJe3Q · arxiv:2609.34770 |
+| `synthetic-data` | yt:4JofSJIrjwU · yt:5YJGDElbCDY · yt:78_sbNNJe3Q · arxiv:2609.34770 · yt:mmbkP8NARH4 |
 | `synthetic-eval-set` | yt:XvKiTfd6Xvo |
 | `synthetic-prior` | yt:Xym8FGDcl34 |
 | `system-prompt` | yt:YHNi88FaGug |
@@ -363,60 +378,61 @@
 | `tabpfn` | yt:78_sbNNJe3Q · yt:Xym8FGDcl34 |
 | `tabular-foundation-model` | yt:5YJGDElbCDY · yt:8vW6gi5vRes · yt:XwYPRLMLcNs · yt:78_sbNNJe3Q · yt:tYO_bgB4Ti0 · yt:Xym8FGDcl34 |
 | `target-leakage` | yt:5YJGDElbCDY |
-| `temperature` | yt:YIR-KxNpSbA · yt:YmLp8qe87A0 · yt:YHNi88FaGug · yt:TFUc41G2ikY · yt:ECR4oAwocjs |
+| `temperature` | yt:YIR-KxNpSbA · yt:YmLp8qe87A0 · yt:YHNi88FaGug · yt:TFUc41G2ikY · yt:ECR4oAwocjs · yt:s9w3gtgvNSU · yt:kCc8FmEb1nY |
 | `term-document-matrix` | yt:bzNch-dBCN8 · yt:TBUpxFw8oIA |
 | `term-frequency` | yt:zLMEnNbdh4Q · yt:OymqCnh-APA · yt:TBUpxFw8oIA |
 | `term-frequency-saturation` | yt:ruBm9WywevM |
-| `text-embedding-3-small` | yt:XvKiTfd6Xvo |
-| `tf-idf` | yt:Q6TBHDgWCDQ · yt:YX4xRIQ84Z0 · yt:bzNch-dBCN8 · yt:zLMEnNbdh4Q · yt:OymqCnh-APA · yt:TBUpxFw8oIA · yt:RPMYV-eb6lI · yt:ruBm9WywevM · yt:7WEtNxVh1vo |
-| `tf-idf-variants` | yt:OymqCnh-APA |
-| `tfidfvectorizer` | yt:YX4xRIQ84Z0 |
-| `thai` | yt:RPMYV-eb6lI · yt:-f_i_a13IKc · arxiv:2609.34770 |
+| `text-embedding-3-small` | yt:XvKiTfd6Xvo · yt:ySus5ZS0b94 |
+| `tf-idf` | yt:Q6TBHDgWCDQ · yt:YX4xRIQ84Z0 · yt:bzNch-dBCN8 · yt:zLMEnNbdh4Q · yt:OymqCnh-APA · yt:TBUpxFw8oIA · yt:RPMYV-eb6lI · yt:ruBm9WywevM · yt:7WEtNxVh1vo · yt:DbzN_gMh3Mw |
+| `tf-idf-variants` | yt:OymqCnh-APA · yt:DbzN_gMh3Mw |
+| `tfidfvectorizer` | yt:YX4xRIQ84Z0 · yt:DbzN_gMh3Mw |
+| `thai` | yt:RPMYV-eb6lI · yt:-f_i_a13IKc · arxiv:2609.34770 · yt:-gfgQfw2g_E |
 | `thesaurus` | yt:M1duqgg8-IM |
 | `tie-break` | yt:1qQCuWiRIfA |
-| `tiktoken` | yt:zduSFxRajkE · yt:YHNi88FaGug |
+| `tiktoken` | yt:zduSFxRajkE · yt:YHNi88FaGug · yt:kCc8FmEb1nY |
 | `titanic` | yt:78_sbNNJe3Q |
 | `token-efficiency` | yt:zduSFxRajkE |
 | `token-id` | yt:YIR-KxNpSbA · yt:hVM8qGRTaOA · yt:lPTcTh5sRug · yt:izbifbq3-eI |
 | `token-vs-embedding` | yt:izbifbq3-eI |
-| `tokenization` | yt:BcxJk4WQVIw · yt:YIR-KxNpSbA · yt:zduSFxRajkE · yt:izbifbq3-eI · yt:YmLp8qe87A0 · yt:114i2Kz-LZA · yt:YHNi88FaGug |
-| `tokens` | yt:izbifbq3-eI · yt:YHNi88FaGug |
+| `tokenization` | yt:BcxJk4WQVIw · yt:YIR-KxNpSbA · yt:zduSFxRajkE · yt:izbifbq3-eI · yt:YmLp8qe87A0 · yt:114i2Kz-LZA · yt:YHNi88FaGug · yt:vKdKtxpfvIc · yt:kCc8FmEb1nY |
+| `tokens` | yt:izbifbq3-eI · yt:YHNi88FaGug · yt:ySus5ZS0b94 |
 | `tool-calling` | yt:YmLp8qe87A0 · yt:YHNi88FaGug |
-| `top-k` | yt:TFUc41G2ikY |
+| `top-k` | yt:TFUc41G2ikY · yt:-gfgQfw2g_E |
 | `top-n` | yt:VWA15n6uiS4 |
 | `top-p` | yt:YmLp8qe87A0 · yt:TFUc41G2ikY |
 | `topic-encoded-data` | yt:Fy0bF7u6W20 |
 | `topic-loadings` | yt:NWb_4O3ssbA · yt:YX4xRIQ84Z0 |
 | `topic-words` | yt:hB51kkus-Rc · yt:NWb_4O3ssbA · yt:OXJdfpEFmF8 |
-| `toy-example` | yt:hB51kkus-Rc · yt:Fy0bF7u6W20 · yt:zLMEnNbdh4Q |
+| `toy-example` | yt:hB51kkus-Rc · yt:Fy0bF7u6W20 · yt:zLMEnNbdh4Q · yt:DbzN_gMh3Mw · yt:K1ksiPHfgVs |
 | `training-embeddings` | yt:1Qex37vowTM · yt:YIR-KxNpSbA · yt:lPTcTh5sRug · yt:my5wFNQpFO0 |
-| `training-loss` | yt:4JofSJIrjwU |
-| `transformer` | yt:YmLp8qe87A0 · yt:114i2Kz-LZA · yt:-f_i_a13IKc · yt:TFUc41G2ikY · yt:ECR4oAwocjs |
+| `training-loss` | yt:4JofSJIrjwU · yt:vKdKtxpfvIc · yt:K1ksiPHfgVs |
+| `transformer` | yt:YmLp8qe87A0 · yt:114i2Kz-LZA · yt:-f_i_a13IKc · yt:TFUc41G2ikY · yt:ECR4oAwocjs · yt:s9w3gtgvNSU · yt:vKdKtxpfvIc · yt:-gfgQfw2g_E · yt:kCc8FmEb1nY |
 | `transformer-explainer` | yt:TFUc41G2ikY · yt:ECR4oAwocjs |
-| `truncated-svd` | yt:hB51kkus-Rc · yt:Fy0bF7u6W20 · yt:NWb_4O3ssbA · yt:YX4xRIQ84Z0 · yt:M1duqgg8-IM |
+| `truncated-svd` | yt:hB51kkus-Rc · yt:Fy0bF7u6W20 · yt:NWb_4O3ssbA · yt:YX4xRIQ84Z0 · yt:M1duqgg8-IM · yt:DbzN_gMh3Mw |
 | `two-stage-retrieval` | yt:VWA15n6uiS4 |
 | `typhoon` | yt:-f_i_a13IKc |
 | `uncentered` | yt:Fy0bF7u6W20 |
-| `unsloth` | yt:4JofSJIrjwU |
-| `unsloth-studio` | yt:4JofSJIrjwU |
-| `utf-8` | yt:zduSFxRajkE |
+| `unsloth` | yt:4JofSJIrjwU · yt:mmbkP8NARH4 |
+| `unsloth-studio` | yt:4JofSJIrjwU · yt:mmbkP8NARH4 |
+| `utf-8` | yt:zduSFxRajkE · yt:-gfgQfw2g_E |
 | `vector-addition` | yt:fNk_zzaMoSs |
 | `vector-basics` | yt:fNk_zzaMoSs · yt:izbifbq3-eI |
-| `vector-database` | yt:YIR-KxNpSbA · yt:YLkSfz3EFGw · yt:bU38Ovdh3NY |
+| `vector-database` | yt:YIR-KxNpSbA · yt:YLkSfz3EFGw · yt:bU38Ovdh3NY · yt:ySus5ZS0b94 |
 | `vector-search` | yt:Lc4dzmSFb14 · yt:c10w0Ptn_CU · yt:wyWFLIlgmAw · yt:7WEtNxVh1vo |
 | `vector-semantics` | yt:TBUpxFw8oIA |
 | `vespa` | yt:TW9vHU1GpU4 |
 | `visual-analytics` | yt:nZYHazugVNA · yt:-jeck0yrT_Q |
 | `visualization` | yt:TFUc41G2ikY · yt:ECR4oAwocjs · yt:uboTKqPNU5Y · yt:nZYHazugVNA · yt:-jeck0yrT_Q |
-| `vocab-size` | yt:zduSFxRajkE · arxiv:2609.34770 |
+| `vocab-size` | yt:zduSFxRajkE · arxiv:2609.34770 · yt:vKdKtxpfvIc · yt:-gfgQfw2g_E |
 | `vocabulary` | yt:BcxJk4WQVIw · yt:lPTcTh5sRug · yt:zduSFxRajkE |
-| `vram` | yt:4JofSJIrjwU |
+| `vram` | yt:4JofSJIrjwU · yt:mmbkP8NARH4 |
 | `webgpu` | yt:6iCmnd0k3fs |
+| `weight-tying` | yt:s9w3gtgvNSU · yt:vKdKtxpfvIc · yt:-gfgQfw2g_E |
 | `weighted-rrf` | yt:1qQCuWiRIfA · yt:7WEtNxVh1vo |
 | `word-counts` | yt:e9U0QAFbfLI |
 | `word-embeddings` | yt:hVM8qGRTaOA · yt:Q6TBHDgWCDQ |
 | `word2vec` | yt:1Qex37vowTM · yt:hVM8qGRTaOA · yt:my5wFNQpFO0 · yt:Q6TBHDgWCDQ · yt:YmLp8qe87A0 · yt:114i2Kz-LZA |
-| `worked-example` | yt:1qQCuWiRIfA |
+| `worked-example` | yt:1qQCuWiRIfA · yt:s9w3gtgvNSU · yt:vKdKtxpfvIc · yt:K1ksiPHfgVs |
 | `xgboost` | yt:XwYPRLMLcNs |
 | `xor` | yt:YmLp8qe87A0 |
 | `zero-shot` | yt:5YJGDElbCDY · yt:XwYPRLMLcNs · yt:78_sbNNJe3Q · yt:YHNi88FaGug |
@@ -425,6 +441,22 @@
 
 | ref | แหล่ง | เผยแพร่ / อ่าน | ใช้ในบท | รายงาน |
 |---|---|---|---|---|
+| yt:42y3XeOnH78 | Visual AI, "Why Transformers Need Positional Encoding \| Sin & Cos Explained Visually" (27:24) <https://www.youtube.com/watch?v=42y3XeOnH78> | 2026-05-17 / 2026-10-26 | ยังไม่ใช้ (เสนอ: 10.3 — owner decision needed) | [HTML](docs/outhtm/20260517_Why-Transformers-Need-Positional-Encoding-Sin-And-Cos-Explained-Visually.html) · [MD](docs/aimd/20260517_Why-Transformers-Need-Positional-Encoding-Sin-And-Cos-Explained-Visually_claude.md) |
+| yt:HmWQhBjbtLE | Visual AI, "Why LLMs Waste 99% of Compute — And How KV Cache Fixes It" (11:39) <https://www.youtube.com/watch?v=HmWQhBjbtLE> | 2026-06-21 / 2026-10-26 | ยังไม่ใช้ (เสนอ: 10.2, 10.4 — owner decision needed) | [HTML](docs/outhtm/20260621_Why-LLMs-Waste-99-Percent-Of-Compute-And-How-KV-Cache-Fixes-It.html) · [MD](docs/aimd/20260621_Why-LLMs-Waste-99-Percent-Of-Compute-And-How-KV-Cache-Fixes-It_claude.md) |
+| yt:7fc4TfLmvsg | Weaviate vector database, "ANN Algorithms in a nutshell" (YouTube Shorts, 1:00) <https://www.youtube.com/shorts/7fc4TfLmvsg> | 2024-10-23 / 2026-10-25 | ยังไม่ใช้ (เสนอ: 6.1, 7.1, 7.3 — owner decision needed) | [HTML](docs/outhtm/20241023_ANN-Algorithms-In-A-Nutshell.html) · [MD](docs/aimd/20241023_ANN-Algorithms-In-A-Nutshell_claude.md) |
+| yt:qeWzgLGSkls | Google Cloud Tech, "How Knowledge Catalog's self-learning enrichment grounds enterprise AI agents" (4:55) <https://www.youtube.com/watch?v=qeWzgLGSkls> | 2026-10-22 / 2026-10-24 | ยังไม่ใช้ (เสนอ: OPEN — owner decision needed) | [HTML](docs/outhtm/20261022_How-Knowledge-Catalogs-Self-Learning-Enrichment-Grounds-Enterprise-AI-Agents.html) · [MD](docs/aimd/20261022_How-Knowledge-Catalogs-Self-Learning-Enrichment-Grounds-Enterprise-AI-Agents_claude.md) |
+| yt:a7TOameRqoY | Codeically, "I Made The Smallest (And Dumbest) LLM" (5:51) <https://www.youtube.com/watch?v=a7TOameRqoY> | 2025-09-04 / 2026-10-24 | ยังไม่ใช้ (เสนอ: OPEN — owner decision needed) | [HTML](docs/outhtm/20250904_I-Made-The-Smallest-And-Dumbest-LLM.html) · [MD](docs/aimd/20250904_I-Made-The-Smallest-And-Dumbest-LLM_claude.md) |
+| yt:3FbJOKhLv9M | Diffbot, "Why vector search is not enough and we need BM25" (8:14) <https://www.youtube.com/watch?v=3FbJOKhLv9M> | 2024-09-26 / 2026-10-24 | ยังไม่ใช้ (เสนอ: OPEN — owner decision needed) | [HTML](docs/outhtm/20240926_Why-Vector-Search-Is-Not-Enough-And-We-Need-BM25.html) · [MD](docs/aimd/20240926_Why-Vector-Search-Is-Not-Enough-And-We-Need-BM25_claude.md) |
+| yt:Zub3YvvUoR4 | Visual AI, "How Does the Transformer Encoder Actually Work? Complete Visual Breakdown" (29:38) <https://www.youtube.com/watch?v=Zub3YvvUoR4> | 2026-05-25 / 2026-10-24 | ยังไม่ใช้ (เสนอ: OPEN — owner decision needed) | [HTML](docs/outhtm/20260525_How-Does-The-Transformer-Encoder-Actually-Work.html) · [MD](docs/aimd/20260525_How-Does-The-Transformer-Encoder-Actually-Work_claude.md) |
+| arxiv:2604.02029 | Xinlei Yu et al. (39 คน), "The Latent Space: Foundation, Evolution, Mechanism, Ability, and Outlook" (survey) <https://arxiv.org/abs/2604.02029v2> | 2026-04-02 (v2 2026-06-05) / 2026-10-24 | ยังไม่ใช้ (เสนอ: OPEN — owner decision needed) | [HTML](docs/outhtm/20260402_The-Latent-Space-Foundation-Evolution-Mechanism-Ability-And-Outlook.html) · [MD](docs/aimd/20260402_The-Latent-Space-Foundation-Evolution-Mechanism-Ability-And-Outlook_claude.md) |
+| yt:K1ksiPHfgVs | Zachary Huang, "Give me 31 minutes, I will make PyTorch click forever" (31:55) <https://www.youtube.com/watch?v=K1ksiPHfgVs> | 2026-10-13 / 2026-10-19 | ยังไม่ใช้ (เสนอ: OPEN — owner decision needed) | [HTML](docs/outhtm/20261013_Give-Me-31-Minutes-I-Will-Make-PyTorch-Click-Forever.html) · [MD](docs/aimd/20261013_Give-Me-31-Minutes-I-Will-Make-PyTorch-Click-Forever_claude.md) |
+| yt:mmbkP8NARH4 | NVIDIA Developer, "Get Started with Unsloth Studio: Generate Data & Fine-Tune LLMs Locally on any NVIDIA GPU" (8:18) <https://www.youtube.com/watch?v=mmbkP8NARH4> | 2026-03-17 / 2026-10-19 | ยังไม่ใช้ (เสนอ: OPEN — owner decision needed) | [HTML](docs/outhtm/20260317_Get-Started-With-Unsloth-Studio-Generate-Data-And-Fine-Tune-LLMs-Locally-On-Any-NVIDIA-GPU.html) · [MD](docs/aimd/20260317_Get-Started-With-Unsloth-Studio-Generate-Data-And-Fine-Tune-LLMs-Locally-On-Any-NVIDIA-GPU_claude.md) |
+| yt:kCc8FmEb1nY | Andrej Karpathy, "Let's build GPT: from scratch, in code, spelled out." (1:56:20) <https://www.youtube.com/watch?v=kCc8FmEb1nY> | 2023-01-17 / 2026-10-19 | ยังไม่ใช้ (เสนอ: OPEN — owner decision needed) | [HTML](docs/outhtm/20230117_Lets-Build-GPT-From-Scratch-In-Code-Spelled-Out.html) · [MD](docs/aimd/20230117_Lets-Build-GPT-From-Scratch-In-Code-Spelled-Out_claude.md) |
+| yt:-gfgQfw2g_E | freeCodeCamp.org (Vuk Rosić), "Build & Train a GLM-5.3-Flash Model From Scratch with Python" (44:26) <https://www.youtube.com/watch?v=-gfgQfw2g_E> | 2026-10-06 / 2026-10-19 | ยังไม่ใช้ (เสนอ: OPEN — owner decision needed) | [HTML](docs/outhtm/20261006_Build-And-Train-GLM-5-3-Flash-From-Scratch.html) · [MD](docs/aimd/20261006_Build-And-Train-GLM-5-3-Flash-From-Scratch_claude.md) |
+| yt:vKdKtxpfvIc | Green Code, "I Trained an LLM from Scratch" (14:07) <https://www.youtube.com/watch?v=vKdKtxpfvIc> | 2026-10-05 / 2026-10-19 | ยังไม่ใช้ (เสนอ: OPEN — owner decision needed) | [HTML](docs/outhtm/20261005_I-Trained-An-LLM-From-Scratch.html) · [MD](docs/aimd/20261005_I-Trained-An-LLM-From-Scratch_claude.md) |
+| yt:s9w3gtgvNSU | Green Code, "I Built an LLM from Scratch" (13:36) <https://www.youtube.com/watch?v=s9w3gtgvNSU> | 2026-09-11 / 2026-10-19 | ยังไม่ใช้ (เสนอ: OPEN — owner decision needed) | [HTML](docs/outhtm/20260911_I-Built-An-LLM-From-Scratch.html) · [MD](docs/aimd/20260911_I-Built-An-LLM-From-Scratch_claude.md) |
+| yt:DbzN_gMh3Mw | Back (Tania), "Latent Semantic Analysis - Back Talks" (42:08) <https://www.youtube.com/watch?v=DbzN_gMh3Mw> | 2021-02-17 / 2026-10-19 | ยังไม่ใช้ (เสนอ: OPEN — owner decision needed) | [HTML](docs/outhtm/20210217_Latent-Semantic-Analysis-Back-Talks.html) · [MD](docs/aimd/20210217_Latent-Semantic-Analysis-Back-Talks_claude.md) |
+| yt:ySus5ZS0b94 | Adrian Twarog, "OpenAI Embeddings and Vector Databases Crash Course" (18:41) <https://www.youtube.com/watch?v=ySus5ZS0b94> | 2023-06-30 / 2026-10-19 | ยังไม่ใช้ (เสนอ: OPEN — owner decision needed) | [HTML](docs/outhtm/20230630_OpenAI-Embeddings-And-Vector-Databases-Crash-Course.html) · [MD](docs/aimd/20230630_OpenAI-Embeddings-And-Vector-Databases-Crash-Course_claude.md) |
 | yt:-jeck0yrT_Q | Polo Club of Data Science @ Georgia Tech, "VIGOR: Interactive Visual Exploration of Graph Query Results" (3:50) <https://www.youtube.com/watch?v=-jeck0yrT_Q> | 2017-08-09 / 2026-10-13 | ยังไม่ใช้ (เสนอ: 10.2, 4.5; แผน visualizer) | [HTML](docs/outhtm/20170809_Vigor-Graph-Query-Results.html) · [MD](docs/aimd/20170809_Vigor-Graph-Query-Results_claude.md) |
 | yt:nZYHazugVNA | Duen Horng "Polo" Chau, "GRAPHITE: A Visual Query System for Large Graphs" (3:10) <https://www.youtube.com/watch?v=nZYHazugVNA> | 2009-03-22 / 2026-10-13 | ยังไม่ใช้ (เสนอ: 7.1–7.4 ภาพ query / result สองหน้าต่าง; 10.4 เลือก head ด้วยแท็บจัดอันดับ) | [HTML](docs/outhtm/20090322_Graphite-Visual-Query-System.html) · [MD](docs/aimd/20090322_Graphite-Visual-Query-System_claude.md) |
 | yt:uboTKqPNU5Y | Polo Club of Data Science @ Georgia Tech, "Dodrio: Exploring Transformer Models with Interactive Visualization (Demo Video)" (1:59) <https://www.youtube.com/watch?v=uboTKqPNU5Y> | 2022-11-05 / 2026-10-13 | ยังไม่ใช้ (เสนอ: 10.2, 10.4) | [HTML](docs/outhtm/20221105_Dodrio-Demo.html) · [MD](docs/aimd/20221105_Dodrio-Demo_claude.md) |
@@ -1724,6 +1756,168 @@ tags: `visualization` `visual-analytics` `graph-query` `linked-views` `exemplar-
 **แก้จากต้นฉบับ:** ตัวนับ "Fusion Graph (211 Nodes ...)" ไม่เปลี่ยนเมื่อกรองด้วย Exemplar (Embedded Results เปลี่ยนเป็น 17 ผลลัพธ์) และเป็น 23 Nodes เฉพาะขั้น soft-intersection โดยคลิปไม่บอกสาเหตุ · การที่กราฟหดเมื่อเลือกกลุ่มเป็นการอนุมานจากภาพ ไม่มี caption ยืนยัน · ว่าปุ่มฟันเฟืองสลับชุดควบคุมเป็นการอนุมาน (ภาพไม่เห็นการกด) · "4 VAST 2014 Mini Challenges" (3:03) คลิปไม่อธิบาย · ตัวเลข 11,000 เหตุการณ์ของ Symantec และผลการทดลองเทียบฐานข้อมูลกราฟมาจากคำอธิบายคลิป ไม่ได้พูดในคลิป และไม่มีตัวเลขผลทดลอง
 
 **เราคำนวณหรือเพิ่มเอง:** ข้อความ Cypher ที่อ่านจากจอ (ฉบับแก้แล้วหลังการตรวจ) · ตารางตัวนับตามเวลา · คำอธิบายแผงเปรียบเทียบสองกลุ่ม (2:37; แกนแท่งเปลี่ยนจาก 0–8 เป็น 0–22 อันดับเปลี่ยน) · ผัง flow ของขั้นตอนการโต้ตอบ (SVG ของผู้จัดทำ) · ไม่มีสมการ
+
+## yt:ySus5ZS0b94 — Adrian Twarog, OpenAI Embeddings and Vector Databases Crash Course
+
+tags: `embeddings` `vector-database` `openai-api` `text-embedding-3-small` `embedding-dimensions` `dot-product` `cosine` `l2-normalization` `brute-force` `knn` `tokens` `chunking` `javascript` `singlestore` `fact-checked`  
+ใช้ในบท: ยังไม่ใช้
+
+**โหมดรายงาน:** iwd (ลึก วิเคราะห์) เรียบเรียงใหม่ด้วยคำของผู้จัดทำ ครบทุกประเด็นและตัวเลข 12 ส่วน (license มาตรฐานของ YouTube; คำบรรยายอังกฤษอัตโนมัติ; ตัดช่วงสปอนเซอร์ Postman โฆษณาหนังสือของผู้สอน และลิงก์ affiliate / Patreon ในคำอธิบายคลิป; API key บนจอปิดเป็น `sk-…`; โค้ดจากจอ 7 ชุดเทียบภาพทีละบรรทัด) · ภาพจากคลิป 9 ภาพ + SVG วาดเอง 14 ภาพ · สมการแสดงเป็น MathML 2 บล็อก ·
+ตรวจข้อเท็จจริง 19 ข้อด้วยการค้นเว็บ (ยืนยัน 11 · บางส่วน 7 · ไม่พบ 0 · ขัดแย้ง 1) · สร้างโดย Opus (intelligence-writer v6.5b) · ผู้ตรวจอิสระ (Opus): รอบแรก FAIL (0 ต้องแก้ 3 ควรแก้ 10 nit) แก้ครบ ตรวจรอบสุดท้าย OK (nit 1 ข้อใน `_claude.md` แก้แล้ว) · ไม่ได้เก็บ transcript ไว้ใน repo
+
+**เสนอให้ใช้ (ยังไม่ได้แก้บท)**
+
+- ภาพ dog / puppy บนระนาบ 2 มิติ (~0:53) เป็นภาพเปิดเรื่องเวกเตอร์ที่ใช้แยก "จุด" กับ "ลูกศรจากจุดกำเนิด" ได้ทันที (ตำแหน่งที่ผู้จัดทำอ่านจากภาพอยู่ใน `_claude.md`)
+- ตัวอย่าง dot product / cosine ที่ตรวจแล้ว (ผู้จัดทำคำนวณจากตัวเลข 5 ตัวบนจอ ~0:58): dog·puppy = 1.305, ‖dog‖ = 1.1446, ‖puppy‖ = 1.3964, cos θ = 0.8165 (θ ≈ 35.3°) และเหตุผลที่คลิปใช้ `DOT_PRODUCT` อย่างเดียวได้: embedding ของ OpenAI ยาว 1 ตัวหารจึงเป็น 1; แบบฝึก "normalize แล้ว dot = cos" และภาพค่า -248.6 เป็นข้อ "หาจุดผิด"
+- คะแนนของ embedding จริงถูกบีบ: แถวที่ไม่เกี่ยวยังได้ราว 0.70 ทั้งสองคำค้น ขณะที่อันดับหนึ่งได้ 0.840 และ 0.897 จึงควรสอนให้เรียงอันดับ ไม่ตั้งเกณฑ์ตายตัวที่ 0.5
+- เรื่อง token: "Hello World" = 2 token, `cl100k_base`, ขีดจำกัด 8191 / 8,192 token และราว 4 ตัวอักษรต่อ token ซึ่งใช้ได้กับภาษาอังกฤษเท่านั้น เทียบกับข้อความไทยที่ใช้ token มากกว่ามาก; ข้อความยาวแค่ไหนก็ได้เวกเตอร์ 1536 ตัวเท่ากัน
+- คำสั่ง SQL ในคลิปคือ k-NN แบบ brute force (ให้คะแนนทุกแถว เรียง เอา 5 อันดับ) ทำซ้ำใน JS ล้วนได้ พร้อมกฎ "คำค้นกับข้อมูลต้องใช้โมเดลเดียวกัน" และใช้เป็นสะพานไป ANN / HNSW (ตารางใหญ่ใช้ชนิด `VECTOR` กับดัชนี ANN ที่ SingleStore มีตั้งแต่ต้นปี 2024)
+- แผน PDF ท้ายคลิป (อ่าน → แบ่งย่อหน้า → เก็บ → ค้น) ไม่ได้บอกขนาดก้อนหรือการซ้อนก้อน เป็นไอเดียหัวข้อ chunking ก่อนเรื่อง reranker; โค้ดตัวอย่างของเราควรคืนค่า embedding, อ่าน key จาก environment variable, เช็ก `!response.ok` และส่ง input เป็น array
+
+**แก้จากต้นฉบับ:** HTTP ไม่มีเมธอด PUSH ("get post push" ที่ 4:00 น่าจะหมายถึง PUT หรือระบบถอดเสียงฟังผิด) · "หลายร้อยมิติ" จริงคือ 1536 ซึ่งเห็นบนจอเอง · ภาพประกอบทั่วไปมีค่า -248.6 ซึ่งเกิดกับ embedding ยาว 1 ของ OpenAI ไม่ได้ · `return data` อยู่ใน callback ของ `.then` ฟังก์ชัน `createEmbedding` จึงคืน `Promise<void>` (VS Code บนจอแสดงเอง) ที่ถูกคือ `return await response.json()` · ถูกในปี 2023 แต่ล้าสมัยแล้ว: OpenAI มี `vector_store` สำหรับไฟล์ตั้งแต่ 2024-04-17, text-embedding-3-small ถูกกว่า ada-002 ห้าเท่าตั้งแต่ 2024-01-25, SingleStore มีชนิด `VECTOR` และดัชนี ANN ตั้งแต่ 2024-01-19, แผน Free ของ Postman ใช้คนเดียวและสร้าง team ไม่ได้ตั้งแต่มีนาคม 2026 · ขีดจำกัดบนจอ 8191 ส่วน reference ปัจจุบัน 8,192 token ต่อ input · "ฟรีและฐานข้อมูลไม่จำกัด" ของ SingleStore ไม่พบหลักฐาน · เรื่อง Google ค้นภาพคล้ายด้วยวิธีนี้ไม่พบหน้าทางการ · ASR "barrier token" = bearer token, "dot underscore product" = `DOT_PRODUCT`, "Json underscore array underscore pack" = `JSON_ARRAY_PACK`, "as a rose" = as rows
+
+**เราคำนวณหรือเพิ่มเอง:** dot, ความยาว, cos และมุมของ dog กับ puppy (1.305; 1.1446 / 1.3964; 0.8165; 35.27°) จากตัวเลข 5 ตัวบนจอ · 1536 × 4 ไบต์ = 6,144 ไบต์ต่อแถวแบบ float32 · 8191 × 4 = 32,764 ตัวอักษร (เครื่องคิดเลขบนจอ) และ 30,000 / 3,000 = 10 หน้า (คำนวณซ้ำ) · กล่องผู้จัดทำ: ข้อที่คลิปไม่ได้บอกตอน INSERT, ข้อที่ต้องรู้ก่อนใช้จริง (โมเดลเดียวกัน, ย่อด้วย `dimensions` แล้วต้องทำให้ยาว 1 ใหม่, brute force กับ ANN), ตัวอย่างสัญญา PDF ที่ผู้จัดทำยกเอง · สมการ dot product และ cosine 2 บล็อก · ผัง flow ระนาบ heatmap และกราฟแท่ง (SVG ของผู้จัดทำ 14 ภาพ)
+
+## yt:DbzN_gMh3Mw — Back (Tania), Latent Semantic Analysis | Back Talks
+
+tags: `lsa` `lsi` `svd` `truncated-svd` `pca` `bag-of-words` `tf-idf` `tf-idf-variants` `smooth-idf` `l2-normalization` `countvectorizer` `tfidfvectorizer` `scikit-learn` `stop-words` `document-term-matrix` `dimensionality-reduction` `latent-space` `cosine` `deerwester-1990` `query-folding` `polysemy` `sign-ambiguity` `reranking` `toy-example` `fact-checked`  
+ใช้ในบท: ยังไม่ใช้
+
+**โหมดรายงาน:** iwd (ลึก วิเคราะห์) เรียบเรียงใหม่ด้วยคำของผู้จัดทำ ครบทุกประเด็นและตัวเลข 16 ส่วน (license มาตรฐานของ YouTube; คำบรรยายอังกฤษอัตโนมัติ; ทอล์กภายในบริษัท Back ผู้พูดคือ Tania; ตัดข้อความชวนสมัครงานในคำอธิบายคลิปและช่วงกล่าวลา; ตัวเลขบนสไลด์ทุกตัวคำนวณซ้ำด้วย scikit-learn 1.9.1) · ภาพจากคลิป 8 ภาพ + SVG วาดเอง 16 ภาพ + canvas ลากเวกเตอร์ 1 ชิ้น · สมการแสดงเป็น MathML 9 บล็อก ·
+ตรวจข้อเท็จจริง 20 ข้อด้วยการค้นเว็บ (ยืนยัน 14 · บางส่วน 4 · ไม่พบ 1 · ขัดแย้ง 1; รอบแรกของผู้ตรวจแยกไม่มีภาพ ผู้จัดทำปรับข้อ 6, 9, 14 จากภาพสไลด์และการคำนวณซ้ำ) · สร้างโดย Opus (intelligence-writer v6.5b) · ผู้ตรวจอิสระ (Opus): รอบแรก FAIL (2 ต้องแก้ 2 ควรแก้ 10 nit) แก้แล้ว รอบสอง PASS (9 nit) ตรวจรอบสุดท้าย OK (nit 5 ข้อ) · ไม่ได้เก็บ transcript ไว้ใน repo
+
+**เสนอให้ใช้ (ยังไม่ได้แก้บท)**
+
+- คลัง 4 เอกสาร 9 คำ (fox / dog) เป็นตัวอย่าง bag of words ที่ตรวจด้วยมือได้ครบ: พจนานุกรม ตาราง 4 × 9 และป้ายแถวที่พิมพ์ผิดบนสไลด์เป็นข้อ "หาจุดผิด"; ค่าเริ่มต้นของ `CountVectorizer` (ตัวพิมพ์เล็ก เรียงคอลัมน์ตามตัวอักษร token 2 ตัวอักษรขึ้นไป ไม่ตัดคำหยุด) เป็นกล่องข้อควรระวัง; คำถามของผู้ฟังเรื่อง "คำคืออะไร" (12:58) ต่อกับเรื่อง token ได้
+- สองสไลด์ใช้ TF / IDF คนละนิยาม (สัดส่วนกับจำนวนดิบ; log_e(N/df) กับแบบ +1) เป็นหัวข้อ "ทำไมเลขของเราไม่ตรงกับไลบรารี"; ตัวอย่างท้องฟ้าสีฟ้าแสดงว่า L2 normalization อย่างเดียวให้ 0.707107
+- latent space: สร้างรอบ D = X · W ด้วยตัวเลขบนสไลด์เอง; SVD ของตาราง 4 × 9 เขียนด้วย JS ล้วนได้ (power iteration หรือ Jacobi); ข้อควรระวังสามข้อ: "the" ครอง topic 1 บนจำนวนดิบ, เครื่องหมายกลับด้านระหว่างไลบรารี, เอกสารสองชิ้นชนกันใน 2 มิติ; แบบฝึกเสริม: รันซ้ำบน TF-IDF แล้วเทียบ
+- ระยะและ cosine จากพิกัดบนสไลด์ (ผู้จัดทำคำนวณ): เอกสาร fox กับ lazy yellow fox ได้ cos ≈ 0.781 (38.7°) ระยะ ≈ 1.219 ส่วนกับ slow brown dog ได้ cos ≈ 0.799 (36.9°) ระยะ ≈ 1.084 ขณะที่ใน 9 มิติทั้งสามคู่ cos = 0.5 เป็นตัวอย่างลากเวกเตอร์ที่ขัดสัญชาตญาณ และสาธิตว่าการลดมิติเสียข้อมูล
+- ลูปของระบบแนะนำเอกสารของ Back (สร้างเวกเตอร์ของคลัง → แปลงคำถามด้วยโมเดลเดิม → cosine → เรียง → ตัดเกณฑ์ → top x) คือรูปแบบมาตรฐานของ vector search; แผนรวม feedback ของผู้ใช้ (linear combination ถ่วงด้วยความใกล้ของคำถามเก่า เริ่มแบบระวัง บวกแรงกว่าลบ) ใช้นำเรื่อง reranking ได้ และตัวเลข 0.2 / 0.5 ที่ขัดกันเป็นตัวอย่าง "ตัวเลขยกตัวอย่างไม่ใช่ค่าตั้ง"
+- "เปลี่ยนโมเดลต้องคำนวณคะแนนใหม่ทั้งหมด" และ "re-index หรือ retrain" ใช้กับดัชนี embedding และการสร้างกราฟ ANN (HNSW) ใหม่ได้ตรง ๆ
+
+**แก้จากต้นฉบับ:** "ลดมิติโดยไม่เสียความหมายเดิมเลย" (27:57) ขัดแย้ง: การตัดมิติเสียข้อมูลเว้นแต่ค่า singular value ที่ตัดทิ้งเป็น 0 (Eckart–Young; ตัวอย่าง 4 เอกสารตัดเหลือ 2 มิติคลาดเคลื่อนแบบ Frobenius ≈ 1.892 เทียบกับขนาดตาราง 4) · "SVD เหมือน JPEG" แต่ JPEG ใช้ DCT · "PCA ง่ายกว่า" แต่ PCA ลบค่าเฉลี่ยทำให้ตารางเบาบางกลายเป็นตารางเต็ม ส่วน TruncatedSVD ไม่ลบ · "ไลบรารีตัดคำหยุดให้" แต่ค่าเริ่มต้นคือ `stop_words=None` (ตรวจเฉพาะ scikit-learn) · LDA อ่านง่ายกว่าเป็นแนวโน้ม ไม่ใช่การรับประกัน · ตัวอย่าง subreddit "trump ลบ cats" ไม่พบ (งานที่รู้จักคือ subreddit algebra ของ FiveThirtyEight ปี 2017 ซึ่งใช้ข้อมูลผู้คอมเมนต์ร่วม ไม่ใช่ข้อความ) · ป้ายแถวที่ 3 บนสไลด์เขียน "the quick red fox" ที่ถูกคือ "the quick red dog" · ตารางชื่อ "TD-IDF Vectorizer" = TF-IDF และไม่มีคอลัมน์ "the" (น่าจะตัดคำหยุดแล้ว: `stop_words='english'` ให้ 0.707107 ตรงสไลด์ ไม่ตัดได้ 0.577) · "เอาน้ำหนักมาบวก" ถูกเฉพาะเมื่อนับเป็น 0/1 · ตัวเลข feedback 0.2 / 0.5 ขัดกับหลัก "บวกแรงกว่าลบ" ที่พูดต่อ · ASR "slope dog" = slow dog, "lady" = lazy
+
+**เราคำนวณหรือเพิ่มเอง:** รัน `CountVectorizer()` + `TruncatedSVD(n_components=2)` ซ้ำ (scikit-learn 1.9.1) ได้ตรงทุกค่า 6 ตำแหน่งบนสไลด์ และเลข 16 หลักตรงถึงราวหลักที่ 15 · singular value ทั้งสี่ ≈ 3.0119, 1.8298, 1.4142, 1.2571 และความคลาดเคลื่อน ≈ 1.892 · cos มุม และระยะระหว่างเอกสารใน 2 มิติและ 9 มิติ · `TfidfVectorizer` ที่ตัดและไม่ตัดคำหยุด · กล่องผู้จัดทำ: polysemy แก้ได้บางส่วน (Deerwester 1990), `ngram_range`, ค่าเริ่มต้นของ `CountVectorizer`, ลำดับคอลัมน์, แถวเป็นคำหรือเอกสาร, W / D คือส่วนไหนของ UΣVᵀ, PCA เลือกน้ำหนักอย่างไร, folding in และ "มองจากปี 2026" (Sentence-BERT) · สูตร cosine และ Euclidean (สูตรมาตรฐาน ไม่มีในคลิป) · canvas ลากเวกเตอร์ 1 ชิ้น และ SVG ของผู้จัดทำ 16 ภาพ
+
+## yt:s9w3gtgvNSU — Green Code, I Built an LLM from Scratch
+
+tags: `green-code` `gpt-2` `transformer` `numpy` `embedding-matrix` `king-queen-analogy` `self-attention` `scaled-dot-product` `multi-head-attention` `masked-attention` `layer-norm` `feed-forward` `gelu` `residual` `weight-tying` `softmax` `temperature` `next-token` `autoregressive` `positional-encoding` `encoder-decoder` `worked-example` `fact-checked`  
+ใช้ในบท: ยังไม่ใช้
+
+**โหมดรายงาน:** iwd (ลึก วิเคราะห์) เรียบเรียงใหม่ด้วยคำของผู้จัดทำ ครบทุกประเด็นและตัวเลข 10 ส่วน (license มาตรฐานของ YouTube; คำบรรยายอังกฤษที่ทำด้วยคน; ตอนที่ 1 ของซีรีส์ Anton; ตัดช่วงโฆษณาผู้สนับสนุนและช่วงชวนบริจาค; โค้ดบนจอคัดตามที่เห็น ส่วนที่การ์ตูนผู้สอนบังทำเครื่องหมาย "…") · ภาพจากคลิป 13 ภาพ + SVG วาดเอง 13 ภาพ + canvas โต้ตอบ 2 ชิ้น · สมการแสดงเป็น MathML 6 บล็อก ·
+ตรวจข้อเท็จจริง 16 ข้อของเนื้อหาด้วยการค้นเว็บ (ยืนยัน 10 · บางส่วน 5 · ไม่พบ 0 · ขัดแย้ง 1; อีก 4 ข้อเรื่องระดมทุนและผู้สนับสนุนตรวจแล้วไม่แสดง) · สร้างโดย Opus (intelligence-writer v6.5b) · ผู้ตรวจอิสระ (Opus): รอบแรก FAIL (1 ต้องแก้ 4 ควรแก้ 10 nit) แก้แล้ว รอบสอง PASS ตรวจรอบสุดท้าย OK (nit 3 ข้อ) · ไม่ได้เก็บ transcript ไว้ใน repo
+
+**เสนอให้ใช้ (ยังไม่ได้แก้บท)**
+
+- ภาพ king − man + woman ≈ queen บนระนาบ (พิกัดที่ผู้จัดทำอ่านจากจอโดยประมาณ ผลตกข้าง queen) เป็นเดโมลากได้ในเรื่องเวกเตอร์และ embedding พร้อมข้อแม้ว่าการค้นคำเปรียบเทียบจริงตัดคำที่ใส่เข้าไปออก ซึ่งต่อไปเรื่องค้นเพื่อนบ้านใกล้สุดได้เลย
+- ตาราง attention ของเล่น 5 token กับ Q / K 4 มิติบนจอตรวจได้ทุกช่อง (ผู้จัดทำคำนวณซ้ำ): แบบฝึก dot product "q_I · k_I = 1.422 หาร √4 = 0.711" และเหตุที่ต้องหาร; แบบฝึก causal mask: ตั้งช่องเหนือเส้นทแยงเป็น −∞ ก่อน softmax แถว I ได้ [1, 0, 0, 0, 0] แถว videos ไม่เปลี่ยน พร้อมข้อผิดที่ต้องบอก: ตั้งเป็น 0 ผิด เพราะ e^0 = 1 ยังให้น้ำหนัก
+- ข้อมูลเข้า LLM: token id → หยิบแถวของตาราง embedding (vocab, d_model); รูปร่างของ multi-head (B, T, h, d/h) → (B, h, T, d/h) จากโค้ด; logits 7 คำบนจอ → softmax พร้อมแถบ temperature (แถบเป็นของผู้จัดทำ คลิปไม่ได้พูดถึง temperature)
+- โค้ด `TransformerBlock` เป็นตัวอย่าง Pre-LN เทียบ Post-LN; residual เริ่มเป็น identity ได้เมื่อ F(x) ใกล้ 0 ตอนเริ่ม พร้อมข้อแม้ (`res_weight_init_scale`, การย่อ 1/√N ของ GPT-2 ที่ N นับจุดบวก residual สองจุดต่อบล็อก); FFN ขยายสี่เท่า; weight tying คือ transpose
+- เรื่อง BPE ในตอนนี้บางมาก (มีแค่ `tokenizer.encode` และชื่อไฟล์ vocab / merges 65k) ต้องดูตอนต่อไปของซีรีส์ก่อนใช้กับเรื่อง tokenizer; ส่วนที่คลิปขาดต้องเติมจากแหล่งอื่น: positional encoding, causal mask ในคำอธิบาย, GELU กับ ReLU, `ln_f`, backward pass, การฝึก และวิธีเลือก token
+
+**แก้จากต้นฉบับ:** attention สำหรับแปลภาษาปี 2014 มาจาก Bahdanau (Jacobs University Bremen), Cho และ Bengio (Université de Montréal) arXiv 1409.0473 ไม่ใช่ Google · "inverted" ควรเป็น transpose ไม่ใช่ inverse และในโมเดลของผู้สอนสองตารางแยกกัน (ไม่ผูก) · กราฟ "ReLU" บนจอ ~9:22 ติดลบเมื่อ x < 0 (ราว −2.5 ที่ x = −3) ReLU จริงเป็น 0; GPT-1 / GPT-2 ใช้ GELU ไม่ใช่ ReLU · มิติบนจอ 786 (~3:23) และ "784 for GPT2" (~11:49) ขัดกับ 768 ของ GPT-2 รุ่นเล็กที่พูด (784 เป็นของโมเดลผู้สอน) และ 768 ใช้กับรุ่นเล็กเท่านั้น (Medium 1024, Large 1280, XL 1600) · "GPT = FFN + LN สองตัว + attention + softmax" คือหนึ่งบล็อกกับ softmax ปลายทาง ยังขาด token / position embedding, การซ้อน N บล็อก, `ln_f` และ linear สุดท้าย · ตารางของเล่นและคำพูด "ทุกคู่ที่เป็นไปได้" ไม่มี mask ทั้งที่จอเขียน Causal และโค้ดรับ `mask` · residual "เริ่มเป็น identity" ต่อเมื่อ F(x) ใกล้ 0 ตอนเริ่มเท่านั้น · positional encoding อยู่ในทุกสไลด์ (ป้าย NEXT EPISODE) แต่คำพูดไม่พูดถึง
+
+**เราคำนวณหรือเพิ่มเอง:** คำนวณซ้ำคะแนน 25 ช่องและน้ำหนัก softmax 25 ช่องของตาราง attention ตรงจอทั้งหมด (I–I = 1.422 → 0.711; videos–Code = 1.704 → 0.852) และพบว่าแถว I กับ love เท่ากันแค่ทศนิยม 3 ตำแหน่ง · ตัวอย่าง LayerNorm (1, 2, 3, 6) → (−1.069, −0.535, 0, 1.604) · ตัวอย่าง residual และ FFN 4 × 784 = 3,136 · king − man + woman = (0.14, 0.86) จากพิกัดบนจอ · กล่องผู้จัดทำ: tokenizer ยังเป็นกล่องดำ, ข้อแม้ king / queen, encoder / decoder / recurrence, ชื่อในโค้ด (B, T, D; การรวม head; CrossAttention), loss / gradient / backward pass / loss landscape, positional encoding (อ่าน class `PositionalEncoding` จากภาพเบลอ ~12:25 ยืนยันไม่ได้), Pre-LN, GELU = x · Φ(x), ResNet กับภาพ loss landscape, วิธีเลือก token (greedy, sampling, top-k / top-p) · canvas 2 ชิ้น (ตาราง attention ทีละช่อง, แถบ temperature) · สมการ 6 บล็อก · SVG ของผู้จัดทำ 13 ภาพ
+
+## yt:vKdKtxpfvIc — Green Code, I Trained an LLM from Scratch
+
+tags: `green-code` `bpe` `tokenization` `vocab-size` `numpy` `pretraining` `next-token` `cross-entropy` `training-loss` `gradient-descent` `backpropagation` `learning-rate` `adamw` `masked-attention` `positional-encoding` `parameter-count` `weight-tying` `shakespeare` `gpt-2` `transformer` `worked-example` `fact-checked`  
+ใช้ในบท: ยังไม่ใช้
+
+**โหมดรายงาน:** iwd (ลึก วิเคราะห์) เรียบเรียงใหม่ด้วยคำของผู้จัดทำ ครบทุกประเด็นและตัวเลข 11 ส่วน (license มาตรฐานของ YouTube; คำบรรยายอังกฤษอัตโนมัติ; ตอนที่ 2 ของซีรีส์ Anton; ตัดช่วงขอรับบริจาค / สปอนเซอร์ ช่วงโปรโมตช่องที่สอง และรายชื่อผู้บริจาค) · ภาพจากคลิป 15 ภาพ + SVG วาดเอง 12 ภาพ · สมการแสดงเป็น MathML 5 บล็อก ·
+ตรวจข้อเท็จจริง 19 ข้อด้วยการค้นเว็บ (ยืนยัน 13 · บางส่วน 4 · ไม่พบ 1 · ขัดแย้ง 1; ตัดแถวยอดระดมทุนออกพร้อมช่วงบริจาค) · สร้างโดย Opus (intelligence-writer v6.5b) · ผู้ตรวจอิสระ (Opus): รอบแรก FAIL (0 ต้องแก้ 2 ควรแก้ 10 nit) แก้ครบ ตรวจรอบสุดท้าย OK (nit 2 ข้อใน `_claude.md` แก้แล้ว) · ไม่ได้เก็บ transcript ไว้ใน repo
+
+**เสนอให้ใช้ (ยังไม่ได้แก้บท)**
+
+- MISSISSIPPI เป็นตัวอย่าง BPE ทำมือที่ครบ: ตารางนับคู่, คู่ที่เสมอกัน (IS / SS / SI = 2), id ใหม่ 81 และจาก 11 เหลือ 9 token; คู่กับสไลด์รหัสตัวอักษร HELLO THERE! (ทำไมไม่ใช้ตัวอักษรตรง ๆ) และข้อแก้ "คลังคำ = ฐาน + จำนวน merge"; ระวังเลขของเล่น I = 78, S = 79 ที่ไม่ใช่ ASCII
+- ข้อมูลเข้า LLM = token embedding + positional encoding: คลาส NumPy 17 บรรทัดแปลงเป็น JS ได้ตรง ๆ และค่าที่ d = 16, pos = 10 ใช้เป็น unit test ได้ (ค่าอยู่ใน `_claude.md`)
+- ตาราง 5 × 5 "I LOVE GREEN CODE VIDEOS" ก่อนและหลัง causal mask ให้ตัวเลขจริงสำหรับปุ่มเปิดปิด mask พร้อมหารใหม่ทั้งแถว (แถว GREEN: .165 .169 .251 หารด้วย .585 ได้ .282 .289 .429) และสอนว่าให้ผลเท่ากับใส่ −∞ ก่อน softmax
+- เรื่อง loss และ gradient descent (ภาคผนวกการฝึก หรือ LLM manual): cross-entropy เมื่อ ŷ ของ CODE = 0.21 ได้ L = 1.56 (ŷ = 1 ได้ 0); ลูปฝึกห้าขั้นภาษาง่าย (เลื่อน ทาย วัด ก้าวสวน ทำซ้ำ); SGD กับ AdamW วิ่งจากจุดเดียวกันบนพื้นผิว loss 2 มิติ (ภาพสกีเป็นของคลิป แคนวาสเป็นงานของเรา)
+- งบพารามิเตอร์ของ Anton v1 แสดงว่าในโมเดลเล็ก ตารางคำศัพท์กินส่วนใหญ่ (ราว 62%) และ weight tying ประหยัด 2 ล้าน; head dim = 200 / 5 = 40; บรรทัดเดียวเรื่อง Muon ที่เป็นทางเลือกใหม่ของ AdamW
+
+**แก้จากต้นฉบับ:** จำนวน token ทั้งชุด 318,741 ที่พูด (2:42) ผิด: notebook บนจอแสดง `shape=(1322042,)` และผู้สร้างเขียนบนจอเองว่าพูดเลขผิด (ผลงานรวมราว 900,000 คำ ควรได้ราว 1 ล้าน token ขึ้นไป) · 167,205 บรรทัดไม่พบในชุดข้อมูลมาตรฐาน (ไฟล์ Project Gutenberg 124,787 บรรทัด ขึ้นกับฉบับ) · SGD "ไม่มีความจำ" จริงเฉพาะแบบไม่มี momentum · momentum ของ AdamW เฉลี่ย gradient ในอดีต (β1) ไม่ใช่ "การอัปเดตก่อนหน้า" และขนาดก้าวรายพารามิเตอร์มาจาก v (β2) ไม่ใช่ "พารามิเตอร์เปลี่ยนมากแค่ไหน"; ตัว W (decoupled weight decay) ไม่ได้อธิบาย · "positional embedding layer" จริงเป็นคลื่น sine / cosine ตายตัวไม่มีพารามิเตอร์ · "สองประโยคดูเหมือนกันทุกอย่าง" เกินจริงสำหรับโมเดล causal ที่เรียนตำแหน่งได้บ้าง (Haviv et al. 2022) · เลข token บนสไลด์ BPE (เช่น 43926, 33676) ไม่ใช่ของ tokenizer ของ Anton และเลขตัวอักษรใน MISSISSIPPI เป็นเลขสมมติ · ASR "GBD" = GPT, "10K book of size" = 10K vocab size, "Andre Karpathy" = Andrej Karpathy, "Kandide" = Candide
+
+**เราคำนวณหรือเพิ่มเอง:** ผลหลังแทน IS ด้วย 81 (11 เหลือ 9 token; คลิปไม่ได้แสดง) · token ต่อบรรทัดจากเลขบนจอเทียบกับเลขที่พูด (1,322,042 / 167,205 กับ 318,741 / 167,205) · ค่า PE ที่ d = 16, pos = 10 ตรงกับจอและสูตร · งบพารามิเตอร์: ต่อบล็อก 482,600, ห้าบล็อก 2,413,000, รวม 6,423,400 (ไม่ผูก) หรือ 4,423,400 (ผูก) แทน 6,449,000 / 4,439,000 ของผู้ตรวจที่สมมติตารางตำแหน่งแบบเรียนรู้ · ln(0.21) = −1.5606 และแถวที่หารใหม่ .282 / .289 / .429 · กล่องผู้จัดทำ: mask ใส่ก่อน softmax, สูตร AdamW บนสไลด์ย่อจากเปเปอร์ และ `weight_decay` 0.0 ในโค้ดกับ 0.1 ใน config, ศัพท์การนับพารามิเตอร์ (Q K V O, MLP, LayerNorm, bias, ผูก / ไม่ผูก) · สมการ 5 บล็อก · SVG ของผู้จัดทำ 12 ภาพ
+
+## yt:-gfgQfw2g_E — freeCodeCamp.org (Vuk Rosić), Build & Train a GLM-5.3-Flash Model From Scratch with Python
+
+tags: `llm-internals` `transformer` `utf-8` `vocab-size` `lookup-table` `one-hot` `embedding-matrix` `weight-tying` `rmsnorm` `rope` `positional-encoding` `self-attention` `sparse-attention` `top-k` `mixture-of-experts` `multimodal` `pretraining` `adamw` `reinforcement-learning` `parameter-count` `bootstrap-ci` `ablation` `thai` `fact-checked`  
+ใช้ในบท: ยังไม่ใช้
+
+**โหมดรายงาน:** iwd (ลึก วิเคราะห์) เรียบเรียงใหม่ด้วยคำของผู้จัดทำ ครบทุกประเด็นและตัวเลข 21 ส่วน (license มาตรฐานของ YouTube; คำบรรยายอังกฤษอัตโนมัติ; ผู้สอน Vuk Rosić บนช่อง freeCodeCamp.org; ตัดช่วงชวนสมัครคอร์ส (skool) และสปอนเซอร์ (Scrimba); ตรวจกับ repo ของผู้สอน และ `config.json` ของ GLM-5.3-Flash) · ภาพจากคลิป 38 ภาพ + SVG วาดเอง 27 ภาพ · สมการแสดงเป็น MathML 12 บล็อก ·
+ตรวจข้อเท็จจริง 20 ข้อด้วยการค้นเว็บ (ยืนยัน 10 · บางส่วน 8 · ไม่พบ 0 · ขัดแย้ง 2) · สร้างโดย Opus (intelligence-writer v6.5b) · ผู้ตรวจอิสระ (Opus): รอบแรก FAIL (0 ต้องแก้ 6 ควรแก้ 18 nit) แก้แล้ว รอบสอง PASS (13 nit) ยังไม่ได้ตรวจรอบสุดท้าย · ไม่ได้เก็บ transcript ไว้ใน repo
+
+**เสนอให้ใช้ (ยังไม่ได้แก้บท)**
+
+- byte กับ BPE เป็นหัวข้อพร้อมใช้: token id = ไบต์ + 4 (ตัวอย่างสไลด์ `def in` → 104 105 106 36 109 114); ภาษาไทยใช้ 3 ไบต์ต่อตัวอักษร โมเดลแบบไบต์จึงทำให้ลำดับไทยยาวสามเท่า; แถบเลื่อน "V × d" แสดงว่าคลังคำ 250k กินโมเดลเล็ก (V = 260 ได้ 66,560 พารามิเตอร์ที่ d = 256; V = 250,000 ได้ 64,000,000) พร้อมข้อแม้ว่า 95% ขึ้นกับความกว้างและการผูกตาราง
+- "token id คือที่อยู่" และ one-hot × E = หนึ่งแถว เป็นสะพานจากการหยิบแถวไปการคูณเมทริกซ์ (เวกเตอร์บนสไลด์ [0.12, −0.08, 0.31]; รูปร่าง batch × tokens × dim)
+- logits z = h Eᵀ คือ dot product ของ h กับทุกแถวของ embedding; weight tying ทำให้ "อ่าน" กับ "ทาย" ใช้เรขาคณิตเดียวกัน ใช้แคนวาส dot / cosine ที่มีอยู่ซ้ำได้ และต้องบอกเสมอว่า GLM ที่ปล่อยจริงไม่ผูก
+- RoPE เป็นการหมุนคู่ 2 มิติ ((1, 0) ที่ตำแหน่ง 3 กับ θ = 1 rad ได้ (−0.990, 0.141)) ระยะสัมพัทธ์ออกมาจาก dot product ของเวกเตอร์ที่หมุนแล้ว คู่กับ NoPE เป็นตัวเทียบ; sparse indexer = "ค้นใกล้สุดราคาถูกภายใน attention" การเลือก top-2,048 เป็นปัญหาเดียวกับ top-k / ANN จึงเชื่อมกลับเรื่องค้นด้วยเวกเตอร์ได้ (ไอเดียของผู้จัดทำ)
+- Transformer block: mix → attention → route, mix → MoE → route บนสี่สาย; ตัวอย่าง RMSNorm (3, −1, 1, 9); ตารางเทียบ linear / sparse / full; ผัง MoE 2 ใน 8 + shared expert
+- ศัพท์สถิติที่สไลด์ใช้โดยไม่นิยาม (seed, paired seeds, p-value, permutation test, bootstrap 95%, McNemar / binomial: 16 ได้ 0 เสีย → 2 × 0.5^16 = 0.0000305) ทำเป็นกล่องข้างได้; ผล RL ที่ดีขึ้นเฉพาะกลุ่มที่ฝึก และค่าที่ "ชนะ" แต่ทำซ้ำไม่ได้ข้าม seed เป็นตัวอย่างการอ่านผลทดลองอย่างระวัง
+
+**แก้จากต้นฉบับ:** GLM-5.3-Flash ไม่ผูก embedding (`tie_word_embeddings: false`) มีแค่โมเดลสอนที่ผูก · sparse attention ของ GLM เลือก top-2,048 ตามเนื้อหาจากทั้งข้อความ ไม่ใช่หน้าต่าง token ล่าสุดราว 2,000 ตัว (ไม่มี `sliding_window`) · ผู้ผลิตคือ Z.ai ไม่ใช่ "Google AI" (ชื่อทดสอบ ox-alpha ถูก) · 260 token คือ 256 ค่าไบต์ + 4 token พิเศษ ไม่ใช่ ASCII · ขนาด BPE จริงของ GLM 154,880 และไม่พบโมเดลหลักที่ใช้ 300k · "95%" ขึ้นกับความกว้างและการผูกตาราง · linear attention ของโมเดลสอนเป็นแบบ ELU ไม่ใช่ KDA และเอกสาร KDA ไม่ได้เรียกตัวเองว่า SSM · "คนส่วนใหญ่ใช้ Muon" เกินจริง · DeepSeek ยังใช้ GRPO (V3.2 "Scaling GRPO" และ V4) · สูตร "หักค่าเฉลี่ยของคำตอบอื่น" คือ RLOO ไม่ใช่ GRPO แบบต้นฉบับ (GRPO ใช้ค่าเฉลี่ยและส่วนเบี่ยงเบนของกลุ่ม) · NoPE ไม่ใช่ "เวอร์ชันหนึ่งของ RoPE" (ผู้สอนอธิบายถูกเองภายหลัง) · ASR "deep six" = DeepSeek, "me on" = Muon, "Laura" = LoRA, "Cloud Code" = Claude Code, "Revision" = vision; "Soul" น่าจะเป็น GPT-5.6 Sol (คงคำเดิมไว้)
+
+**เราคำนวณหรือเพิ่มเอง:** กล่องผู้จัดทำ: ภาษาไทยในโมเดลแบบไบต์ ("ก" = E0 B8 81), ความหมายของ manifold-constrained (doubly stochastic, Sinkhorn-Knopp, `hc_mult` = 4), RMSNorm กับ LayerNorm, มุม θᵢ ของ RoPE ตาม RoFormer, IndexPool (ตัวเลขที่ Z.ai รายงาน), พารามิเตอร์ที่ทำงานต่อ token 9,805,344 จาก 25,730,592 (38.1%), ภาพของ GLM จริง 256 token ต่อภาพ (คำนวณจาก config), เปอร์เซ็นต์ต่อกลุ่มเข้ากับส่วน 64 (อนุมาน) และ pass@8 จาก 25/64 เป็น 34/64 · คำนวณตรวจ: RLOO +0.753 / −0.313 / −0.420, GRPO std 0.478 → +1.48, RMSNorm 4.796, −ln 0.08 = 2.526 · ข้อสังเกตผู้จัดทำ: ตัวอย่าง "x * x", `double_ywkaoot` ผ่าน 3/3 หลัง pre-training แต่ก่อน RL ได้ 0/3, −1 ในคำพูดกับ −0.1 บนสไลด์, head ที่ผูกไว้ก็คือ embedding · สมการ 12 บล็อก · SVG ของผู้จัดทำ 27 ภาพ
+
+## yt:kCc8FmEb1nY — Andrej Karpathy, Let's build GPT: from scratch, in code, spelled out.
+
+tags: `gpt-2` `transformer` `pytorch` `nanogpt` `shakespeare` `tokenization` `tiktoken` `sentencepiece` `next-token` `cross-entropy` `self-attention` `scaled-dot-product` `masked-attention` `multi-head-attention` `query-key-value` `positional-encoding` `feed-forward` `residual` `layer-norm` `softmax` `temperature` `encoder-decoder` `cross-attention` `pretraining` `sft` `rlhf` `adamw` `parameter-count` `autoregressive` `fact-checked`  
+ใช้ในบท: ยังไม่ใช้
+
+**โหมดรายงาน:** iwd (ลึก วิเคราะห์) เรียบเรียงใหม่ด้วยคำของผู้จัดทำ ครบทุกประเด็นและตัวเลข 23 ส่วน (license มาตรฐานของ YouTube; คำบรรยายอังกฤษอัตโนมัติ; คลิปไม่มีช่วงโฆษณา ตัดลิงก์ Discord / Twitter / เว็บส่วนตัว และคำแนะนำผู้ให้บริการ GPU ในคำอธิบายคลิป; โค้ดคัดจากภาพทีละบรรทัด) · ภาพจากคลิป 7 ภาพ + SVG วาดเอง 25 ภาพ + canvas โต้ตอบ 1 ชิ้น · สมการแสดงเป็น MathML 4 บล็อก ·
+ตรวจข้อเท็จจริง 20 ข้อด้วยการค้นเว็บ (ยืนยัน 18 · บางส่วน 1 · ไม่พบ 0 · ขัดแย้ง 1) · สร้างโดย Opus (intelligence-writer v6.5b) · ผู้ตรวจอิสระ (Opus): รอบแรก FAIL (0 ต้องแก้ 3 ควรแก้ 9 nit) แก้แล้ว ตรวจรอบสุดท้าย OK (nit 6 ข้อ) · ไม่ได้เก็บ transcript ไว้ใน repo
+
+**เสนอให้ใช้ (ยังไม่ได้แก้บท)**
+
+- tokenizer ระดับตัวอักษร: โค้ด stoi / itos / encode / decode บนจอเป็นตัวตัดคำตัวแรกที่รันได้ แปลงเป็น JS หนึ่งต่อหนึ่ง; ส่วนประกอบของคลัง 65 ตัว และ "hii there" ได้ 9 id เทียบ tiktoken 3 id (n_vocab 50257) เป็นแบบฝึกเรื่องขนาดคลังคำกับความยาวลำดับ
+- ลำดับการสอน attention ที่ครบในคลิป: เฉลี่ยอดีตด้วย loop → คูณเมทริกซ์สามเหลี่ยมล่าง (ตัวเลข 3 × 3 ของ a, b, c) → `masked_fill(−∞)` + softmax ได้เมทริกซ์เดียวกัน → แทนศูนย์ด้วย q·k; เมทริกซ์ `wei[0]` 8 × 8 บนจอทำเป็น heatmap ตัวเลขจริงได้; position embedding เป็นสะพาน "ข้อมูลเข้า = token embedding + position embedding"
+- Self-attention เต็มสูตร: เดโมความแปรปรวนและ softmax × 8 คือสองตัวเลขที่อธิบายการหาร √d; แถบ temperature (t = 1/8 ให้ผลเท่ากับคูณ 8); บั๊ก C กับ head_size เป็นข้อควรระวังที่ต้องสอนตรง ๆ; block = สื่อสาร + คำนวณ, residual = "ทางด่วนของ gradient", LayerNorm = BatchNorm ที่สลับแกน (แสดงผลทั้งสองแบบ)
+- บันได val loss จาก bigram ถึงโมเดลขยาย (ค่าอยู่ใน `_claude.md`) เป็นกราฟ ablation ปิดท้ายได้ โดยบอกว่าขั้นสุดท้ายเปลี่ยนขนาดโมเดลด้วย
+- แบบฝึกจากคำอธิบายคลิป (EX1–EX4) เป็นการบ้านได้; ข้อควรระวังเวลาพอร์ต: ต้องตัดตำแหน่ง `idx[:, -block_size:]` และคลิปไม่แสดง init ของน้ำหนัก (std 0.02 ใน repo) หรือการลด learning rate
+
+**แก้จากต้นฉบับ:** "GPT-2 ออกปี 2017 ถ้าจำไม่ผิด" (6:29) ผิด GPT-2 ประกาศ 14 ก.พ. 2019 · tiny Shakespeare เป็นชุดย่อยราว 40,000 บรรทัด ไม่ใช่ผลงานทั้งหมด · ผู้สอนแก้เองในคำอธิบายคลิป: ราว 57:00 "token จากอดีตคุยด้วยไม่ได้" ต้องเป็น "จากอนาคต" และ 1:20:05 ต้อง normalize ด้วย head_size ไม่ใช่ C โค้ดบนจอยังเป็น `C**-0.5` ตั้งแต่ multi-head (head_size 8, C 32) จึงหารด้วย √32 แทน √8 (repo ใช้ `k.shape[-1]**-0.5`) · GPT-2 รุ่นเล็กสุดชื่อ 117M ตอนประกาศ ส่วน 124M เป็นการนับใหม่ของโมเดลเดียวกัน · ChatGPT fine-tune จากตระกูล GPT-3.5 ไม่ใช่ GPT-3 ในตาราง · ASR "248" = d_ff 2048 · ตาราง GPT-3 แถว 13B เขียน d_model 5140 แต่ 40 × 128 = 5120 (ตัวเลขของเปเปอร์เอง คงไว้ตามจอ) · "50,000 token" ของ tiktoken จริงคือ 50,257 · "earier" สะกดผิดในโค้ดต้นฉบับ (คงไว้)
+
+**เราคำนวณหรือเพิ่มเอง:** จำนวนพารามิเตอร์ของโมเดลสุดท้าย 10,788,929 และ −ln(1/65) = 4.1744 (ผู้ตรวจนับ) · Shakespeare ใน BPE ของ GPT-2 = 301,966 token ฝั่ง train · batch ของคลิป 64 × 256 = 16,384 token เทียบกับ batch ของ GPT-3 ที่นับเป็นล้าน token · loss ที่พูดก่อนขยายกับค่าบนจอ (ต่างกัน 0.01) · กล่องผู้จัดทำ: ตัวเลขบนจอ ("earier", 50257), ตำแหน่งแบบเรียนรู้กับ sin / cos ของเปเปอร์, ทำไมเรียก t ว่าอุณหภูมิ, d_ff 2048, สถานะ nanoGPT (README พ.ย. 2025: เลิกพัฒนา ให้ใช้ nanochat; โค้ดคลิปอยู่ที่ ng-video-lecture), GELU และ weight decay, อ่านตาราง GPT-3 ให้ตรง (Llama 3 ฝึก 15 ล้านล้าน token) · canvas 1 ชิ้น · สมการ 4 บล็อก · SVG ของผู้จัดทำ 25 ภาพ
+
+## yt:mmbkP8NARH4 — NVIDIA Developer, Get Started with Unsloth Studio: Generate Data & Fine-Tune LLMs Locally on any NVIDIA GPU
+
+tags: `unsloth` `unsloth-studio` `fine-tuning` `qlora` `lora` `distillation` `synthetic-data` `data-recipes` `alpaca-format` `chain-of-thought` `special-tokens` `context-window` `learning-rate` `epochs` `gradient-accumulation` `quantization` `gguf` `vram` `local-llm` `fact-checked`  
+ใช้ในบท: ยังไม่ใช้
+
+**โหมดรายงาน:** iwd (ลึก วิเคราะห์) เรียบเรียงใหม่ด้วยคำของผู้จัดทำ ครบทุกประเด็นและตัวเลข 12 ส่วน (license มาตรฐานของ YouTube; คำบรรยายอังกฤษอัตโนมัติ; คลิปไม่มีช่วงสปอนเซอร์ ตัดเฉพาะช่วงชวนกดลิงก์ท้ายคลิป; ค่าตั้งบนจอทุกช่องเทียบกับภาพ) · ภาพจากคลิป 18 ภาพ + SVG วาดเอง 15 ภาพ · สมการแสดงเป็น MathML 2 บล็อก ·
+ตรวจข้อเท็จจริง 19 ข้อด้วยการค้นเว็บ (ยืนยัน 15 · บางส่วน 4 · ไม่พบ 0 · ขัดแย้ง 0) · สร้างโดย Opus (intelligence-writer v6.5b) · ผู้ตรวจอิสระ (Opus): รอบแรก FAIL (0 ต้องแก้ 2 ควรแก้ 3 nit) แก้ครบ ตรวจรอบสุดท้ายครั้งแรก NOT OK (1 ควรแก้ 2 nit เรื่องรัน 100 แถวใน `_claude.md`) แก้แล้ว ครั้งที่สอง OK · ไม่ได้เก็บ transcript ไว้ใน repo
+
+**เสนอให้ใช้ (ยังไม่ได้แก้บท)**
+
+- LLM manual ตอน "fine-tune โมเดลเล็กเฉพาะงาน" (WIP202610050): คลิปเป็นสูตรสำเร็จสี่ขั้น (เลือกรูปแบบคำตอบ → ให้โมเดลใหญ่สร้าง → QLoRA โมเดล 1B → export GGUF) ใช้ตารางค่าตั้งจริงของคลิปเป็นตัวอย่าง (lr 1e-4, rank 16 / alpha 32, batch 10, 100 step, context 2,048, 1,000 แถว) และเติมสูตร epoch ที่มี gradient accumulation กับขั้นประเมินบนคำถามที่ไม่เคยเห็นซึ่งคลิปข้าม
+- เรื่อง token: `<think>` / `</think>` เป็น token พิเศษ; context 2,048 และ max_tokens 2048 เป็นงบ token; แสดงว่าแถวฝึกกลายเป็น token อย่างไร และเหตุผลยาวกิน context (261,201 token ใน 83 step ราว 3,150 token ต่อ step หรือราว 315 ต่อแถว; ผู้จัดทำคำนวณ)
+- chat template: การจับคู่คอลัมน์ User / Assistant ห่อ instruction กับ output_with_reasoning เป็นลำดับเดียว และ loss มักคิดเฉพาะส่วนของ assistant
+- LoRA: B·A rank ต่ำบวกเข้ากับเมทริกซ์ที่แช่ไว้ ส่วน QLoRA เก็บฐานเป็น 4-bit; ภาพ W + B·A และจำนวนพารามิเตอร์ของ adapter r = 16 เทียบเมทริกซ์เต็ม
+- คลิปไม่มีเนื้อหาค้นด้วยเวกเตอร์ เหมาะกับเรื่อง "เปลี่ยนพฤติกรรมของโมเดล" ต่อจากส่วน Transformer มากกว่าส่วน retrieval; สะพานที่เป็นไปได้ (คลิปไม่ได้พูด): distillation แบบเดียวกันใช้ฝึก embedding model หรือ reranker เล็กจากคะแนนของครู; สไลด์ "Distillation Workflow" (2:15) เป็นภาพสรุปหนึ่งภาพได้
+
+**แก้จากต้นฉบับ:** "on any NVIDIA GPU" ที่จริงต้องเป็น GPU ที่มี CUDA compute capability 7.0 ขึ้นไป (การ์ดเก่าทำงานช้า เอกสารปัจจุบันรองรับ AMD / Intel / Mac ด้วย) และ Studio บน Linux / WSL ต้องใช้ CUDA Toolkit 12.4 ขึ้นไป · ปุ่ม AI Assist ไม่พบในเอกสาร (เห็นบนจอเป็น Beta) · alpha 32 เป็นค่าเริ่มต้นอยู่แล้ว ส่วน lr 1e-4 เปลี่ยนจริงจาก 2e-4 · "หนึ่ง epoch" ถูกเฉพาะเมื่อ gradient accumulation = 1 (ค่าเริ่มคือ 8) จอยืนยัน Epoch 0.83 ที่ step 83 ในรันนี้ · ผู้สอนพูดว่าทิ้งคอลัมน์ output เดิม แต่แม่แบบ Expression ต่อท้าย output เดิมเป็นคำตอบสุดท้าย และ prompt ให้ teacher เห็นคำตอบก่อนเขียนเหตุผลย้อนหลัง · คำตอบใน Chat "Red and yellow form a primary pair" ไม่ถูกตามทฤษฎีสี และคำถามทดสอบแทบซ้ำกับแถวฝึก · ขนาด GGUF ที่ประมาณบนจอ (ราว 14.2 GB ที่ 16-bit, ราว 4.8 GB ที่ Q4_K_M) ไม่เข้ากับโมเดล 1B · GPU Monitor 0% / 0.58 GB กลางการเทรนน่าจะเป็นค่าค้าง · กล่อง Progress ขึ้น Total: 100 และ batch 3/10 ในรันที่ตั้ง 1,000 แถว (ผู้จัดทำอ่านว่าแบ่งทำ 10 ชุด) · ASR "Onslaught" = Unsloth, "NeMo Tron" = Nemotron, "Onslaught Alpaca Clean" = unsloth/alpaca-cleaned, "Alma 2 Instruct" = allenai/OLMo-2-0425-1B-Instruct
+
+**เราคำนวณหรือเพิ่มเอง:** สมการ epoch: 10 × 100 / 1000 = 1 และสูตรทั่วไปที่มี gradient accumulation · ตรวจ LR ระหว่างทาง 1e-4 × 17/90 · 261,201 / 83 ≈ 3,147 token ต่อ step · เวลาโดยประมาณถ้าสร้างครบ 1,000 แถวที่ราว 0.6 แถวต่อวินาที (ราว 28 นาที) · ขนาดโมเดล 1B ที่ 16-bit ราว 2–3 GB · กล่องผู้จัดทำ: ASR และสัญญาอนุญาต (Apache-2.0 ของตัวหลัก, AGPL-3.0 ของหน้าจอ Studio), distillation ระดับข้อความกับแบบ logit, การ์ด 16 GB กับไฟล์ teacher GGUF ราว 24 GB, endpoint `http://localhost:8000/v1` (คาด), โหมดคิดของ Nemotron (`enable_thinking`), teacher รู้คำตอบก่อน, คอลัมน์ output เดิมยังถูกใช้, input = None, การทดสอบนี้บอกอะไรได้และไม่ได้, loss 1.0328 กับ 1.2249, ที่เก็บไฟล์ GGUF · สมการ 2 บล็อก · SVG ของผู้จัดทำ 15 ภาพ
+
+## yt:K1ksiPHfgVs — Zachary Huang, Give me 31 minutes, I will make PyTorch click forever
+
+tags: `pytorch` `linear-algebra` `linear-regression` `training-loss` `partial-derivatives` `gradient-descent` `learning-rate` `autograd` `backpropagation` `adamw` `epochs` `cross-entropy` `softmax` `toy-example` `worked-example` `fact-checked`  
+ใช้ในบท: ยังไม่ใช้
+
+**โหมดรายงาน:** iwd (ลึก วิเคราะห์) เรียบเรียงใหม่ด้วยคำของผู้จัดทำ ครบทุกประเด็นและตัวเลข 15 ส่วน (license มาตรฐานของ YouTube; คำบรรยายอังกฤษอัตโนมัติ; ในคลิปไม่มีช่วงโฆษณา ตัดลิงก์ขายหนังสือและลิงก์โซเชียลในคำอธิบายคลิป; ตัวเลขฝึกแบบเต็มชุดคำนวณซ้ำจากข้อมูล 36 เที่ยวบนจอ) · ภาพจากคลิป 14 ภาพ + SVG วาดเอง 19 ภาพ · สมการแสดงเป็น MathML 5 บล็อก ·
+ตรวจข้อเท็จจริง 20 ข้อด้วยการค้นเว็บ (ยืนยัน 18 · บางส่วน 2 · ไม่พบ 0 · ขัดแย้ง 0; ผู้ตรวจแยกให้ข้อจำนวนก้าวของ optimizer ว่าไม่พบ ผู้จัดทำอ่านเกณฑ์จากจอแล้วจำลองได้ตรง จึงเปลี่ยนเป็นยืนยัน) · สร้างโดย Opus (intelligence-writer v6.5b) · ผู้ตรวจอิสระ (Opus): รอบแรก FAIL (0 ต้องแก้ 5 ควรแก้ 7 nit) แก้ครบ ตรวจรอบสุดท้าย OK ไม่มีข้อค้าง · ไม่ได้เก็บ transcript ไว้ใน repo
+
+**เสนอให้ใช้ (ยังไม่ได้แก้บท)**
+
+- ตาราง `fares` 3 × 12 เป็น "เมทริกซ์แรก" ที่มีตัวเลขจริง: กฎ dim (แกนที่ส่งคือแกนที่ถูกยุบหาย), `.T`, `reshape`, `flatten`, `stack` กับ `cat`, การ์ดคำสั่ง (`x @ x.T`, `x * x` รายตัว); dot product ใน `x @ x.T` (0·0 + 1·1 + 2·2 = 5) คือตัวเดียวกับที่ใช้วัดความคล้าย; ตาราง mask / mean(dim) / topk แปลงเป็น JS ล้วนได้
+- ภาคผนวกการฝึก หรือ LLM manual (WIP202610050): ลำดับคำนวณมือทั้งหมดทำซ้ำใน JS ได้จาก 36 คู่ (MSE 262.02 → gradient → หนึ่งก้าว → 100 ก้าว → 1,000 ก้าว; ค่าครบอยู่ใน `_claude.md`); แคนวาสแผนที่ loss พร้อมแถบ lr และปุ่มก้าวที่เห็น w เลยเป้าและ b คลาน; การแข่ง optimizer ที่ทำซ้ำจำนวนก้าวทั้งแปดด้วย lr และเกณฑ์บนจอ
+- เหตุผลเชิงตัวเลขที่ b คลาน (ผู้จัดทำคำนวณ): Hessian ของ MSE มีค่าเฉพาะต่างกันราว 37 เท่า GD เสถียรเมื่อ lr ต่ำกว่าราว 0.057 และที่ lr 0.01 ทิศแบนหดราว 1% ต่อก้าว เป็นย่อหน้าเดียวที่อธิบาย "lr ใหญ่ไปกับช้าไป" และเหตุที่ momentum / Adam ช่วย
+- สะพานไปการฝึก LLM: cross entropy บนคะแนน [2, 1, 0.1] (softmax 0.659 / 0.242 / 0.099, loss 0.417) คือ loss ต่อ token ของ LLM; `nn.Linear` = `x @ W.T + b` คือ projection ของ Q / K / V และหัวขาออก; `backward` / `zero_grad` / `no_grad` ใช้เหมือนกันทั้งตอนฝึกและตอน inference
+
+**แก้จากต้นฉบับ:** ไม่พบข้อผิดของผู้สอน มีแต่ตัวเลขที่คำบรรยายอัตโนมัติฟังผิด: dL/dw ที่ 15:49 คือ −126.21 ไม่ใช่ "−26.21" (จอ −4,543.60 ÷ 36 และก้าวถัดไป 2.262 ใช้ได้กับค่านี้เท่านั้น) · เที่ยว 10 โมงวันจันทร์ที่ 30:57 พลาด −13.23 ไม่ใช่ "−3.23" (13.23² = 175.03 ตรงกับคำพูดถัดมา) · "Fars has shape 3x2" (~6:48) ที่ถูกคือ (3, 12) · ASR อื่น: "fairs" = fares, "torch.fall" = `torch.full`, "mole backward" = `MulBackward0`, "Opt.0" = `opt.zero_grad()`, "nodule" = `nn.Module`, "Hoover" = Huber, "$1140" = 11.40 ตามจอ
+
+**เราคำนวณหรือเพิ่มเอง:** ตัวเลขฝึกแบบเต็มชุดทุกข้อคำนวณซ้ำด้วย python จาก 36 คู่ (ไมล์, ค่าโดยสาร) ที่อ่านจากจอ ตรงตามความละเอียดที่พิมพ์ รวมจำนวนก้าวของ optimizer ทั้งแปด (SGD 551, momentum 100, Nesterov 62, Adagrad 50, RMSprop 158, Adam 88, AdamW 552, NAdam 31); ส่วน DataLoader ที่สลับลำดับแบบสุ่มเทียบกับจอเท่านั้น · CE 0.417 และ BCE 0.3711 จากคะแนนบนจอ (log ฐาน e) · Hessian ค่าเฉพาะ และเกณฑ์ lr · ค่าเริ่มของ `lin.bias` ราว 0.54 ย้อนจาก loss 388.59 · กล่องผู้จัดทำ: สรุปแบบสถานการณ์ (L1 / Huber, momentum / Adam), ค่าธรรมเนียมแท็กซี่นิวยอร์กนอกป้ายอัตรา, error ของการแก้ค่าแบบ in-place, `zero_grad` ตั้งเป็น None โดยค่าเริ่ม, `p` ในคำสั่งบนจอ, Huber ขึ้นกับ delta · สมการ 5 บล็อก · SVG ของผู้จัดทำ 19 ภาพ
 
 ## การตรวจตัวเลขและข้อเท็จจริง
 

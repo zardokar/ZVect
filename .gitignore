@@ -151,3 +151,7 @@ vite.config.ts.timestamp-*
 # AI handoffs (ephemeral)
 .dropzone/
 __pycache__/
+
+# checkpoint-ledger (lgck_wip.js / lgck_ckp.js backups + temp writes)
+checkpoints/.bak/
+checkpoints/*.tmp

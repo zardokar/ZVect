@@ -92,9 +92,9 @@ examples/     ตัวอย่างของแต่ละบท js/ py/ cpp
 web/          หน้าเว็บบทเรียน: js/scene3d.js (3D renderer), js/dict/ (พจนานุกรม 4 ภาษา: index.js = facade, adapters.js, model.js, page.js), lessons/*.js, css/
 tools/        check-examples.js, make-manifest.js, zv.js
 tests/        node:test (lib + dict facade)
-docs/         APPROVALS.md (กติกาเรื่อง dependency), outhtm/ + aimd/ (สรุปคลิปที่อ่านมา)
-REFERENCE.md  แหล่งที่อ่านมาและใช้ประกอบบทเรียน (มีกลุ่มหัวข้อและดัชนี tag ให้ค้นเร็ว)
-checkpoints/  สถานะงานและ WIP ledger สำหรับ AI session ถัดไป
+docs/         APPROVALS.md (กติกาเรื่อง dependency), outhtm/ + aimd/ (สรุปคลิปที่อ่านมา), reference.json + reference.tags.json (ข้อมูลแหล่งอ้างอิง, skill zdoc)
+REFERENCE.md  แหล่งที่อ่านมาและใช้ประกอบบทเรียน (มีกลุ่มหัวข้อและดัชนี tag ให้ค้นเร็ว) สร้างจาก docs/reference.json ด้วย zdoc.js ห้ามแก้ด้วยมือ
+checkpoints/  สถานะงาน: checkpoint .md + WIP ledger (wip.json / archive.json, skill checkpoint-ledger)
 index.html    หน้าแรกของ GitHub Pages (พาไปที่ web/)
 server.js     เว็บเซิร์ฟเวอร์ด้วย node:http (layout เดียวกับ GitHub Pages)
 llms.txt      คู่มือสั้นสำหรับ AI ที่จะเอา lib ไปใช้
@@ -114,12 +114,16 @@ llms.txt      คู่มือสั้นสำหรับ AI ที่จ�
 
 ## สำหรับ AI session (read first)
 
-- **Authoritative checkpoint:** walk `checkpoints/checkpoint.zvect.ver*.md` by version number and read the
-  latest in full, **§6 (WIP) first**, then the previous one. Current: `checkpoints/checkpoint.zvect.ver002.md` (2026-10-11);
-  `ver001` = archive, its §5b holds upckp #1–#33. Closed rows in full: `checkpoints/archive/ARCHIVE.202610.md`.
-- **Reply to the owner in Thai** (chat, questions, summaries). Checkpoints, handoffs and code comments stay in English. Shorthand: `upckp` = append an entry to §5b of the latest
-  checkpoint and update the WIP tables · `newckp` = cut the next version · `hz` = write a handoff into
-  `.dropzone/hzup_claude/` (git-ignored).
+- **Checkpoint + WIP ledger = skill `checkpoint-ledger`** (since 2026-10-25). Current checkpoint:
+  `checkpoints/checkpoint.zvect.ver003.md` (§1–§5 info + the generated `lgck:auto` block). WIP lives in
+  `checkpoints/wip.json` + `checkpoints/archive.json`: start with `lgck_wip.js list` then `check` (not by reading tables).
+  `ver001` / `ver002` and `checkpoints/archive/ARCHIVE.202610.md` are history only (old md ledger, upckp #1–#64).
+- **References = skill `zdoc`** (since 2026-10-25). Data: `docs/reference.json` + `docs/reference.tags.json`;
+  `REFERENCE.md` is rendered from them by `zdoc.js` (never edit it by hand). Find with `zdoc.js list --tag t` / `card <ref>`,
+  write with `add` / `analysis` / `tag` / `detail` / `drop`, then `check`. Pack: `.dropzone/skills/zdoc.v001.skill`.
+- **Reply to the owner in Thai** (chat, questions, summaries). Checkpoints, handoffs, ledger titles / notes and code comments stay in English.
+  Shorthand: `upd …` = a WIP action via `lgck_wip.js` · `upck` = `check` then `lgck_ckp.js upck` · `newck` = `lgck_ckp.js newck`
+  · `hz` = write a handoff into `.dropzone/hzup_claude/` (git-ignored). Never edit the JSON or the generated block by hand.
 - Never run `git` write commands for the owner; he commits and pushes himself.
 
 ## License
